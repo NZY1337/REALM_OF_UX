@@ -4,7 +4,10 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { convertToBase64 } from "../../utils/helpers";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { PageSectionBanner, PageSectionTitle } from "../../components";
+import ToastNotification from "../../components/ToastNotification";
+import { Container, Row, Col } from "react-bootstrap";
 
 const ProjectForm = () => {
   const [newProject, setNewProject] = useState({
@@ -14,6 +17,8 @@ const ProjectForm = () => {
     tablet: "",
     mobile: "",
   });
+
+  const navigate = useNavigate("");
 
   const handleOnchangeUploadSS = async (e) => {
     if (e.target.files[0]) {
@@ -47,7 +52,11 @@ const ProjectForm = () => {
 
     try {
       const response = await axios.post("/api/v1/project/project", newProject);
+      alert(
+        "Your project was successfully created, Now you are being redirected to the homepage"
+      );
       console.log(response);
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
@@ -60,15 +69,14 @@ const ProjectForm = () => {
         titleBold="Upload "
         titleNormal="your project here"
       />
-
       <PageSectionBanner
         title="Designed to impress your audience"
         cover={cover}
       />
 
-      <div className="container my-5">
-        <div className="row">
-          <div className="col-lg-5">
+      <Container className="my-5 position-relative">
+        <Row>
+          <Col className="col-lg-5">
             <h3>Add Your Project Here</h3>
             <Form onSubmit={handleSubmitForm}>
               <Form.Group className="mb-3" controlId="projet-name">
@@ -128,9 +136,10 @@ const ProjectForm = () => {
                 Submit
               </Button>
             </Form>
-          </div>
-        </div>
-      </div>
+          </Col>
+        </Row>
+        <ToastNotification />
+      </Container>
     </>
   );
 };
