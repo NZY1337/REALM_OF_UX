@@ -7,6 +7,7 @@ import { ThemeProvider } from "styled-components";
 import { TranslateProvider } from "./utils/contexts/translate/translateContext";
 import { Routes, Route, matchPath, useLocation } from "react-router-dom";
 import { UserProvider } from "./utils/contexts/user/userContext";
+import { ErrorProvider } from "./utils/contexts/error/errorContext";
 import Projects from "./pages/Projects";
 import ProjectForm from "./pages/Projects/ProjectForm";
 import SingleProject from "./pages/Home/Projects/SingleProject";
@@ -29,31 +30,33 @@ function App() {
     <ThemeProvider theme={theme}>
       <TranslateProvider>
         <UserProvider>
-          {!isUnknownRoot && (
-            <div className="App">
-              <Navigation />
+          <ErrorProvider>
+            {!isUnknownRoot && (
+              <div className="App">
+                <Navigation />
 
+                <Routes>
+                  <Route path="/">
+                    <Route path="" element={<Home />} />
+                    <Route path="projects" element={<Projects />} />
+                    <Route path="login" element={<LoginRegister />} />
+                    <Route path="banner-creator" element={<BannerCreator />} />
+                  </Route>
+                  <Route path="/projects">
+                    <Route path="new-project" element={<ProjectForm />} />
+                    <Route path=":projectId" element={<SingleProject />} />
+                  </Route>
+                </Routes>
+                <Footer />
+              </div>
+            )}
+
+            {isUnknownRoot && (
               <Routes>
-                <Route path="/">
-                  <Route path="" element={<Home />} />
-                  <Route path="projects" element={<Projects />} />
-                  <Route path="login" element={<LoginRegister />} />
-                  <Route path="banner-creator" element={<BannerCreator />} />
-                </Route>
-                <Route path="/projects">
-                  <Route path="new-project" element={<ProjectForm />} />
-                  <Route path=":projectId" element={<SingleProject />} />
-                </Route>
+                <Route path="*" element={<ErrorPage />} />
               </Routes>
-              <Footer />
-            </div>
-          )}
-
-          {isUnknownRoot && (
-            <Routes>
-              <Route path="*" element={<ErrorPage />} />
-            </Routes>
-          )}
+            )}
+          </ErrorProvider>
         </UserProvider>
       </TranslateProvider>
     </ThemeProvider>

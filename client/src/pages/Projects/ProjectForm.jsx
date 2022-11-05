@@ -18,6 +18,11 @@ const ProjectForm = () => {
     mobile: "",
   });
 
+  const [displayToast, setDisplayToast] = useState({
+    display: false,
+    type: "fail",
+    message: "",
+  });
   const navigate = useNavigate("");
 
   const handleOnchangeUploadSS = async (e) => {
@@ -52,15 +57,27 @@ const ProjectForm = () => {
 
     try {
       const response = await axios.post("/api/v1/project/project", newProject);
-      alert(
-        "Your project was successfully created, Now you are being redirected to the homepage"
-      );
-      console.log(response);
-      navigate("/");
+      setDisplayToast({
+        display: true,
+        type: "success",
+        message: `Project successfully created, you'll be redirected to the project's page. Hold tight`,
+      });
+
+      // after the toast notification is closed
+      setTimeout(() => {
+        navigate(`/projects/${response.data.project._id}`);
+      }, 6000);
     } catch (error) {
-      console.log(error);
+      setDisplayToast({
+        display: true,
+        type: "fail",
+        message: error.response.data.msg,
+      });
     }
   };
+
+  const { name, category, desktop, tablet, mobile } = newProject;
+  const enableSubmit = !name || !category || !desktop || !tablet || !mobile;
 
   return (
     <>
@@ -138,7 +155,13 @@ const ProjectForm = () => {
             </Form>
           </Col>
         </Row>
-        <ToastNotification />
+
+        <ToastNotification
+          displayToast={displayToast}
+          displayAlertCb={() =>
+            setDisplayToast({ ...displayToast, display: false })
+          }
+        />
       </Container>
     </>
   );
