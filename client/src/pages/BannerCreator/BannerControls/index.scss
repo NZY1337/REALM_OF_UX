@@ -1,0 +1,103 @@
+.banner-control {
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+
+  &-cover {
+    background-color: lightgray;
+  }
+
+  // BG TEXT TYPES
+  &-text {
+    background-color: aliceblue;
+
+    button.heading {
+      background: #0d1216;
+      margin-bottom: 8px;
+      padding: 8px 16px;
+      border-radius: 5px;
+      color: var(--text-color-white);
+      text-align: left;
+      border: none;
+
+      &:hover {
+        background-color: #18191b;
+      }
+    }
+
+    &-heading {
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    &-subheading {
+      font-size: 20px;
+    }
+
+    &-paragraph {
+      font-size: 16px;
+      font-weight: 100;
+    }
+  }
+
+  // BG-TYPES
+  &-types {
+    background-color: rgb(210, 189, 210);
+
+    &-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    button {
+      background: #4d3939;
+      border: 2px solid #4d3939;
+      border-radius: 4px;
+      color: #fff;
+      cursor: pointer;
+      font-size: 12px;
+      outline: none;
+      padding: 5px 20px;
+      text-transform: uppercase;
+      transition: all 0.5s ease;
+      min-width: fit-content;
+
+      &:hover {
+        background: #fff;
+        border: 2px solid #535353;
+        color: #000;
+      }
+    }
+  }
+
+  // BACKGROUND-COLOR
+  &-background {
+    background-color: ghostwhite;
+
+    button {
+      background: #4d3939;
+      border: 2px solid #4d3939;
+      border-radius: 4px;
+      color: #fff;
+      cursor: pointer;
+      font-size: 12px;
+      outline: none;
+      padding: 5px 20px;
+      text-transform: uppercase;
+      transition: all 0.5s ease;
+      width: fit-content;
+      display: block;
+      flex-shrink: 0;
+
+      &:hover {
+        background: #fff;
+        border: 2px solid #535353;
+        color: #000;
+      }
+    }
+  }
+}
