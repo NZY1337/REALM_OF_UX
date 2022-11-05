@@ -50,13 +50,13 @@ function App() {
                 <Footer />
               </div>
             )}
-
-            {isUnknownRoot && (
-              <Routes>
-                <Route path="*" element={<ErrorPage />} />
-              </Routes>
-            )}
           </ErrorProvider>
+
+          {isUnknownRoot && (
+            <Routes>
+              <Route path="*" element={<ErrorPage />} />
+            </Routes>
+          )}
         </UserProvider>
       </TranslateProvider>
     </ThemeProvider>

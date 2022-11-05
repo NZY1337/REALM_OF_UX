@@ -4,19 +4,21 @@ import { useEffect } from "react";
 import Toast from "react-bootstrap/Toast";
 import ToastContainer from "react-bootstrap/ToastContainer";
 import Spinner from "react-bootstrap/Spinner";
+import { useErrorContext } from "../utils/contexts/error/errorContext";
 
-const ToastNotification = ({ displayToast, displayAlertCb }) => {
-  const [show, setShow] = useState(displayToast.display);
+const ToastNotification = () => {
+  const { setSettings, settings } = useErrorContext();
+  const [show, setShow] = useState(settings.display);
 
   const statusStyle = {
     width: "10px",
     height: "10px",
-    backgroundColor: displayToast.type === "success" ? "#0e930e" : "#d60d0d",
+    backgroundColor: settings.type === "success" ? "#0e930e" : "#d60d0d",
   };
 
   useEffect(() => {
-    setShow(displayToast.display);
-  }, [displayToast.display]);
+    setShow(settings.display);
+  }, [settings.display]);
 
   return (
     <>
@@ -24,22 +26,27 @@ const ToastNotification = ({ displayToast, displayAlertCb }) => {
         <Toast
           onClose={() => {
             setShow(false);
-            displayAlertCb({ display: false, type: null, message: "" });
+            // do not reset the values - ket them as they are - we do not want to change the text/design of the popup while fading out
+            setSettings({
+              display: settings.display,
+              type: settings.type,
+              message: settings.message,
+            });
           }}
           show={show}
-          delay={5000}
+          delay={4000}
           autohide
           bg="dark"
         >
           <Toast.Header closeButton={true}>
             <div style={statusStyle} className="rounded me-2 icon-status"></div>
             <strong className="me-auto">
-              {displayToast.type === "success" ? "Success" : "Hold tight"}
+              {settings.type === "success" ? "Success" : "Hold tight"}
             </strong>
             <small>11 mins ago</small>
           </Toast.Header>
           <Toast.Body style={{ color: "#e3d7d7" }}>
-            {displayToast.message}
+            {settings.message}
             <Spinner
               className="ms-2"
               as="span"
@@ -47,7 +54,7 @@ const ToastNotification = ({ displayToast, displayAlertCb }) => {
               size="sm"
               role="status"
               aria-hidden="true"
-              variant={displayToast.type === "success" ? "success" : "danger"}
+              variant={settings.type === "success" ? "success" : "danger"}
             />
           </Toast.Body>
         </Toast>

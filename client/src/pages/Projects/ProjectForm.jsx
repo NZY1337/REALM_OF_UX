@@ -8,21 +8,19 @@ import { useNavigate } from "react-router-dom";
 import { PageSectionBanner, PageSectionTitle } from "../../components";
 import ToastNotification from "../../components/ToastNotification";
 import { Container, Row, Col } from "react-bootstrap";
+import { useErrorContext } from "../../utils/contexts/error/errorContext";
 
 const ProjectForm = () => {
   const [newProject, setNewProject] = useState({
     name: "",
-    category: "",
-    desktop: "",
-    tablet: "",
-    mobile: "",
+    category: "eewe",
+    desktop: "ewew",
+    tablet: "ewew",
+    mobile: "ewewew",
   });
 
-  const [displayToast, setDisplayToast] = useState({
-    display: false,
-    type: "fail",
-    message: "",
-  });
+  const { setSettings } = useErrorContext();
+
   const navigate = useNavigate("");
 
   const handleOnchangeUploadSS = async (e) => {
@@ -57,18 +55,18 @@ const ProjectForm = () => {
 
     try {
       const response = await axios.post("/api/v1/project/project", newProject);
-      setDisplayToast({
+      setSettings({
         display: true,
         type: "success",
         message: `Project successfully created, you'll be redirected to the project's page. Hold tight`,
       });
 
-      // after the toast notification is closed
+      //   after the toast notification is closed
       setTimeout(() => {
         navigate(`/projects/${response.data.project._id}`);
-      }, 6000);
+      }, 4000);
     } catch (error) {
-      setDisplayToast({
+      setSettings({
         display: true,
         type: "fail",
         message: error.response.data.msg,
@@ -102,6 +100,7 @@ const ProjectForm = () => {
                   type="name"
                   name="name"
                   placeholder="Enter the project's name"
+                  value={newProject.name}
                   onChange={handleOnChangeProjectName}
                 />
               </Form.Group>
@@ -113,6 +112,7 @@ const ProjectForm = () => {
                   name="category"
                   placeholder="Enter the project's name"
                   onChange={handleOnChangeProjectName}
+                  value={newProject.category}
                 />
               </Form.Group>
 
@@ -124,6 +124,7 @@ const ProjectForm = () => {
                   accept=".jpeg, .png, .jpg"
                   size="sm"
                   name="desktop"
+                  //   value={newProject.desktop}
                 />
               </Form.Group>
 
@@ -135,6 +136,7 @@ const ProjectForm = () => {
                   type="file"
                   size="sm"
                   name="tablet"
+                  //   value={newProject.tablet}
                 />
               </Form.Group>
 
@@ -146,6 +148,7 @@ const ProjectForm = () => {
                   type="file"
                   size="sm"
                   name="mobile"
+                  //   value={newProject.mobile}
                 />
               </Form.Group>
 
@@ -156,12 +159,7 @@ const ProjectForm = () => {
           </Col>
         </Row>
 
-        <ToastNotification
-          displayToast={displayToast}
-          displayAlertCb={() =>
-            setDisplayToast({ ...displayToast, display: false })
-          }
-        />
+        <ToastNotification />
       </Container>
     </>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { Container, Navbar, Offcanvas, Row, Col } from "react-bootstrap";
+import { Container, Navbar, Offcanvas } from "react-bootstrap";
 import Logo from "../Logo";
 import NavWrapper from "../../assets/wrappers/Home/NavWrapper";
 import { useTranslateContext } from "../../utils/contexts/translate/translateContext";

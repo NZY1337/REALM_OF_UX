@@ -2,19 +2,17 @@ import React, { useState, useContext } from "react";
 
 const ErrorContext = React.createContext();
 
-const ErrorProvider = ({ children }) => {
-  const [settings, setSettings] = useState({
-    display: false,
-    type: "fail",
-    message: "",
-  });
+const INITIAL_STATE = {
+  display: false,
+  type: "fail",
+  message: "",
+};
 
-  const setSettingsCb = () => {
-    setSettings({ ...settings, display: false });
-  };
+const ErrorProvider = ({ children }) => {
+  const [settings, setSettings] = useState(INITIAL_STATE);
 
   return (
-    <ErrorContext.Provider value={{ ...settings, setSettingsCb }}>
+    <ErrorContext.Provider value={{ settings, setSettings }}>
       {children}
     </ErrorContext.Provider>
   );
