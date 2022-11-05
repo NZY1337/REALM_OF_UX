@@ -19,7 +19,7 @@ const ProjectForm = () => {
     mobile: "ewewew",
   });
 
-  const { setSettings } = useErrorContext();
+  const { setSettings, settings } = useErrorContext();
 
   const navigate = useNavigate("");
 
@@ -61,10 +61,14 @@ const ProjectForm = () => {
         message: `Project successfully created, you'll be redirected to the project's page. Hold tight`,
       });
 
-      //   after the toast notification is closed
+      // after the toast notification is closed
       setTimeout(() => {
+        // setSettings({
+        //   display: false,
+        //   ...settings,
+        // });
         navigate(`/projects/${response.data.project._id}`);
-      }, 4000);
+      }, 4200);
     } catch (error) {
       setSettings({
         display: true,

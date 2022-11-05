@@ -8,7 +8,6 @@ import { useErrorContext } from "../utils/contexts/error/errorContext";
 
 const ToastNotification = () => {
   const { setSettings, settings } = useErrorContext();
-  const [show, setShow] = useState(settings.display);
 
   const statusStyle = {
     width: "10px",
@@ -16,24 +15,14 @@ const ToastNotification = () => {
     backgroundColor: settings.type === "success" ? "#0e930e" : "#d60d0d",
   };
 
-  useEffect(() => {
-    setShow(settings.display);
-  }, [settings.display]);
-
   return (
     <>
       <ToastContainer position="bottom-end">
         <Toast
           onClose={() => {
-            setShow(false);
-            // do not reset the values - ket them as they are - we do not want to change the text/design of the popup while fading out
-            setSettings({
-              display: settings.display,
-              type: settings.type,
-              message: settings.message,
-            });
+            setSettings({ ...settings, display: false });
           }}
-          show={show}
+          show={settings.display}
           delay={4000}
           autohide
           bg="dark"
@@ -59,6 +48,7 @@ const ToastNotification = () => {
           </Toast.Body>
         </Toast>
       </ToastContainer>
+      {/* <button onClick={() => setShow(true)}>Click</button> */}
     </>
   );
 };
