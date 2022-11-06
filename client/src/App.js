@@ -12,6 +12,7 @@ import Projects from "./pages/Projects";
 import ProjectForm from "./pages/Projects/ProjectForm";
 import SingleProject from "./pages/Home/Projects/SingleProject";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
+import ToastNotification from "./components/ToastNotification";
 
 const theme = {
   mobile: "(min-width: 320px) and (max-width:479px)",
@@ -32,7 +33,7 @@ function App() {
         <UserProvider>
           <ErrorProvider>
             {!isUnknownRoot && (
-              <div className="App">
+              <div className="App position-relative">
                 <Navigation />
 
                 <Routes>
@@ -48,6 +49,7 @@ function App() {
                   </Route>
                 </Routes>
                 <Footer />
+                <ToastNotification />
               </div>
             )}
           </ErrorProvider>

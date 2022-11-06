@@ -7,6 +7,8 @@ import { useParams } from "react-router-dom";
 import ProjectComments from "./Comments/Comments";
 import { fetchSingleProject } from "../../../utils/services/services";
 import RenderPreviewDevicesProject from "./RenderPreviewDevicesProject";
+import SingleProjectWrapper from "../../../assets/wrappers/SingleProject/SingleProjectWrapper";
+import ToastNotification from "../../../components/ToastNotification";
 
 const SingleProject = () => {
   const { projectId } = useParams();
@@ -68,19 +70,21 @@ const SingleProject = () => {
       />
 
       {project && (
-        <Container className="my-5">
-          <Row>
-            <Col lg="12">
-              <h1 className="mb-0">{project && project.name}</h1>
-              <p className="mt-0">{renderCategory()}</p>
-            </Col>
+        <SingleProjectWrapper>
+          <Container className="my-5">
+            <Row>
+              <Col lg="12">
+                <h1 className="mb-0">{project && project.name}</h1>
+                <p className="mt-0">{renderCategory()}</p>
+              </Col>
 
-            <>
               <RenderPreviewDevicesProject project={project} />
-              <ProjectComments projectId={projectId} />
-            </>
-          </Row>
-        </Container>
+              <Col lg="10">
+                <ProjectComments projectId={projectId} />
+              </Col>
+            </Row>
+          </Container>
+        </SingleProjectWrapper>
       )}
     </>
   );

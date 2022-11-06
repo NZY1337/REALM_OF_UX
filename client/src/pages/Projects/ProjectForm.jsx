@@ -6,7 +6,6 @@ import { convertToBase64 } from "../../utils/helpers";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { PageSectionBanner, PageSectionTitle } from "../../components";
-import ToastNotification from "../../components/ToastNotification";
 import { Container, Row, Col } from "react-bootstrap";
 import { useErrorContext } from "../../utils/contexts/error/errorContext";
 
@@ -19,7 +18,7 @@ const ProjectForm = () => {
     mobile: "ewewew",
   });
 
-  const { setSettings, settings } = useErrorContext();
+  const { notify } = useErrorContext();
 
   const navigate = useNavigate("");
 
@@ -55,26 +54,22 @@ const ProjectForm = () => {
 
     try {
       const response = await axios.post("/api/v1/project/project", newProject);
-      setSettings({
-        display: true,
-        type: "success",
-        message: `Project successfully created, you'll be redirected to the project's page. Hold tight`,
-      });
-
+      notify(
+        "success",
+        "Project created successfully, redirecting to the project's page..."
+      );
       // after the toast notification is closed
       setTimeout(() => {
-        // setSettings({
-        //   display: false,
-        //   ...settings,
-        // });
         navigate(`/projects/${response.data.project._id}`);
       }, 4200);
     } catch (error) {
-      setSettings({
-        display: true,
-        type: "fail",
-        message: error.response.data.msg,
-      });
+      //   setSettings({
+      //     display: true,
+      //     type: "fail",
+      //     message: error.response.data.msg,
+      //   });
+
+      notify("error", error.response.data.msg);
     }
   };
 
@@ -162,8 +157,6 @@ const ProjectForm = () => {
             </Form>
           </Col>
         </Row>
-
-        <ToastNotification />
       </Container>
     </>
   );

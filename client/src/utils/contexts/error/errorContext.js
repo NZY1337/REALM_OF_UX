@@ -1,20 +1,23 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
+import { toast } from "react-toastify/";
 
 const ErrorContext = React.createContext();
 
-const INITIAL_STATE = {
-  display: false,
-  type: "fail",
-  message: "",
-};
+const Msg = ({ closeToast, toastProps }) => (
+  <div>
+    Lorem ipsum dolor {toastProps.position}
+    <button>Retry</button>
+    <button onClick={closeToast}>Close</button>
+  </div>
+);
 
 const ErrorProvider = ({ children }) => {
-  const [settings, setSettings] = useState(INITIAL_STATE);
+  const notify = (type, message) => {
+    toast(<Msg />);
+  };
 
   return (
-    <ErrorContext.Provider value={{ settings, setSettings }}>
-      {children}
-    </ErrorContext.Provider>
+    <ErrorContext.Provider value={{ notify }}>{children}</ErrorContext.Provider>
   );
 };
 
