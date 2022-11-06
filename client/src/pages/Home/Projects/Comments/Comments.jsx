@@ -8,6 +8,7 @@ import {
   removeComment,
 } from "../../../../utils/services/services";
 import AddCommentForm from "./FormComment";
+import { toast } from "react-toastify";
 
 const ProjectComments = ({ projectId }) => {
   const [comments, setComments] = useState([]);
@@ -29,16 +30,28 @@ const ProjectComments = ({ projectId }) => {
     };
 
     const replay = await publishComment(userComment);
-    notify("success", "Comment added successfully!");
+    notify("add", "success", "Comment added successfully!");
     setComments([replay, ...comments]);
     setComment("");
   };
 
   const deleteComment = async (commentId) => {
-    const { comment } = await removeComment(commentId);
-    const restofComments = comments.filter((comm) => comm._id !== comment._id);
-    setComments(restofComments);
-    notify("success", "Comment deleted successfully!");
+    const deleteCb = async () => {
+      const { comment, commError } = await removeComment(commentId);
+      const restofComments = comments.filter(
+        (comm) => comm._id !== comment._id
+      );
+
+      setComments(restofComments);
+      return comment._id;
+    };
+
+    notify(
+      "delete",
+      "warning",
+      "Are you shure you want to delete this comment ?",
+      deleteCb
+    );
   };
 
   const fetchComments = useCallback(async () => {

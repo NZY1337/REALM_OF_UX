@@ -8,9 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 const ToastNotification = () => {
   return (
     <>
-      <ToastContainer autoClose={false}>
-        <p>fmmIo?</p>
-      </ToastContainer>
+      <ToastContainer autoClose={false} />
     </>
   );
 };

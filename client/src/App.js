@@ -13,6 +13,7 @@ import ProjectForm from "./pages/Projects/ProjectForm";
 import SingleProject from "./pages/Home/Projects/SingleProject";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import ToastNotification from "./components/ToastNotification";
+import "./assets/scss/errorContext.scss";
 
 const theme = {
   mobile: "(min-width: 320px) and (max-width:479px)",

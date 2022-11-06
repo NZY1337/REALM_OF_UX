@@ -1,19 +1,57 @@
 import React, { useContext } from "react";
-import { toast } from "react-toastify/";
+import { toast } from "react-toastify";
+
+let notify = null;
+const handleCallbackMessage = async (callbackMessage) => {
+  const deletedComment = await callbackMessage();
+
+  notify(
+    "add",
+    "success",
+    `Comment with ID: ${deletedComment} deleted successfully`
+  );
+};
 
 const ErrorContext = React.createContext();
-
-const Msg = ({ closeToast, toastProps }) => (
-  <div>
-    Lorem ipsum dolor {toastProps.position}
-    <button>Retry</button>
-    <button onClick={closeToast}>Close</button>
-  </div>
-);
+const Msg = ({ msg, callbackMessage, closeToast }) => {
+  return (
+    <div>
+      <p className="mb-0">{msg}</p>
+      <span
+        className="mr-2"
+        style={{ fontWeight: "bold" }}
+        onClick={() => {
+          handleCallbackMessage(callbackMessage);
+          closeToast();
+        }}
+      >
+        Yes
+      </span>
+    </div>
+  );
+};
 
 const ErrorProvider = ({ children }) => {
-  const notify = (type, message) => {
-    toast(<Msg />);
+  notify = (actionType, style, message, callbackMessage) => {
+    if (actionType === "delete" || actionType === "edit") {
+      toast[style](
+        <Msg msg={message} theme="dark" callbackMessage={callbackMessage} />,
+        {
+          position: toast.POSITION.BOTTOM_RIGHT,
+          theme: "dark",
+          closeOnClick: false,
+          bodyClassName: "custom",
+        }
+      );
+    }
+
+    if (actionType === "add") {
+      toast[style](message, {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        theme: "dark",
+        autoClose: 2000,
+      });
+    }
   };
 
   return (

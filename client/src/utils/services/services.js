@@ -29,14 +29,14 @@ export const getComments = async (projectId) => {
 
     replays = comments;
   } catch (error) {
-    error = error;
+    error = error.response.data.msg;
   }
 
   return { replays, error };
 };
 
 export const removeComment = async (commentId) => {
-  let comment, error;
+  let comment, commError;
 
   try {
     const {
@@ -45,10 +45,10 @@ export const removeComment = async (commentId) => {
 
     comment = deletedComment;
   } catch (error) {
-    error = error;
+    commError = error.response.data.msg;
   }
 
-  return { comment, error };
+  return { comment, commError };
 };
 
 /***********/
