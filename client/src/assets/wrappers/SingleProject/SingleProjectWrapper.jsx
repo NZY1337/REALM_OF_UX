@@ -25,27 +25,33 @@ const SingleProjectWrapper = styled.div`
       display: flex;
       align-items: start;
 
-      div {
-        margin-right: 0.75rem;
-        background: lightray;
-        cursor: pointer;
-        border-radius: 50px;
-        width: 30px;
-        height: 30px;
-        transform: scale(1);
-        transition: all 0.2s;
-        background-color: aliceblue;
-        &:hover {
-          //   background-color: gray;
-          transform: scale(1.5);
+      .dropdown.btn-group {
+        div.dropdown-menu.show {
+          background-color: #000;
+
+          a:hover {
+            background-color: var(--text-color-orange);
+          }
+
+          span,
+          svg {
+            color: #fff;
+          }
         }
 
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      svg {
-        // fill: #fff;
+        button {
+          background-color: transparent;
+          color: black;
+          border: none;
+
+          &:focus {
+            box-shadow: none;
+          }
+        }
+
+        .dropdown-toggle::after {
+          display: none;
+        }
       }
     }
   }

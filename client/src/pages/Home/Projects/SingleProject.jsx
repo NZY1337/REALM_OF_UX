@@ -24,7 +24,6 @@ const SingleProject = () => {
 
   const fetchProject = async () => {
     const { singleProject, error } = await fetchSingleProject(projectId);
-    console.log(singleProject);
     if (error) setError(error);
 
     setProject(singleProject);
