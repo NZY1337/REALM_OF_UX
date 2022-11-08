@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import RenderComments from "./RenderComments";
-
+import { useErrorContext } from "../../../../utils/contexts/error/errorContext";
 import { useUserContext } from "../../../../utils/contexts/user/userContext";
 import {
   publishComment,
@@ -13,6 +13,7 @@ const ProjectComments = ({ projectId }) => {
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState("");
   const { user } = useUserContext();
+  const { notify } = useErrorContext();
 
   const onHandleChange = (e) => {
     setComment(e.target.value);
@@ -28,14 +29,25 @@ const ProjectComments = ({ projectId }) => {
     };
 
     const replay = await publishComment(userComment);
+    notify("add", "success", "Comment added successfully!");
     setComments([replay, ...comments]);
     setComment("");
   };
 
-  const deleteComment = async (commentId) => {
-    const { comment } = await removeComment(commentId);
-    const restofComments = comments.filter((comm) => comm._id !== comment._id);
-    setComments(restofComments);
+  const handleDeleteComment = async (commentId) => {
+    const { comment, commError } = await removeComment(commentId);
+
+    if (comment) {
+      const restofComments = comments.filter(
+        (comm) => comm._id !== comment._id
+      );
+      setComments(restofComments);
+      notify("delete", "success", "Deleted Successfully");
+    }
+
+    if (commError) {
+      notify("delete", "warning", commError);
+    }
   };
 
   const fetchComments = useCallback(async () => {
@@ -48,7 +60,7 @@ const ProjectComments = ({ projectId }) => {
   }, []);
 
   return (
-    <>
+    <div className="position-relative">
       <AddCommentForm
         projectId={projectId}
         addComment={addComment}
@@ -56,15 +68,17 @@ const ProjectComments = ({ projectId }) => {
         comment={comment}
       />
       {comments && comments.length > 0 ? (
-        <RenderComments
-          comments={comments}
-          deleteComment={deleteComment}
-          user={user}
-        />
+        <>
+          <RenderComments
+            comments={comments}
+            handleDeleteComment={handleDeleteComment}
+            user={user}
+          />
+        </>
       ) : (
         <p>Be the first to post a comment!</p>
       )}
-    </>
+    </div>
   );
 };
 

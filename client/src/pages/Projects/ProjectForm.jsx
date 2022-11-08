@@ -4,16 +4,23 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { convertToBase64 } from "../../utils/helpers";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { PageSectionBanner, PageSectionTitle } from "../../components";
+import { Container, Row, Col } from "react-bootstrap";
+import { useErrorContext } from "../../utils/contexts/error/errorContext";
 
 const ProjectForm = () => {
   const [newProject, setNewProject] = useState({
     name: "",
-    category: "",
-    desktop: "",
-    tablet: "",
-    mobile: "",
+    category: "eewe",
+    desktop: "ewew",
+    tablet: "ewew",
+    mobile: "ewewew",
   });
+
+  const { notify } = useErrorContext();
+
+  const navigate = useNavigate("");
 
   const handleOnchangeUploadSS = async (e) => {
     if (e.target.files[0]) {
@@ -44,14 +51,26 @@ const ProjectForm = () => {
 
   const handleSubmitForm = async (e) => {
     e.preventDefault();
-
     try {
       const response = await axios.post("/api/v1/project/project", newProject);
       console.log(response);
+      notify(
+        "delete",
+        "success",
+        "Project Created Successfully. You are now redirected to the project's page..."
+      );
+      // after the toast notification is closed
+      setTimeout(() => {
+        navigate(`/projects/${response.data.project._id}`);
+      }, 4200);
     } catch (error) {
       console.log(error);
+      notify("add", "warning", error.response.data.msg);
     }
   };
+
+  const { name, category, desktop, tablet, mobile } = newProject;
+  const enableSubmit = !name || !category || !desktop || !tablet || !mobile;
 
   return (
     <>
@@ -60,15 +79,14 @@ const ProjectForm = () => {
         titleBold="Upload "
         titleNormal="your project here"
       />
-
       <PageSectionBanner
         title="Designed to impress your audience"
         cover={cover}
       />
 
-      <div className="container my-5">
-        <div className="row">
-          <div className="col-lg-5">
+      <Container className="my-5 position-relative">
+        <Row>
+          <Col className="col-lg-5">
             <h3>Add Your Project Here</h3>
             <Form onSubmit={handleSubmitForm}>
               <Form.Group className="mb-3" controlId="projet-name">
@@ -77,6 +95,7 @@ const ProjectForm = () => {
                   type="name"
                   name="name"
                   placeholder="Enter the project's name"
+                  value={newProject.name}
                   onChange={handleOnChangeProjectName}
                 />
               </Form.Group>
@@ -88,6 +107,7 @@ const ProjectForm = () => {
                   name="category"
                   placeholder="Enter the project's name"
                   onChange={handleOnChangeProjectName}
+                  value={newProject.category}
                 />
               </Form.Group>
 
@@ -99,6 +119,7 @@ const ProjectForm = () => {
                   accept=".jpeg, .png, .jpg"
                   size="sm"
                   name="desktop"
+                  //   value={newProject.desktop}
                 />
               </Form.Group>
 
@@ -110,6 +131,7 @@ const ProjectForm = () => {
                   type="file"
                   size="sm"
                   name="tablet"
+                  //   value={newProject.tablet}
                 />
               </Form.Group>
 
@@ -121,6 +143,7 @@ const ProjectForm = () => {
                   type="file"
                   size="sm"
                   name="mobile"
+                  //   value={newProject.mobile}
                 />
               </Form.Group>
 
@@ -128,9 +151,9 @@ const ProjectForm = () => {
                 Submit
               </Button>
             </Form>
-          </div>
-        </div>
-      </div>
+          </Col>
+        </Row>
+      </Container>
     </>
   );
 };

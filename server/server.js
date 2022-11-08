@@ -36,7 +36,7 @@ app.use("/api/v1/comment", commentRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
-const port = process.env.PORT || 5000;
+const port = process.env.PORT;
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);

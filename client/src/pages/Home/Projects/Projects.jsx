@@ -54,13 +54,14 @@ const Projects = () => {
         </Row>
 
         <Row className="justify-content-center">
-          {projects.map((project, idx) => {
-            return (
-              <Col key={idx} lg={idx === 1 || idx === 4 ? "4" : "4"}>
-                <Project project={project} />
-              </Col>
-            );
-          })}
+          {projects &&
+            projects.map((project, idx) => {
+              return (
+                <Col key={idx} lg={idx === 1 || idx === 4 ? "4" : "4"}>
+                  <Project project={project} />
+                </Col>
+              );
+            })}
           <Col lg="12" className="text-center mt-5">
             <ButtonPrimary href="https://google.com" target="_blank">
               Discover More <ArrowRight />

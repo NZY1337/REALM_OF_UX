@@ -10,6 +10,8 @@ import Logo from "./Logo";
 import Alert from "./Alert";
 import PageSectionBanner from "./PageSectionBanner";
 import PageSectionTitle from "./PageSectionTitle";
+import ModalAlert from "./Modal";
+import ToastNotification from "./ToastNotification";
 
 export {
   ButtonPrimary,
@@ -25,4 +27,6 @@ export {
   Alert,
   PageSectionBanner,
   PageSectionTitle,
+  ToastNotification,
+  ModalAlert,
 };

@@ -4,14 +4,13 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import { ButtonSecondary } from "../../../../components";
 
 const FormComment = ({ hadleChange, addComment, comment }) => {
-  console.log(comment);
-
   return (
-    <div className="mb-5">
+    <div className="mb-5 position-relative">
       <div className="mb-5">
         <h3 className="mb-2">Add A Comment</h3>
         <p>You must be logged in in order to add a comment!</p>
       </div>
+
       <Form onSubmit={addComment}>
         <FloatingLabel
           controlId="floatingTextarea2"
