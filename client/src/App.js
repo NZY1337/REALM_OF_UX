@@ -14,6 +14,7 @@ import SingleProject from "./pages/Home/Projects/SingleProject";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import ToastNotification from "./components/ToastNotification";
 import "./assets/scss/errorContext.scss";
+import "./assets/scss/modalError.scss";
 
 const theme = {
   mobile: "(min-width: 320px) and (max-width:479px)",

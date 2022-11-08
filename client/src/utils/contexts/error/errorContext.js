@@ -7,25 +7,22 @@ const ErrorContext = React.createContext();
 
 const ErrorProvider = ({ children }) => {
   const [options, setOptions] = useState({
-    // commentId: null,
     modal: false,
     handleDeleteComment: null,
   });
 
   const openModal = () => {
     setOptions({ ...options, modal: true });
-    console.log("from getModal");
   };
 
   const closeModal = () => setOptions({ ...options, modal: false });
+
   const getCommentId = (cb) => {
     setOptions({
       ...options,
-      //   commentId: id,
       modal: true,
       handleDeleteComment: cb,
     });
-    console.log("from getComment");
   };
 
   notify = (actionType, style, message) => {

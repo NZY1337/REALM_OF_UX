@@ -1,0 +1,30 @@
+.modal-dialog {
+  top: 10%;
+  width: 50%;
+
+  .modal-content {
+    background: radial-gradient(
+      187.6% 162.37% at 31.62% 76.54%,
+      rgba(21, 21, 21, 0.88) 0%,
+      rgba(40, 65, 102, 0.659655) 71.94%,
+      rgba(56, 101, 168, 0.38) 100%
+    );
+    border: none;
+    color: lightgray;
+    font-weight: bold;
+    font-size: 17px;
+  }
+
+  .modal-footer {
+    border: none;
+  }
+
+  button {
+    background-color: #000;
+    border: none;
+
+    &:hover {
+      color: turquoise;
+    }
+  }
+}

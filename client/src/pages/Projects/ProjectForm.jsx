@@ -51,25 +51,21 @@ const ProjectForm = () => {
 
   const handleSubmitForm = async (e) => {
     e.preventDefault();
-
     try {
       const response = await axios.post("/api/v1/project/project", newProject);
+      console.log(response);
       notify(
+        "delete",
         "success",
-        "Project created successfully, redirecting to the project's page..."
+        "Project Created Successfully. You are now redirected to the project's page..."
       );
       // after the toast notification is closed
       setTimeout(() => {
         navigate(`/projects/${response.data.project._id}`);
       }, 4200);
     } catch (error) {
-      //   setSettings({
-      //     display: true,
-      //     type: "fail",
-      //     message: error.response.data.msg,
-      //   });
-
-      notify("error", error.response.data.msg);
+      console.log(error);
+      notify("add", "warning", error.response.data.msg);
     }
   };
 
