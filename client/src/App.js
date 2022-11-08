@@ -1,7 +1,7 @@
 import React from "react";
 import Home from "./pages/Home/Home";
 import BannerCreator from "./pages/BannerCreator/BannerCreator";
-import { Navigation, Footer } from "./components";
+import { Navigation, Footer, ModalAlert } from "./components";
 import LoginRegister from "./pages/LoginRegister/LoginRegister";
 import { ThemeProvider } from "styled-components";
 import { TranslateProvider } from "./utils/contexts/translate/translateContext";
@@ -51,6 +51,7 @@ function App() {
                 </Routes>
                 <Footer />
                 <ToastNotification />
+                <ModalAlert />
               </div>
             )}
           </ErrorProvider>

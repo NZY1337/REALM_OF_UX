@@ -2,10 +2,12 @@ import React from "react";
 import { Trash, Pen, ThreeDotsVertical } from "react-bootstrap-icons";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
-import SplitButton from "react-bootstrap/SplitButton";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
+import { useErrorContext } from "../../../../utils/contexts/error/errorContext";
 
-const RenderComments = ({ comments, deleteComment, user }) => {
+const RenderComments = ({ comments, handleDeleteComment, user }) => {
+  const { openModal, getCommentId } = useErrorContext();
+
   return (
     <>
       <h2>Comments</h2>
@@ -26,15 +28,18 @@ const RenderComments = ({ comments, deleteComment, user }) => {
                   variant="secondary"
                   title={<ThreeDotsVertical />}
                 >
-                  <Dropdown.Item eventKey="1">
-                    <Trash onClick={() => deleteComment(comm._id)} />
+                  <Dropdown.Item
+                    eventKey="1"
+                    onClick={() => {
+                      const cb = () => handleDeleteComment(comm._id);
+                      getCommentId(cb);
+                    }}
+                  >
+                    <Trash />
                     <span className="ms-2">Delete</span>
                   </Dropdown.Item>
-                  <Dropdown.Item eventKey="2">
-                    <Pen
-                      className="text-tertiary"
-                      onClick={() => alert(comm._id)}
-                    />
+                  <Dropdown.Item eventKey="2" onClick={() => alert(comm._id)}>
+                    <Pen className="text-tertiary" />
                     <span className="ms-2">Edit</span>
                   </Dropdown.Item>
                 </DropdownButton>

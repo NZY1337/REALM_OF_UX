@@ -34,12 +34,20 @@ const ProjectComments = ({ projectId }) => {
     setComment("");
   };
 
-  const deleteComment = async (commentId) => {
-    await removeComment(commentId);
-    const restofComments = comments.filter((comm) => comm._id !== commentId);
-    setComments(restofComments);
+  const handleDeleteComment = async (commentId) => {
+    const { comment, commError } = await removeComment(commentId);
 
-    notify("delete", "success", "Deleted Successfully");
+    if (comment) {
+      const restofComments = comments.filter(
+        (comm) => comm._id !== comment._id
+      );
+      setComments(restofComments);
+      notify("delete", "success", "Deleted Successfully");
+    }
+
+    if (commError) {
+      notify("delete", "warning", commError);
+    }
   };
 
   const fetchComments = useCallback(async () => {
@@ -63,7 +71,7 @@ const ProjectComments = ({ projectId }) => {
         <>
           <RenderComments
             comments={comments}
-            deleteComment={deleteComment}
+            handleDeleteComment={handleDeleteComment}
             user={user}
           />
         </>

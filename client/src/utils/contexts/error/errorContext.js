@@ -1,34 +1,39 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 let notify = null;
 
 const ErrorContext = React.createContext();
-const Msg = ({ msg, closeToast }) => {
-  return (
-    <div>
-      <p className="mb-0">{msg}</p>
-      <span
-        className="mr-2"
-        style={{ fontWeight: "bold" }}
-        onClick={(e) => {
-          closeToast();
-        }}
-      >
-        Yes
-      </span>
-    </div>
-  );
-};
 
 const ErrorProvider = ({ children }) => {
+  const [options, setOptions] = useState({
+    // commentId: null,
+    modal: false,
+    handleDeleteComment: null,
+  });
+
+  const openModal = () => {
+    setOptions({ ...options, modal: true });
+    console.log("from getModal");
+  };
+
+  const closeModal = () => setOptions({ ...options, modal: false });
+  const getCommentId = (cb) => {
+    setOptions({
+      ...options,
+      //   commentId: id,
+      modal: true,
+      handleDeleteComment: cb,
+    });
+    console.log("from getComment");
+  };
+
   notify = (actionType, style, message) => {
     if (actionType === "delete" || actionType === "edit") {
-      toast[style](<Msg msg={message} theme="dark" />, {
+      toast[style](message, {
         position: toast.POSITION.BOTTOM_RIGHT,
         theme: "dark",
-        closeOnClick: false,
-        bodyClassName: "custom",
+        autoClose: 2000,
       });
     }
 
@@ -42,7 +47,18 @@ const ErrorProvider = ({ children }) => {
   };
 
   return (
-    <ErrorContext.Provider value={{ notify }}>{children}</ErrorContext.Provider>
+    <ErrorContext.Provider
+      value={{
+        showModal: options.modal,
+        openModal,
+        closeModal,
+        notify,
+        getCommentId,
+        handleDeleteComment: options.handleDeleteComment,
+      }}
+    >
+      {children}
+    </ErrorContext.Provider>
   );
 };
 
