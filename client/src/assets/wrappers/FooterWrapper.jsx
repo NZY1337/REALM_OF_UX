@@ -7,18 +7,6 @@ const FooterWrapper = styled.footer`
 
   background: ${(props) => {
     return "black";
-    // if (props.black) {
-    //   return `var(--bg-color-primary)`;
-    // }
-
-    // if (props.blue) {
-    //   return `var(--bg-color-secondary)`;
-    //   //   return `radial-gradient(187.6% 162.37% at 31.62% 76.54%, rgba(21, 21, 21, 0.78) 0%, rgba(40, 65, 102, 0.659655) 71.94%, rgba(56, 101, 168, 0.38) 100%)`;
-    // }
-
-    // if (props.white) {
-    //   return `radial-gradient( 187.6% 162.37% at 31.62% 76.54%,rgb(129 129 129) 0%,rgb(89 149 238 / 66%) 100%,rgba(56,101,168,0.38) 100% )`;
-    // }
   }};
 
   .logo {

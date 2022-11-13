@@ -13,6 +13,7 @@ import ProjectForm from "./pages/Projects/ProjectForm";
 import SingleProject from "./pages/Home/Projects/SingleProject";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import ToastNotification from "./components/ToastNotification";
+import DashboardAdmin from "./pages/DashboardAdmin/DashboardAdmin";
 import "./assets/scss/errorContext.scss";
 import "./assets/scss/modalError.scss";
 
@@ -21,7 +22,13 @@ const theme = {
 };
 
 //https://9elements.github.io/fancy-border-radius/
-const knownRoutes = ["login", "banner-creator", "/", "projects/:id"];
+const knownRoutes = [
+  "login",
+  "banner-creator",
+  "/",
+  "projects/:id",
+  "dashboard",
+];
 function App() {
   const location = useLocation();
 
@@ -35,11 +42,12 @@ function App() {
         <UserProvider>
           <ErrorProvider>
             {!isUnknownRoot && (
-              <div className="App position-relative">
+              <div className="App">
                 <Navigation />
 
                 <Routes>
                   <Route path="/">
+                    <Route path="dashboard" element={<DashboardAdmin />} />
                     <Route path="" element={<Home />} />
                     <Route path="projects" element={<Projects />} />
                     <Route path="login" element={<LoginRegister />} />
