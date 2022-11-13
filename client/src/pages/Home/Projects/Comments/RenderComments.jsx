@@ -6,7 +6,7 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import { useErrorContext } from "../../../../utils/contexts/error/errorContext";
 
 const RenderComments = ({ comments, handleDeleteComment, user }) => {
-  const { openModal, getCommentId } = useErrorContext();
+  const { triggerModalDelete } = useErrorContext();
 
   return (
     <>
@@ -32,7 +32,7 @@ const RenderComments = ({ comments, handleDeleteComment, user }) => {
                     eventKey="1"
                     onClick={() => {
                       const cb = () => handleDeleteComment(comm._id);
-                      getCommentId(cb);
+                      triggerModalDelete(cb);
                     }}
                   >
                     <Trash />

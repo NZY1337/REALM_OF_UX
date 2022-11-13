@@ -22,7 +22,7 @@ function Navigation() {
   const colorBasedOnRoute = pathname !== "/" && "black";
 
   return (
-    <NavWrapper color={colorBasedOnRoute.toString()}>
+    <NavWrapper as="header" color={colorBasedOnRoute.toString()}>
       {[false].map((expand) => (
         <Navbar key={expand} expand={expand} className="my-4" collapseOnSelect>
           <Container>

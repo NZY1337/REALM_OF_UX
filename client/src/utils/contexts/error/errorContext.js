@@ -17,7 +17,7 @@ const ErrorProvider = ({ children }) => {
 
   const closeModal = () => setOptions({ ...options, modal: false });
 
-  const getCommentId = (cb) => {
+  const triggerModalDelete = (cb, actionType) => {
     setOptions({
       ...options,
       modal: true,
@@ -50,7 +50,7 @@ const ErrorProvider = ({ children }) => {
         openModal,
         closeModal,
         notify,
-        getCommentId,
+        triggerModalDelete,
         handleDeleteComment: options.handleDeleteComment,
       }}
     >
