@@ -15,19 +15,12 @@ function Navigation() {
     globals: { navigation },
     changeLanguage,
   } = useTranslateContext();
-
   const { user } = useUserContext();
   const { pathname } = useLocation();
-
   const colorBasedOnRoute = pathname !== "/" && "black";
-  const hideHeader = pathname === "/dashboard" && "d-none";
 
   return (
-    <NavWrapper
-      as="header"
-      className={hideHeader}
-      color={colorBasedOnRoute.toString()}
-    >
+    <NavWrapper as="header" color={colorBasedOnRoute.toString()}>
       {[false].map((expand) => (
         <Navbar key={expand} expand={expand} className="my-4" collapseOnSelect>
           <Container>

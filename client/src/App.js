@@ -17,6 +17,7 @@ import CommentDash from "./pages/DashboardAdmin/Components/CommentDash";
 import ProjectsDash from "./pages/DashboardAdmin/Components/ProjectsDash";
 import "./assets/scss/errorContext.scss";
 import "./assets/scss/modalError.scss";
+import TestDash from "./pages/DashboardAdmin/Components/TestDash";
 
 const theme = {
   mobile: "(min-width: 320px) and (max-width:479px)",
@@ -29,9 +30,17 @@ const knownRoutes = [
   "/",
   "projects/:id",
   "dashboard",
+  "dashboard/projects",
+  "dashboard/tests",
 ];
 function App() {
   const location = useLocation();
+  const { pathname } = useLocation();
+
+  const hideHeaderFooter =
+    pathname === "/dashboard" ||
+    pathname === "/dashboard/projects" ||
+    pathname === "/dashboard/tests";
 
   const isUnknownRoot = !knownRoutes.some((route) =>
     matchPath(`${route}`, location.pathname)
@@ -44,12 +53,15 @@ function App() {
           <ErrorProvider>
             {!isUnknownRoot && (
               <div className="App">
-                <Navigation />
+                {!hideHeaderFooter && <Navigation />}
 
                 <Routes>
+                  <Route path="/dashboard/projects" element={<CommentDash />} />
+
                   <Route path="/">
-                    <Route path="/dashboard" element={<CommentDash />}>
-                      <Route path="projects" element={<ProjectsDash />} />
+                    <Route path="/dashboard" element={<ProjectsDash />}>
+                      <Route path="projects" element={<CommentDash />} />
+                      <Route path="tests" element={<TestDash />} />
                     </Route>
                     <Route path="" element={<Home />} />
                     <Route path="projects" element={<Projects />} />
@@ -61,7 +73,7 @@ function App() {
                     <Route path=":projectId" element={<SingleProject />} />
                   </Route>
                 </Routes>
-                <Footer />
+                {!hideHeaderFooter && <Footer />}
                 <ToastNotification />
                 <ModalAlert />
               </div>

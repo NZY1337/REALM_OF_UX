@@ -3,13 +3,15 @@ import DashboardAdminWrapper from "../../../assets/wrappers/Dashboard/DashboardA
 import cover from "../../../assets/images/img9.jpeg";
 import { Container } from "react-bootstrap";
 import SideBar from "../SideBar";
+import DashTitle from "../MiniComponents/DashTitle";
+
 const ProjectsDash = () => {
   return (
     <DashboardAdminWrapper cover={cover}>
       <SideBar />
       <div className="main">
-        <Container>
-          <p>Project Dash</p>
+        <Container fluid className="px-0">
+          <DashTitle title="Projects" />
         </Container>
       </div>
     </DashboardAdminWrapper>

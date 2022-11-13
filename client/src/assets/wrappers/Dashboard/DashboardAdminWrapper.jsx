@@ -5,32 +5,23 @@ const DashboardAdminWrapper = styled.div`
   display: flex;
 
   .main {
-    background-color: lightgray !important;
+    &-dash-title {
+      padding: 2rem;
+      border-bottom: 1px solid lightgray;
+
+      h5 {
+        margin-bottom: 0;
+      }
+    }
+
+    background-color: rgba(203, 203, 210, 0.15) !important;
     width: calc(100% - 260px);
-    padding: 1rem;
+
     overflow: auto;
   }
 
-  #projects {
-    height: 800px;
-    background: red;
-  }
-
-  #comments {
-    height: 800px;
-    background: yellow;
-  }
-
-  #test {
-    height: 800px;
-    background: orange;
-  }
-
   .sidebar {
-    .nav-link.active {
-      color: var(--text-color-orange);
-    }
-    padding: 1rem;
+    padding: 2rem;
     background: linear-gradient(
         0deg,
         rgba(255, 155, 250, 0.3),
@@ -48,15 +39,31 @@ const DashboardAdminWrapper = styled.div`
 
     .navbar {
       &-nav {
+        a {
+          color: #fff;
+          margin-bottom: 0.5rem;
+
+          &:hover {
+            svg,
+            span {
+              color: var(--text-color-orange);
+            }
+          }
+          span {
+            font-size: 1rem;
+          }
+          svg {
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+          }
+        }
         flex-direction: column;
       }
-      a {
-        color: #fff;
-        padding: 0;
-      }
     }
-    h5 {
-      color: #fff;
+
+    h3 {
+      color: turquoise;
       font-weight: bold;
     }
     height: 100%;

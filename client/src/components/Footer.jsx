@@ -4,7 +4,6 @@ import { Container, Col, Row } from "react-bootstrap";
 import Logo from "./Logo";
 import social from "../assets/images/social.svg";
 import { useTranslateContext } from "../utils/contexts/translate/translateContext";
-import { useLocation } from "react-router-dom";
 
 const Footer = () => {
   const {
@@ -13,11 +12,8 @@ const Footer = () => {
     },
   } = useTranslateContext();
 
-  const { pathname } = useLocation();
-  const hideFooter = pathname === "/dashboard" && "d-none";
-
   return (
-    <FooterWrapper className={hideFooter}>
+    <FooterWrapper>
       <FooterContainer level2={level2} level1={level1} />
     </FooterWrapper>
   );
