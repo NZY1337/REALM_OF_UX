@@ -13,6 +13,7 @@ import ProjectForm from "./pages/Projects/ProjectForm";
 import SingleProject from "./pages/Home/Projects/SingleProject";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import ToastNotification from "./components/ToastNotification";
+import Dashboard from "./pages/Dashboard/Dashboard";
 import "./assets/scss/errorContext.scss";
 import "./assets/scss/modalError.scss";
 
@@ -35,7 +36,7 @@ function App() {
         <UserProvider>
           <ErrorProvider>
             {!isUnknownRoot && (
-              <div className="App position-relative">
+              <div className="App">
                 <Navigation />
 
                 <Routes>

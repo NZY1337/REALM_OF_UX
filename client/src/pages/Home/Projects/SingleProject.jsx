@@ -8,7 +8,6 @@ import ProjectComments from "./Comments/Comments";
 import { fetchSingleProject } from "../../../utils/services/services";
 import RenderPreviewDevicesProject from "./RenderPreviewDevicesProject";
 import SingleProjectWrapper from "../../../assets/wrappers/SingleProject/SingleProjectWrapper";
-import ToastNotification from "../../../components/ToastNotification";
 
 const SingleProject = () => {
   const { projectId } = useParams();
@@ -51,10 +50,7 @@ const SingleProject = () => {
         titleBold={!project ? "Error!" : "Realm of Ux"}
         titleNormal={
           !project ? (
-            <code>
-              <br />
-              Could't fetch the project
-            </code>
+            <p>Could't fetch the project</p>
           ) : (
             "ultimate guide for creating social media banners"
           )
@@ -62,9 +58,7 @@ const SingleProject = () => {
       />
 
       <PageSectionBanner
-        title={
-          !project ? "GO BACK AND TRY AGAIN" : "A Drive Through Experience"
-        }
+        title={!project ? "" : "A Drive Through Experience"}
         cover={!project ? warning404 : bannerCover}
       />
 
