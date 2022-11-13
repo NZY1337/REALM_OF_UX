@@ -22,7 +22,6 @@ const ErrorProvider = ({ children }) => {
       ...options,
       modal: true,
       handleDeleteComment: cb,
-      actionType,
     });
   };
 

@@ -8,6 +8,7 @@ import ProjectComments from "./Comments/Comments";
 import { fetchSingleProject } from "../../../utils/services/services";
 import RenderPreviewDevicesProject from "./RenderPreviewDevicesProject";
 import SingleProjectWrapper from "../../../assets/wrappers/SingleProject/SingleProjectWrapper";
+import ToastNotification from "../../../components/ToastNotification";
 
 const SingleProject = () => {
   const { projectId } = useParams();
