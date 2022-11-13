@@ -14,7 +14,6 @@ const Footer = () => {
   } = useTranslateContext();
 
   const { pathname } = useLocation();
-  console.log(pathname);
   const hideFooter = pathname === "/dashboard" && "d-none";
 
   return (

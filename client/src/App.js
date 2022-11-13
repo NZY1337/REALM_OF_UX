@@ -13,7 +13,8 @@ import ProjectForm from "./pages/Projects/ProjectForm";
 import SingleProject from "./pages/Home/Projects/SingleProject";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import ToastNotification from "./components/ToastNotification";
-import DashboardAdmin from "./pages/DashboardAdmin/DashboardAdmin";
+import CommentDash from "./pages/DashboardAdmin/Components/CommentDash";
+import ProjectsDash from "./pages/DashboardAdmin/Components/ProjectsDash";
 import "./assets/scss/errorContext.scss";
 import "./assets/scss/modalError.scss";
 
@@ -47,7 +48,9 @@ function App() {
 
                 <Routes>
                   <Route path="/">
-                    <Route path="dashboard" element={<DashboardAdmin />} />
+                    <Route path="/dashboard" element={<CommentDash />}>
+                      <Route path="projects" element={<ProjectsDash />} />
+                    </Route>
                     <Route path="" element={<Home />} />
                     <Route path="projects" element={<Projects />} />
                     <Route path="login" element={<LoginRegister />} />
