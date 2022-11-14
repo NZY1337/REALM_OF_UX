@@ -3,16 +3,17 @@ import DashboardAdminWrapper from "../../../assets/wrappers/Dashboard/DashboardA
 import { Container } from "react-bootstrap";
 import SideBar from "../SideBar";
 import DashTitle from "../MiniComponents/DashTitle";
+import DashboardWrapper from "../../../assets/wrappers/Dashboard/DashboardWrapper";
 
 const ProjectsDash = () => {
   return (
     <DashboardAdminWrapper>
       <SideBar />
-      <div className="main">
+      <DashboardWrapper>
         <Container fluid className="px-0">
           <DashTitle title="Projects" />
         </Container>
-      </div>
+      </DashboardWrapper>
     </DashboardAdminWrapper>
   );
 };
