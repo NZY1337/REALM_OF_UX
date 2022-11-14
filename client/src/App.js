@@ -30,20 +30,19 @@ const knownRoutes = [
   "/",
   "projects/:id",
   "dashboard",
-  "dashboard/projects",
+  "dashboard/comments",
   "dashboard/tests",
 ];
 function App() {
-  const location = useLocation();
   const { pathname } = useLocation();
 
   const hideHeaderFooter =
     pathname === "/dashboard" ||
-    pathname === "/dashboard/projects" ||
+    pathname === "/dashboard/comments" ||
     pathname === "/dashboard/tests";
 
   const isUnknownRoot = !knownRoutes.some((route) =>
-    matchPath(`${route}`, location.pathname)
+    matchPath(`${route}`, pathname)
   );
 
   return (
@@ -56,13 +55,13 @@ function App() {
                 {!hideHeaderFooter && <Navigation />}
 
                 <Routes>
-                  <Route path="/dashboard/projects" element={<CommentDash />} />
-
                   <Route path="/">
-                    <Route path="/dashboard" element={<ProjectsDash />}>
-                      <Route path="projects" element={<CommentDash />} />
+                    <Route path="/dashboard">
+                      <Route path="" element={<ProjectsDash />} />
+                      <Route path="comments" element={<CommentDash />} />
                       <Route path="tests" element={<TestDash />} />
                     </Route>
+
                     <Route path="" element={<Home />} />
                     <Route path="projects" element={<Projects />} />
                     <Route path="login" element={<LoginRegister />} />
