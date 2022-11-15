@@ -13,20 +13,36 @@ import ProjectForm from "./pages/Projects/ProjectForm";
 import SingleProject from "./pages/Home/Projects/SingleProject";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import ToastNotification from "./components/ToastNotification";
+import CommentDash from "./pages/DashboardAdmin/Components/CommentDash";
+import ProjectsDash from "./pages/DashboardAdmin/Components/ProjectsDash";
 import "./assets/scss/errorContext.scss";
 import "./assets/scss/modalError.scss";
+import TestDash from "./pages/DashboardAdmin/Components/TestDash";
 
 const theme = {
   mobile: "(min-width: 320px) and (max-width:479px)",
 };
 
 //https://9elements.github.io/fancy-border-radius/
-const knownRoutes = ["login", "banner-creator", "/", "projects/:id"];
+const knownRoutes = [
+  "login",
+  "banner-creator",
+  "/",
+  "projects/:id",
+  "dashboard",
+  "dashboard/comments",
+  "dashboard/tests",
+];
 function App() {
-  const location = useLocation();
+  const { pathname } = useLocation();
+
+  const hideHeaderFooter =
+    pathname === "/dashboard" ||
+    pathname === "/dashboard/comments" ||
+    pathname === "/dashboard/tests";
 
   const isUnknownRoot = !knownRoutes.some((route) =>
-    matchPath(`${route}`, location.pathname)
+    matchPath(`${route}`, pathname)
   );
 
   return (
@@ -35,11 +51,17 @@ function App() {
         <UserProvider>
           <ErrorProvider>
             {!isUnknownRoot && (
-              <div className="App position-relative">
-                <Navigation />
+              <div className="App">
+                {!hideHeaderFooter && <Navigation />}
 
                 <Routes>
                   <Route path="/">
+                    <Route path="/dashboard">
+                      <Route path="" element={<ProjectsDash />} />
+                      <Route path="comments" element={<CommentDash />} />
+                      <Route path="tests" element={<TestDash />} />
+                    </Route>
+
                     <Route path="" element={<Home />} />
                     <Route path="projects" element={<Projects />} />
                     <Route path="login" element={<LoginRegister />} />
@@ -50,7 +72,7 @@ function App() {
                     <Route path=":projectId" element={<SingleProject />} />
                   </Route>
                 </Routes>
-                <Footer />
+                {!hideHeaderFooter && <Footer />}
                 <ToastNotification />
                 <ModalAlert />
               </div>

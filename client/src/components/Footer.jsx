@@ -13,7 +13,7 @@ const Footer = () => {
   } = useTranslateContext();
 
   return (
-    <FooterWrapper white>
+    <FooterWrapper>
       <FooterContainer level2={level2} level1={level1} />
     </FooterWrapper>
   );

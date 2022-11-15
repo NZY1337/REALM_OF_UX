@@ -15,10 +15,8 @@ function Navigation() {
     globals: { navigation },
     changeLanguage,
   } = useTranslateContext();
-
   const { user } = useUserContext();
   const { pathname } = useLocation();
-
   const colorBasedOnRoute = pathname !== "/" && "black";
 
   return (
