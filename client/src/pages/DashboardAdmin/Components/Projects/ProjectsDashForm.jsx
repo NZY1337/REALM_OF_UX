@@ -1,10 +1,13 @@
 import React from "react";
 import { Form, Button, Col, Row } from "react-bootstrap";
 
-const ProjectDashForm = ({ project, handleCreateProject }) => {
+const ProjectDashForm = ({
+  project,
+  handleCreateProject,
+  handleSubmitProject,
+}) => {
   return (
-    // <Form onSubmit={handleSubmitForm}>
-    <Form className="my-5">
+    <Form onSubmit={handleSubmitProject}>
       <Row>
         <Col lg="6">
           <Form.Group className="mb-3" controlId="projet-name">
@@ -13,7 +16,7 @@ const ProjectDashForm = ({ project, handleCreateProject }) => {
               type="name"
               name="name"
               placeholder="Enter the project's name"
-              //   value={newProject.name}
+              value={project && project.name}
               onChange={handleCreateProject}
             />
           </Form.Group>
@@ -27,7 +30,7 @@ const ProjectDashForm = ({ project, handleCreateProject }) => {
               name="category"
               placeholder="Enter the project's name"
               onChange={handleCreateProject}
-              //   value={newProject.category}
+              value={project && project.category}
             />
           </Form.Group>
         </Col>
@@ -43,7 +46,7 @@ const ProjectDashForm = ({ project, handleCreateProject }) => {
               size="sm"
               name="desktop"
               onChange={handleCreateProject}
-              //   value={newProject.desktop}
+              //   value={project.desktop}
             />
           </Form.Group>
         </Col>
@@ -56,7 +59,7 @@ const ProjectDashForm = ({ project, handleCreateProject }) => {
               size="sm"
               name="tablet"
               onChange={handleCreateProject}
-              //   value={newProject.tablet}
+              //   value={project.tablet}
             />
           </Form.Group>
         </Col>
@@ -69,7 +72,7 @@ const ProjectDashForm = ({ project, handleCreateProject }) => {
               size="sm"
               name="mobile"
               onChange={handleCreateProject}
-              //   value={newProject.mobile}
+              //   value={project.mobile}
             />
           </Form.Group>
         </Col>

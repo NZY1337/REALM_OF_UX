@@ -10,10 +10,10 @@ import ProjectDashForm from "./ProjectsDashForm";
 import { useProjectContext } from "../../../../utils/contexts/project/projectContext";
 
 const ProjectsDash = () => {
-  const {
-    project: { project },
-    handleCreateProject,
-  } = useProjectContext();
+  const { project, handleCreateProject, handleSubmitProject } =
+    useProjectContext();
+
+  console.log(project);
   return (
     <DashboardAdminWrapper>
       <SideBar />
@@ -32,11 +32,11 @@ const ProjectsDash = () => {
               <ProjectDashForm
                 project={project}
                 handleCreateProject={handleCreateProject}
+                handleSubmitProject={handleSubmitProject}
               />
             </Col>
 
             <Col lg="6">
-              <p>Can place an image...</p>
               <img
                 //   style={{objectFit:"cover"}}
                 className="img-fluid w-50 h-75"

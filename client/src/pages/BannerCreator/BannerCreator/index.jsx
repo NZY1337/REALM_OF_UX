@@ -74,11 +74,16 @@ const BannerCreator = () => {
 
   return (
     <BannerCreatorWrapper>
-      <PageSectionTitle
-        subtitle="explore the posibilities!"
-        titleBold="Realm Of Ux's"
-        titleNormal=" ultimate guide for creating stunning social media banners!"
-      />
+      <Container className="mt-5 pt-5">
+        <Row className="mt-5">
+          <Col className="my-5"></Col>
+          <PageSectionTitle
+            subtitle="explore the posibilities!"
+            titleBold="Realm Of Ux's"
+            titleNormal=" ultimate guide for creating stunning social media banners!"
+          />
+        </Row>
+      </Container>
 
       <PageSectionBanner
         title="A Drive Through Experience"
