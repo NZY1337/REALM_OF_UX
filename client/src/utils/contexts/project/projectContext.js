@@ -1,15 +1,14 @@
 import React, { useReducer, useContext, useEffect } from "react";
+import {
+  GET_PROJECTS,
+  FETCH_PROJECT,
+  GET_PROJECT,
+  ADD_PROJECT,
+} from "./actions";
 import { convertToBase64 } from "../../helpers";
 import { toast } from "react-toastify";
 import { fetchSingleProject } from "../../services/services";
-import {
-  GET_PROJECTS,
-  ADD_PROJECT,
-  DELETE_PROJECT,
-  GET_PROJECT,
-  EDIT_PROJECT,
-} from "./actions";
-import { addProject } from "../../services/services";
+import { addProject, fetchAllProjects } from "../../services/services";
 import { useNavigate } from "react-router-dom";
 import reducer from "./reducer";
 import { notify } from "../../helpers";
@@ -31,41 +30,48 @@ const ProjectContext = React.createContext();
 const ProjectProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const navigate = useNavigate();
-
+  // fetch single project
   const fetchProject = async (projectId) => {
     const { singleProject, error } = await fetchSingleProject(projectId);
-    console.log(error);
+
     dispatch({
       type: GET_PROJECT,
-      payload: { project: { ...singleProject }, error },
+      payload: { project: singleProject, error },
     });
   };
 
+  // fetch all projects
+  const fetchProjects = async () => {
+    const { allProjects, error } = await fetchAllProjects();
+    console.log(allProjects);
+    dispatch({
+      type: GET_PROJECTS,
+      payload: { projects: allProjects, error },
+    });
+  };
+
+  // submit single project
   const handleSubmitProject = async (e) => {
     e.preventDefault();
-
     const { newProject, error } = await addProject(state.project);
-
     if (newProject && newProject._id) {
       notify(
         "success",
         "Project Created Successfully. You are now redirected to the project's page..."
       );
-
       setTimeout(() => {
         navigate(`/projects/${newProject._id}`);
       }, 4200);
     }
-
     if (error) {
       notify("warning", error);
     }
   };
 
+  // get project data
   const handleCreateProject = async (e) => {
     if (e.target.files && e.target.files[0]) {
       const projectSS = await convertToBase64(e.target.files[0]);
-
       switch (e.target.name) {
         case "desktop":
           initialState = {
@@ -76,7 +82,6 @@ const ProjectProvider = ({ children }) => {
             },
           };
           break;
-
         case "tablet":
           initialState = {
             ...initialState,
@@ -86,7 +91,6 @@ const ProjectProvider = ({ children }) => {
             },
           };
           break;
-
         case "mobile":
           initialState = {
             ...initialState,
@@ -96,7 +100,6 @@ const ProjectProvider = ({ children }) => {
             },
           };
           break;
-
         default:
           console.log("unrecognized breakPoint");
       }
@@ -109,14 +112,11 @@ const ProjectProvider = ({ children }) => {
         },
       };
     }
-
     dispatch({
       type: ADD_PROJECT,
       payload: { project: { ...initialState.project } },
     });
   };
-
-  const clonedState = { state };
 
   return (
     <ProjectContext.Provider
@@ -125,6 +125,7 @@ const ProjectProvider = ({ children }) => {
         handleCreateProject,
         handleSubmitProject,
         fetchProject,
+        fetchProjects,
       }}
     >
       {children}

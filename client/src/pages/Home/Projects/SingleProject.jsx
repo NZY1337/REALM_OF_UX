@@ -12,6 +12,7 @@ import { useProjectContext } from "../../../utils/contexts/project/projectContex
 const SingleProject = () => {
   const { projectId } = useParams();
   const { project, error, fetchProject } = useProjectContext();
+  console.log(project);
 
   useEffect(() => {
     fetchProject(projectId);
@@ -34,8 +35,7 @@ const SingleProject = () => {
     );
   };
 
-  console.log(error, project);
-  const projectIsEmpty = Object.keys(project).length === 0;
+  const projectIsEmpty = project && Object.keys(project).length === 0;
 
   return (
     <>
@@ -44,13 +44,11 @@ const SingleProject = () => {
           <Col className="my-5"></Col>
           <PageSectionTitle
             subtitle={projectIsEmpty ? error : "welcome"}
-            titleBold={projectIsEmpty ? error : "Realm of Ux"}
+            titleBold={
+              projectIsEmpty ? "Couldn't fetch the project" : "Your ultimate"
+            }
             titleNormal={
-              projectIsEmpty ? (
-                <p>Could't fetch the project</p>
-              ) : (
-                "ultimate guide for creating social media banners"
-              )
+              !projectIsEmpty && " guide to create social media banners"
             }
           />
         </Row>
