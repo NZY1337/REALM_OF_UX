@@ -1,10 +1,5 @@
 import React, { useReducer, useContext, useEffect } from "react";
-import {
-  GET_PROJECTS,
-  FETCH_PROJECT,
-  GET_PROJECT,
-  ADD_PROJECT,
-} from "./actions";
+import { GET_PROJECTS, GET_PROJECT, ADD_PROJECT } from "./actions";
 import { convertToBase64 } from "../../helpers";
 import { toast } from "react-toastify";
 import { fetchSingleProject } from "../../services/services";
@@ -43,7 +38,6 @@ const ProjectProvider = ({ children }) => {
   // fetch all projects
   const fetchProjects = async () => {
     const { allProjects, error } = await fetchAllProjects();
-    console.log(allProjects);
     dispatch({
       type: GET_PROJECTS,
       payload: { projects: allProjects, error },
@@ -72,50 +66,17 @@ const ProjectProvider = ({ children }) => {
   const handleCreateProject = async (e) => {
     if (e.target.files && e.target.files[0]) {
       const projectSS = await convertToBase64(e.target.files[0]);
-      switch (e.target.name) {
-        case "desktop":
-          initialState = {
-            ...initialState,
-            project: {
-              ...initialState.project,
-              desktop: projectSS,
-            },
-          };
-          break;
-        case "tablet":
-          initialState = {
-            ...initialState,
-            project: {
-              ...initialState.project,
-              tablet: projectSS,
-            },
-          };
-          break;
-        case "mobile":
-          initialState = {
-            ...initialState,
-            project: {
-              ...initialState.project,
-              mobile: projectSS,
-            },
-          };
-          break;
-        default:
-          console.log("unrecognized breakPoint");
-      }
+
+      dispatch({
+        type: ADD_PROJECT.IMAGE,
+        payload: { targetImage: e.target, projectSS },
+      });
     } else {
-      initialState = {
-        ...initialState,
-        project: {
-          ...initialState.project,
-          [e.target.name]: e.target.value,
-        },
-      };
+      dispatch({
+        type: ADD_PROJECT.TEXT,
+        payload: { targetText: e.target },
+      });
     }
-    dispatch({
-      type: ADD_PROJECT,
-      payload: { project: { ...initialState.project } },
-    });
   };
 
   return (

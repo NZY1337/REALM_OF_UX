@@ -1,4 +1,7 @@
-export const ADD_PROJECT = "ADD_PROJECT";
+export const ADD_PROJECT = {
+  IMAGE: "ADD_PROJECT_IMAGE",
+  TEXT: "ADD_PROJECT_TEXT",
+};
 export const GET_PROJECT = "GET_PROJECT";
 export const GET_PROJECTS = "GET_PROJECTS";
 export const DELETE_PROJECT = "DELETE_PROJECT";

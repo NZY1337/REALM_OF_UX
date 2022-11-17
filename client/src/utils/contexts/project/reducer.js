@@ -7,13 +7,24 @@ import {
   FETCH_PROJECT,
 } from "./actions";
 
+import { convertToBase64 } from "../../helpers";
+
+const projectSSFunc = async (file) => await convertToBase64(file);
+
 const reducer = (state, action) => {
-  console.log(action);
   switch (action.type) {
-    case ADD_PROJECT:
+    case ADD_PROJECT.TEXT:
+      const { targetText } = action.payload; // e.target
       return {
         ...state,
-        project: action.payload.project,
+        project: { ...state.project, [targetText.name]: targetText.value },
+      };
+
+    case ADD_PROJECT.IMAGE:
+      const { targetImage, projectSS } = action.payload; // e.target
+      return {
+        ...state,
+        project: { ...state.project, [targetImage.name]: projectSS },
       };
 
     case GET_PROJECT:

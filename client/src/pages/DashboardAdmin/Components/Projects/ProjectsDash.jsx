@@ -13,7 +13,6 @@ const ProjectsDash = () => {
   const { project, handleCreateProject, handleSubmitProject } =
     useProjectContext();
 
-  console.log(project);
   return (
     <DashboardAdminWrapper>
       <SideBar />
