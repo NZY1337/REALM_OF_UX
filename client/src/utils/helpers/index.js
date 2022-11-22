@@ -1,4 +1,5 @@
 import { TYPES } from "./constants";
+import { toast } from "react-toastify";
 
 export const trimUserName = (name) => {
   //   const firstName = name.split(" ")[0];
@@ -75,4 +76,12 @@ export const postStyle = (path) => {
   return {
     backgroundImage: `linear-gradient(rgba(26, 11, 11, 0), rgb(91 47 124 / 42%)), url(${path})`,
   };
+};
+
+export const notify = (style, message) => {
+  toast[style](message, {
+    position: toast.POSITION.BOTTOM_RIGHT,
+    theme: "dark",
+    autoClose: 2000,
+  });
 };

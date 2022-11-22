@@ -12,6 +12,7 @@ import PageSectionBanner from "./PageSectionBanner";
 import PageSectionTitle from "./PageSectionTitle";
 import ModalAlert from "./Modal";
 import ToastNotification from "./ToastNotification";
+import DeleteEditAction from "./DeleteEditAction";
 
 export {
   ButtonPrimary,
@@ -29,4 +30,5 @@ export {
   PageSectionTitle,
   ToastNotification,
   ModalAlert,
+  DeleteEditAction,
 };

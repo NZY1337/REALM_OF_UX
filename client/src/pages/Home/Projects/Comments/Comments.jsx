@@ -51,8 +51,8 @@ const ProjectComments = ({ projectId }) => {
   };
 
   const fetchComments = useCallback(async () => {
-    const { replays, error } = await getComments(projectId);
-    setComments(replays);
+    const { comms, error } = await getComments(projectId);
+    setComments(comms);
   }, [comments]);
 
   useEffect(() => {

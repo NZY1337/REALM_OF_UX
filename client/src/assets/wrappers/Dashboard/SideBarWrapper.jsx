@@ -5,7 +5,7 @@ const SideBarWrapper = styled.div`
     padding: 2rem;
     background: linear-gradient(
         0deg,
-        rgba(255, 155, 250, 0.3),
+        rgb(0 0 0 / 30%),
         rgba(255, 155, 250, 0.3)
       ),
       url(${(props) => props.cover});
@@ -47,9 +47,12 @@ const SideBarWrapper = styled.div`
       }
     }
 
-    h3 {
+    .logo span {
+      display: flex;
+      align-items: center;
+      font-size: 1.1rem;
       color: turquoise;
-      font-weight: bold;
+      //   font-weight: bold;
     }
     height: 100%;
 

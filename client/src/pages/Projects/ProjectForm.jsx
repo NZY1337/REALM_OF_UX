@@ -12,10 +12,10 @@ import { useErrorContext } from "../../utils/contexts/error/errorContext";
 const ProjectForm = () => {
   const [newProject, setNewProject] = useState({
     name: "",
-    category: "eewe",
-    desktop: "ewew",
-    tablet: "ewew",
-    mobile: "ewewew",
+    category: "",
+    desktop: "",
+    tablet: "",
+    mobile: "",
   });
 
   const { notify } = useErrorContext();

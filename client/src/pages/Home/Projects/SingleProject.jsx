@@ -5,29 +5,19 @@ import bannerCover from "../../../assets/images/img5.jpeg";
 import warning404 from "../../../assets/images/404.avif";
 import { useParams } from "react-router-dom";
 import ProjectComments from "./Comments/Comments";
-import { fetchSingleProject } from "../../../utils/services/services";
 import RenderPreviewDevicesProject from "./RenderPreviewDevicesProject";
 import SingleProjectWrapper from "../../../assets/wrappers/SingleProject/SingleProjectWrapper";
-import ToastNotification from "../../../components/ToastNotification";
+import { useProjectContext } from "../../../utils/contexts/project/projectContext";
 
 const SingleProject = () => {
   const { projectId } = useParams();
-
-  const [project, setProject] = useState({});
-  const [error, setError] = useState(null);
+  const { project, error, fetchProject } = useProjectContext();
 
   useEffect(() => {
-    fetchProject();
+    fetchProject(projectId);
 
     window.scrollTo(0, 0);
   }, []);
-
-  const fetchProject = async () => {
-    const { singleProject, error } = await fetchSingleProject(projectId);
-    if (error) setError(error);
-
-    setProject(singleProject);
-  };
 
   const renderCategory = () => {
     return (
@@ -44,26 +34,30 @@ const SingleProject = () => {
     );
   };
 
+  const projectIsEmpty = project && Object.keys(project).length === 0;
+
   return (
     <>
-      <PageSectionTitle
-        subtitle={!project ? error : "welcome"}
-        titleBold={!project ? "Error!" : "Realm of Ux"}
-        titleNormal={
-          !project ? (
-            <p>Could't fetch the project</p>
-          ) : (
-            "ultimate guide for creating social media banners"
-          )
-        }
-      />
+      <Container className="mt-5 pt-5">
+        <Row className="mt-5">
+          <PageSectionTitle
+            subtitle={projectIsEmpty ? error : "welcome"}
+            titleBold={
+              projectIsEmpty ? "Couldn't fetch the project" : "Your ultimate"
+            }
+            titleNormal={
+              !projectIsEmpty && " guide to create social media banners"
+            }
+          />
+        </Row>
+      </Container>
 
       <PageSectionBanner
-        title={!project ? "" : "A Drive Through Experience"}
-        cover={!project ? warning404 : bannerCover}
+        title={projectIsEmpty ? "" : "A Drive Through Experience"}
+        cover={projectIsEmpty ? warning404 : bannerCover}
       />
 
-      {project && (
+      {!projectIsEmpty && (
         <SingleProjectWrapper>
           <Container className="my-5">
             <Row>

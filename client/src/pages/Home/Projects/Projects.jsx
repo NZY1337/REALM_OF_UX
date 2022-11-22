@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import BlogPostsWrapper from "../../../assets/wrappers/Home/BlogPostsWrapper";
 import Project from "./Project";
 import { Container, Col, Row } from "react-bootstrap";
@@ -9,7 +9,7 @@ import {
   TitleSectionDesign,
 } from "../../../components";
 import { useTranslateContext } from "../../../utils/contexts/translate/translateContext";
-import { fetchAllProjects } from "../../../utils/services/services";
+import { useProjectContext } from "../../../utils/contexts/project/projectContext";
 
 const Projects = () => {
   const {
@@ -21,13 +21,8 @@ const Projects = () => {
     },
   } = useTranslateContext();
 
-  const [projects, setProjects] = useState([]);
-
-  const fetchProjects = async () => {
-    const { allProjects, error } = await fetchAllProjects();
-    setProjects(allProjects);
-  };
-
+  const { projects, fetchProjects } = useProjectContext();
+  console.log(projects);
   useEffect(() => {
     fetchProjects();
   }, []);

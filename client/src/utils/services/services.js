@@ -4,6 +4,8 @@ import {
   GET_PROJECT_ROUTE,
   GET_PROJECTS_ROUTE,
   DELETE_COMMENT_ROUTE,
+  ADD_PROJECT_ROUTE,
+  DELETE_PROJECT_ROUTE,
 } from "./apis";
 import axios from "axios";
 
@@ -20,19 +22,19 @@ export const publishComment = async (comment) => {
 };
 
 export const getComments = async (projectId) => {
-  let replays, error;
+  let comms, error;
 
   try {
     const {
       data: { comments },
     } = await axios.get(GET_COMMENTS_ROUTE(projectId));
 
-    replays = comments;
+    comms = comments;
   } catch (error) {
     error = error.response.data.msg;
   }
 
-  return { replays, error };
+  return { comms, error };
 };
 
 export const removeComment = async (commentId) => {
@@ -52,7 +54,7 @@ export const removeComment = async (commentId) => {
 };
 
 /***********/
-// PRJKTS
+// PROJECTS
 /***********/
 
 export const fetchSingleProject = async (projectId) => {
@@ -70,6 +72,20 @@ export const fetchSingleProject = async (projectId) => {
   return { singleProject, error };
 };
 
+export const addProject = async (prjkt) => {
+  let newProject, error;
+  try {
+    const {
+      data: { project },
+    } = await axios.post(ADD_PROJECT_ROUTE, prjkt);
+    newProject = project;
+  } catch (err) {
+    error = err.response.data.msg;
+  }
+
+  return { newProject, error };
+};
+
 export const fetchAllProjects = async () => {
   let allProjects, error;
   try {
@@ -82,4 +98,18 @@ export const fetchAllProjects = async () => {
   }
 
   return { allProjects, error };
+};
+
+export const deleteProject = async (projectId) => {
+  let deletedProject, error;
+  try {
+    const {
+      data: { project },
+    } = await axios.delete(`${DELETE_PROJECT_ROUTE}/${projectId}`);
+    deletedProject = project;
+  } catch (err) {
+    error = err.response.data.msg;
+  }
+
+  return { deletedProject, error };
 };

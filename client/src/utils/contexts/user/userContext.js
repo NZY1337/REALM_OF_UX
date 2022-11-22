@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useContext } from "react";
+import React, { useReducer, useContext } from "react";
 import {
   DISPLAY_ALERT,
   CLEAR_ALERT,
@@ -111,8 +111,6 @@ const UserProvider = ({ children }) => {
   );
 };
 
-const useUserContext = () => {
-  return useContext(UserContext);
-};
+const useUserContext = () => useContext(UserContext);
 
 export { UserProvider, useUserContext };

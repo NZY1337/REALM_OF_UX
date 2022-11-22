@@ -1,3 +1,26 @@
+import React from "react";
+import { AiOutlineProject } from "react-icons/ai";
+import { FaRegComments } from "react-icons/fa";
+import { GiTestTubes } from "react-icons/gi";
+
+export const sideLinks = [
+  {
+    link: "/dashboard",
+    icon: <FaRegComments />,
+    title: "Projects",
+  },
+  {
+    link: "/dashboard/comments",
+    icon: <AiOutlineProject />,
+    title: "Comments",
+  },
+  {
+    link: "/dashboard/tests",
+    icon: <GiTestTubes />,
+    title: "Tests",
+  },
+];
+
 export const TYPES = [
   {
     title: "Facebook Cover",
