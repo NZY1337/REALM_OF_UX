@@ -1,11 +1,16 @@
 import React from "react";
-import { Col, Navbar, Nav } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import { sideLinks } from "../../utils/helpers/constants";
-import SideBarWrapper from "../../assets/wrappers/Dashboard/SideBarWrapper";
+
+// images
 import cover from "../../assets/images/img19.jpeg";
-import SideLinks from "./MiniComponents/SideLinks";
 import logo from "../../assets/images/logo1.png";
+
+// components
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import SideLinks from "./MiniComponents/SideLinks";
+import SideBarWrapper from "../../assets/wrappers/Dashboard/SideBarWrapper";
 
 const SideBar = () => {
   const { pathname } = useLocation();
