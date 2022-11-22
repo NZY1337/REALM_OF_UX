@@ -24,7 +24,7 @@ const ProjectActionsForm = ({
 
         <Row>
           <Col lg="6">
-            <Form.Group className="mb-3" controlId="projet-name">
+            <Form.Group className="mb-3">
               <Form.Label>Search Project by title</Form.Label>
               <Form.Control
                 type="name"

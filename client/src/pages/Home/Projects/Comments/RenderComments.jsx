@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Trash, Pen, ThreeDotsVertical } from "react-bootstrap-icons";
 import Dropdown from "react-bootstrap/Dropdown";
+import Button from "react-bootstrap/Button";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
-import { useErrorContext } from "../../../../utils/contexts/error/errorContext";
+import { ModalAlert } from "../../../../components";
+import { useModalContext } from "../../../../utils/contexts/modal/modalContext";
 
 const RenderComments = ({ comments, handleDeleteComment, user }) => {
-  const { triggerModalDelete } = useErrorContext();
+  const { handleTriggerModal } = useModalContext();
+  const [commentId, setCommentId] = useState("");
 
   return (
     <>
@@ -31,8 +34,8 @@ const RenderComments = ({ comments, handleDeleteComment, user }) => {
                   <Dropdown.Item
                     eventKey="1"
                     onClick={() => {
-                      const cb = () => handleDeleteComment(comm._id);
-                      triggerModalDelete(cb);
+                      handleTriggerModal(true);
+                      setCommentId(comm._id);
                     }}
                   >
                     <Trash />
@@ -48,6 +51,17 @@ const RenderComments = ({ comments, handleDeleteComment, user }) => {
           </div>
         </div>
       ))}
+      <ModalAlert>
+        <Button
+          variant="danger"
+          onClick={() => {
+            handleDeleteComment(commentId);
+            handleTriggerModal(false);
+          }}
+        >
+          Delete
+        </Button>
+      </ModalAlert>
     </>
   );
 };

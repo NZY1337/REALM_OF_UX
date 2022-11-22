@@ -23,9 +23,9 @@ let initialState = {
   project: {
     name: "",
     category: "",
-    desktop: "b",
-    tablet: "c",
-    mobile: "d",
+    desktop: "",
+    tablet: "",
+    mobile: "",
   },
   error: "",
   projects: [],
@@ -83,6 +83,7 @@ const ProjectProvider = ({ children }) => {
   // fetch single project
   const fetchProject = async (projectId) => {
     const { singleProject, error } = await fetchSingleProject(projectId);
+    console.log(error);
     dispatch({
       type: GET_PROJECT,
       payload: { project: singleProject, error },

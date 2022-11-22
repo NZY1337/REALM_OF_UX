@@ -15,7 +15,7 @@ const SingleProject = () => {
 
   useEffect(() => {
     fetchProject(projectId);
-
+    console.log(error);
     window.scrollTo(0, 0);
   }, []);
 
