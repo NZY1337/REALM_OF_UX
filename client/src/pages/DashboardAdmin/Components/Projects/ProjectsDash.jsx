@@ -1,6 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
+import { useProjectContext } from "../../../../utils/contexts/project/projectContext";
+
+//components
 import DashboardAdminWrapper from "../../../../assets/wrappers/Dashboard/DashboardAdminWrapper";
-import { Row, Col } from "react-bootstrap";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import SideBar from "../../SideBar";
 import DashTitle from "../../MiniComponents/DashTitle";
 import DashboardWrapper from "../../../../assets/wrappers/Dashboard/DashboardWrapper";
@@ -8,7 +13,6 @@ import { PageSectionTitle } from "../../../../components";
 import DashContainer from "../../MiniComponents/DashContainer";
 import ProjectDashForm from "./ProjectsDashForm";
 import ProjectActionsForm from "./ProjectsActionsForm";
-import { useProjectContext } from "../../../../utils/contexts/project/projectContext";
 
 const ProjectsDash = () => {
   const {
@@ -68,6 +72,21 @@ const ProjectsDash = () => {
       </DashboardWrapper>
     </DashboardAdminWrapper>
   );
+};
+
+ProjectsDash.propTypes = {
+  project: PropTypes.object.isRequired,
+  showModal: PropTypes.bool.isRequired,
+  handleCreateProject: PropTypes.func.isRequired,
+  handleSubmitProject: PropTypes.func.isRequired,
+  handleSearchKeyword: PropTypes.func.isRequired,
+  filteredProjects: PropTypes.array.isRequired,
+  searchKeyword: PropTypes.string.isRequired,
+  handleDeleteProject: PropTypes.func.isRequired,
+  handleMatchedProject: PropTypes.func.isRequired,
+  handleTriggerModal: PropTypes.func.isRequired,
+  showModal: PropTypes.bool.isRequired,
+  handleDeleteProject: PropTypes.func.isRequired,
 };
 
 export default ProjectsDash;

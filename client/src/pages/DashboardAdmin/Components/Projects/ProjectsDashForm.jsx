@@ -1,5 +1,11 @@
 import React from "react";
-import { Form, Button, Col, Row } from "react-bootstrap";
+import PropTypes from "prop-types";
+
+// components
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 
 const ProjectDashForm = ({
   project,
@@ -86,6 +92,12 @@ const ProjectDashForm = ({
       </Button>
     </Form>
   );
+};
+
+ProjectDashForm.propTypes = {
+  project: PropTypes.object.isRequired,
+  handleCreateProject: PropTypes.func.isRequired,
+  handleSubmitProject: PropTypes.func.isRequired,
 };
 
 export default ProjectDashForm;

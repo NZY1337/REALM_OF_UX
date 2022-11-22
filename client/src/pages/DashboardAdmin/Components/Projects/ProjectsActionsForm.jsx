@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import PropTypes from "prop-types";
 import { Form, Col, Row } from "react-bootstrap";
 import FilteredProjects from "./FilteredProjects";
 
@@ -47,6 +48,16 @@ const ProjectActionsForm = ({
       />
     </>
   );
+};
+
+ProjectActionsForm.propTypes = {
+  filteredProjects: PropTypes.array.isRequired,
+  searchKeyword: PropTypes.string.isRequired,
+  handleDeleteProject: PropTypes.func.isRequired,
+  handleMatchedProject: PropTypes.func.isRequired,
+  handleTriggerModal: PropTypes.func.isRequired,
+  showModal: PropTypes.bool.isRequired,
+  handleDeleteProject: PropTypes.func.isRequired,
 };
 
 export default ProjectActionsForm;
