@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useModalContext } from "../utils/contexts/modal/modalContext";
-import { removeComment } from "../utils/services/services";
 import warning from "../assets/images/warning.svg";
 
 const ModalAlert = ({ children }) => {

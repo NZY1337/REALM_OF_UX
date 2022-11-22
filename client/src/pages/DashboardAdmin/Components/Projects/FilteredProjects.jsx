@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Spinner from "react-bootstrap/Spinner";
+import { useModalContext } from "../../../../utils/contexts/modal/modalContext";
 import { Link } from "react-router-dom";
 import { DeleteEditAction } from "../../../../components";
-import ModalTest from "../../../../components/ModalTest";
+import { ModalAlert } from "../../../../components";
 import Button from "react-bootstrap/Button";
 
 const FilteredProjects = ({
   filteredProjects,
   searchKeyword,
-  showModal,
-  handleTriggerModal,
   handleDeleteProject,
 }) => {
+  const { handleTriggerModal, modal } = useModalContext();
   const [projectIdCB, setProjectIdCB] = useState(null);
 
   const onHandleProjectCb = (pId) => {
@@ -51,14 +51,17 @@ const FilteredProjects = ({
         ) : null}
       </div>
 
-      <ModalTest showModal={showModal} handleTriggerModal={handleTriggerModal}>
+      <ModalAlert showModal={modal} handleTriggerModal={handleTriggerModal}>
         <Button
           variant="danger"
-          onClick={() => handleDeleteProject(projectIdCB)}
+          onClick={() => {
+            handleDeleteProject(projectIdCB);
+            handleTriggerModal(false);
+          }}
         >
           Delete
         </Button>
-      </ModalTest>
+      </ModalAlert>
     </>
   );
 };
