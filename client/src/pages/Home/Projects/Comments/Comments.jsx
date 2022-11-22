@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import RenderComments from "./RenderComments";
-import { useErrorContext } from "../../../../utils/contexts/error/errorContext";
+import { useModalContext } from "../../../../utils/contexts/modal/modalContext";
 import { useUserContext } from "../../../../utils/contexts/user/userContext";
 import {
   publishComment,
@@ -8,12 +8,12 @@ import {
   removeComment,
 } from "../../../../utils/services/services";
 import AddCommentForm from "./FormComment";
+import { notify } from "../../../../utils/helpers";
 
 const ProjectComments = ({ projectId }) => {
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState("");
   const { user } = useUserContext();
-  const { notify } = useErrorContext();
 
   const onHandleChange = (e) => {
     setComment(e.target.value);
@@ -29,7 +29,7 @@ const ProjectComments = ({ projectId }) => {
     };
 
     const replay = await publishComment(userComment);
-    notify("add", "success", "Comment added successfully!");
+    notify("success", "Comment added successfully!");
     setComments([replay, ...comments]);
     setComment("");
   };
@@ -42,11 +42,11 @@ const ProjectComments = ({ projectId }) => {
         (comm) => comm._id !== comment._id
       );
       setComments(restofComments);
-      notify("delete", "success", "Deleted Successfully");
+      notify("success", "Deleted Successfully");
     }
 
     if (commError) {
-      notify("delete", "warning", commError);
+      notify("warning", commError);
     }
   };
 

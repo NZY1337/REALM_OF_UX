@@ -1,16 +1,15 @@
 import React from "react";
 import Home from "./pages/Home/Home";
 import BannerCreator from "./pages/BannerCreator/BannerCreator";
-import { Navigation, Footer, ModalAlert } from "./components";
+import { Navigation, Footer } from "./components";
 import LoginRegister from "./pages/LoginRegister/LoginRegister";
 import { ThemeProvider } from "styled-components";
 import { TranslateProvider } from "./utils/contexts/translate/translateContext";
 import { ProjectProvider } from "./utils/contexts/project/projectContext";
 import { Routes, Route, matchPath, useLocation } from "react-router-dom";
 import { UserProvider } from "./utils/contexts/user/userContext";
-import { ErrorProvider } from "./utils/contexts/error/errorContext";
+import { ModalProvider } from "./utils/contexts/modal/modalContext";
 import Projects from "./pages/Projects";
-import ProjectForm from "./pages/Projects/ProjectForm";
 import SingleProject from "./pages/Home/Projects/SingleProject";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import ToastNotification from "./components/ToastNotification";
@@ -50,7 +49,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <TranslateProvider>
         <UserProvider>
-          <ErrorProvider>
+          <ModalProvider>
             <ProjectProvider>
               {!isUnknownRoot && (
                 <div className="App">
@@ -73,17 +72,15 @@ function App() {
                       />
                     </Route>
                     <Route path="/projects">
-                      <Route path="new-project" element={<ProjectForm />} />
                       <Route path=":projectId" element={<SingleProject />} />
                     </Route>
                   </Routes>
                   {!hideHeaderFooter && <Footer />}
                   <ToastNotification />
-                  <ModalAlert />
                 </div>
               )}
             </ProjectProvider>
-          </ErrorProvider>
+          </ModalProvider>
 
           {isUnknownRoot && (
             <Routes>
