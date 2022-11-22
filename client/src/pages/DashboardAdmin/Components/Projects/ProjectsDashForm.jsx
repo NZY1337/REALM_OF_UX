@@ -8,6 +8,9 @@ const ProjectDashForm = ({
 }) => {
   return (
     <Form onSubmit={handleSubmitProject}>
+      <h6 className="mb-4" style={{ color: "orange" }}>
+        Add Project
+      </h6>
       <Row>
         <Col lg="6">
           <Form.Group className="mb-3" controlId="projet-name">

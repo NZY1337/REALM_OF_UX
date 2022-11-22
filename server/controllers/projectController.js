@@ -1,5 +1,7 @@
 import Project from "../models/Project.js";
 import Comment from "../models/Comment.js";
+import pkg from "mongoose";
+const { ObjectId } = pkg;
 
 class ProjectController {
   async addProject(req, res, next) {
@@ -29,7 +31,7 @@ class ProjectController {
     try {
       const projects = await Project.find({});
 
-      return res.status(200).json({ projects });
+      res.status(200).json({ projects });
     } catch (error) {
       next(error);
     }
@@ -39,7 +41,7 @@ class ProjectController {
     try {
       const project = await Project.findOne({ _id: req.params.projectId });
 
-      return res.status(201).send({ project });
+      res.status(201).send({ project });
     } catch (error) {
       next({ message: "Project cannot be found", statusCode: 404 });
     }
@@ -47,16 +49,13 @@ class ProjectController {
 
   async deleteProject(req, res, next) {
     try {
-      const { projectId } = req.body;
-
-      const project = await Project.findOneAndDelete({
+      const { projectId } = req.params;
+      const project = await Project.findByIdAndRemove({
         _id: projectId,
       });
-
       const comments = await Comment.deleteMany({ projectId });
-
-      res.status(201).send({ project, comments });
-    } catch (err) {
+      res.status(200).json({ project, comments });
+    } catch (error) {
       console.log(error);
       next(error);
     }

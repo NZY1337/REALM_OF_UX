@@ -12,7 +12,6 @@ import { useProjectContext } from "../../../utils/contexts/project/projectContex
 const SingleProject = () => {
   const { projectId } = useParams();
   const { project, error, fetchProject } = useProjectContext();
-  console.log(project);
 
   useEffect(() => {
     fetchProject(projectId);
@@ -41,7 +40,6 @@ const SingleProject = () => {
     <>
       <Container className="mt-5 pt-5">
         <Row className="mt-5">
-          <Col className="my-5"></Col>
           <PageSectionTitle
             subtitle={projectIsEmpty ? error : "welcome"}
             titleBold={

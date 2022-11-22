@@ -5,6 +5,7 @@ import {
   GET_PROJECTS_ROUTE,
   DELETE_COMMENT_ROUTE,
   ADD_PROJECT_ROUTE,
+  DELETE_PROJECT_ROUTE,
 } from "./apis";
 import axios from "axios";
 
@@ -97,4 +98,18 @@ export const fetchAllProjects = async () => {
   }
 
   return { allProjects, error };
+};
+
+export const deleteProject = async (projectId) => {
+  let deletedProject, error;
+  try {
+    const {
+      data: { project },
+    } = await axios.delete(`${DELETE_PROJECT_ROUTE}/${projectId}`);
+    deletedProject = project;
+  } catch (err) {
+    error = err.response.data.msg;
+  }
+
+  return { deletedProject, error };
 };

@@ -7,11 +7,22 @@ import DashboardWrapper from "../../../../assets/wrappers/Dashboard/DashboardWra
 import { PageSectionTitle } from "../../../../components";
 import DashContainer from "../../MiniComponents/DashContainer";
 import ProjectDashForm from "./ProjectsDashForm";
+import ProjectActionsForm from "./ProjectsActionsForm";
 import { useProjectContext } from "../../../../utils/contexts/project/projectContext";
 
 const ProjectsDash = () => {
-  const { project, handleCreateProject, handleSubmitProject } =
-    useProjectContext();
+  const {
+    project,
+    filteredProjects,
+    handleCreateProject,
+    handleSubmitProject,
+    handleSearchKeyword,
+    searchKeyword,
+    handleMatchedProject,
+    handleTriggerModal,
+    showModal,
+    handleDeleteProject,
+  } = useProjectContext();
 
   return (
     <DashboardAdminWrapper>
@@ -20,29 +31,37 @@ const ProjectsDash = () => {
         <DashTitle title="Projects" />
 
         <DashContainer>
-          <Row className="dash-container-projects">
+          <Row>
             <PageSectionTitle
               subtitle="weclome to our realm of templates"
               titleBold="Upload "
               titleNormal="your project here!"
             />
+          </Row>
 
+          <Row className="dash-container-projects mt-4">
             <Col lg="6">
-              <ProjectDashForm
-                project={project}
-                handleCreateProject={handleCreateProject}
-                handleSubmitProject={handleSubmitProject}
-              />
+              <div className="dash-container-projects-wrapper">
+                <ProjectDashForm
+                  project={project}
+                  handleCreateProject={handleCreateProject}
+                  handleSubmitProject={handleSubmitProject}
+                />
+              </div>
             </Col>
 
             <Col lg="6">
-              <img
-                //   style={{objectFit:"cover"}}
-                className="img-fluid w-50 h-75"
-                src={
-                  "https://i.pinimg.com/564x/ab/d5/34/abd534fe1cfe1a1676bb28ca966266bb.jpg"
-                }
-              />
+              <div className="dash-container-projects-wrapper">
+                <ProjectActionsForm
+                  filteredProjects={filteredProjects}
+                  searchKeyword={searchKeyword}
+                  handleSearchKeyword={handleSearchKeyword}
+                  handleTriggerModal={handleTriggerModal}
+                  showModal={showModal}
+                  handleMatchedProject={handleMatchedProject}
+                  handleDeleteProject={handleDeleteProject}
+                />
+              </div>
             </Col>
           </Row>
         </DashContainer>

@@ -19,12 +19,19 @@ const DashboardWrapper = styled.div`
     padding: 2rem;
 
     &-projects {
-      form {
+      &-filtered {
+        div {
+          a:hover {
+            color: black !important;
+          }
+        }
+      }
+
+      &-wrapper {
         padding: 1rem;
         background: #fff;
         border-radius: 5px;
       }
-
       img {
         border-radius: 28px;
       }

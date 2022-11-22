@@ -3,8 +3,9 @@ import { Col, Navbar, Nav } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import { sideLinks } from "../../utils/helpers/constants";
 import SideBarWrapper from "../../assets/wrappers/Dashboard/SideBarWrapper";
-import cover from "../../assets/images/img9.jpeg";
+import cover from "../../assets/images/img19.jpeg";
 import SideLinks from "./MiniComponents/SideLinks";
+import logo from "../../assets/images/logo1.png";
 
 const SideBar = () => {
   const { pathname } = useLocation();
@@ -16,7 +17,9 @@ const SideBar = () => {
   return (
     <SideBarWrapper cover={cover}>
       <div className="sidebar">
-        <h3>Realm Of Ux</h3>
+        <Link className="logo mb-3 d-block" to="/">
+          <img src={logo} />
+        </Link>
         <Navbar expand="md">
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">

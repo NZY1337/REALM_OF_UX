@@ -47,9 +47,12 @@ const SideBarWrapper = styled.div`
       }
     }
 
-    h3 {
+    .logo span {
+      display: flex;
+      align-items: center;
+      font-size: 1.1rem;
       color: turquoise;
-      font-weight: bold;
+      //   font-weight: bold;
     }
     height: 100%;
 

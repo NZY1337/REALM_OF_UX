@@ -46,7 +46,6 @@ class CommentController {
 
   async deleteComment(req, res, next) {
     const { commentId } = req.body;
-    console.log(commentId);
     try {
       if (!commentId) {
         next({
