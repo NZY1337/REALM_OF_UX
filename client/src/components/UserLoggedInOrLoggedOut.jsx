@@ -24,7 +24,7 @@ export const UserLoggedOut = ({ colorUser }) => {
 
 UserLoggedIn.propTypes = {
   name: PropTypes.string.isRequired,
-  colorUser: PropTypes.string.isRequired
+  colorUser: PropTypes.string
 }
 
 UserLoggedOut.propTypes = {

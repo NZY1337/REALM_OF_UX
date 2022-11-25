@@ -16,7 +16,7 @@ const TitleSection = ({ title, centerMargin, subtitle }) => {
 
 TitleSection.propTypes = {
   title: PropTypes.string.isRequired,
-  centerMargin: PropTypes.string.isRequired,
+  centerMargin: PropTypes.string,
   subtitle: PropTypes.string.isRequired,
 }
 

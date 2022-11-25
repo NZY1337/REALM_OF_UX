@@ -15,8 +15,8 @@ const TitleSectionDesign = ({ centerMargin, description, textAlign }) => {
 
 TitleSectionDesign.propTypes = {
   description: PropTypes.string.isRequired,
-  centerMargin: PropTypes.string.isRequired,
-  textAligns: PropTypes.string.isRequired,
+  centerMargin: PropTypes.string,
+  textAligns: PropTypes.string,
 }
 
 export default TitleSectionDesign;

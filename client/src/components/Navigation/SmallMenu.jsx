@@ -26,8 +26,8 @@ const SmallMenu = ({ user, changeLanguage, colorUser }) => {
 
 SmallMenu.propTypes = {
     user: PropTypes.object.isRequired,
-    changeLanguage: PropTypes.bool.isRequired,
-    colorUser: PropTypes.string.isRequired,
+    changeLanguage: PropTypes.func.isRequired,
+    colorUser: PropTypes.string,
 };
   
 
