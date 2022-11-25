@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 import { ArrowRight } from "react-bootstrap-icons";
 import { ButtonPrimary } from "../../../components";
@@ -116,5 +117,11 @@ const SliderItem = ({ subtitle, title, description }) => {
     </div>
   );
 };
+
+SliderItem.propTypes = {
+  subtitle:PropTypes.string.isRequired,
+  title:PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired
+}
 
 export default SliderItem;

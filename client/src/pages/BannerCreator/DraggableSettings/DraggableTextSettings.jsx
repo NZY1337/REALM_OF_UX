@@ -1,8 +1,9 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import DraggableTextSettingsWrapper from "../../../assets/wrappers/BannerCreator/DraggableTextSettingsWrapper";
 import { BiBold, BiUnderline, BiItalic } from "react-icons/bi";
 import { AiOutlineBgColors } from "react-icons/ai";
-import { CgFormatUppercase } from "react-icons/cg";
+
 
 import ColorPicker from "../../../components/ColorPicker";
 
@@ -57,6 +58,11 @@ const DraggableTextSettings = ({ color, onChangeColorPicker }) => {
     </DraggableTextSettingsWrapper>
   );
 };
+
+DraggableTextSettings.propTypes = {
+  color: PropTypes.string,
+  onChangeColorPicker: PropTypes.func.isRequired
+}
 
 export default DraggableTextSettings;
 

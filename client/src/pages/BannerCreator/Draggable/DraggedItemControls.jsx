@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { Trash } from "react-bootstrap-icons";
 import { BiDuplicate } from "react-icons/bi";
 
@@ -32,5 +33,11 @@ const DraggedItemControls = ({ removeItem, cloneItem, item }) => {
     </div>
   );
 };
+
+DraggedItemControls.propTypes = {
+  removeItem: PropTypes.func.isRequired,
+  cloneItem: PropTypes.func.isRequired,
+  item: PropTypes.object.isRequired
+}
 
 export default DraggedItemControls;

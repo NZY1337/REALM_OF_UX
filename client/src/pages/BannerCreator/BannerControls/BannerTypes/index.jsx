@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { Col } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import RenderBannerType from "./RenderBannerTypes";
@@ -28,5 +29,9 @@ const BannerTypes = ({ handleBannerTypeCb }) => {
     </Col>
   );
 };
+
+BannerTypes.propTypes = {
+  handleBannerTypeCb: PropTypes.func.isRequired
+}
 
 export default BannerTypes;

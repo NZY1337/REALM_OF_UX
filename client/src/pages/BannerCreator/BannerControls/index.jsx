@@ -1,10 +1,12 @@
 import React from "react";
+import PropTypes from "prop-types";
 import BannerCover from "./BannerCover";
 import BannerBackgroundCover from "./BannerBackgroundCover";
 import BannerText from "./BannerText";
 import BannerTypes from "./BannerTypes/index.jsx";
 import { Row } from "react-bootstrap";
 import "./index.scss";
+import { propTypes } from "react-bootstrap/esm/Image";
 
 const BannerControls = ({
   uploadCover,
@@ -25,5 +27,13 @@ const BannerControls = ({
     </Row>
   );
 };
+
+BannerControls.propTypes = {
+  uploadCover:PropTypes.func.isRequired,
+  color:PropTypes.string.isRequired,
+  onChangeColorPicker: PropTypes.func.isRequired,
+  populateBannerText: PropTypes.func.isRequired, 
+  handleBannerTypeCb: PropTypes.func.isRequired,
+}
 
 export default BannerControls;

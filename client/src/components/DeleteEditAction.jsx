@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { Trash, Pen, ThreeDotsVertical } from "react-bootstrap-icons";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
@@ -41,5 +42,12 @@ const DeleteEditAction = ({
     </DeleteEditWrapper>
   );
 };
+
+DeleteEditAction.propTypes = {
+  index: PropTypes.bool.isRequired,
+  handleTriggerModal: PropTypes.func.isRequired,
+  projectId: PropTypes.string.isRequired,
+  onHandleProjectCb: PropTypes.func.isRequired,
+}
 
 export default DeleteEditAction;

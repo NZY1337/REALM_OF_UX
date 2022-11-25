@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
+import PropTypes from 'prop-types';
 import RenderComments from "./RenderComments";
-import { useModalContext } from "../../../../utils/contexts/modal/modalContext";
 import { useUserContext } from "../../../../utils/contexts/user/userContext";
 import {
   publishComment,
@@ -81,5 +81,9 @@ const ProjectComments = ({ projectId }) => {
     </div>
   );
 };
+
+ProjectComments.propTypes =  {
+  projectId: PropTypes.string.isRequired
+}
 
 export default ProjectComments;

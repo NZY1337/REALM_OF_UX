@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import PropTypes from 'prop-types';
 import reactCSS from "reactcss";
 
 import { SketchPicker } from "react-color";
+import { propTypes } from "react-bootstrap/esm/Image";
 
 const ColorPicker = ({ color, onChangeColorPicker, children }) => {
   const [displayPicker, setDisplayPicker] = useState(false);
@@ -60,5 +62,14 @@ const ColorPicker = ({ color, onChangeColorPicker, children }) => {
     </>
   );
 };
+
+ColorPicker.propTypes = {
+  color: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.node
+  ]).isRequired,
+  onChangeColorPicker: PropTypes.func.isRequired
+  }
 
 export default ColorPicker;

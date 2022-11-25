@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types'
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useModalContext } from "../utils/contexts/modal/modalContext";
@@ -24,5 +25,13 @@ const ModalAlert = ({ children }) => {
     </Modal>
   );
 };
+
+ModalAlert.proTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+]).isRequired,
+}
+
 
 export default ModalAlert;

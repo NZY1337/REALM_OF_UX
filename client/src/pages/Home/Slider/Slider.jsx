@@ -2,7 +2,6 @@ import React from "react";
 import Carousel from "react-bootstrap/Carousel";
 import HerroWrapper from "../../../assets/wrappers/Home/HeroWrapper";
 import { useTranslateContext } from "../../../utils/contexts/translate/translateContext";
-
 import SliderItem from "./SliderItem";
 
 const carouselProps = (item) => {

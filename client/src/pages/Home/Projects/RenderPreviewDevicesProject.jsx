@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { Col } from "react-bootstrap";
 import { Arrow90degRight } from "react-bootstrap-icons";
 import { ButtonPrimary } from "../../../components";
@@ -32,5 +33,15 @@ const RenderPreviewDevicesProject = ({ project }) => {
   };
   return <>{project ? renderProjects() : "loading"}</>;
 };
+
+
+RenderProject.propTypes = {
+  project: PropTypes.object.isRequired
+}
+
+RenderPreviewDevicesProject.propTypes = {
+  project: PropTypes.object.isRequired
+}
+
 
 export default RenderPreviewDevicesProject;

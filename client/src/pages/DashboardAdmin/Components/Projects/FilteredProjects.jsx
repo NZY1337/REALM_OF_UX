@@ -4,8 +4,7 @@ import { useModalContext } from "../../../../utils/contexts/modal/modalContext";
 import { Link } from "react-router-dom";
 
 //components
-import { DeleteEditAction } from "../../../../components";
-import { ModalAlert } from "../../../../components";
+import { DeleteEditAction, ModalAlert } from "../../../../components";
 import Spinner from "react-bootstrap/Spinner";
 import Button from "react-bootstrap/Button";
 

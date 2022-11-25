@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import PropTypes from 'prop-types';
 import { Rnd } from "react-rnd";
 import {
   DRAGGED_ITEM_NEWSTYLE,
@@ -118,5 +119,12 @@ const Draggable = ({ item, saveChanges, removeItem, cloneItem }) => {
     </>
   );
 };
+
+Draggable.propTypes = {
+  item: PropTypes.object.isRequired,
+  saveChanges: PropTypes.func.isRequired,
+  removeItem: PropTypes.func.isRequired,
+  cloneItem: PropTypes.func.isRequired
+}
 
 export default Draggable;

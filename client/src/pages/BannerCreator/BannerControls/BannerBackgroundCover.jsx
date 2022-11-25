@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import ColorPicker from "../../../components/ColorPicker";
 import { Col } from "react-bootstrap";
 
@@ -17,5 +18,10 @@ const BannerBackgroundCover = ({ color, onChangeColorPicker }) => {
     </Col>
   );
 };
+
+BannerBackgroundCover.propTypes = {
+  color: PropTypes.string.isRequired,
+  onChangeColorPicker: PropTypes.func.isRequired
+}
 
 export default BannerBackgroundCover;

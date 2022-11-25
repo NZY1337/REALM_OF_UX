@@ -1,6 +1,6 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import BannerSectionTitleWrapper from "../assets/wrappers/BannerSectionTitleWrapper";
-import { Container, Row, Col } from "react-bootstrap";
 
 const PageSectionTitle = ({ titleBold, titleNormal, subtitle }) => {
   return (
@@ -15,5 +15,11 @@ const PageSectionTitle = ({ titleBold, titleNormal, subtitle }) => {
     </BannerSectionTitleWrapper>
   );
 };
+
+PageSectionTitle.propTypes = {
+  titleNormal: PropTypes.string.isRequired,
+  titleBold: PropTypes.string.isRequired,
+  subtitle: PropTypes.string.isRequired,
+}
 
 export default PageSectionTitle;

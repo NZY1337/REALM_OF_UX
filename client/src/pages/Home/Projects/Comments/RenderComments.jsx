@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from 'prop-types';
 import { Trash, Pen, ThreeDotsVertical } from "react-bootstrap-icons";
 import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/Button";
@@ -65,5 +66,11 @@ const RenderComments = ({ comments, handleDeleteComment, user }) => {
     </>
   );
 };
+
+RenderComments.propTypes = {
+  comments: PropTypes.array.isRequired,
+  handleDeleteComment: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired
+}
 
 export default RenderComments;
