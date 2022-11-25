@@ -6,7 +6,6 @@ import BannerPreview from "../BannerPreview";
 import BannerControls from "../BannerControls";
 import { v4 as uuidv4 } from "uuid";
 import bannerCover from "../../../assets/images/img17.jpeg";
-
 import { getBannerSizes, addStyleBasedType } from "../../../utils/helpers";
 
 const BannerCreator = () => {

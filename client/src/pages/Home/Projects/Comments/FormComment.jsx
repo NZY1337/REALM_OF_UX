@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { Form } from "react-bootstrap";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import { ButtonSecondary } from "../../../../components";
@@ -32,5 +33,11 @@ const FormComment = ({ hadleChange, addComment, comment }) => {
     </div>
   );
 };
+
+FormComment.propTypes = { 
+  hadleChange: PropTypes.func.isRequired,
+  addComment: PropTypes.func.isRequired,
+  comment: PropTypes.string.isRequired
+}
 
 export default FormComment;

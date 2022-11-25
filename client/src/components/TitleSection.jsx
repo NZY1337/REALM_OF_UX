@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types'
 import TitleWrapper from "../assets/wrappers/Home/TitleWrapper";
 
 const TitleSection = ({ title, centerMargin, subtitle }) => {
@@ -12,5 +13,11 @@ const TitleSection = ({ title, centerMargin, subtitle }) => {
     </TitleWrapper>
   );
 };
+
+TitleSection.propTypes = {
+  title: PropTypes.string.isRequired,
+  centerMargin: PropTypes.string,
+  subtitle: PropTypes.string.isRequired,
+}
 
 export default TitleSection;

@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import PropTypes from 'prop-types';
 import { Form, Col, Row, InputGroup, FormControl } from "react-bootstrap";
 import { ButtonPrimary } from "../../../components";
 import { Send } from "react-bootstrap-icons";
@@ -62,5 +63,9 @@ const ContactForm = ({ form }) => {
     </Form>
   );
 };
+
+ContactForm.propTypes = {
+  form: PropTypes.object.isRequired
+}
 
 export default ContactForm;

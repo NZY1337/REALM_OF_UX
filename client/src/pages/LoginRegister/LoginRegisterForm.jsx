@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from 'prop-types';
 import { Form } from "react-bootstrap";
 import { ButtonPrimary } from "../../components/Buttons";
 import { ArrowRight, EyeSlash } from "react-bootstrap-icons";
@@ -80,5 +81,13 @@ const LoginRegisterForm = ({
     </Form>
   );
 };
+
+LoginRegisterForm.propTypes = {
+  inputs:PropTypes.array.isRequired,
+  toggleMember:PropTypes.bool.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired
+}
 
 export default LoginRegisterForm;

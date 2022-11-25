@@ -22,7 +22,7 @@ const Projects = () => {
   } = useTranslateContext();
 
   const { projects, fetchProjects } = useProjectContext();
-  console.log(projects);
+  
   useEffect(() => {
     fetchProjects();
   }, []);

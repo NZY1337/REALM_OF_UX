@@ -1,6 +1,10 @@
 import React from "react";
+import { useProjectContext } from "../../../../utils/contexts/project/projectContext";
+
+//components
 import DashboardAdminWrapper from "../../../../assets/wrappers/Dashboard/DashboardAdminWrapper";
-import { Row, Col } from "react-bootstrap";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import SideBar from "../../SideBar";
 import DashTitle from "../../MiniComponents/DashTitle";
 import DashboardWrapper from "../../../../assets/wrappers/Dashboard/DashboardWrapper";
@@ -8,7 +12,6 @@ import { PageSectionTitle } from "../../../../components";
 import DashContainer from "../../MiniComponents/DashContainer";
 import ProjectDashForm from "./ProjectsDashForm";
 import ProjectActionsForm from "./ProjectsActionsForm";
-import { useProjectContext } from "../../../../utils/contexts/project/projectContext";
 
 const ProjectsDash = () => {
   const {

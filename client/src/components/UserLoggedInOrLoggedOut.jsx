@@ -1,5 +1,6 @@
 import React from "react";
-import { DoorOpenFill, FileX } from "react-bootstrap-icons";
+import PropTypes from 'prop-types';
+import { DoorOpenFill } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import { trimUserName } from "../utils/helpers";
 
@@ -12,6 +13,7 @@ export const UserLoggedIn = ({ name, colorUser }) => {
   );
 };
 
+
 export const UserLoggedOut = ({ colorUser }) => {
   return (
     <Link to="/login" className="login" style={{ color: colorUser }}>
@@ -19,3 +21,13 @@ export const UserLoggedOut = ({ colorUser }) => {
     </Link>
   );
 };
+
+UserLoggedIn.propTypes = {
+  name: PropTypes.string.isRequired,
+  colorUser: PropTypes.string
+}
+
+UserLoggedOut.propTypes = {
+  colorUser: PropTypes.string.isRequired
+}
+

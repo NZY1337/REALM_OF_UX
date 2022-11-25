@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { Card } from "react-bootstrap";
 import BlogDescription from "../../../components/CardProject";
 import { useConvertBase64ToBlob } from "../../../utils/hooks";
@@ -20,5 +21,9 @@ const Project = ({ project }) => {
     </Card>
   );
 };
+
+Project.propTypes = {
+  project: PropTypes.object.isRequired
+}
 
 export default Project;

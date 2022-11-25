@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 const RenderDescription = ({ descriptions }) => {
   return descriptions.map((description) => {
@@ -7,5 +8,10 @@ const RenderDescription = ({ descriptions }) => {
     );
   });
 };
+
+
+RenderDescription.propTypes = {
+  descriptions: PropTypes.array.isRequired
+}
 
 export default RenderDescription;

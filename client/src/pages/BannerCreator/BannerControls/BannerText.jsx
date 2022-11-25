@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { Col } from "react-bootstrap";
 
 const BannerText = ({ uploadCover, populateBannerText }) => {
@@ -34,5 +35,10 @@ const BannerText = ({ uploadCover, populateBannerText }) => {
     </Col>
   );
 };
+
+BannerText.propTypes = {
+  uploadCover: PropTypes.func,
+  populateBannerText: PropTypes.func.isRequired
+}
 
 export default BannerText;

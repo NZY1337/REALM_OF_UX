@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Nav, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import bannerIMG from "../../assets/images/img15.jpeg";
@@ -87,4 +88,8 @@ export const BodyBannerCreator = ({ navigation }) => {
       </Col>
     </Row>
   );
+};
+
+BodyMenu.propTypes = {
+  navigation: PropTypes.array.isRequired,
 };

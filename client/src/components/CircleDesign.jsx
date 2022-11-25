@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-
+import PropTypes from 'prop-types';
 import CircleDesignWrapper from "../assets/wrappers/Home/CircleDesignWrapper";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -45,5 +45,9 @@ const CircleDesign = ({ img }) => {
     </CircleDesignWrapper>
   );
 };
+
+CircleDesign.propTypes = {
+  img: PropTypes.string.isRequired
+}
 
 export default CircleDesign;

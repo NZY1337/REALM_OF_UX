@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import ToggleLanguageWrapper from "../assets/wrappers/Home/ToggleLanguageWrapper";
 
 const ToggleLanguage = ({ changeLanguage }) => {
@@ -13,5 +14,9 @@ const ToggleLanguage = ({ changeLanguage }) => {
     </ToggleLanguageWrapper>
   );
 };
+
+ToggleLanguage.propTypes = {
+  changeLanguage:PropTypes.func.isRequired
+}
 
 export default ToggleLanguage;

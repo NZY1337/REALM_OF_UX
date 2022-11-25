@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import ErrorPageWrapper from "../../assets/wrappers/ErrorPage/ErrorPageWrapper";
 import { Container, Row, Col } from "react-bootstrap";
 import wrongPath from "../../assets/images/wrongPath.svg";
@@ -32,5 +33,9 @@ const ErrorPage = ({ msg }) => {
     </ErrorPageWrapper>
   );
 };
+
+ErrorPage.propTypes = {
+  msg: PropTypes.string.isRequired
+}
 
 export default ErrorPage;

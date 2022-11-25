@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { UserLoggedIn, UserLoggedOut } from "../UserLoggedInOrLoggedOut";
 import ToggleLanguage from "../ToggleLanguage";
 import { Navbar } from "react-bootstrap";
@@ -22,5 +23,12 @@ const SmallMenu = ({ user, changeLanguage, colorUser }) => {
     </div>
   );
 };
+
+SmallMenu.propTypes = {
+    user: PropTypes.object.isRequired,
+    changeLanguage: PropTypes.func.isRequired,
+    colorUser: PropTypes.string,
+};
+  
 
 export default SmallMenu;

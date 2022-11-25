@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { Col } from "react-bootstrap";
 
 const BannerCover = ({ uploadCover }) => {
@@ -15,5 +16,9 @@ const BannerCover = ({ uploadCover }) => {
     </Col>
   );
 };
+
+BannerCover.propTypes = {
+  uploadCover: PropTypes.func.isRequired
+}
 
 export default BannerCover;

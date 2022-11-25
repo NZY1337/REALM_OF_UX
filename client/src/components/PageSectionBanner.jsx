@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import PageSectionWrapper from "../assets/wrappers/PageSectionWrapper";
 import { Container, Row, Col } from "react-bootstrap";
 
@@ -15,5 +16,10 @@ const PageSectionBanner = ({ title, cover }) => {
     </PageSectionWrapper>
   );
 };
+
+PageSectionBanner.propTypes = {
+  title: PropTypes.string.isRequired,
+  cover: PropTypes.string.isRequired,
+}
 
 export default PageSectionBanner;
