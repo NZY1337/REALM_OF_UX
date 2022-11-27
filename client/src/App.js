@@ -16,6 +16,7 @@ import ToastNotification from "./components/ToastNotification";
 import CommentDash from "./pages/DashboardAdmin/Components/CommentDash";
 import ProjectsDash from "./pages/DashboardAdmin/Components/Projects/ProjectsDash";
 import TestDash from "./pages/DashboardAdmin/Components/TestDash";
+import CodeEditor from "./pages/CodeEditor/CodeEditor";
 import "./assets/scss/errorContext.scss";
 import "./assets/scss/modalError.scss";
 
@@ -32,6 +33,7 @@ const knownRoutes = [
   "dashboard",
   "dashboard/comments",
   "dashboard/tests",
+  "code-editor"
 ];
 function App() {
   const { pathname } = useLocation();
@@ -62,7 +64,7 @@ function App() {
                         <Route path="comments" element={<CommentDash />} />
                         <Route path="tests" element={<TestDash />} />
                       </Route>
-
+                      <Route path="code-editor" element={<CodeEditor />} />
                       <Route path="" element={<Home />} />
                       <Route path="projects" element={<Projects />} />
                       <Route path="login" element={<LoginRegister />} />

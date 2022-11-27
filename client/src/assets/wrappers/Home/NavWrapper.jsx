@@ -1,12 +1,6 @@
 import styled from "styled-components";
 
 const NavWrapper = styled.div`
-  position: absolute;
-  top: 0px;
-  left: 0;
-  right: 0;
-  z-index: 11;
-  width: 100%;
   background-color:${(props) => props.color}}
 
   .toggle-language {
