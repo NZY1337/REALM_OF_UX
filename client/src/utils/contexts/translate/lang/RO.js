@@ -128,6 +128,10 @@ export default {
         title: "Code Editor",
         link: "/code-editor",
       },
+      {
+        title: "Dashboard",
+        link: "/dashboard",
+      },
     ],
   },
   homepage: {
@@ -146,6 +150,7 @@ export default {
         subtitle:
           "Banner pe ecran complet deasupra pliului, meniul lipicios, portofoliul filtrabil, mărturiile clienților și un formular de contact funcțional sunt toate cele mai diferite",
       },
+      secondTitleSection: "Suntem o agentie creativa.",
       leftColumn: [
         {
           description:

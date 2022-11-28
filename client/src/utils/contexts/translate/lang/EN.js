@@ -132,6 +132,10 @@ export default {
         title: "Code Editor",
         link: "/code-editor",
       },
+      {
+        title: "Dashboard",
+        link: "/dashboard",
+      },
     ],
   },
   homepage: {
@@ -150,6 +154,7 @@ export default {
         subtitle:
           "Full-screen banner above the fold, sticky menu, filterable portfolio, client testimonials and a working contact form are all the varying",
       },
+      secondTitleSection: "We are a creative agency.",
       leftColumn: [
         {
           description:

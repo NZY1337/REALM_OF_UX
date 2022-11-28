@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import { Container, Col, Row, Form } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Container, Col, Row } from "react-bootstrap";
 import LoginRegisterWrapper from "../../assets/wrappers/LoginRegister/LoginRegister";
 import LoginRegisterForm from "./LoginRegisterForm";
 import { Alert, TitleSectionDesign } from "../../components";
 import { useTranslateContext } from "../../utils/contexts/translate/translateContext";
 import { useUserContext } from "../../utils/contexts/user/userContext";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 
 //https://quart.ro/
 
