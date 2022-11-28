@@ -128,6 +128,10 @@ export default {
         title: "Banner Creator",
         link: "/banner-creator",
       },
+      {
+        title: "Code Editor",
+        link: "/code-editor",
+      },
     ],
   },
   homepage: {

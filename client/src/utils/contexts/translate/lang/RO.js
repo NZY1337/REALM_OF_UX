@@ -124,6 +124,10 @@ export default {
         title: "Creator Banere",
         link: "/banner-creator",
       },
+      {
+        title: "Code Editor",
+        link: "/code-editor",
+      },
     ],
   },
   homepage: {
