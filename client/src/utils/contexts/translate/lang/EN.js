@@ -125,14 +125,6 @@ export default {
         link: "/contact",
       },
       {
-        title: "Banner Creator",
-        link: "/banner-creator",
-      },
-      {
-        title: "Code Editor",
-        link: "/code-editor",
-      },
-      {
         title: "Dashboard",
         link: "/dashboard",
       },

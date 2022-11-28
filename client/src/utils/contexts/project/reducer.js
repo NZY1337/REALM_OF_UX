@@ -7,10 +7,19 @@ import {
   SEARCH_KEYWORD,
   MATCHED_PROJECT,
   TRIGGER_MODAL,
+  CLEAR_VALUES
 } from "./actions";
+
+import { initialState } from "./utils";
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case CLEAR_VALUES:
+      return { 
+        ...state, 
+        project: initialState.project // do not clone the state: do not add _id, v
+      }
+
     case TRIGGER_MODAL:
       return { ...state, showModal: action.payload.showModal };
 
