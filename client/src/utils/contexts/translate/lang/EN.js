@@ -300,18 +300,10 @@ export default {
     },
   },
   loginRegister: {
-    titleSection: {
-      login: {
-        title: "Log in",
-        subtitle: "explore the newest designs",
-      },
-      register: {
-        title: "Register",
-        subtitle: "find out what fits you better!",
-      },
-    },
-    isLoggedIn: "don't have an account? Please register",
-    isRegistred: "go back and log in",
+    isLoggedIn: "Don't have an account? Please register",
+    isRegistred: "Go back and log in",
+    isLoggedInTitle:"Log in",
+    isRegistredTitle: "Register",
     inputs: {
       login: [
         {
@@ -347,6 +339,16 @@ export default {
           icon: Eye,
         },
       ],
+    },
+    titleSection: {
+      login: {
+        title: "Log in",
+        subtitle: "explore the newest designs",
+      },
+      register: {
+        title: "Register",
+        subtitle: "find out what fits you better!",
+      },
     },
   },
 };

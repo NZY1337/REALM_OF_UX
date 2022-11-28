@@ -22,6 +22,10 @@ const LoginRegister = () => {
 
   const {
     loginRegister: {
+      isLoggedIn,
+      isRegistred,
+      isLoggedInTitle,
+      isRegistredTitle,
       titleSection: {
         login: { title, subtitle },
         register: { description },
@@ -81,7 +85,7 @@ const LoginRegister = () => {
                 centerMargin="center"
                 description={subtitle}
               />
-              <h1>{title}</h1>
+              <h1>{values.isMember ? isLoggedInTitle : isRegistredTitle}</h1>
             </div>
             {showAlert && <Alert />}
             <LoginRegisterForm
@@ -90,6 +94,11 @@ const LoginRegister = () => {
               handleChange={handleChange}
               onSubmit={onSubmit}
               isLoading={isLoading}
+              isLoggedIn={isLoggedIn}
+              isRegistred={isRegistred}
+              isMember={values.isMember}
+              isLoggedInTitle={isLoggedInTitle}
+              isRegistredTitle={isRegistredTitle}
             />
           </Col>
         </Row>
