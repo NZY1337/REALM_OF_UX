@@ -28,6 +28,6 @@ UserLoggedIn.propTypes = {
 }
 
 UserLoggedOut.propTypes = {
-  colorUser: PropTypes.string.isRequired
+  colorUser: PropTypes.string
 }
 

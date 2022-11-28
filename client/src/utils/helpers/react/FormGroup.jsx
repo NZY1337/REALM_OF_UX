@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Form from "react-bootstrap/Form";
 
-const ProjectsDashFormGroup = ({label, placeholder, type, name, value, onHandleChange, size, accept }) => {
+const FormGroup = ({ label, placeholder, type, name, value, onHandleChange, size, accept }) => {
     return (
         <>
             <Form.Group className="mb-3">
@@ -21,7 +21,7 @@ const ProjectsDashFormGroup = ({label, placeholder, type, name, value, onHandleC
     )
 }
 
-ProjectsDashFormGroup.propTypes = {
+FormGroup.propTypes = {
     label: PropTypes.string.isRequired,
     placeholder: PropTypes.string,
     size: PropTypes.string,
@@ -31,4 +31,4 @@ ProjectsDashFormGroup.propTypes = {
     onHandleChange: PropTypes.func.isRequired,
 }
 
-export default ProjectsDashFormGroup;
+export default FormGroup;

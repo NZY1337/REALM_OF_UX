@@ -8,16 +8,10 @@ import {
   MATCHED_PROJECT,
   TRIGGER_MODAL,
 } from "./actions";
-import { convertToBase64 } from "../../helpers";
-import { fetchSingleProject } from "../../services/services";
-import {
-  addProject,
-  fetchAllProjects,
-  deleteProject,
-} from "../../services/services";
+import { convertToBase64, notify } from "../../helpers";
+import { fetchSingleProject, addProject, fetchAllProjects, deleteProject, } from "../../services/services";
 import { useNavigate } from "react-router-dom";
 import reducer from "./reducer";
-import { notify } from "../../helpers";
 
 let initialState = {
   project: {
