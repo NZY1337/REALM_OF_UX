@@ -1,7 +1,5 @@
 import Project from "../models/Project.js";
 import Comment from "../models/Comment.js";
-import pkg from "mongoose";
-const { ObjectId } = pkg;
 
 class ProjectController {
   async addProject(req, res, next) {

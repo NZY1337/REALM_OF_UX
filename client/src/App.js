@@ -35,6 +35,7 @@ const knownRoutes = [
   "dashboard/tests",
   "code-editor"
 ];
+
 function App() {
   const { pathname } = useLocation();
 
