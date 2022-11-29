@@ -11,12 +11,16 @@ import { useProjectContext } from "../../../utils/contexts/project/projectContex
 
 const SingleProject = () => {
   const { projectId } = useParams();
-  const { project, error, fetchProject } = useProjectContext();
-
+  const { project, error, fetchProject, clearValues } = useProjectContext();
+ 
   useEffect(() => {
     fetchProject(projectId);
     console.log(error);
     window.scrollTo(0, 0);
+    
+    return () => {
+      clearValues()
+    }
   }, []);
 
   const renderCategory = () => {

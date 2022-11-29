@@ -15,12 +15,13 @@ import connectDB from "./db/connect.js";
 import authRouter from "./routes/authRoutes.js";
 import projectRouter from "./routes/projectRoutes.js";
 import commentRouter from "./routes/commentRoutes.js";
+import productRouter from './routes/productRoutes.js';
 
 // middlewares
 import notFoundMiddleware from "./middleware/not-found.js";
 import errorHandlerMiddleware from "./middleware/error-handler.js";
 
-app.use(express.json({ limit: "25mb" }));
+app.use(express.json());
 app.use(express.urlencoded({ limit: "25mb", extended: true }));
 
 // routes
@@ -33,6 +34,7 @@ app.get("/", (req, res) => {
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/project", projectRouter);
 app.use("/api/v1/comment", commentRouter);
+app.use("/api/v1/products", productRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);

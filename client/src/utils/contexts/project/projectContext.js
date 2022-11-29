@@ -40,7 +40,7 @@ const ProjectProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const navigate = useNavigate();
 
-  const handleTriggerModal = (showModal) => {
+  const handleTriggerModal =  (showModal) => {
     dispatch({
       type: TRIGGER_MODAL,
       payload: { showModal },
