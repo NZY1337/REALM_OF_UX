@@ -25,6 +25,7 @@ const About = () => {
     homepage: {
       about: {
         titleSection: { title, subtitle },
+        secondTitleSection,
         leftColumn,
         rightColumn: { description },
       },
@@ -56,7 +57,7 @@ const About = () => {
               className="mb-3"
               style={{ fontWeight: "bold", maxWidth: "70%" }}
             >
-              We are a creative <u>agency.</u>
+             {secondTitleSection}
             </h1>
             <p className="mb-5 mt-0">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis

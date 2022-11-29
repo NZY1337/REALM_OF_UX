@@ -6,12 +6,6 @@ import bannerIMG from "../../assets/images/img15.jpeg";
 import { Check, ArrowRight } from "react-bootstrap-icons";
 import { ButtonPrimary } from "../Buttons";
 
-//people's creations
-import banner1 from "../../assets/images/img11.jpeg";
-import banner2 from "../../assets/images/img1.jpeg";
-import banner3 from "../../assets/images/img2.jpeg";
-import banner4 from "../../assets/images/img3.jpeg";
-
 export const BodyMenu = ({ navigation }) => {
   return (
     <>

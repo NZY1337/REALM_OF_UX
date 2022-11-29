@@ -43,7 +43,7 @@ const ProjectsDash = () => {
           </Row>
 
           <Row className="dash-container-projects mt-4">
-            <Col lg="6">
+            <Col lg="12" xl="6" md="12">
               <div className="dash-container-projects-wrapper">
                 <ProjectDashForm
                   project={project}
@@ -53,7 +53,7 @@ const ProjectsDash = () => {
               </div>
             </Col>
 
-            <Col lg="6">
+            <Col lg="12" xl="6" md="12" className="mt-lg-4 mt-xl-0">
               <div className="dash-container-projects-wrapper">
                 <ProjectActionsForm
                   filteredProjects={filteredProjects}

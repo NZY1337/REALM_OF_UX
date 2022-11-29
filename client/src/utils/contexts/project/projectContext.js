@@ -7,32 +7,15 @@ import {
   SEARCH_KEYWORD,
   MATCHED_PROJECT,
   TRIGGER_MODAL,
+  CLEAR_VALUES
 } from "./actions";
-import { convertToBase64 } from "../../helpers";
-import { fetchSingleProject } from "../../services/services";
-import {
-  addProject,
-  fetchAllProjects,
-  deleteProject,
-} from "../../services/services";
+import { convertToBase64, notify } from "../../helpers";
+import { fetchSingleProject, addProject, fetchAllProjects, deleteProject, } from "../../services/services";
 import { useNavigate } from "react-router-dom";
+import { initialState } from "./utils";
 import reducer from "./reducer";
-import { notify } from "../../helpers";
 
-let initialState = {
-  project: {
-    name: "",
-    category: "",
-    desktop: "",
-    tablet: "",
-    mobile: "",
-  },
-  error: "",
-  projects: [],
-  filteredProjects: [],
-  searchKeyword: "",
-  showModal: false,
-};
+
 
 const ProjectContext = React.createContext();
 
@@ -83,7 +66,6 @@ const ProjectProvider = ({ children }) => {
   // fetch single project
   const fetchProject = async (projectId) => {
     const { singleProject, error } = await fetchSingleProject(projectId);
-    console.log(error);
     dispatch({
       type: GET_PROJECT,
       payload: { project: singleProject, error },
@@ -134,6 +116,12 @@ const ProjectProvider = ({ children }) => {
     }
   };
 
+  const clearValues = () => {
+    dispatch({
+      type: CLEAR_VALUES,
+    });
+  }
+
   return (
     <ProjectContext.Provider
       value={{
@@ -146,6 +134,7 @@ const ProjectProvider = ({ children }) => {
         handleMatchedProject,
         handleTriggerModal,
         handleDeleteProject,
+        clearValues
       }}
     >
       {children}

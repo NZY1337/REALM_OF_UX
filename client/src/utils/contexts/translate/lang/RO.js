@@ -121,12 +121,8 @@ export default {
         link: "/contact",
       },
       {
-        title: "Creator Banere",
-        link: "/banner-creator",
-      },
-      {
-        title: "Code Editor",
-        link: "/code-editor",
+        title: "Dashboard",
+        link: "/dashboard",
       },
     ],
   },
@@ -146,6 +142,7 @@ export default {
         subtitle:
           "Banner pe ecran complet deasupra pliului, meniul lipicios, portofoliul filtrabil, mărturiile clienților și un formular de contact funcțional sunt toate cele mai diferite",
       },
+      secondTitleSection: "Suntem o agentie creativa.",
       leftColumn: [
         {
           description:
@@ -289,18 +286,20 @@ export default {
     },
   },
   loginRegister: {
+    isLoggedIn: "Nu ai cont? Te rugam creaza-ti cont",
+    isRegistred: "Intoarce-te si logheaza-te",
+    isLoggedInTitle:"Logheaza-te",
+    isRegistredTitle: "Creaza Cont",
     titleSection: {
       login: {
         title: "Logheaza-te",
-        subtitle: "exploreaza cele mai noii web designuri",
+        subtitle: "exploreaza cele mai in voga tehnici de design ",
       },
       register: {
         title: "Inregistreaza-te",
         subtitle: "descoperea ceea ce ti se potriveste cel mai bine",
       },
     },
-    isLoggedIn: "nu ai un cont? Creaza-ti unul",
-    isRegistred: "intoarce-te si logheaza-te",
     inputs: {
       login: [
         {

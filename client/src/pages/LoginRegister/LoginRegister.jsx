@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import { Container, Col, Row, Form } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Container, Col, Row } from "react-bootstrap";
 import LoginRegisterWrapper from "../../assets/wrappers/LoginRegister/LoginRegister";
 import LoginRegisterForm from "./LoginRegisterForm";
 import { Alert, TitleSectionDesign } from "../../components";
 import { useTranslateContext } from "../../utils/contexts/translate/translateContext";
 import { useUserContext } from "../../utils/contexts/user/userContext";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 
 //https://quart.ro/
 
@@ -22,6 +21,10 @@ const LoginRegister = () => {
 
   const {
     loginRegister: {
+      isLoggedIn,
+      isRegistred,
+      isLoggedInTitle,
+      isRegistredTitle,
       titleSection: {
         login: { title, subtitle },
         register: { description },
@@ -81,7 +84,7 @@ const LoginRegister = () => {
                 centerMargin="center"
                 description={subtitle}
               />
-              <h1>{title}</h1>
+              <h1>{values.isMember ? isLoggedInTitle : isRegistredTitle}</h1>
             </div>
             {showAlert && <Alert />}
             <LoginRegisterForm
@@ -90,6 +93,11 @@ const LoginRegister = () => {
               handleChange={handleChange}
               onSubmit={onSubmit}
               isLoading={isLoading}
+              isLoggedIn={isLoggedIn}
+              isRegistred={isRegistred}
+              isMember={values.isMember}
+              isLoggedInTitle={isLoggedInTitle}
+              isRegistredTitle={isRegistredTitle}
             />
           </Col>
         </Row>
