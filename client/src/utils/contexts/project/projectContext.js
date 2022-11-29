@@ -9,7 +9,7 @@ import {
   TRIGGER_MODAL,
   CLEAR_VALUES
 } from "./actions";
-import { convertToBase64, notify } from "../../helpers";
+import { uploadImageToPublicFolder, notify } from "../../helpers";
 import { fetchSingleProject, addProject, fetchAllProjects, deleteProject, } from "../../services/services";
 import { useNavigate } from "react-router-dom";
 import { initialState } from "./utils";
@@ -39,7 +39,6 @@ const ProjectProvider = ({ children }) => {
     });
   };
 
-  // search single product
   const handleSearchKeyword = async (e) => {
     dispatch({
       type: SEARCH_KEYWORD,
@@ -102,7 +101,9 @@ const ProjectProvider = ({ children }) => {
   // get project data
   const handleCreateProject = async (e) => {
     if (e.target.files && e.target.files[0]) {
-      const projectSS = await convertToBase64(e.target.files[0]);
+      const { projectSS, error } = await uploadImageToPublicFolder(e.target.files[0]);
+
+      console.log(projectSS)
 
       dispatch({
         type: ADD_PROJECT.IMAGE,
