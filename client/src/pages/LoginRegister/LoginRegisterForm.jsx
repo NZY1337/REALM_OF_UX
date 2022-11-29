@@ -10,6 +10,11 @@ const LoginRegisterForm = ({
   handleChange,
   onSubmit,
   isLoading,
+  isLoggedIn,
+  isRegistred,
+  isMember,
+  isLoggedInTitle,
+  isRegistredTitle
 }) => {
   const [showPassword, setShowPassword] = useState(false);
   const decideInputType = (input) => {
@@ -50,7 +55,7 @@ const LoginRegisterForm = ({
   return (
     <Form
       onSubmit={onSubmit}
-      className="col-lg-4 col-md-6 col-sm-8 col-11 col-xl-3"
+      className="col-lg-4 col-md-6 col-sm-6 col-11 col-xl-4"
       autoComplete="off"
     >
       {inputs &&
@@ -71,11 +76,11 @@ const LoginRegisterForm = ({
 
       <Form.Group className="mb-3 form-group" controlId="formBasicPassword">
         <ButtonPrimary disabled={isLoading} type="submit">
-          Log in <ArrowRight />
+          {isMember ? isLoggedInTitle : isRegistredTitle} <ArrowRight />
         </ButtonPrimary>
 
         <small onClick={toggleMember}>
-          Don't have an account? Please register.
+          {isMember ? isLoggedIn : isRegistred}
         </small>
       </Form.Group>
     </Form>

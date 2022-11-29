@@ -125,12 +125,8 @@ export default {
         link: "/contact",
       },
       {
-        title: "Banner Creator",
-        link: "/banner-creator",
-      },
-      {
-        title: "Code Editor",
-        link: "/code-editor",
+        title: "Dashboard",
+        link: "/dashboard",
       },
     ],
   },
@@ -150,6 +146,7 @@ export default {
         subtitle:
           "Full-screen banner above the fold, sticky menu, filterable portfolio, client testimonials and a working contact form are all the varying",
       },
+      secondTitleSection: "We are a creative agency.",
       leftColumn: [
         {
           description:
@@ -300,18 +297,10 @@ export default {
     },
   },
   loginRegister: {
-    titleSection: {
-      login: {
-        title: "Log in",
-        subtitle: "explore the newest designs",
-      },
-      register: {
-        title: "Register",
-        subtitle: "find out what fits you better!",
-      },
-    },
-    isLoggedIn: "don't have an account? Please register",
-    isRegistred: "go back and log in",
+    isLoggedIn: "Don't have an account? Please register",
+    isRegistred: "Go back and log in",
+    isLoggedInTitle:"Log in",
+    isRegistredTitle: "Register",
     inputs: {
       login: [
         {
@@ -347,6 +336,16 @@ export default {
           icon: Eye,
         },
       ],
+    },
+    titleSection: {
+      login: {
+        title: "Log in",
+        subtitle: "explore the newest designs",
+      },
+      register: {
+        title: "Register",
+        subtitle: "find out what fits you better!",
+      },
     },
   },
 };

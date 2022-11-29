@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Container, Col, Row } from "react-bootstrap";
 import { PageSectionTitle, PageSectionBanner } from "../../../components";
-import bannerCover from "../../../assets/images/img5.jpeg";
+import bannerCover from "../../../assets/images/img14.jpeg";
 import warning404 from "../../../assets/images/404.avif";
 import { useParams } from "react-router-dom";
 import ProjectComments from "./Comments/Comments";
@@ -11,12 +11,15 @@ import { useProjectContext } from "../../../utils/contexts/project/projectContex
 
 const SingleProject = () => {
   const { projectId } = useParams();
-  const { project, error, fetchProject } = useProjectContext();
+  const { project, error, fetchProject, clearValues } = useProjectContext();
 
   useEffect(() => {
     fetchProject(projectId);
-    console.log(error);
     window.scrollTo(0, 0);
+
+    return () => {
+      clearValues()
+    }
   }, []);
 
   const renderCategory = () => {
@@ -24,9 +27,9 @@ const SingleProject = () => {
       <>
         {project && (
           <>
-            Category:
-            <i>
-              <u> {project && project.category}</u>
+            <p className="d-inline">category:</p>
+            <i style={{color: "orange", fontFamily:"auto", fontWeight:"bold"}}>
+               {""} {project && project.category}
             </i>
           </>
         )}
@@ -38,7 +41,7 @@ const SingleProject = () => {
 
   return (
     <>
-      <Container className="mt-5 pt-5">
+      <Container className="mt-5">
         <Row className="mt-5">
           <PageSectionTitle
             subtitle={projectIsEmpty ? error : "welcome"}

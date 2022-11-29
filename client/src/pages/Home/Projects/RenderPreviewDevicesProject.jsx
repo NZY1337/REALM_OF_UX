@@ -5,6 +5,7 @@ import { Arrow90degRight } from "react-bootstrap-icons";
 import { ButtonPrimary } from "../../../components";
 
 const RenderProject = ({ project }) => {
+  
   return (
     <Col className="mb-5" key={project} lg="4">
       <img
@@ -36,12 +37,9 @@ const RenderPreviewDevicesProject = ({ project }) => {
 
 
 RenderProject.propTypes = {
-  project: PropTypes.object.isRequired
+  project: PropTypes.string.isRequired
 }
 
-RenderPreviewDevicesProject.propTypes = {
-  project: PropTypes.object.isRequired
-}
 
 
 export default RenderPreviewDevicesProject;

@@ -57,7 +57,7 @@ const LoginRegisterWrapper = styled.div`
       .password-icon {
         position: absolute;
         bottom: 15px;
-        right: 0;
+        right: 10px;
 
         &:hover {
           cursor: pointer;
@@ -123,6 +123,7 @@ const LoginRegisterWrapper = styled.div`
         border-radius: 0;
         padding-left: 0;
         color: var(--text-color-gray);
+        padding:10px;
 
         &::placeholder {
           color: var(--text-color-gray);

@@ -21,8 +21,8 @@ function Navigation() {
 
   return (
     <NavWrapper as="header" color="black">
-      {[false].map((expand) => (
-          <Container>
+      {[false].map((expand, index) => (
+          <Container key={index}>
              <Navbar key={expand} expand={expand} className="py-4" collapseOnSelect>
                 <Logo />
 

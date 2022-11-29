@@ -6,12 +6,20 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import ProjectsDashFormGroup from "../../../../utils/helpers/react/FormGroup";
+
+// maybe a MAP for this file, but I'm too lazy right now :s
 
 const ProjectDashForm = ({
   project,
   handleCreateProject,
   handleSubmitProject,
 }) => {
+
+  const { name, category, desktop, tablet, mobile } = project;
+
+  const disableSubmitBtn = name === '' || category === "" || desktop === "" || tablet === "" || mobile === "";
+
   return (
     <Form onSubmit={handleSubmitProject}>
       <h6 className="mb-4" style={{ color: "orange" }}>
@@ -19,75 +27,46 @@ const ProjectDashForm = ({
       </h6>
       <Row>
         <Col lg="6">
-          <Form.Group className="mb-3" controlId="projet-name">
-            <Form.Label>Project's Name</Form.Label>
-            <Form.Control
-              type="name"
-              name="name"
-              placeholder="Enter the project's name"
-              value={project && project.name}
-              onChange={handleCreateProject}
-            />
-          </Form.Group>
+          <ProjectsDashFormGroup label="Project's Name" placeholder="Enter the project name" type="text" name="name" size="sm"
+            value={name} 
+            onHandleChange={handleCreateProject}
+          />
         </Col>
 
         <Col lg="6">
-          <Form.Group className="mb-3" controlId="projet-name">
-            <Form.Label>Project's Category</Form.Label>
-            <Form.Control
-              type="name"
-              name="category"
-              placeholder="Enter the project's name"
-              onChange={handleCreateProject}
-              value={project && project.category}
-            />
-          </Form.Group>
+          <ProjectsDashFormGroup label="Project's Category" placeholder="Enter the project category" type="text" name="category" size="sm"
+            value={category} 
+            onHandleChange={handleCreateProject}
+          />
         </Col>
       </Row>
 
       <Row>
         <Col lg="6">
-          <Form.Group controlId="desktopVersion" className="mb-3">
-            <Form.Label>Desktop Version</Form.Label>
-            <Form.Control
-              type="file"
-              accept=".jpeg, .png, .jpg"
-              size="sm"
-              name="desktop"
-              onChange={handleCreateProject}
-              //   value={project.desktop}
-            />
-          </Form.Group>
+          <ProjectsDashFormGroup label="Desktop Version" type="file" name="desktop" size="sm"
+            onHandleChange={handleCreateProject}
+            accept=".jpeg, .png, .jpg"
+            // value={desktop}
+          />
         </Col>
         <Col lg="6">
-          <Form.Group controlId="tabletVersion" className="mb-3">
-            <Form.Label>Tablet Version</Form.Label>
-            <Form.Control
-              accept=".jpeg, .png, .jpg"
-              type="file"
-              size="sm"
-              name="tablet"
-              onChange={handleCreateProject}
-              //   value={project.tablet}
-            />
-          </Form.Group>
+          <ProjectsDashFormGroup label="Tablet Version" type="file" name="tablet" size="sm"
+            onHandleChange={handleCreateProject}
+            accept=".jpeg, .png, .jpg"
+            // value={desktop}
+          />
+      
         </Col>
         <Col lg="6">
-          <Form.Group controlId="mobileVersion" className="mb-3">
-            <Form.Label>Mobile Version</Form.Label>
-            <Form.Control
-              accept=".jpeg, .png, .jpg"
-              type="file"
-              size="sm"
-              name="mobile"
-              onChange={handleCreateProject}
-              //   value={project.mobile}
-            />
-          </Form.Group>
+          <ProjectsDashFormGroup label="Mobile Version" type="file" name="mobile" size="sm"
+            onHandleChange={handleCreateProject}
+            accept=".jpeg, .png, .jpg"
+            // value={desktop}
+          />
         </Col>
       </Row>
 
-      <Button variant="dark" type="submit">
+      <Button variant="dark" type="submit" disabled={disableSubmitBtn}>
         Submit
       </Button>
     </Form>
