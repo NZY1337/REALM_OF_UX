@@ -1,6 +1,9 @@
 import express from "express";
 import fileUpload from 'express-fileupload'
 
+// create dynamic folder in Node-js
+// https://stackoverflow.com/questions/21194934/how-to-create-a-directory-if-it-doesnt-exist-using-node-js
+
 // run node app
 const app = express();
 import dotenv from "dotenv";
