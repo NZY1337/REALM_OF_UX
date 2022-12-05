@@ -29,6 +29,18 @@ const NavWrapper = styled.div`
     }
   }
 
+  .home-nav {
+    z-index:2;
+    width:100%;
+    position:absolute;
+    top:0;
+    left:0;
+  }
+
+  .not-home-nav {
+    background-color:black!important;
+  }
+
   .navbar {
     .login {
       color: var(--text-color-white);
