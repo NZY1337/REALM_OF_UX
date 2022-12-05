@@ -17,7 +17,7 @@ const reducer = (state, action) => {
     case CLEAR_VALUES:
       return { 
         ...state, 
-        project: initialState.project // do not clone the state: do not add _id, v
+        project: initialState.project // do not clone the state: do not add _id, v.
       }
 
     case TRIGGER_MODAL:

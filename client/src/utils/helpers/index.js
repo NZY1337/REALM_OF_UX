@@ -90,9 +90,10 @@ export const notify = (style, message) => {
 };
 
 
-export const uploadImageToPublicFolder = async (file) => {
+export const uploadImageToPublicFolder = async (file, postTitle) => {
     const formData = new FormData();
     formData.append('image', file);
+    formData.append('location', postTitle)
     let error, projectSS;
 
     try {
