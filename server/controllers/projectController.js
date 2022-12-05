@@ -55,12 +55,8 @@ class ProjectController {
 
     const comments = await Comment.deleteMany({ projectId });
 
-    const { desktop, tablet, mobile } = project;
-
-    [desktop, tablet, mobile].map(item => {
-        removeFile(item)
-    })
-
+    removeFile(project.name)
+ 
     res.status(200).json({ project, comments })
     } catch (error) {
       console.log(error);
@@ -68,5 +64,5 @@ class ProjectController {
     }
   }
 }
-
+ 
 export { ProjectController };
