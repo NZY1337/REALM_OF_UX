@@ -1,5 +1,6 @@
 import Project from "../models/Project.js";
 import Comment from "../models/Comment.js";
+import { removeFile } from "../utils/index.js";
 
 class ProjectController {
   async addProject(req, res, next) {
@@ -51,13 +52,17 @@ class ProjectController {
       const project = await Project.findByIdAndRemove({
         _id: projectId,
       });
-      const comments = await Comment.deleteMany({ projectId });
-      res.status(200).json({ project, comments });
+
+    const comments = await Comment.deleteMany({ projectId });
+
+    removeFile(project.name)
+ 
+    res.status(200).json({ project, comments })
     } catch (error) {
       console.log(error);
       next(error);
     }
   }
 }
-
+ 
 export { ProjectController };

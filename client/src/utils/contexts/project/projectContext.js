@@ -54,6 +54,10 @@ const ProjectProvider = ({ children }) => {
         type: DELETE_PROJECT,
         payload: { deletedProject },
       });
+
+      dispatch({
+        type: CLEAR_VALUES,
+      });
       notify("success", `Project with ID: ${projectId} successfully deleted`);
     } else {
       notify("warning", error);
@@ -65,6 +69,7 @@ const ProjectProvider = ({ children }) => {
   // fetch single project
   const fetchProject = async (projectId) => {
     const { singleProject, error } = await fetchSingleProject(projectId);
+    console.log(error)
     dispatch({
       type: GET_PROJECT,
       payload: { project: singleProject, error },
@@ -101,10 +106,7 @@ const ProjectProvider = ({ children }) => {
   // get project data
   const handleCreateProject = async (e) => {
     if (e.target.files && e.target.files[0]) {
-      const { projectSS, error } = await uploadImageToPublicFolder(e.target.files[0]);
-
-      console.log(projectSS)
-
+      const { projectSS, error } = await uploadImageToPublicFolder(e.target.files[0], state.project.name);
       dispatch({
         type: ADD_PROJECT.IMAGE,
         payload: { targetImage: e.target, projectSS },

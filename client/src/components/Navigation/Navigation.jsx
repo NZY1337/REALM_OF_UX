@@ -17,19 +17,19 @@ function Navigation() {
   } = useTranslateContext();
   const { user } = useUserContext();
   const { pathname } = useLocation();
-  const colorBasedOnRoute = pathname !== "/" && "black";
+  const styleBasedOnRoute = pathname == "/" && "home-nav";
+  const homeStyle = !styleBasedOnRoute ? { backgroundColor: 'black'} : null
 
   return (
-    <NavWrapper as="header" color="black">
+    <NavWrapper as="header" style={homeStyle}> 
       {[false].map((expand, index) => (
-          <Container key={index}>
-             <Navbar key={expand} expand={expand} className="py-4" collapseOnSelect>
+          <Container key={index} className={`position-relative`}>
+             <Navbar key={expand}  expand={expand} className={`py-4 ${styleBasedOnRoute}`} collapseOnSelect>
                 <Logo />
 
-                <SmallMenu
+                <SmallMenu  
                   user={user}
                   changeLanguage={changeLanguage}
-                  //   colorUser={colorBasedOnRoute}
                 />
 
                 <Navbar.Offcanvas

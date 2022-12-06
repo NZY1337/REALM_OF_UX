@@ -42,7 +42,8 @@ function App() {
   const hideHeaderFooter =
     pathname === "/dashboard" ||
     pathname === "/dashboard/comments" ||
-    pathname === "/dashboard/tests";
+    pathname === "/dashboard/tests" || 
+    pathname === "/login";
 
   const isUnknownRoot = !knownRoutes.some((route) =>
     matchPath(`${route}`, pathname)
