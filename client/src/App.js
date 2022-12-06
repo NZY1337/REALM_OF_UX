@@ -39,7 +39,14 @@ const knownRoutes = [
 ];
 
 function App() {
- 
+//   const { pathname } = useLocation();
+
+//   const hideHeaderFooter =
+//     pathname === "/dashboard" ||
+//     pathname === "/dashboard/comments" ||
+//     pathname === "/dashboard/tests" || 
+//     pathname === "/login";
+
 //   const isUnknownRoot = !knownRoutes.some((route) =>
 //     matchPath(`${route}`, pathname)
 //   );
@@ -50,42 +57,36 @@ function App() {
         <UserProvider>
           <ModalProvider>
             <ProjectProvider>
+           
                 <div className="App">
-                  
-                 
-                        <Navigation />
-
+                    <Navigation />
                         <Routes>
                             <Route path="/">
+
                             <Route path="/dashboard">
                                 <Route path="" element={<ProjectsDash />} />
                                 <Route path="comments" element={<CommentDash />} />
                                 <Route path="tests" element={<TestDash />} />
                             </Route>
+
                             <Route path="code-editor" element={<CodeEditor />} />
                             <Route path="" element={<Home />} />
                             <Route path="projects" element={<Projects />} />
                             <Route path="login" element={<LoginRegister />} />
                             <Route path="about" element={<About />} />
-                            <Route
-                                path="banner-creator"
-                                element={<BannerCreator />}
-                            />
+                            <Route path="banner-creator" element={<BannerCreator />} />
+
                             </Route>
-                            <Route path="/projects">
-                            <Route path=":projectId" element={<SingleProject />} />
+                                <Route path="/projects">
+                                <Route path=":projectId" element={<SingleProject />} />
                             </Route>
 
                             {/* {isUnknownRoot && (
                                 <Route path="*" element={<ErrorPage />} />
                             )} */}
                         </Routes>
-
-                         <Footer />
-                 
-
-                  
-                  <ToastNotification />
+                    <Footer />
+                    <ToastNotification />
                 </div>
              
             </ProjectProvider>
