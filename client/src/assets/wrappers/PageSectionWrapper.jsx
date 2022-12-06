@@ -17,10 +17,10 @@ const PageSectionWrapper = styled.div`
       text-align: center;
 
       h1 {
-        font-weight: bold;
         background: linear-gradient(90deg, #f9f9f9 19.09%, #bc5318 98.42%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        line-height:initial;
       }
     }
   }

@@ -17,6 +17,7 @@ import CommentDash from "./pages/DashboardAdmin/Components/CommentDash";
 import ProjectsDash from "./pages/DashboardAdmin/Components/Projects/ProjectsDash";
 import TestDash from "./pages/DashboardAdmin/Components/TestDash";
 import CodeEditor from "./pages/CodeEditor/CodeEditor";
+import About from "./pages/About/About";
 import "./assets/scss/errorContext.scss";
 import "./assets/scss/modalError.scss";
 
@@ -33,7 +34,8 @@ const knownRoutes = [
   "dashboard",
   "dashboard/comments",
   "dashboard/tests",
-  "code-editor"
+  "code-editor",
+  "about"
 ];
 
 function App() {
@@ -70,6 +72,7 @@ function App() {
                       <Route path="" element={<Home />} />
                       <Route path="projects" element={<Projects />} />
                       <Route path="login" element={<LoginRegister />} />
+                      <Route path="about" element={<About />} />
                       <Route
                         path="banner-creator"
                         element={<BannerCreator />}

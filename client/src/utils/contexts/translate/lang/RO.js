@@ -30,7 +30,7 @@ import img2 from "../../../../assets/images/img2.jpeg";
 import img4 from "../../../../assets/images/img4.jpeg";
 import img5 from "../../../../assets/images/img5.jpeg";
 import img6 from "../../../../assets/images/img6.jpeg";
-import img9 from "../../../../assets/images/img9.jpeg";
+import img9 from "../../../../assets/images/img20.jpeg";
 import img10 from "../../../../assets/images/img10.jpeg";
 
 export default {
@@ -106,7 +106,7 @@ export default {
       },
       {
         title: "Despre",
-        link: "/despre",
+        link: "/about",
       },
       {
         title: "Servicii",
