@@ -1,3 +1,5 @@
+import axios from "axios";
+
 import {
   ADD_COMENT_ROUTE,
   GET_COMMENTS_ROUTE,
@@ -7,7 +9,7 @@ import {
   ADD_PROJECT_ROUTE,
   DELETE_PROJECT_ROUTE,
 } from "./apis";
-import axios from "axios";
+
 
 /***********/
 // COMMENTS

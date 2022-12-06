@@ -6,7 +6,7 @@ import LoginRegister from "./pages/LoginRegister/LoginRegister";
 import { ThemeProvider } from "styled-components";
 import { TranslateProvider } from "./utils/contexts/translate/translateContext";
 import { ProjectProvider } from "./utils/contexts/project/projectContext";
-import { Routes, Route, matchPath, useLocation } from "react-router-dom";
+import { Routes, Route, matchPath, useLocation, Router } from "react-router-dom";
 import { UserProvider } from "./utils/contexts/user/userContext";
 import { ModalProvider } from "./utils/contexts/modal/modalContext";
 import Projects from "./pages/Projects";
@@ -39,17 +39,10 @@ const knownRoutes = [
 ];
 
 function App() {
-  const { pathname } = useLocation();
-
-  const hideHeaderFooter =
-    pathname === "/dashboard" ||
-    pathname === "/dashboard/comments" ||
-    pathname === "/dashboard/tests" || 
-    pathname === "/login";
-
-  const isUnknownRoot = !knownRoutes.some((route) =>
-    matchPath(`${route}`, pathname)
-  );
+ 
+//   const isUnknownRoot = !knownRoutes.some((route) =>
+//     matchPath(`${route}`, pathname)
+//   );
 
   return (
     <ThemeProvider theme={theme}>
@@ -57,43 +50,48 @@ function App() {
         <UserProvider>
           <ModalProvider>
             <ProjectProvider>
-              {!isUnknownRoot && (
                 <div className="App">
-                  {!hideHeaderFooter && <Navigation />}
+                  
+                 
+                        <Navigation />
 
-                  <Routes>
-                    <Route path="/">
-                      <Route path="/dashboard">
-                        <Route path="" element={<ProjectsDash />} />
-                        <Route path="comments" element={<CommentDash />} />
-                        <Route path="tests" element={<TestDash />} />
-                      </Route>
-                      <Route path="code-editor" element={<CodeEditor />} />
-                      <Route path="" element={<Home />} />
-                      <Route path="projects" element={<Projects />} />
-                      <Route path="login" element={<LoginRegister />} />
-                      <Route path="about" element={<About />} />
-                      <Route
-                        path="banner-creator"
-                        element={<BannerCreator />}
-                      />
-                    </Route>
-                    <Route path="/projects">
-                      <Route path=":projectId" element={<SingleProject />} />
-                    </Route>
-                  </Routes>
-                  {!hideHeaderFooter && <Footer />}
+                        <Routes>
+                            <Route path="/">
+                            <Route path="/dashboard">
+                                <Route path="" element={<ProjectsDash />} />
+                                <Route path="comments" element={<CommentDash />} />
+                                <Route path="tests" element={<TestDash />} />
+                            </Route>
+                            <Route path="code-editor" element={<CodeEditor />} />
+                            <Route path="" element={<Home />} />
+                            <Route path="projects" element={<Projects />} />
+                            <Route path="login" element={<LoginRegister />} />
+                            <Route path="about" element={<About />} />
+                            <Route
+                                path="banner-creator"
+                                element={<BannerCreator />}
+                            />
+                            </Route>
+                            <Route path="/projects">
+                            <Route path=":projectId" element={<SingleProject />} />
+                            </Route>
+
+                            {/* {isUnknownRoot && (
+                                <Route path="*" element={<ErrorPage />} />
+                            )} */}
+                        </Routes>
+
+                         <Footer />
+                 
+
+                  
                   <ToastNotification />
                 </div>
-              )}
+             
             </ProjectProvider>
           </ModalProvider>
 
-          {isUnknownRoot && (
-            <Routes>
-              <Route path="*" element={<ErrorPage />} />
-            </Routes>
-          )}
+         
         </UserProvider>
       </TranslateProvider>
     </ThemeProvider>

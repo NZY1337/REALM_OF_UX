@@ -1,6 +1,7 @@
 import React from "react";
 import FooterWrapper from "../assets/wrappers/FooterWrapper";
 import { Container, Col, Row } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
 import Logo from "./Logo";
 import social from "../assets/images/social.svg";
 import { useTranslateContext } from "../utils/contexts/translate/translateContext";
@@ -12,10 +13,22 @@ const Footer = () => {
     },
   } = useTranslateContext();
 
+  const { pathname } = useLocation();
+
+  const hideHeaderFooter =
+    pathname === "/dashboard" ||
+    pathname === "/dashboard/comments" ||
+    pathname === "/dashboard/tests" || 
+    pathname === "/login";
+
   return (
-    <FooterWrapper>
-      <FooterContainer level2={level2} level1={level1} />
-    </FooterWrapper>
+    <>
+    {!hideHeaderFooter && (
+        <FooterWrapper>
+            <FooterContainer level2={level2} level1={level1} />
+        </FooterWrapper>
+    )}
+    </>
   );
 };
 

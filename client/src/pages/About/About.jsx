@@ -37,7 +37,7 @@ const About = () => {
                    <Col lg="6">
                         <img src={me} className="img-fluid"/>
                    </Col>
-                   <Col lg="6 about-me-description-info">
+                   <Col lg="6" className="about-me-description-info">
                         <h3 className='mb-3'>Hy, my name is Andrei Mocanu!</h3>
                         <h5 className='mb-5'>I'm a <u>fullstack software engineer</u> working at Cognizant.</h5>
                         <p>
@@ -49,7 +49,7 @@ const About = () => {
 
                 <Row className='d-flex my-5 py-5 about-me-technologies'>
                    <Col lg="8">
-                        <h5>Technologies I am currently working on:</h5>
+                        <h6>Technologies I am currently working with:</h6>
                         <Row className='mt-3'>
                             <Col className='tech-holder' lg="2">
                                 <p className='mb-0'>MongoDB</p>
