@@ -54,6 +54,10 @@ const ProjectProvider = ({ children }) => {
         type: DELETE_PROJECT,
         payload: { deletedProject },
       });
+
+      dispatch({
+        type: CLEAR_VALUES,
+      });
       notify("success", `Project with ID: ${projectId} successfully deleted`);
     } else {
       notify("warning", error);
@@ -65,6 +69,7 @@ const ProjectProvider = ({ children }) => {
   // fetch single project
   const fetchProject = async (projectId) => {
     const { singleProject, error } = await fetchSingleProject(projectId);
+    console.log(error)
     dispatch({
       type: GET_PROJECT,
       payload: { project: singleProject, error },
