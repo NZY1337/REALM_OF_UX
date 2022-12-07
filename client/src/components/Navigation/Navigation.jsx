@@ -17,49 +17,49 @@ function Navigation() {
   } = useTranslateContext();
   const { user } = useUserContext();
   const { pathname } = useLocation();
-  const styleBasedOnRoute = pathname == "/" && "home-nav";
-  const homeStyle = !styleBasedOnRoute ? { backgroundColor: 'black'} : null
-
+  const styleBasedOnRoute = pathname === "/" && "home-nav";
+  const homeStyle = !styleBasedOnRoute ? { backgroundColor: "black" } : null;
 
   const hideHeaderFooter =
     pathname === "/dashboard" ||
     pathname === "/dashboard/comments" ||
-    pathname === "/dashboard/tests" || 
+    pathname === "/dashboard/tests" ||
     pathname === "/login";
 
   return (
     <>
-        {
-            !hideHeaderFooter && <NavWrapper as="header" style={homeStyle}> 
-                {[false].map((expand, index) => (
-                    <Container key={index} className={`position-relative`}>
-                    <Navbar key={expand}  expand={expand} className={`py-4 ${styleBasedOnRoute}`} collapseOnSelect>
-                        <Logo />
-        
-                        <SmallMenu  
-                            user={user}
-                            changeLanguage={changeLanguage}
-                        />
-        
-                        <Navbar.Offcanvas   
-                            id={`offcanvasNavbar-expand-${expand}`}
-                            aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-                            placement="end"
-                        >
-                            <Offcanvas.Header closeButton>
-                            <HeaderMenu />
-                            </Offcanvas.Header>
-        
-                            <Offcanvas.Body>
-                            <BodyMenu navigation={navigation} />
-                            </Offcanvas.Body>
-                        </Navbar.Offcanvas>
-                        </Navbar>
-                    </Container>
-            
-                ))}
-          </NavWrapper>
-        }
+      {!hideHeaderFooter && (
+        <NavWrapper as="header" style={homeStyle}>
+          {[false].map((expand, index) => (
+            <Container key={index} className={`position-relative`}>
+              <Navbar
+                key={expand}
+                expand={expand}
+                className={`py-4 ${styleBasedOnRoute}`}
+                collapseOnSelect
+              >
+                <Logo />
+
+                <SmallMenu user={user} changeLanguage={changeLanguage} />
+
+                <Navbar.Offcanvas
+                  id={`offcanvasNavbar-expand-${expand}`}
+                  aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+                  placement="end"
+                >
+                  <Offcanvas.Header closeButton>
+                    <HeaderMenu />
+                  </Offcanvas.Header>
+
+                  <Offcanvas.Body>
+                    <BodyMenu navigation={navigation} />
+                  </Offcanvas.Body>
+                </Navbar.Offcanvas>
+              </Navbar>
+            </Container>
+          ))}
+        </NavWrapper>
+      )}
     </>
   );
 }
