@@ -23,6 +23,8 @@ import { servicesHomeDict } from "../../../../pages/Home/Services/translate";
 import { bannerHomeDict } from "../../../../pages/Home/Banner/translate";
 import { contactHomeDict } from "../../../../pages/Home/ContactUs/translate";
 import { navigationDict } from "../../../../components/Navigation/translate";
+import { loginRegisterDict } from "../../../../pages/LoginRegister/translate";
+import { homeProjectsDict } from "../../../../pages/Home/Projects/translate";
 
 // Do I really have to clone this?
 const initialStateRO = {
@@ -36,38 +38,7 @@ const initialStateRO = {
     services: {
       ...servicesHomeDict.RO,
     },
-    blog: {
-      titleSection: {
-        title: "Articole",
-        subtitle:
-          "Banner pe ecran complet deasupra pliului, meniul lipicios, portofoliul filtrabil, mărturiile clienților și un formular de contact funcțional sunt toate cele mai diferite",
-      },
-      subtitleSection: {
-        description:
-          "descopera ultimele <b>articole</b> care te-ar putea ajuta sa-ti dezvolti afacerea",
-      },
-      blogData: [
-        {
-          category: "dezvoltare",
-          title: "Agentie digitala creativa",
-          image: img9,
-        },
-        { category: "social", title: "Bun venit!", image: img2 },
-        { category: "social", title: "Retele Sociale", image: img4 },
-        {
-          category: "social",
-          title: "Marketingul in 2k22",
-          image: img10,
-        },
-        {
-          category: "dezvoltare",
-          title: "Valorifica-ti afacerea cu API-ul nostru...",
-          image: img5,
-        },
-
-        { category: "seo", title: "Viena SEO Congres", image: img6 },
-      ],
-    },
+    projects: { ...homeProjectsDict.RO },
     banner: {
       ...bannerHomeDict.RO,
     },
@@ -75,58 +46,7 @@ const initialStateRO = {
       ...contactHomeDict.RO,
     },
   },
-  loginRegister: {
-    isLoggedIn: "Nu ai cont? Te rugam creaza-ti cont",
-    isRegistred: "Intoarce-te si logheaza-te",
-    isLoggedInTitle: "Logheaza-te",
-    isRegistredTitle: "Creaza Cont",
-    titleSection: {
-      login: {
-        title: "Logheaza-te",
-        subtitle: "exploreaza cele mai in voga tehnici de design ",
-      },
-      register: {
-        title: "Inregistreaza-te",
-        subtitle: "descoperea ceea ce ti se potriveste cel mai bine",
-      },
-    },
-    inputs: {
-      login: [
-        {
-          name: "email",
-          placeholder: "Email",
-          type: "text",
-          icon: Person,
-        },
-        {
-          name: "password",
-          placeholder: "Parola",
-          type: "password",
-          icon: Eye,
-        },
-      ],
-      register: [
-        {
-          name: "name",
-          placeholder: "Nume",
-          type: "text",
-          icon: Person,
-        },
-        {
-          name: "email",
-          placeholder: "Email",
-          type: "text",
-          icon: Envelope,
-        },
-        {
-          name: "password",
-          placeholder: "Parola",
-          type: "password",
-          icon: Eye,
-        },
-      ],
-    },
-  },
+  loginRegister: { ...loginRegisterDict.RO },
   aboutMe: { ...aboutMeDict.RO },
 };
 
