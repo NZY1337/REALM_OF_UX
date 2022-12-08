@@ -7,21 +7,26 @@ import me from "../../assets/images/eu.jpg";
 import AboutWrapper from "../../assets/wrappers/AboutWrapper/AboutWrapper";
 import { PageSectionTitle, PageSectionBanner } from "../../components";
 
-//icons
-import { DiMongodb, DiReact, DiCss3 } from "react-icons/di";
-import { IoLogoJavascript, IoLogoNodejs } from "react-icons/io";
-import { SiExpress, SiAdobeillustrator } from "react-icons/si";
-import { FiFigma } from "react-icons/fi";
+// context
+import { useTranslateContext } from "../../utils/contexts/translate/translateContext";
+
+import Skills from "./Skills";
 
 const About = () => {
+  const {
+    aboutMe: { pageTitleSection, descriptionSection, skills },
+  } = useTranslateContext();
+
+  console.log(skills);
+
   return (
     <AboutWrapper>
-      <Container className="pt-5 pb-0 py-lg-5  container">
+      <Container className="pt-5 pb-0 py-lg-5 container">
         <Row>
           <Col lg="12">
             <PageSectionTitle
-              subtitle="some insights about what I do"
-              titleBold="About Me"
+              subtitle={pageTitleSection.subtitle}
+              titleBold={pageTitleSection.title}
             />
           </Col>
         </Row>
@@ -40,17 +45,10 @@ const About = () => {
           <Col lg="6 mt-3 mt-lg-0">
             <div className="about-me-description-info p-4 p-lg-5">
               <h3 className="mb-3" style={{ fontWeight: "bold" }}>
-                Hy. I'm Andrei Mocanu!
+                {descriptionSection.title}
               </h3>
-              <h5 className="mb-5">
-                I'm a <u>fullstack software engineer</u> working at Cognizant.
-              </h5>
-              <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptatem similique iure culpa maiores amet illum nihil soluta
-                nostrum in, dignissimos aspernatur inventore neque! Voluptatem
-                repudiandae in rerum natus, consequuntur ipsam.
-              </p>
+              <h5 className="mb-5">{descriptionSection.subtitle}</h5>
+              <p>{descriptionSection.description}</p>
             </div>
           </Col>
         </Row>
@@ -58,58 +56,22 @@ const About = () => {
         <Row className="about-me-technologies">
           <Col lg="8">
             <div className="about-me-technologies__info">
-              <p className="mb-0">Tech Stack: </p>
+              <p className="mb-0">{skills.tech}: </p>
               <hr />
 
               <div className="about-me-technologies__info-stack">
-                <div className="tech-holder" lg="2">
-                  <p className="mb-0">MongoDB</p>
-                  <DiMongodb className="mongo-db" />
-                </div>
-
-                <div className="tech-holder" lg="2">
-                  <p className="mb-0">React JS</p>
-                  <DiReact className="react" />
-                </div>
-
-                <div className="tech-holder" lg="2">
-                  <p className="mb-0">Plain JS</p>
-                  <IoLogoJavascript className="javascript" />
-                </div>
-
-                <div className="tech-holder" lg="2">
-                  <p className="mb-0">Node JS</p>
-                  <IoLogoNodejs className="node-js" />
-                </div>
-
-                <div className="tech-holder" lg="2">
-                  <p className="mb-0">Express JS</p>
-                  <SiExpress />
-                </div>
-
-                <div className="tech-holder" lg="2">
-                  <p className="mb-0">CSS3 | SASS</p>
-                  <DiCss3 className="css3" />
-                </div>
+                <Skills type="tech" />
               </div>
             </div>
           </Col>
 
           <Col lg="8 mt-3">
             <div className="about-me-technologies__info">
-              <p className="mb-0">Design:</p>
+              <p className="mb-0">{skills.design}:</p>
               <hr />
 
               <div className="mt-3 about-me-technologies__info-stack">
-                <div className="tech-holder" lg="2">
-                  <p className="mb-0">Figma</p>
-                  <FiFigma className="figma" />
-                </div>
-
-                <div className="tech-holder" lg="2">
-                  <p className="mb-0">Illustrator</p>
-                  <SiAdobeillustrator className="mongo-db" />
-                </div>
+                <Skills type="design" />
               </div>
             </div>
           </Col>

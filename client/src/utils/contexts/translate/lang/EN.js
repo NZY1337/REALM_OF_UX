@@ -33,7 +33,10 @@ import img6 from "../../../../assets/images/img6.jpeg";
 import img9 from "../../../../assets/images/img20.jpeg";
 import img10 from "../../../../assets/images/img10.jpeg";
 
-export default {
+//dictionaries
+import { aboutMeDict } from "../../../../pages/About/translate";
+
+const initialStateEN = {
   globals: {
     footer: {
       level1: {
@@ -135,8 +138,7 @@ export default {
       {
         title: "Hi! I'm Andrei",
         subtitle: "from design to implementation",
-        description:
-          "I'm a fullstack software engineer based in Romania",
+        description: "I'm a fullstack software engineer based in Romania",
         image: carouselImg1,
       },
     ],
@@ -299,7 +301,7 @@ export default {
   loginRegister: {
     isLoggedIn: "Don't have an account? Please register",
     isRegistred: "Go back and log in",
-    isLoggedInTitle:"Log in",
+    isLoggedInTitle: "Log in",
     isRegistredTitle: "Register",
     inputs: {
       login: [
@@ -348,4 +350,7 @@ export default {
       },
     },
   },
+  aboutMe: { ...aboutMeDict.EN },
 };
+
+export default initialStateEN;
