@@ -1,10 +1,10 @@
 import React from "react";
-import FooterWrapper from "../assets/wrappers/FooterWrapper";
+import FooterWrapper from "../../assets/wrappers/FooterWrapper";
 import { Container, Col, Row } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
-import Logo from "./Logo";
-import social from "../assets/images/social.svg";
-import { useTranslateContext } from "../utils/contexts/translate/translateContext";
+import Logo from "../Logo";
+import social from "../../assets/images/social.svg";
+import { useTranslateContext } from "../../utils/contexts/translate/translateContext";
 
 const Footer = () => {
   const {
@@ -18,16 +18,16 @@ const Footer = () => {
   const hideHeaderFooter =
     pathname === "/dashboard" ||
     pathname === "/dashboard/comments" ||
-    pathname === "/dashboard/tests" || 
+    pathname === "/dashboard/tests" ||
     pathname === "/login";
 
   return (
     <>
-    {!hideHeaderFooter && (
+      {!hideHeaderFooter && (
         <FooterWrapper>
-            <FooterContainer level2={level2} level1={level1} />
+          <FooterContainer level2={level2} level1={level1} />
         </FooterWrapper>
-    )}
+      )}
     </>
   );
 };

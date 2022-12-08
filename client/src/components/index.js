@@ -3,7 +3,7 @@ import Navigation from "./Navigation/Navigation";
 import CircleDesign from "./CircleDesign";
 import TitleSection from "./TitleSection";
 import TitleSectionDesign from "./TitleSectionDesign";
-import Footer from "./Footer";
+import Footer from "./Footer/Footer";
 import ServicesCard from "./ServicesCard";
 import ToggleLanguage from "./ToggleLanguage";
 import Logo from "./Logo";

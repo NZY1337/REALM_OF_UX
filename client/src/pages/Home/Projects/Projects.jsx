@@ -14,7 +14,7 @@ import { useProjectContext } from "../../../utils/contexts/project/projectContex
 const Projects = () => {
   const {
     homepage: {
-      blog: {
+      projects: {
         titleSection: { title, subtitle },
         subtitleSection: { description },
       },
@@ -22,7 +22,7 @@ const Projects = () => {
   } = useTranslateContext();
 
   const { projects, fetchProjects } = useProjectContext();
-  
+
   useEffect(() => {
     fetchProjects();
   }, []);
