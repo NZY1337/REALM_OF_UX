@@ -30,10 +30,13 @@ import img2 from "../../../../assets/images/img2.jpeg";
 import img4 from "../../../../assets/images/img4.jpeg";
 import img5 from "../../../../assets/images/img5.jpeg";
 import img6 from "../../../../assets/images/img6.jpeg";
-import img9 from "../../../../assets/images/img9.jpeg";
+import img9 from "../../../../assets/images/img20.jpeg";
 import img10 from "../../../../assets/images/img10.jpeg";
 
-export default {
+// dictionaries
+import { aboutMeDict } from "../../../../pages/About/translate";
+
+const initialStateRO = {
   globals: {
     footer: {
       level1: {
@@ -106,7 +109,7 @@ export default {
       },
       {
         title: "Despre",
-        link: "/despre",
+        link: "/about",
       },
       {
         title: "Servicii",
@@ -288,7 +291,7 @@ export default {
   loginRegister: {
     isLoggedIn: "Nu ai cont? Te rugam creaza-ti cont",
     isRegistred: "Intoarce-te si logheaza-te",
-    isLoggedInTitle:"Logheaza-te",
+    isLoggedInTitle: "Logheaza-te",
     isRegistredTitle: "Creaza Cont",
     titleSection: {
       login: {
@@ -337,4 +340,7 @@ export default {
       ],
     },
   },
+  aboutMe: { ...aboutMeDict.RO },
 };
+
+export default initialStateRO;

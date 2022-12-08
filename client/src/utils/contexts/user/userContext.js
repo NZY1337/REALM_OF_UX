@@ -20,7 +20,6 @@ const initialState = {
   showAlert: false,
   alerText: "",
   alertType: "",
-  showAlert: false,
   user: user ? JSON.parse(user) : null,
   token: token,
 };

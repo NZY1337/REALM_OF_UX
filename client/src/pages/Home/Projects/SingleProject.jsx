@@ -12,14 +12,14 @@ import { useProjectContext } from "../../../utils/contexts/project/projectContex
 const SingleProject = () => {
   const { projectId } = useParams();
   const { project, error, fetchProject, clearValues } = useProjectContext();
-  console.log(project, error)
- 
+  console.log(project, error);
+
   useEffect(() => {
     fetchProject(projectId);
     window.scrollTo(0, 0);
     return () => {
-      clearValues()
-    }
+      clearValues();
+    };
   }, []);
 
   const renderCategory = () => {
@@ -28,8 +28,14 @@ const SingleProject = () => {
         {project && (
           <>
             <p className="d-inline">category:</p>
-            <i style={{color: "orange", fontFamily:"auto", fontWeight:"bold"}}>
-               {""} {project && project.category}
+            <i
+              style={{
+                color: "orange",
+                fontFamily: "auto",
+                fontWeight: "bold",
+              }}
+            >
+              {""} {project && project.category}
             </i>
           </>
         )}
@@ -37,19 +43,18 @@ const SingleProject = () => {
     );
   };
 
-
   return (
     <>
       <Container className="mt-5">
-        <Row className="mt-5">
+        <Row className="my-5">
           <PageSectionTitle
             subtitle={!project ? error : "welcome"}
             titleBold={
-              !project ? "Couldn't fetch the project or project inexistent" : "Your ultimate"
+              !project
+                ? "Couldn't fetch the project or project inexistent"
+                : "Your ultimate"
             }
-            titleNormal={
-              project && " guide to create social media banners"
-            }
+            titleNormal={project && " guide to create social media banners"}
           />
         </Row>
       </Container>

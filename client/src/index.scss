@@ -9,7 +9,7 @@ body {
   font-family: var(--primary-font);
   font-weight: 400;
   line-height: 1.75;
-  overflow: overlay;
+//   overflow: overlay;
 }
 
 // spacing
@@ -34,7 +34,6 @@ h3,
 h4,
 h5 {
   margin: 0;
-  margin-bottom: 1.38rem;
   font-family: var(--primary-font);
   font-weight: 300;
   line-height: 1;

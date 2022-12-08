@@ -1,5 +1,5 @@
 // carousel
-import carouselImg1 from "../../../../assets/images/img9.jpeg";
+import carouselImg1 from "../../../../assets/images/img20.jpeg";
 import carouselImg2 from "../../../../assets/images/binoclu.jpeg";
 import carouselImg3 from "../../../../assets/images/img7.jpeg";
 
@@ -30,10 +30,13 @@ import img2 from "../../../../assets/images/img2.jpeg";
 import img4 from "../../../../assets/images/img4.jpeg";
 import img5 from "../../../../assets/images/img5.jpeg";
 import img6 from "../../../../assets/images/img6.jpeg";
-import img9 from "../../../../assets/images/img9.jpeg";
+import img9 from "../../../../assets/images/img20.jpeg";
 import img10 from "../../../../assets/images/img10.jpeg";
 
-export default {
+//dictionaries
+import { aboutMeDict } from "../../../../pages/About/translate";
+
+const initialStateEN = {
   globals: {
     footer: {
       level1: {
@@ -133,10 +136,9 @@ export default {
   homepage: {
     carousel: [
       {
-        title: "Development",
+        title: "Hi! I'm Andrei",
         subtitle: "from design to implementation",
-        description:
-          "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
+        description: "I'm a fullstack software engineer based in Romania",
         image: carouselImg1,
       },
     ],
@@ -299,7 +301,7 @@ export default {
   loginRegister: {
     isLoggedIn: "Don't have an account? Please register",
     isRegistred: "Go back and log in",
-    isLoggedInTitle:"Log in",
+    isLoggedInTitle: "Log in",
     isRegistredTitle: "Register",
     inputs: {
       login: [
@@ -348,4 +350,7 @@ export default {
       },
     },
   },
+  aboutMe: { ...aboutMeDict.EN },
 };
+
+export default initialStateEN;
