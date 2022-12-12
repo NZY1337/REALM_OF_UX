@@ -14,15 +14,15 @@ const ProjectSchema = new mongoose.Schema({
     trim: true,
   },
   desktop: {
-    type: String,
+    type: Array,
     required: [true, "Please provide the desktop ss"],
   },
   tablet: {
-    type: String,
+    type: Array,
     required: [true, "Please provide the tablet ss"],
   },
   mobile: {
-    type: String,
+    type: Array,
     required: [true, "Please provide the mobile ss"],
   },
 });

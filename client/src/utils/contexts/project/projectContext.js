@@ -105,12 +105,15 @@ const ProjectProvider = ({ children }) => {
 
   // get project data
   const handleCreateProject = async (e) => {
-    if (e.target.files && e.target.files[0]) {
-      const { projectSS, error } = await uploadImageToPublicFolder(e.target.files[0], state.project.name);
-      dispatch({
-        type: ADD_PROJECT.IMAGE,
-        payload: { targetImage: e.target, projectSS },
-      });
+    console.log(e.target.files)
+    if (e.target.files) {
+        for (let file of e.target.files) {
+            const { projectSS, error } = await uploadImageToPublicFolder(file, state.project.name);
+            dispatch({
+                type: ADD_PROJECT.IMAGE,
+                payload: { targetImage: e.target, projectSS },
+            });
+        }
     } else {
       dispatch({
         type: ADD_PROJECT.TEXT,

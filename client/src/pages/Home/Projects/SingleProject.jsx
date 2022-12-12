@@ -12,7 +12,7 @@ import { useProjectContext } from "../../../utils/contexts/project/projectContex
 const SingleProject = () => {
   const { projectId } = useParams();
   const { project, error, fetchProject, clearValues } = useProjectContext();
-  console.log(project, error);
+  console.log(project);
 
   useEffect(() => {
     fetchProject(projectId);
@@ -68,15 +68,20 @@ const SingleProject = () => {
         <SingleProjectWrapper>
           <Container className="my-5">
             <Row>
-              <Col lg="12">
-                <h1 className="mb-0">{project && project.name}</h1>
-                <p className="mt-0">{renderCategory()}</p>
-              </Col>
+                <Col lg="12">
+                    <h1 className="mb-0">{project && project.name}</h1>
+                    <p className="mt-0">{renderCategory()}</p>
+                </Col>
+            </Row>
+              
+            <Row>
+                <RenderPreviewDevicesProject project={project} />
+            </Row>
 
-              <RenderPreviewDevicesProject project={project} />
-              <Col lg="10">
-                <ProjectComments projectId={projectId} />
-              </Col>
+            <Row>
+                <Col lg="10">
+                    <ProjectComments projectId={projectId} />
+                </Col>
             </Row>
           </Container>
         </SingleProjectWrapper>

@@ -11,6 +11,7 @@ const FormGroup = ({
   onHandleChange,
   size,
   accept,
+  multiple
 }) => {
   return (
     <>
@@ -24,6 +25,7 @@ const FormGroup = ({
           accept={accept}
           onChange={onHandleChange}
           size={size}
+          multiple={multiple}
         />
       </Form.Group>
     </>
@@ -36,6 +38,7 @@ FormGroup.propTypes = {
   size: PropTypes.string,
   type: PropTypes.string.isRequired,
   accept: PropTypes.string,
+  multiple: PropTypes.bool,
   value: PropTypes.string,
   onHandleChange: PropTypes.func.isRequired,
 };

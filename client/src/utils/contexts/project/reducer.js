@@ -63,7 +63,7 @@ const reducer = (state, action) => {
       const { targetImage, projectSS } = action.payload; // e.target
       return {
         ...state,
-        project: { ...state.project, [targetImage.name]: projectSS },
+        project: { ...state.project, [targetImage.name]: [...state.project[targetImage.name], projectSS] },
       };
 
     case GET_PROJECT:

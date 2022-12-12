@@ -2,9 +2,9 @@ export const initialState = {
     project: {
       name: "",
       category: "",
-      desktop: "",
-      tablet: "",
-      mobile: "",
+      desktop: [],
+      tablet: [],
+      mobile: [],
     },
     error: "",
     projects: [],

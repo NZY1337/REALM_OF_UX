@@ -46,13 +46,16 @@ const ProjectDashForm = ({
           <ProjectsDashFormGroup label="Desktop Version" type="file" name="desktop" size="sm"
             onHandleChange={handleCreateProject}
             accept=".jpeg, .png, .jpg"
+            multiple
             // value={desktop}
           />
         </Col>
+
         <Col lg="6">
           <ProjectsDashFormGroup label="Tablet Version" type="file" name="tablet" size="sm"
             onHandleChange={handleCreateProject}
             accept=".jpeg, .png, .jpg"
+            multiple
             // value={desktop}
           />
       
@@ -61,6 +64,7 @@ const ProjectDashForm = ({
           <ProjectsDashFormGroup label="Mobile Version" type="file" name="mobile" size="sm"
             onHandleChange={handleCreateProject}
             accept=".jpeg, .png, .jpg"
+            multiple
             // value={desktop}
           />
         </Col>
