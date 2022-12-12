@@ -16,7 +16,7 @@ const RenderPreviewDevicesProject = ({ project }) => {
     return (
         <>
             {renderProjects()} 
-            <Col lg="5" className="my-4">
+            <Col lg="8" className="my-4">
                 <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum ea earum
                     aspernatur explicabo voluptates, libero cupiditate harum velit nulla,
@@ -35,7 +35,5 @@ const RenderPreviewDevicesProject = ({ project }) => {
 RenderPreviewDevicesProject.propTypes = {
   project: PropTypes.string.isRequired
 }
-
-
 
 export default RenderPreviewDevicesProject;

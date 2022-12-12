@@ -16,6 +16,7 @@ const SingleProject = () => {
   useEffect(() => {
     fetchProject(projectId);
     window.scrollTo(0, 0);
+    
     return () => {
       clearValues();
     };
@@ -56,19 +57,19 @@ const SingleProject = () => {
       {project && (
         <SingleProjectWrapper>
           <Container className="my-5">
-            <Row>
+            <Row className="justify-content-center">
                 <Col lg="12">
-                    <h1 className="mb-0">{project && project.name}</h1>
+                    <h1 className="mb-0">{project.name}</h1>
                     <p className="mt-0">{renderCategory()}</p>
                 </Col>
-            </Row>
-              
-            <RenderPreviewDevicesProject project={project} />
-          
-            <Col lg="10">
-                <ProjectComments projectId={projectId} />
-            </Col>
+            
+                <RenderPreviewDevicesProject project={project} />
 
+                <hr className="my-5" />
+                <Col lg="10">
+                    <ProjectComments projectId={projectId} />
+                </Col>
+            </Row>
           </Container>
         </SingleProjectWrapper>
       )}
