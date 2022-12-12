@@ -16,7 +16,6 @@ import { initialState } from "./utils";
 import reducer from "./reducer";
 
 
-
 const ProjectContext = React.createContext();
 
 const ProjectProvider = ({ children }) => {

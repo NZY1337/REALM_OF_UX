@@ -77,7 +77,7 @@ export const convertToBase64 = (file) => {
 
 export const postStyle = (path) => {
   return {
-    backgroundImage: `linear-gradient(rgba(26, 11, 11, 0), rgb(23 20 25 / 72%)), url(${path})`,
+    backgroundImage: `linear-gradient(rgba(26, 11, 11, 0), rgb(23 20 25 / 72%)), url("${path}")`,
   };
 };
 

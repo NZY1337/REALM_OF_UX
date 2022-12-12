@@ -11,8 +11,6 @@ class UploadProductImage {
             const postTitle = req.body.location;
             const dir = `./public/uploads/${postTitle}`
 
-            console.log(productImage)
-
             if (!fs.existsSync(dir)) {
                 fs.mkdirSync(dir, {recursive: true})
             }

@@ -12,7 +12,6 @@ import { useProjectContext } from "../../../utils/contexts/project/projectContex
 const SingleProject = () => {
   const { projectId } = useParams();
   const { project, error, fetchProject, clearValues } = useProjectContext();
-  console.log(project);
 
   useEffect(() => {
     fetchProject(projectId);
@@ -24,22 +23,12 @@ const SingleProject = () => {
 
   const renderCategory = () => {
     return (
-      <>
-        {project && (
-          <>
+        <>
             <p className="d-inline">category:</p>
-            <i
-              style={{
-                color: "orange",
-                fontFamily: "auto",
-                fontWeight: "bold",
-              }}
-            >
-              {""} {project && project.category}
+            <i style={{ color: "orange", fontFamily: "auto",fontWeight: "bold"}}>
+                {project.category}
             </i>
-          </>
-        )}
-      </>
+        </>
     );
   };
 
@@ -74,15 +63,12 @@ const SingleProject = () => {
                 </Col>
             </Row>
               
-            <Row>
-                <RenderPreviewDevicesProject project={project} />
-            </Row>
+            <RenderPreviewDevicesProject project={project} />
+          
+            <Col lg="10">
+                <ProjectComments projectId={projectId} />
+            </Col>
 
-            <Row>
-                <Col lg="10">
-                    <ProjectComments projectId={projectId} />
-                </Col>
-            </Row>
           </Container>
         </SingleProjectWrapper>
       )}
