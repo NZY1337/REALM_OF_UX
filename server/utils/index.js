@@ -1,14 +1,15 @@
-import * as fs from "fs";
+import fs from "fs";
+console.log(fs);
 
 const removeFile = (postTitle) => {
   const deletePath = `public/uploads/${postTitle}`;
 
   try {
     if (fs.existsSync(deletePath)) {
-      fs.rmSync(deletePath, { recursive: true });
+      fs.rmdirSync(deletePath, { recursive: true, force: true });
     }
   } catch (error) {
-    nextTick(error);
+    console.log(error);
   }
 };
 
