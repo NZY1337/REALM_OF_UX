@@ -1,13 +1,15 @@
-import { unlink } from 'node:fs';
-import fs from 'fs';
+import * as fs from "fs";
 
 const removeFile = (postTitle) => {
-    // unlink(`public/uploads/${postTitle}`, (err) => {
-    //     if (err) throw err;
-    //     console.log(`${imgPath} path/file.txt was deleted`);
-    // });
+  const deletePath = `public/uploads/${postTitle}`;
 
-    fs.rmSync(`public/uploads/${postTitle}`, { recursive: true, force: true });
-}
+  try {
+    if (fs.existsSync(deletePath)) {
+      fs.rmSync(deletePath, { recursive: true });
+    }
+  } catch (error) {
+    nextTick(error);
+  }
+};
 
-export { removeFile }
+export { removeFile };
