@@ -11,7 +11,8 @@ const FormGroup = ({
   onHandleChange,
   size,
   accept,
-  multiple
+  multiple,
+  disableFileUpload
 }) => {
   return (
     <>
@@ -26,6 +27,7 @@ const FormGroup = ({
           onChange={onHandleChange}
           size={size}
           multiple={multiple}
+          disabled={disableFileUpload}
         />
       </Form.Group>
     </>

@@ -2,9 +2,11 @@ import styled from "styled-components";
 
 const DashboardWrapper = styled.div`
   overflow: auto;
+
   @media (min-width: 768px) {
     width: calc(100% - 260px);
   }
+
   width: 100%;
   background-color: rgba(203, 203, 210, 0.15);
 
@@ -12,12 +14,19 @@ const DashboardWrapper = styled.div`
   .main-dash-title {
     padding: 2rem;
     border-bottom: 1px solid lightgray;
+    background-color: #e7e7e7;
   }
 
   //CONTAINER SECTION
   .dash-container {
     padding: 2rem;
+    background-color: #e7e7e7;
+    
+    @media (min-width: 768px) {
+        height:calc(100% - 85px);
+    }
 
+      
     &-projects {
       &-filtered {
         div {

@@ -8,7 +8,6 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import ProjectsDashFormGroup from "../../../../utils/helpers/react/FormGroup";
 
-// maybe a MAP for this file, but I'm too lazy right now :s
 
 const ProjectDashForm = ({
   project,
@@ -19,6 +18,7 @@ const ProjectDashForm = ({
   const { name, category, desktop, tablet, mobile } = project;
 
   const disableSubmitBtn = name === '' || category === "" || desktop === "" || tablet === "" || mobile === "";
+  const disableFileUpload = name === "";
 
   return (
     <Form onSubmit={handleSubmitProject}>
@@ -39,15 +39,13 @@ const ProjectDashForm = ({
             onHandleChange={handleCreateProject}
           />
         </Col>
-      </Row>
-
-      <Row>
+   
         <Col lg="6">
           <ProjectsDashFormGroup label="Desktop Version" type="file" name="desktop" size="sm"
             onHandleChange={handleCreateProject}
             accept=".jpeg, .png, .jpg"
             multiple
-            // value={desktop}
+            disableFileUpload={disableFileUpload}
           />
         </Col>
 
@@ -56,7 +54,7 @@ const ProjectDashForm = ({
             onHandleChange={handleCreateProject}
             accept=".jpeg, .png, .jpg"
             multiple
-            // value={desktop}
+            disableFileUpload={disableFileUpload}
           />
       
         </Col>
@@ -65,7 +63,7 @@ const ProjectDashForm = ({
             onHandleChange={handleCreateProject}
             accept=".jpeg, .png, .jpg"
             multiple
-            // value={desktop}
+            disableFileUpload={disableFileUpload}
           />
         </Col>
       </Row>

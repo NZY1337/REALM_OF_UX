@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { sideLinks } from "../../utils/helpers/constants";
 
 // images
-import cover from "../../assets/images/img19.jpeg";
+import cover from "../../assets/images/img17.jpeg";
 import logo from "../../assets/images/logo1.png";
 
 // components

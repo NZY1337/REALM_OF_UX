@@ -55,7 +55,6 @@ ProjectActionsForm.propTypes = {
   handleMatchedProject: PropTypes.func.isRequired,
   handleTriggerModal: PropTypes.func.isRequired,
   showModal: PropTypes.bool.isRequired,
-  handleDeleteProject: PropTypes.func.isRequired,
 };
 
 export default ProjectActionsForm;

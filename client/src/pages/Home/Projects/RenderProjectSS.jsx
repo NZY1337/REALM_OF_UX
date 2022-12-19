@@ -4,7 +4,7 @@ import { Col } from "react-bootstrap";
 
 const RenderProjectSS = ({ project }) => {
   return (
-    <Col  key={project} lg="4">
+    <Col  key={project} lg="6">
       <div>
         <img src={project} className="img-fluid w-100 mb-3" style={{ objectFit: "cover", height: "500px" }} />
       </div>
