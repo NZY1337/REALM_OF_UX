@@ -1,9 +1,7 @@
 import React from "react";
 
 export const HeaderMenu = () => {
-  return (
-    <p className="design-font mb-0">design / development / marketing & more</p>
-  );
+  return <p className="mb-0">design / development / marketing & more</p>;
 };
 
 export const HeaderBannerCreator = () => {

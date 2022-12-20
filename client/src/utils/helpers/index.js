@@ -50,7 +50,6 @@ export const addStyleBasedType = () => {
   return {
     heading: {
       fontSize: 40,
-      fontWeight: "bold",
       color: "#fff",
     },
 
@@ -60,7 +59,6 @@ export const addStyleBasedType = () => {
     },
 
     paragraph: {
-      fontWeight: "100",
       color: "#fff",
     },
   };

@@ -28,9 +28,7 @@ const SingleProject = () => {
         <h1 className="mb-0">{project.name}</h1>
         <p className="d-inline">
           category:{" "}
-          <i
-            style={{ color: "orange", fontFamily: "auto", fontWeight: "bold" }}
-          >
+          <i style={{ color: "orange", fontFamily: "auto" }}>
             {project.category}
           </i>
         </p>

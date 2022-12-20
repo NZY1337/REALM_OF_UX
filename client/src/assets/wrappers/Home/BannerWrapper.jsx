@@ -18,11 +18,11 @@ const BannerWrapper = styled.div`
     background: rgba(0, 0, 0, 0.85);
   }
 
-  height: 50vh;
+  height: 600px;
 
   video {
     width: 100%;
-    height: 50vh;
+    height: 600px;
     object-fit: cover;
   }
 

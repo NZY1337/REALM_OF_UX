@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Col, Row } from "react-bootstrap";
 import LoginRegisterWrapper from "../../assets/wrappers/LoginRegister/LoginRegister";
 import LoginRegisterForm from "./LoginRegisterForm";
-import { Alert, TitleSectionDesign } from "../../components";
+import { Alert } from "../../components";
 import { useTranslateContext } from "../../utils/contexts/translate/translateContext";
 import { useUserContext } from "../../utils/contexts/user/userContext";
 import { useNavigate } from "react-router-dom";
@@ -79,11 +79,6 @@ const LoginRegister = () => {
         <Row>
           <Col lg={12} id="login-register-form">
             <div>
-              <TitleSectionDesign
-                textAlign="center"
-                centerMargin="center"
-                description={subtitle}
-              />
               <h1>{values.isMember ? isLoggedInTitle : isRegistredTitle}</h1>
             </div>
             {showAlert && <Alert />}

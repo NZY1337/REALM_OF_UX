@@ -3,11 +3,7 @@ import BlogPostsWrapper from "../../../assets/wrappers/Home/BlogPostsWrapper";
 import Project from "./Project";
 import { Container, Col, Row } from "react-bootstrap";
 import { ArrowRight } from "react-bootstrap-icons";
-import {
-  ButtonPrimary,
-  TitleSection,
-  TitleSectionDesign,
-} from "../../../components";
+import { ButtonPrimary, TitleSection } from "../../../components";
 import { useTranslateContext } from "../../../utils/contexts/translate/translateContext";
 import { useProjectContext } from "../../../utils/contexts/project/projectContext";
 
@@ -35,11 +31,6 @@ const Projects = () => {
       <Container className="blog-posts">
         <Row className="justify-content-center">
           <Col lg="12">
-            <TitleSectionDesign
-              textAlign="right"
-              centerMargin="right"
-              description={description}
-            />
             <TitleSection
               title={title}
               subtitle={subtitle}

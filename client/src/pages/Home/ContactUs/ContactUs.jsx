@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Col, Row } from "react-bootstrap";
 import ContactUsWrapper from "../../../assets/wrappers/Home/ContactUsWrapper";
-import { TitleSectionDesign, TitleSection } from "../../../components";
+import { TitleSection } from "../../../components";
 import ContactForm from "./ContactForm";
 
 import { useTranslateContext } from "../../../utils/contexts/translate/translateContext";
@@ -22,11 +22,6 @@ const ContactUs = () => {
       <Container>
         <Row>
           <Col lg="12">
-            <TitleSectionDesign
-              textAlign="right"
-              centerMargin="right"
-              description={description}
-            />
             <TitleSection
               title={title}
               subtitle={subtitle}

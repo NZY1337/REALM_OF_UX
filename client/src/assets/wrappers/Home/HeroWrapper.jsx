@@ -18,20 +18,11 @@ const HerroWrapper = styled.div`
 
     &-titles {
       h1 {
-        font-weight: bold;
         font-size: 80px;
         margin-bottom: 0;
       }
 
-      p.design-font {
-        font-size: 20px;
-        color: var(--text-color-gray);
-        opacity: 50%;
-        font-weight: 100;
-      }
-
       p {
-        // color: var(--text-color-gray);
         font-size: 20px;
       }
     }

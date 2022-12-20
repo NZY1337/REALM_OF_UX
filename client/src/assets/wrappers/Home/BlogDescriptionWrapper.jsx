@@ -8,7 +8,6 @@ const BlgoDescriptionWrapper = styled.div`
     transition: all 0.5s;
 
     h4 {
-      font-weight: 800;
       margin-bottom: 1rem;
       color: var(--text-color-white);
     }
@@ -21,12 +20,7 @@ const BlgoDescriptionWrapper = styled.div`
 
     a {
       color: var(--text-color-orange);
-      font-weight: bold;
       transition: all 0.4s;
-
-      //   position: absolute;
-      //   bottom: 1rem;
-      //   left: 1.25rem;
     }
   }
 `;

@@ -18,12 +18,7 @@ const AboutUsWrapper = styled.section`
   }
 
   .about-us {
-    .design-font {
-      max-width: 500px;
-      color: var(--text-color-black);
-      margin-bottom: 1.5rem;
-    }
-
+    
     &-find-more {
       position: relative;
       p {

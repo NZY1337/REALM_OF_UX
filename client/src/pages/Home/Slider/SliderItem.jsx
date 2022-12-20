@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "react-bootstrap-icons";
 import { ButtonPrimary } from "../../../components";
@@ -67,7 +67,6 @@ const SliderItem = ({ subtitle, title, description }) => {
               initial="hidden"
               variants={h1Variants}
               style={{ marginBottom: 0 }}
-              className="design-font"
             >
               {subtitle}
             </motion.p>
@@ -119,9 +118,9 @@ const SliderItem = ({ subtitle, title, description }) => {
 };
 
 SliderItem.propTypes = {
-  subtitle:PropTypes.string.isRequired,
-  title:PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired
-}
+  subtitle: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+};
 
 export default SliderItem;

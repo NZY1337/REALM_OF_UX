@@ -18,8 +18,8 @@ const Banner = () => {
       </video>
 
       <div className="wrapper-content">
-        <h1 style={{ fontWeight: "800" }}>{title}</h1>
-        <h4 className="design-font">{subtitle}</h4>
+        <h1>{title}</h1>
+        <h4 className="my-4">{subtitle}</h4>
         <Arrow90degDown size="50" />
       </div>
     </BannerWrapper>
