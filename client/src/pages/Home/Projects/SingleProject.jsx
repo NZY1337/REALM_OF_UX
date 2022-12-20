@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Container, Col, Row } from "react-bootstrap";
 import { PageSectionTitle, PageSectionBanner } from "../../../components";
 import bannerCover from "../../../assets/images/img14.jpeg";
@@ -16,7 +16,7 @@ const SingleProject = () => {
   useEffect(() => {
     fetchProject(projectId);
     window.scrollTo(0, 0);
-    
+
     return () => {
       clearValues();
     };
@@ -24,12 +24,17 @@ const SingleProject = () => {
 
   const renderCategory = () => {
     return (
-        <>
-            <p className="d-inline">category:</p>
-            <i style={{ color: "orange", fontFamily: "auto",fontWeight: "bold"}}>
-                {project.category}
-            </i>
-        </>
+      <Col lg="12 my-5">
+        <h1 className="mb-0">{project.name}</h1>
+        <p className="d-inline">
+          category:{" "}
+          <i
+            style={{ color: "orange", fontFamily: "auto", fontWeight: "bold" }}
+          >
+            {project.category}
+          </i>
+        </p>
+      </Col>
     );
   };
 
@@ -58,17 +63,12 @@ const SingleProject = () => {
         <SingleProjectWrapper>
           <Container className="my-5">
             <Row className="justify-content-center">
-                <Col lg="12">
-                    <h1 className="mb-0">{project.name}</h1>
-                    <p className="mt-0">{renderCategory()}</p>
-                </Col>
-            
-                <RenderPreviewDevicesProject project={project} />
+              {renderCategory()}
+              <RenderPreviewDevicesProject project={project} />
 
-                <hr className="my-5" />
-                <Col lg="10">
-                    <ProjectComments projectId={projectId} />
-                </Col>
+              <hr className="my-5" />
+
+              <ProjectComments projectId={projectId} />
             </Row>
           </Container>
         </SingleProjectWrapper>

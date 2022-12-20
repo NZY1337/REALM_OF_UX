@@ -14,19 +14,18 @@ const DashboardWrapper = styled.div`
   .main-dash-title {
     padding: 2rem;
     border-bottom: 1px solid lightgray;
-    background-color: #e7e7e7;
+    background-color: #f4f4f4;
   }
 
   //CONTAINER SECTION
   .dash-container {
     padding: 2rem;
-    background-color: #e7e7e7;
-    
+    background-color: #f4f4f4;
+
     @media (min-width: 768px) {
-        height:calc(100% - 85px);
+      height: calc(100% - 85px);
     }
 
-      
     &-projects {
       &-filtered {
         div {

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import RenderComments from "./RenderComments";
 import { useUserContext } from "../../../../utils/contexts/user/userContext";
 import {
@@ -8,6 +8,7 @@ import {
   removeComment,
 } from "../../../../utils/services/services";
 import AddCommentForm from "./FormComment";
+import Col from "react-bootstrap/Col";
 import { notify } from "../../../../utils/helpers";
 
 const ProjectComments = ({ projectId }) => {
@@ -60,7 +61,7 @@ const ProjectComments = ({ projectId }) => {
   }, []);
 
   return (
-    <div className="position-relative">
+    <Col lg="10" className="position-relative">
       <AddCommentForm
         projectId={projectId}
         addComment={addComment}
@@ -78,12 +79,12 @@ const ProjectComments = ({ projectId }) => {
       ) : (
         <p>Be the first to post a comment!</p>
       )}
-    </div>
+    </Col>
   );
 };
 
-ProjectComments.propTypes =  {
-  projectId: PropTypes.string.isRequired
-}
+ProjectComments.propTypes = {
+  projectId: PropTypes.string.isRequired,
+};
 
 export default ProjectComments;

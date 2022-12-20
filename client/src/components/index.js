@@ -13,6 +13,8 @@ import PageSectionTitle from "./PageSectionTitle";
 import ModalAlert from "./Modal";
 import ToastNotification from "./ToastNotification";
 import DeleteEditAction from "./DeleteEditAction";
+import ModalPresentationArticle from "./ModalPresentationArticle";
+import SocialShare from "./SocialShare";
 
 export {
   ButtonPrimary,
@@ -31,4 +33,6 @@ export {
   ToastNotification,
   ModalAlert,
   DeleteEditAction,
+  ModalPresentationArticle,
+  SocialShare,
 };
