@@ -21,7 +21,7 @@ export const aboutMeDict = {
       subtitle: "cateva detalii despre ceea ce fac",
     },
     descriptionSection: {
-      title: "Salut. EU sunt Andrei Mocanu!",
+      title: "Salut. Eu sunt Andrei.",
       subtitle:
         "Momentan sunt fullstack software engineer si lucrez la Cognizant.",
       description:

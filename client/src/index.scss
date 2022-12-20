@@ -6,8 +6,6 @@ html {
 }
 
 body {
-  font-family: var(--primary-font);
-  font-weight: 400;
   line-height: 1.75;
 }
 
@@ -24,6 +22,13 @@ span,
 input,
 textarea {
   font-family: var(--secondary-font);
+}
+
+button {
+  font-family: var(--primary-font);
+  a {
+    font-family: inherit;
+  }
 }
 
 h1 {

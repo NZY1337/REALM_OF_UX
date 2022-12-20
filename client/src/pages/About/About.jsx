@@ -26,7 +26,7 @@ const About = () => {
           <Col lg="12">
             <PageSectionTitle
               subtitle={pageTitleSection.subtitle}
-              titleBold={pageTitleSection.title}
+              title={pageTitleSection.title}
             />
           </Col>
         </Row>

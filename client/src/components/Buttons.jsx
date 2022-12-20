@@ -43,7 +43,6 @@ export const ButtonSecondary = styled.button`
   background: var(--text-color-blue);
   box-shadow: var(--shadow-4);
   transition: all 0.2s;
-  font-weight: bold;
   svg {
     margin-left: 5px;
   }
@@ -67,7 +66,6 @@ export const ButtonTertiary = styled.button`
   //   background: radial-gradient(100% 100% at 100% 0%, #5adaff 0%, #5468ff 100%);
   box-shadow: var(--shadow-4);
   transition: all 0.2s;
-  font-weight: bold;
   font-size: 14px;
   x svg {
     margin-left: 5px;

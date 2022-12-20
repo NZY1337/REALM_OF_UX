@@ -16,16 +16,6 @@ const squareVariants = {
   hidden: { opacity: 0 },
 };
 
-const h1Variants = {
-  visible: {
-    opacity: 1,
-    // scale: 1.01,
-    transition: { duration: 0.5 },
-    x: [0, 20, 0],
-  },
-  hidden: { opacity: 0 },
-};
-
 const pVariants = {
   visible: {
     opacity: 1,
@@ -61,16 +51,6 @@ const SliderItem = ({ subtitle, title, description }) => {
       <div className="row justify-content-center">
         <div className="col-lg-7 col-12">
           <div className="carousel-titles text-center">
-            <motion.p
-              ref={ref}
-              animate={controls}
-              initial="hidden"
-              variants={h1Variants}
-              style={{ marginBottom: 0 }}
-            >
-              {subtitle}
-            </motion.p>
-
             <motion.h1
               ref={ref}
               animate={controls}
