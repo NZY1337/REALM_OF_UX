@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Col } from "react-bootstrap";
-import { ArrowRight } from "react-bootstrap-icons";
-import { ButtonPrimary } from "../../../components";
+import { ArrowRight, Arrow90degUp } from "react-bootstrap-icons";
+import { ButtonTertiary } from "../../../components/Buttons";
 import RenderProjectSS from "./RenderProjectSS";
 import { ModalPresentationArticle } from "../../../components";
 import { SocialShare } from "../../../components";
@@ -15,6 +15,15 @@ const RenderPreviewDevicesProject = ({ project }) => {
   const { desktop, mobile, tablet } = project;
   const projectsDesktopSS = [...desktop];
   const projectScreenShots = [...mobile, ...tablet];
+
+  const style = {
+    background: `linear-gradient(
+    358deg,
+    #093e6340 -76.6%,
+    rgb(64 219 255 / 0%) 64.79%
+  )`,
+    borderRadius: "5px",
+  };
 
   const renderDesktopView = () => {
     return projectsDesktopSS.map((project, index) => (
@@ -30,15 +39,19 @@ const RenderPreviewDevicesProject = ({ project }) => {
 
   return (
     <>
-      <Col lg="12" className="d-flex flex-column align-items-center">
+      <Col
+        lg="12"
+        className="d-flex flex-column align-items-center"
+        style={style}
+      >
         {renderDesktopView()}
 
         <div className="d-flex align-items-center justify-content-between w-100 my-4">
           <SocialShare url="https://google.com" />
 
-          <ButtonPrimary onClick={handleShow}>
-            View More <ArrowRight />
-          </ButtonPrimary>
+          <ButtonTertiary fs="18" onClick={handleShow}>
+            View More <Arrow90degUp />
+          </ButtonTertiary>
         </div>
       </Col>
 

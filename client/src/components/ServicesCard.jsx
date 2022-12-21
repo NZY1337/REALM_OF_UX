@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import ServicesCardWrapper from "../assets/wrappers/Home/ServicesCardWrapper";
 import { ArrowRight } from "react-bootstrap-icons";
 import { ButtonTertiary } from "./Buttons";
@@ -21,6 +21,6 @@ const ServicesCard = ({ svg, title, description }) => {
 
 ServicesCard.propTypes = {
   svg: PropTypes.string.isRequired,
-}
+};
 
 export default ServicesCard;

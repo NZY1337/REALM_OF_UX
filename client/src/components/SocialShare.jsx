@@ -13,13 +13,13 @@ const SocialShare = ({ url }) => {
       <div className="social">
         <p className="mb-0">share</p>
 
-        <div className="social-icons ms-3">
+        <div className="social-icons ms-2">
           <FacebookShareButton url={url} quote="asd">
-            <FacebookIcon size={40} />
+            <FacebookIcon size={30} />
           </FacebookShareButton>
 
           <FacebookMessengerShareButton url={url} quote="asd">
-            <FacebookMessengerIcon size={40} />
+            <FacebookMessengerIcon size={30} />
           </FacebookMessengerShareButton>
         </div>
       </div>

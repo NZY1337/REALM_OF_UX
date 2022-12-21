@@ -38,24 +38,10 @@ const SingleProject = () => {
 
   return (
     <>
-      <Container className="mt-5">
-        <Row className="my-5">
-          <PageSectionTitle
-            subtitle={!project ? error : "welcome"}
-            titleBold={
-              !project
-                ? "Couldn't fetch the project or project inexistent"
-                : "Your ultimate"
-            }
-            titleNormal={project && " guide to create social media banners"}
-          />
-        </Row>
-      </Container>
-
-      <PageSectionBanner
+      {/* <PageSectionBanner
         title={project && "A Drive Through Experience"}
         cover={!project ? warning404 : bannerCover}
-      />
+      /> */}
 
       {project && (
         <SingleProjectWrapper>

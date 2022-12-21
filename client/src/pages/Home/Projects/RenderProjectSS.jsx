@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 const RenderProjectSS = ({ project }) => {
   return (
     <img
+      async="on"
       src={project}
       alt="project visualization"
       className="img-fluid w-100"

@@ -14,7 +14,7 @@ const BlgoDescriptionWrapper = styled.div`
 
     span {
       color: var(--text-color-white);
-      font-weight: 300;
+      font-weight: bold;
       letter-spacing: 1px;
     }
 
