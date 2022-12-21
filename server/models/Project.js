@@ -1,12 +1,19 @@
 import mongoose from "mongoose";
 
 const ProjectSchema = new mongoose.Schema({
+  content: {
+    type: String,
+    required: [true, "Please provide content"],
+    minlength: 10,
+  },
+
   name: {
     type: String,
     required: [true, "Please provide name"],
     minlength: 3,
     trim: true,
   },
+
   category: {
     type: String,
     required: [true, "Please provide category"],

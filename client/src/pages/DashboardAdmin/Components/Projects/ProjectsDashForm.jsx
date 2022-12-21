@@ -31,7 +31,7 @@ const ProjectDashForm = ({
       </h6>
       <Row>
         <Col lg="12 mb-3">
-          <TextEditor />
+          <TextEditor readOnly={false} />
         </Col>
 
         <Col lg="6">

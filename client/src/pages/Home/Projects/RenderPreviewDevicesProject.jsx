@@ -66,13 +66,11 @@ const RenderPreviewDevicesProject = ({ project }) => {
         {renderProjectSS()}
       </ModalPresentationArticle>
 
-      <Col lg="8" className="my-4">
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum ea
-          earum aspernatur explicabo voluptates, libero cupiditate harum velit
-          nulla, autem labore in doloremque magnam deserunt porro. Voluptas vel
-          minima autem!
-        </p>
+      <Col lg="8" className="my-4 project-description">
+        <p
+          className="mb-0"
+          dangerouslySetInnerHTML={{ __html: project.content }}
+        ></p>
       </Col>
     </>
   );

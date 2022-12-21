@@ -4,10 +4,10 @@ import { removeFile } from "../utils/index.js";
 
 class ProjectController {
   async addProject(req, res, next) {
-    const { name, category, desktop, tablet, mobile } = req.body;
+    const { name, category, desktop, tablet, mobile, content } = req.body;
 
     try {
-      if (!name || !category || !desktop || !desktop || !mobile) {
+      if (!name || !category || !desktop || !desktop || !mobile || !content) {
         next({ message: "Please provide all values", statusCode: 400 });
         return;
       }
@@ -18,6 +18,7 @@ class ProjectController {
         desktop,
         tablet,
         mobile,
+        content,
       });
 
       res.status(201).json({ project });

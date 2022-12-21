@@ -24,6 +24,12 @@ const SingleProjectWrapper = styled.div`
     }
   }
 
+  .project-description {
+    p {
+      margin-bottom: 0 !important;
+    }
+  }
+
   .comments-section {
     display: flex;
     border-bottom: 1px solid lightgray;
