@@ -1,7 +1,7 @@
 import React from "react";
 import BannerWrapper from "../../../assets/wrappers/Home/BannerWrapper";
 import { Arrow90degDown } from "react-bootstrap-icons";
-import abstractVideo from "../../../assets/videos/video.mp4";
+import abstractVideo from "../../../assets/videos/video2.mp4";
 import { useTranslateContext } from "../../../utils/contexts/translate/translateContext";
 
 const Banner = () => {
