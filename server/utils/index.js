@@ -1,5 +1,4 @@
 import fs from "fs";
-console.log(fs);
 
 const removeFile = (postTitle) => {
   const deletePath = `public/uploads/${postTitle}`;

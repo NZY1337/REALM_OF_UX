@@ -7,17 +7,21 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import ProjectsDashFormGroup from "../../../../utils/helpers/react/FormGroup";
-
+import TextEditor from "../../../../components/TextEditor/TextEditor";
 
 const ProjectDashForm = ({
   project,
   handleCreateProject,
   handleSubmitProject,
 }) => {
-
   const { name, category, desktop, tablet, mobile } = project;
 
-  const disableSubmitBtn = name === '' || category === "" || desktop === "" || tablet === "" || mobile === "";
+  const disableSubmitBtn =
+    name === "" ||
+    category === "" ||
+    desktop === "" ||
+    tablet === "" ||
+    mobile === "";
   const disableFileUpload = name === "";
 
   return (
@@ -26,22 +30,40 @@ const ProjectDashForm = ({
         Add Project
       </h6>
       <Row>
+        <Col lg="12 mb-3">
+          <TextEditor />
+        </Col>
+
         <Col lg="6">
-          <ProjectsDashFormGroup label="Project's Name" placeholder="Enter the project name" type="text" name="name" size="sm"
-            value={name} 
+          <ProjectsDashFormGroup
+            label="Project's Name"
+            placeholder="Enter the project name"
+            type="text"
+            name="name"
+            size="sm"
+            value={name}
             onHandleChange={handleCreateProject}
           />
         </Col>
 
         <Col lg="6">
-          <ProjectsDashFormGroup label="Project's Category" placeholder="Enter the project category" type="text" name="category" size="sm"
-            value={category} 
+          <ProjectsDashFormGroup
+            label="Project's Category"
+            placeholder="Enter the project category"
+            type="text"
+            name="category"
+            size="sm"
+            value={category}
             onHandleChange={handleCreateProject}
           />
         </Col>
-   
+
         <Col lg="6">
-          <ProjectsDashFormGroup label="Desktop Version" type="file" name="desktop" size="sm"
+          <ProjectsDashFormGroup
+            label="Desktop Version"
+            type="file"
+            name="desktop"
+            size="sm"
             onHandleChange={handleCreateProject}
             accept=".jpeg, .png, .jpg"
             multiple
@@ -50,16 +72,23 @@ const ProjectDashForm = ({
         </Col>
 
         <Col lg="6">
-          <ProjectsDashFormGroup label="Tablet Version" type="file" name="tablet" size="sm"
+          <ProjectsDashFormGroup
+            label="Tablet Version"
+            type="file"
+            name="tablet"
+            size="sm"
             onHandleChange={handleCreateProject}
             accept=".jpeg, .png, .jpg"
             multiple
             disableFileUpload={disableFileUpload}
           />
-      
         </Col>
         <Col lg="6">
-          <ProjectsDashFormGroup label="Mobile Version" type="file" name="mobile" size="sm"
+          <ProjectsDashFormGroup
+            label="Mobile Version"
+            type="file"
+            name="mobile"
+            size="sm"
             onHandleChange={handleCreateProject}
             accept=".jpeg, .png, .jpg"
             multiple

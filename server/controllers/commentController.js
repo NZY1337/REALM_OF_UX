@@ -20,7 +20,6 @@ class CommentController {
 
       res.status(201).json({ userComment });
     } catch (err) {
-      console.log(err);
       next(err);
     }
   }

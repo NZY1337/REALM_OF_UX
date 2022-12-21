@@ -3,18 +3,23 @@ import {
   GET_PROJECTS,
   GET_PROJECT,
   ADD_PROJECT,
+  ADD_PROJECT_CONTENT,
   DELETE_PROJECT,
   SEARCH_KEYWORD,
   MATCHED_PROJECT,
   TRIGGER_MODAL,
-  CLEAR_VALUES
+  CLEAR_VALUES,
 } from "./actions";
 import { uploadImageToPublicFolder, notify } from "../../helpers";
-import { fetchSingleProject, addProject, fetchAllProjects, deleteProject, } from "../../services/services";
+import {
+  fetchSingleProject,
+  addProject,
+  fetchAllProjects,
+  deleteProject,
+} from "../../services/services";
 import { useNavigate } from "react-router-dom";
 import { initialState } from "./utils";
 import reducer from "./reducer";
-
 
 const ProjectContext = React.createContext();
 
@@ -22,7 +27,7 @@ const ProjectProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const navigate = useNavigate();
 
-  const handleTriggerModal =  (showModal) => {
+  const handleTriggerModal = (showModal) => {
     dispatch({
       type: TRIGGER_MODAL,
       payload: { showModal },
@@ -68,7 +73,6 @@ const ProjectProvider = ({ children }) => {
   // fetch single project
   const fetchProject = async (projectId) => {
     const { singleProject, error } = await fetchSingleProject(projectId);
-    console.log(error)
     dispatch({
       type: GET_PROJECT,
       payload: { project: singleProject, error },
@@ -102,17 +106,26 @@ const ProjectProvider = ({ children }) => {
     }
   };
 
+  const handleCreateProjectContent = (content) => {
+    dispatch({
+      type: ADD_PROJECT_CONTENT,
+      payload: { content },
+    });
+  };
+
   // get project data
   const handleCreateProject = async (e) => {
-    console.log(e.target.files)
     if (e.target.files) {
-        for (let file of e.target.files) {
-            const { projectSS, error } = await uploadImageToPublicFolder(file, state.project.name);
-            dispatch({
-                type: ADD_PROJECT.IMAGE,
-                payload: { targetImage: e.target, projectSS },
-            });
-        }
+      for (let file of e.target.files) {
+        const { projectSS, error } = await uploadImageToPublicFolder(
+          file,
+          state.project.name
+        );
+        dispatch({
+          type: ADD_PROJECT.IMAGE,
+          payload: { targetImage: e.target, projectSS },
+        });
+      }
     } else {
       dispatch({
         type: ADD_PROJECT.TEXT,
@@ -125,7 +138,7 @@ const ProjectProvider = ({ children }) => {
     dispatch({
       type: CLEAR_VALUES,
     });
-  }
+  };
 
   return (
     <ProjectContext.Provider
@@ -139,7 +152,8 @@ const ProjectProvider = ({ children }) => {
         handleMatchedProject,
         handleTriggerModal,
         handleDeleteProject,
-        clearValues
+        clearValues,
+        handleCreateProjectContent,
       }}
     >
       {children}

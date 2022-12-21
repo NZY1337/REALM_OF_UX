@@ -33,7 +33,6 @@ const UserSchema = new mongoose.Schema({
 UserSchema.pre("save", async function () {
   const salt = await genSalt(10);
   this.password = await hash(this.password, salt);
-  console.log(this.password);
 });
 
 UserSchema.methods.createJWT = function () {

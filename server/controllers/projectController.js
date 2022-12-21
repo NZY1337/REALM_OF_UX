@@ -5,7 +5,7 @@ import { removeFile } from "../utils/index.js";
 class ProjectController {
   async addProject(req, res, next) {
     const { name, category, desktop, tablet, mobile } = req.body;
-    
+
     try {
       if (!name || !category || !desktop || !desktop || !mobile) {
         next({ message: "Please provide all values", statusCode: 400 });
@@ -54,16 +54,15 @@ class ProjectController {
         _id: projectId,
       });
 
-    const comments = await Comment.deleteMany({ projectId });
+      const comments = await Comment.deleteMany({ projectId });
 
-    removeFile(project.name)
- 
-    res.status(200).json({ project, comments })
+      removeFile(project.name);
+
+      res.status(200).json({ project, comments });
     } catch (error) {
-      console.log(error);
       next(error);
     }
   }
 }
- 
+
 export { ProjectController };

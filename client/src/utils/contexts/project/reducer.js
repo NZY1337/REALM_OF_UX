@@ -1,13 +1,14 @@
 import {
   GET_PROJECTS,
   ADD_PROJECT,
+  ADD_PROJECT_CONTENT,
   DELETE_PROJECT,
   GET_PROJECT,
   EDIT_PROJECT,
   SEARCH_KEYWORD,
   MATCHED_PROJECT,
   TRIGGER_MODAL,
-  CLEAR_VALUES
+  CLEAR_VALUES,
 } from "./actions";
 
 import { initialState } from "./utils";
@@ -15,11 +16,11 @@ import { initialState } from "./utils";
 const reducer = (state, action) => {
   switch (action.type) {
     case CLEAR_VALUES:
-      return { 
-        ...state, 
+      return {
+        ...state,
         project: initialState.project, // do not clone the state: do not add _id, v.
-        searchKeyword: ""
-      }
+        searchKeyword: "",
+      };
 
     case TRIGGER_MODAL:
       return { ...state, showModal: action.payload.showModal };
@@ -52,6 +53,10 @@ const reducer = (state, action) => {
         ),
       };
 
+    case ADD_PROJECT_CONTENT:
+      const { content } = action.payload;
+      return { ...state, project: { ...state.project, content } };
+
     case ADD_PROJECT.TEXT:
       const { targetText } = action.payload; // e.target
       return {
@@ -63,7 +68,10 @@ const reducer = (state, action) => {
       const { targetImage, projectSS } = action.payload; // e.target
       return {
         ...state,
-        project: { ...state.project, [targetImage.name]: [...state.project[targetImage.name], projectSS] },
+        project: {
+          ...state.project,
+          [targetImage.name]: [...state.project[targetImage.name], projectSS],
+        },
       };
 
     case GET_PROJECT:

@@ -27,6 +27,13 @@ const DashboardWrapper = styled.div`
     }
 
     &-projects {
+      // quill
+      .quill {
+        .ql-editor {
+          height: 200px;
+        }
+      }
+
       &-filtered {
         div {
           a:hover {

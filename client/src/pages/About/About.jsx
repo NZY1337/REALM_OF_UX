@@ -17,8 +17,6 @@ const About = () => {
     aboutMe: { pageTitleSection, descriptionSection, skills },
   } = useTranslateContext();
 
-  console.log(skills);
-
   return (
     <AboutWrapper>
       <Container className="pt-5 pb-0 py-lg-5 container">

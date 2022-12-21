@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Col } from "react-bootstrap";
-import { ArrowRight, Arrow90degUp } from "react-bootstrap-icons";
+import { Arrow90degUp } from "react-bootstrap-icons";
 import { ButtonTertiary } from "../../../components/Buttons";
 import RenderProjectSS from "./RenderProjectSS";
 import { ModalPresentationArticle } from "../../../components";
