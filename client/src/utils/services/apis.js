@@ -1,7 +1,14 @@
 // projects
 export const GET_PROJECTS_ROUTE = "/api/v1/project/all-projects";
+
 export const ADD_PROJECT_ROUTE = "/api/v1/project/project";
-export const DELETE_PROJECT_ROUTE = "/api/v1/project/delete-project";
+
+export const EDIT_PROJECT_ROUTE = (projectId) =>
+  `/api/v1/project/edit-project/${projectId}`;
+
+export const DELETE_PROJECT_ROUTE = (projectId) =>
+  `/api/v1/project/delete-project/${projectId}`;
+
 export const GET_PROJECT_ROUTE = (projectId) =>
   `/api/v1/project/get-project/${projectId}`;
 

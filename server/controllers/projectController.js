@@ -28,6 +28,36 @@ class ProjectController {
     }
   }
 
+  async editProject(req, res, next) {
+    try {
+      const { name, category, desktop, tablet, mobile, content } = req.body;
+      const { projectId } = req.params;
+
+      if (!name || !category || !desktop || !desktop || !mobile || !content) {
+        next({ message: "Please provide all values", statusCode: 400 });
+        return;
+      }
+
+      const updatedProject = await Project.findByIdAndUpdate(
+        { _id: projectId },
+        {
+          name,
+          category,
+          desktop,
+          tablet,
+          mobile,
+          content,
+        },
+        { new: true }
+      );
+
+      res.status(200).json({ updatedProject });
+    } catch (err) {
+      console.log(err);
+      next(err);
+    }
+  }
+
   async getProjects(req, res, next) {
     try {
       const projects = await Project.find({});

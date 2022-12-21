@@ -20,7 +20,7 @@ const SingleProject = () => {
     return () => {
       clearValues();
     };
-  }, []);
+  }, [projectId]);
 
   const renderCategory = () => {
     return (

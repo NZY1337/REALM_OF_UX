@@ -8,8 +8,8 @@ import {
   DELETE_COMMENT_ROUTE,
   ADD_PROJECT_ROUTE,
   DELETE_PROJECT_ROUTE,
+  EDIT_PROJECT_ROUTE,
 } from "./apis";
-
 
 /***********/
 // COMMENTS
@@ -74,6 +74,20 @@ export const fetchSingleProject = async (projectId) => {
   return { singleProject, error };
 };
 
+export const editProject = async (projectId, updatedProject) => {
+  let editedProject, error;
+  try {
+    const {
+      data: { project },
+    } = await axios.put(`${EDIT_PROJECT_ROUTE(projectId)}`, updatedProject);
+    editedProject = project;
+  } catch (err) {
+    error = err.response.data.msg;
+  }
+
+  return { editedProject, error };
+};
+
 export const addProject = async (prjkt) => {
   let newProject, error;
   try {
@@ -107,7 +121,7 @@ export const deleteProject = async (projectId) => {
   try {
     const {
       data: { project },
-    } = await axios.delete(`${DELETE_PROJECT_ROUTE}/${projectId}`);
+    } = await axios.delete(`${DELETE_PROJECT_ROUTE(projectId)}`);
     deletedProject = project;
   } catch (err) {
     error = err.response.data.msg;
