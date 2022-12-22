@@ -25,6 +25,10 @@ const ProjectsDash = () => {
     handleTriggerModal,
     showModal,
     handleDeleteProject,
+    handleCreateProjectContent,
+    fetchProject,
+    toggleEdit,
+    handleToggleEdit,
   } = useProjectContext();
 
   return (
@@ -36,7 +40,7 @@ const ProjectsDash = () => {
         <DashContainer>
           <Row>
             <PageSectionTitle
-              subtitle="weclome to our realm of templates"
+              subtitle="welcome to our realm of templates"
               titleBold="Upload "
               titleNormal="your project here!"
             />
@@ -49,6 +53,8 @@ const ProjectsDash = () => {
                   project={project}
                   handleCreateProject={handleCreateProject}
                   handleSubmitProject={handleSubmitProject}
+                  handleCreateProjectContent={handleCreateProjectContent}
+                  toggleEdit={toggleEdit}
                 />
               </div>
             </Col>
@@ -63,6 +69,8 @@ const ProjectsDash = () => {
                   showModal={showModal}
                   handleMatchedProject={handleMatchedProject}
                   handleDeleteProject={handleDeleteProject}
+                  fetchProject={fetchProject}
+                  handleToggleEdit={handleToggleEdit}
                 />
               </div>
             </Col>

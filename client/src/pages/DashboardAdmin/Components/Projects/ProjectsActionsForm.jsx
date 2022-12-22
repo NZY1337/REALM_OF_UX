@@ -16,6 +16,8 @@ const ProjectActionsForm = ({
   handleTriggerModal,
   showModal,
   handleDeleteProject,
+  fetchProject,
+  handleToggleEdit,
 }) => {
   useEffect(() => {
     handleMatchedProject();
@@ -30,9 +32,14 @@ const ProjectActionsForm = ({
 
         <Row>
           <Col lg="6">
-            <ProjectsDashFormGroup label="Search Project by title" type="text" name="name" placeholder="Enter the project's name"
-                value={searchKeyword}
-                onHandleChange={handleSearchKeyword}/>
+            <ProjectsDashFormGroup
+              label="Search Project by title"
+              type="text"
+              name="name"
+              placeholder="Enter the project's name"
+              value={searchKeyword}
+              onHandleChange={handleSearchKeyword}
+            />
           </Col>
         </Row>
       </Form>
@@ -43,6 +50,8 @@ const ProjectActionsForm = ({
         handleTriggerModal={handleTriggerModal}
         showModal={showModal}
         handleDeleteProject={handleDeleteProject}
+        fetchProject={fetchProject}
+        handleToggleEdit={handleToggleEdit}
       />
     </>
   );

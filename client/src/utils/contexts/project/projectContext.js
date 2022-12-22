@@ -9,11 +9,12 @@ import {
   MATCHED_PROJECT,
   TRIGGER_MODAL,
   CLEAR_VALUES,
+  TOGGLE_EDIT,
 } from "./actions";
 import { uploadImageToPublicFolder, notify } from "../../helpers";
 import {
   fetchSingleProject,
-  addProject,
+  addOrEditProject,
   fetchAllProjects,
   deleteProject,
 } from "../../services/services";
@@ -26,6 +27,13 @@ const ProjectContext = React.createContext();
 const ProjectProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const navigate = useNavigate();
+
+  const handleToggleEdit = (toggle) => {
+    dispatch({
+      type: TOGGLE_EDIT,
+      payload: { toggleEdit: toggle },
+    });
+  };
 
   const handleTriggerModal = (showModal) => {
     dispatch({
@@ -91,7 +99,12 @@ const ProjectProvider = ({ children }) => {
   // submit single project
   const handleSubmitProject = async (e) => {
     e.preventDefault();
-    const { newProject, error } = await addProject(state.project);
+    const { newProject, error } = await addOrEditProject(
+      state.project._id,
+      state.toggleEdit,
+      state.project
+    );
+
     if (newProject && newProject._id) {
       notify(
         "success",
@@ -104,6 +117,8 @@ const ProjectProvider = ({ children }) => {
     if (error) {
       notify("warning", error);
     }
+
+    handleToggleEdit(false);
   };
 
   const handleCreateProjectContent = (content) => {
@@ -154,6 +169,7 @@ const ProjectProvider = ({ children }) => {
         handleDeleteProject,
         clearValues,
         handleCreateProjectContent,
+        handleToggleEdit,
       }}
     >
       {children}

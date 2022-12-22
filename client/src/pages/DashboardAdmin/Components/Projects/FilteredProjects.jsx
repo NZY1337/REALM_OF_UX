@@ -12,12 +12,14 @@ const FilteredProjects = ({
   filteredProjects,
   searchKeyword,
   handleDeleteProject,
+  fetchProject,
+  handleToggleEdit,
 }) => {
   const { handleTriggerModal, modal } = useModalContext();
   const [projectIdCB, setProjectIdCB] = useState(null);
 
-  const onHandleProjectCb = (pId) => {
-    setProjectIdCB(pId);
+  const onHandleProjectCb = (id) => {
+    setProjectIdCB(id);
   };
 
   const renderFilteredProjects = () => {
@@ -36,6 +38,8 @@ const FilteredProjects = ({
             handleTriggerModal={handleTriggerModal}
             projectId={project._id}
             onHandleProjectCb={onHandleProjectCb}
+            fetchProject={fetchProject}
+            handleToggleEdit={handleToggleEdit}
           />
         </div>
       );

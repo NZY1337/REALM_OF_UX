@@ -9,8 +9,6 @@ function TextEditor({ readOnly }) {
     handleCreateProjectContent,
   } = useProjectContext();
 
-  console.log(content);
-
   return (
     <ReactQuill
       readOnly={readOnly}

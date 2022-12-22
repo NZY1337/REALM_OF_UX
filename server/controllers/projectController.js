@@ -38,7 +38,7 @@ class ProjectController {
         return;
       }
 
-      const updatedProject = await Project.findByIdAndUpdate(
+      const project = await Project.findByIdAndUpdate(
         { _id: projectId },
         {
           name,
@@ -51,7 +51,8 @@ class ProjectController {
         { new: true }
       );
 
-      res.status(200).json({ updatedProject });
+      console.log(project);
+      res.status(200).json({ project });
     } catch (err) {
       console.log(err);
       next(err);

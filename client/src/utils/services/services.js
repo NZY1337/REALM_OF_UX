@@ -74,27 +74,22 @@ export const fetchSingleProject = async (projectId) => {
   return { singleProject, error };
 };
 
-export const editProject = async (projectId, updatedProject) => {
-  let editedProject, error;
-  try {
-    const {
-      data: { project },
-    } = await axios.put(`${EDIT_PROJECT_ROUTE(projectId)}`, updatedProject);
-    editedProject = project;
-  } catch (err) {
-    error = err.response.data.msg;
-  }
-
-  return { editedProject, error };
-};
-
-export const addProject = async (prjkt) => {
+export const addOrEditProject = async (projectId, toggleEdit, prjkt) => {
   let newProject, error;
+
   try {
-    const {
-      data: { project },
-    } = await axios.post(ADD_PROJECT_ROUTE, prjkt);
-    newProject = project;
+    if (toggleEdit) {
+      const {
+        data: { project },
+      } = await axios.put(`${EDIT_PROJECT_ROUTE(projectId)}`, prjkt);
+      newProject = project;
+      console.log(project);
+    } else {
+      const {
+        data: { project },
+      } = await axios.post(ADD_PROJECT_ROUTE, prjkt);
+      newProject = project;
+    }
   } catch (err) {
     error = err.response.data.msg;
   }

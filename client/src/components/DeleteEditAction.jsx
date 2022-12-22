@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { Trash, Pen, ThreeDotsVertical } from "react-bootstrap-icons";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
@@ -11,7 +11,10 @@ const DeleteEditAction = ({
   handleTriggerModal,
   projectId,
   onHandleProjectCb,
+  fetchProject,
+  handleToggleEdit,
 }) => {
+  console.log(index);
   return (
     <DeleteEditWrapper>
       <DropdownButton
@@ -24,7 +27,6 @@ const DeleteEditAction = ({
         title={<ThreeDotsVertical />}
       >
         <Dropdown.Item
-          eventKey={index}
           as="span"
           onClick={() => {
             handleTriggerModal(true);
@@ -34,7 +36,13 @@ const DeleteEditAction = ({
           <Trash />
           <span className="ms-2">Delete</span>
         </Dropdown.Item>
-        <Dropdown.Item eventKey={index} as="span">
+        <Dropdown.Item
+          as="span"
+          onClick={() => {
+            fetchProject(projectId);
+            handleToggleEdit(true);
+          }}
+        >
           <Pen className="text-tertiary" />
           <span className="ms-2">Edit</span>
         </Dropdown.Item>
@@ -44,10 +52,10 @@ const DeleteEditAction = ({
 };
 
 DeleteEditAction.propTypes = {
-  index: PropTypes.bool.isRequired,
+  index: PropTypes.number.isRequired,
   handleTriggerModal: PropTypes.func.isRequired,
   projectId: PropTypes.string.isRequired,
   onHandleProjectCb: PropTypes.func.isRequired,
-}
+};
 
 export default DeleteEditAction;

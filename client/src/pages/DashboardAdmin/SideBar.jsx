@@ -23,7 +23,7 @@ const SideBar = () => {
     <SideBarWrapper cover={cover}>
       <div className="sidebar">
         <Link className="logo mb-3 d-block" to="/">
-          <img src={logo} />
+          <img alt="logo" src={logo} />
         </Link>
         <Navbar expand="md">
           <Navbar.Toggle aria-controls="navbarScroll" />

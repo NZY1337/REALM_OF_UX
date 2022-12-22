@@ -12,4 +12,5 @@ export const initialState = {
   filteredProjects: [],
   searchKeyword: "",
   showModal: false,
+  toggleEdit: false,
 };

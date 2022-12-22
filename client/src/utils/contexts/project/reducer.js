@@ -4,11 +4,11 @@ import {
   ADD_PROJECT_CONTENT,
   DELETE_PROJECT,
   GET_PROJECT,
-  EDIT_PROJECT,
   SEARCH_KEYWORD,
   MATCHED_PROJECT,
   TRIGGER_MODAL,
   CLEAR_VALUES,
+  TOGGLE_EDIT,
 } from "./actions";
 
 import { initialState } from "./utils";
@@ -24,6 +24,11 @@ const reducer = (state, action) => {
 
     case TRIGGER_MODAL:
       return { ...state, showModal: action.payload.showModal };
+
+    case TOGGLE_EDIT: {
+      console.log(action.payload.toggleEdit);
+      return { ...state, toggleEdit: action.payload.toggleEdit };
+    }
 
     case MATCHED_PROJECT:
       return {
