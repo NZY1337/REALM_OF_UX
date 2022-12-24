@@ -12,15 +12,15 @@ import {
   TOGGLE_EDIT,
 } from "./actions";
 import { uploadImageToPublicFolder, notify } from "../../helpers";
-import {
-  fetchSingleProject,
-  addOrEditProject,
-  fetchAllProjects,
-  deleteProject,
-} from "../../services/services";
 import { useNavigate } from "react-router-dom";
 import { initialState } from "./utils";
 import reducer from "./reducer";
+import {
+  fetchSingleProject,
+  fetchAllProjects,
+  addOrEditProject,
+  deleteProject,
+} from "../../services/projects";
 
 const ProjectContext = React.createContext();
 
@@ -43,8 +43,7 @@ const ProjectProvider = ({ children }) => {
   };
 
   const handleMatchedProject = async () => {
-    const { allProjects, error } = await fetchAllProjects();
-
+    const { projects: allProjects, msg: error } = await fetchAllProjects();
     dispatch({
       type: MATCHED_PROJECT,
       payload: { projects: allProjects, error },
@@ -59,7 +58,9 @@ const ProjectProvider = ({ children }) => {
   };
 
   const handleDeleteProject = async (projectId) => {
-    const { deletedProject, error } = await deleteProject(projectId);
+    const { project: deletedProject, msg: error } = await deleteProject(
+      projectId
+    );
 
     if (!!deletedProject) {
       dispatch({
@@ -80,7 +81,10 @@ const ProjectProvider = ({ children }) => {
 
   // fetch single project
   const fetchProject = async (projectId) => {
-    const { singleProject, error } = await fetchSingleProject(projectId);
+    const { project: singleProject, msg: error } = await fetchSingleProject(
+      projectId
+    );
+
     dispatch({
       type: GET_PROJECT,
       payload: { project: singleProject, error },
@@ -89,7 +93,9 @@ const ProjectProvider = ({ children }) => {
 
   // fetch all projects
   const fetchProjects = async () => {
-    const { allProjects, error } = await fetchAllProjects();
+    // const { allProjects, error } = await fetchAllProjects();
+    const { projects: allProjects, msg: error } = await fetchAllProjects();
+
     dispatch({
       type: GET_PROJECTS,
       payload: { projects: allProjects, error },
@@ -99,19 +105,20 @@ const ProjectProvider = ({ children }) => {
   // submit single project
   const handleSubmitProject = async (e) => {
     e.preventDefault();
-    const { newProject, error } = await addOrEditProject(
+
+    const { project, msg: error } = await addOrEditProject(
       state.project._id,
       state.toggleEdit,
       state.project
     );
 
-    if (newProject && newProject._id) {
+    if (project && project._id) {
       notify(
         "success",
         "Project Created Successfully. You are now redirected to the project's page..."
       );
       setTimeout(() => {
-        navigate(`/projects/${newProject._id}`);
+        navigate(`/projects/${project._id}`);
       }, 4200);
     }
     if (error) {

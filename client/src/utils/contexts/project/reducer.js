@@ -26,7 +26,6 @@ const reducer = (state, action) => {
       return { ...state, showModal: action.payload.showModal };
 
     case TOGGLE_EDIT: {
-      console.log(action.payload.toggleEdit);
       return { ...state, toggleEdit: action.payload.toggleEdit };
     }
 

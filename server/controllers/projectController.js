@@ -51,7 +51,6 @@ class ProjectController {
         { new: true }
       );
 
-      console.log(project);
       res.status(200).json({ project });
     } catch (err) {
       console.log(err);
@@ -88,7 +87,7 @@ class ProjectController {
 
       const comments = await Comment.deleteMany({ projectId });
 
-      removeFile(project.name);
+      removeFile(`public/uploads/${project.name}`);
 
       res.status(200).json({ project, comments });
     } catch (error) {
