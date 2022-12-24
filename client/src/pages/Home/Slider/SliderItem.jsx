@@ -10,6 +10,18 @@ const squareVariants = {
   visible: {
     opacity: 1,
     // scale: 1.01,
+    color: "black",
+    transition: { duration: 0.5 },
+    x: [0, 10, 0],
+  },
+  hidden: { opacity: 0 },
+};
+
+const h4Variants = {
+  visible: {
+    opacity: 1,
+    // scale: 1.01,
+    color: "#184843",
     transition: { duration: 0.5 },
     x: [0, 10, 0],
   },
@@ -19,6 +31,7 @@ const squareVariants = {
 const pVariants = {
   visible: {
     opacity: 1,
+    color: "lightgray",
     // scale: 1.01,
     transition: { duration: 0.5 },
     x: [0, 30, 0],
@@ -48,18 +61,27 @@ const SliderItem = ({ subtitle, title, description }) => {
 
   return (
     <div className="container">
-      <div className="row justify-content-center">
-        <div className="col-lg-7 col-12">
-          <div className="carousel-titles text-center">
+      <div className="row flex-column justify-content-center align-items-start">
+        <div className="col-lg-6 col-12 mt-5 pt-5">
+          <div className="carousel-titles">
             <motion.h1
               ref={ref}
               animate={controls}
               initial="hidden"
               variants={squareVariants}
-              className="square"
+              className="square mb-2"
             >
               {title}
             </motion.h1>
+
+            <motion.h4
+              variants={h4Variants}
+              animate={controls}
+              ref={ref}
+              className="mb-5"
+            >
+              Fight the fog hidden in front of your eyes!
+            </motion.h4>
 
             <motion.p
               ref={ref}
@@ -72,7 +94,7 @@ const SliderItem = ({ subtitle, title, description }) => {
             </motion.p>
           </div>
 
-          <div className="carousel-actions text-center">
+          <div className="carousel-actions">
             <motion.div
               ref={ref}
               animate={controls}
@@ -80,16 +102,28 @@ const SliderItem = ({ subtitle, title, description }) => {
               variants={buttonVariants}
               className="square"
             >
-              <ButtonPrimary
-                href="https://google.com"
-                className="mt-4"
-                target="_blank"
-              >
+              <ButtonPrimary href="https://google.com" target="_blank">
                 <Link to="/asd">
                   Discover More <ArrowRight />
                 </Link>
               </ButtonPrimary>
             </motion.div>
+          </div>
+        </div>
+        <div className="col-lg-4 col-12 d-flex align-self-end">
+          <div className="hero-small-description">
+            <p>
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt
+              mollitia et voluptas nam ipsum commodi animi architecto, unde
+              accusantium nostrum suscipit incidunt in vel illum itaque ab quo?
+              Eveniet, incidunt.
+            </p>
+
+            <div className="d-flex ">
+              <span>active</span>
+              <span>passion</span>
+              <span>happiness</span>
+            </div>
           </div>
         </div>
       </div>

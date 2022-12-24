@@ -3,11 +3,7 @@ import styled from "styled-components";
 const SideBarWrapper = styled.div`
   .sidebar {
     padding: 2rem;
-    background: linear-gradient(
-        0deg,
-        rgb(0 0 0 / 30%),
-        rgba(255, 155, 250, 0.3)
-      ),
+    background: linear-gradient(0deg, rgb(0 0 0 / 70%), rgba(155, 50, 250, 0.3)),
       url(${(props) => props.cover});
 
     background-position: center center;
@@ -21,7 +17,7 @@ const SideBarWrapper = styled.div`
     .navbar {
       &-nav {
         a.active {
-          color: orange;
+          color: #fff;
         }
 
         a {

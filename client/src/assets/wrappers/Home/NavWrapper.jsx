@@ -9,12 +9,10 @@ const NavWrapper = styled.div`
 
   .navbar-toggler {
     border: none;
-    color: var(--text-color-white);
+    color: black;
     padding: unset;
     font-size: unset;
-    background: linear-gradient(90deg, #f9f9f9 19.09%, #bc5318 98.42%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    
     letter-spacing: 1px;
 
     &:focus {
@@ -43,7 +41,7 @@ const NavWrapper = styled.div`
 
   .navbar {
     .login {
-      color: var(--text-color-white);
+      color: black;
       display: flex;
       align-items: center;
 

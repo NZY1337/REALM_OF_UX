@@ -5,7 +5,7 @@ export const aboutMeDict = {
       subtitle: "some insights about what I do",
     },
     descriptionSection: {
-      title: "Hy. I'm Andrei Mocanu!",
+      title: "Realm Of UX",
       subtitle: "I'm a fullstack software engineer working at Cognizant.",
       description:
         "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem similique iure culpa maiores amet illum nihil soluta nostrum in, dignissimos aspernatur inventore neque! Voluptatem repudiandae in rerum natus, consequuntur ipsam.",

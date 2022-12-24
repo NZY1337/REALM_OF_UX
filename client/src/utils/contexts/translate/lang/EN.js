@@ -26,7 +26,7 @@ const initialStateEN = {
     },
     projects: { ...homeProjectsDict.EN },
     banner: {
-      ...bannerHomeDict.RO,
+      ...bannerHomeDict.EN,
     },
     contactUs: {
       ...contactHomeDict.EN,
