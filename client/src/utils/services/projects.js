@@ -1,4 +1,4 @@
-import { makeRequest } from ".";
+import { makeRequest } from "./utils";
 import {
   GET_PROJECT_ROUTE,
   EDIT_PROJECT_ROUTE,

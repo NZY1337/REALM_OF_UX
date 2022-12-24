@@ -15,7 +15,7 @@ export const GET_PROJECT_ROUTE = (projectId) =>
 //comments
 export const GET_COMMENTS_ROUTE = (projectId) =>
   `/api/v1/comment/get-comments/${projectId}`;
-export const ADD_COMENT_ROUTE = "/api/v1/comment/add-comment";
+export const ADD_COMMENT_ROUTE = "/api/v1/comment/add-comment";
 export const DELETE_COMMENT_ROUTE = "/api/v1/comment/delete-comment";
 
 // IMAGE UPLOAD

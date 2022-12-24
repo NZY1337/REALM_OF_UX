@@ -143,6 +143,12 @@ const ProjectProvider = ({ children }) => {
           file,
           state.project.name
         );
+
+        if (error) {
+          notify("warning", error);
+          return;
+        }
+
         dispatch({
           type: ADD_PROJECT.IMAGE,
           payload: { targetImage: e.target, projectSS },

@@ -1,6 +1,5 @@
 import { TYPES } from "./constants";
 import { toast } from "react-toastify";
-import { getImagePath } from "../services/services";
 import { GET_IMAGE_UPLOAD_ROUTE } from "../services/apis";
 import axios from "axios";
 

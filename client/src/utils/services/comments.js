@@ -1,13 +1,13 @@
-import { makeRequest } from ".";
+import { makeRequest } from "./utils";
 
 import {
-  ADD_COMENT_ROUTE,
+  ADD_COMMENT_ROUTE,
   GET_COMMENTS_ROUTE,
   DELETE_COMMENT_ROUTE,
 } from "./apis";
 
 export const publishComment = async (comment) => {
-  const data = await makeRequest("post", ADD_COMENT_ROUTE, comment);
+  const data = await makeRequest("post", ADD_COMMENT_ROUTE, comment);
   return data.userComment;
 };
 

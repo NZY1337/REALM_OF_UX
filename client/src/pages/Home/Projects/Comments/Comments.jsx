@@ -32,6 +32,7 @@ const ProjectComments = ({ projectId }) => {
     };
 
     const publishedComment = await publishComment(userComment);
+    console.log(publishedComment);
     notify("success", "Comment added successfully!");
     setComments([publishedComment, ...comments]);
     setComment("");
