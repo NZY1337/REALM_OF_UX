@@ -2,14 +2,16 @@ import React, { useCallback, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import RenderComments from "./RenderComments";
 import { useUserContext } from "../../../../utils/contexts/user/userContext";
+
+import AddCommentForm from "./FormComment";
+import Col from "react-bootstrap/Col";
+import { notify } from "../../../../utils/helpers";
+
 import {
   publishComment,
   getComments,
   removeComment,
-} from "../../../../utils/services/services";
-import AddCommentForm from "./FormComment";
-import Col from "react-bootstrap/Col";
-import { notify } from "../../../../utils/helpers";
+} from "../../../../utils/services/comments";
 
 const ProjectComments = ({ projectId }) => {
   const [comments, setComments] = useState([]);
@@ -29,32 +31,36 @@ const ProjectComments = ({ projectId }) => {
       projectId,
     };
 
-    const replay = await publishComment(userComment);
+    const publishedComment = await publishComment(userComment);
     notify("success", "Comment added successfully!");
-    setComments([replay, ...comments]);
+    setComments([publishedComment, ...comments]);
     setComment("");
   };
 
   const handleDeleteComment = async (commentId) => {
-    const { comment, commError } = await removeComment(commentId);
+    const { deletedComment, msg: error } = await removeComment(commentId);
 
-    if (comment) {
+    if (deletedComment) {
       const restofComments = comments.filter(
-        (comm) => comm._id !== comment._id
+        (comm) => comm._id !== deletedComment._id
       );
       setComments(restofComments);
       notify("success", "Deleted Successfully");
     }
 
-    if (commError) {
-      notify("warning", commError);
+    if (error) {
+      notify("warning", error);
     }
   };
 
   const fetchComments = useCallback(async () => {
-    const { comms, error } = await getComments(projectId);
-    setComments(comms);
-  }, [comments]);
+    const { comments, msg: error } = await getComments(projectId);
+    setComments(comments);
+
+    if (error) {
+      notify("warning", error);
+    }
+  }, [projectId]);
 
   useEffect(() => {
     fetchComments();
