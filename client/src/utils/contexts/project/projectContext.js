@@ -11,7 +11,7 @@ import {
   CLEAR_VALUES,
   TOGGLE_EDIT,
 } from "./actions";
-import { uploadImageToPublicFolder, notify } from "../../helpers";
+import { notify } from "../../helpers";
 import { useNavigate } from "react-router-dom";
 import { initialState } from "./utils";
 import reducer from "./reducer";
@@ -21,6 +21,8 @@ import {
   addOrEditProject,
   deleteProject,
 } from "../../services/projects";
+
+import { uploadImageToPublicFolder } from "../../services/image_upload";
 
 const ProjectContext = React.createContext();
 
@@ -139,14 +141,13 @@ const ProjectProvider = ({ children }) => {
   const handleCreateProject = async (e) => {
     if (e.target.files) {
       for (let file of e.target.files) {
-        const { projectSS, error } = await uploadImageToPublicFolder(
+        const { src: projectSS, msg: error } = await uploadImageToPublicFolder(
           file,
           state.project.name
         );
 
         if (error) {
           notify("warning", error);
-          return;
         }
 
         dispatch({

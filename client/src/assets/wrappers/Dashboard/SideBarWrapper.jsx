@@ -28,6 +28,7 @@ const SideBarWrapper = styled.div`
         a {
           color: #fff;
           margin-bottom: 0.5rem;
+          padding-left: 10px;
 
           &:hover {
             svg,

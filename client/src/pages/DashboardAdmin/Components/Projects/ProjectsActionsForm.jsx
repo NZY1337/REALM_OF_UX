@@ -33,7 +33,7 @@ const ProjectActionsForm = ({
         <Row>
           <Col lg="6">
             <ProjectsDashFormGroup
-              label="Search Project by title"
+              label="Search Project"
               type="text"
               name="name"
               placeholder="Enter the project's name"

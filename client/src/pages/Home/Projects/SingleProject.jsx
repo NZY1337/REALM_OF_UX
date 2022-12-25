@@ -38,11 +38,6 @@ const SingleProject = () => {
 
   return (
     <>
-      {/* <PageSectionBanner
-        title={project && "A Drive Through Experience"}
-        cover={!project ? warning404 : bannerCover}
-      /> */}
-
       {project && (
         <SingleProjectWrapper>
           <Container className="my-5">

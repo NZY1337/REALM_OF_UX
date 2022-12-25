@@ -38,14 +38,6 @@ const ProjectsDash = () => {
         <DashTitle title="Projects" />
 
         <DashContainer>
-          <Row>
-            <PageSectionTitle
-              subtitle="welcome to our realm of templates"
-              titleBold="Upload "
-              titleNormal="your project here!"
-            />
-          </Row>
-
           <Row className="dash-container-projects mt-4">
             <Col lg="6" md="12">
               <div className="dash-container-projects-wrapper">

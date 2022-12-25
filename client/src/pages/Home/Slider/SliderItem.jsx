@@ -80,7 +80,7 @@ const SliderItem = ({ subtitle, title, description }) => {
               ref={ref}
               className="mb-5"
             >
-              Enhance the productivity with the OpenAI's Superpowers
+              Enhance the productivity with OpenAI's Superpowers
             </motion.h4>
 
             <motion.p

@@ -30,6 +30,11 @@ const DashboardWrapper = styled.div`
     &-projects {
       // quill
       .quill {
+        &-toolbar {
+          border-top-left-radius: 5px;
+          border-top-right-radius: 5px;
+        }
+
         .ql-editor {
           height: 200px;
         }
