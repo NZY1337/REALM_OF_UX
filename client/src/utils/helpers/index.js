@@ -85,25 +85,3 @@ export const notify = (style, message) => {
     autoClose: 2000,
   });
 };
-
-export const uploadImageToPublicFolder = async (file, postTitle) => {
-  const formData = new FormData();
-  formData.append("image", file);
-  formData.append("location", postTitle);
-  let error, projectSS;
-
-  try {
-    const {
-      data: {
-        image: { src },
-      },
-    } = await axios.post(GET_IMAGE_UPLOAD_ROUTE, formData, {
-      headers: { "Content-Type": "multipart/form-data" },
-    });
-    projectSS = src;
-  } catch (err) {
-    projectSS = null;
-    error = err;
-  }
-  return { projectSS, error };
-};

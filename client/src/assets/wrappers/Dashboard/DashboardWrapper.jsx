@@ -56,6 +56,7 @@ const DashboardWrapper = styled.div`
 
         .form-control {
           box-shadow: var(--shadow-2);
+          padding: 10px;
         }
       }
 
