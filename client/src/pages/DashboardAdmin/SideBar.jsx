@@ -22,13 +22,13 @@ const SideBar = () => {
   return (
     <SideBarWrapper cover={cover}>
       <div className="sidebar">
-        <Link className="logo mb-3 d-block" to="/">
+        <Link className="logo text-center d-block" to="/">
           <img alt="logo" src={logo} />
         </Link>
         <Navbar expand="md">
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
-            <Nav className="me-auto my-2 my-lg-0" navbarScroll>
+            <Nav className="my-2 my-lg-0 w-100" navbarScroll>
               <SideLinks
                 sideLinks={sideLinks}
                 handleAddActive={handleAddActive}

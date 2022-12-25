@@ -66,7 +66,7 @@ const HerroWrapper = styled.div`
 
     &-titles {
       h1 {
-        font-size: 80px;
+        font-size: 60px;
         margin-bottom: 0;
       }
 

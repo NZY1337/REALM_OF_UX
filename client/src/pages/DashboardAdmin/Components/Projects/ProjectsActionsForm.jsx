@@ -27,7 +27,7 @@ const ProjectActionsForm = ({
     <>
       <Form>
         <h6 className="mb-4" style={{ color: "orange" }}>
-          Edit | Delete Project
+          Edit or Delete Project
         </h6>
 
         <Row>
