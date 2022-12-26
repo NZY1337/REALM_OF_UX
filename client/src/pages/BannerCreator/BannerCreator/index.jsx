@@ -78,7 +78,7 @@ const BannerCreator = () => {
           <Col className="my-5"></Col>
           <PageSectionTitle
             subtitle="explore the posibilities!"
-            titleBold="Realm Of Ux's"
+            titleBold="Realmify's"
             titleNormal=" ultimate guide for creating stunning social media banners!"
           />
         </Row>

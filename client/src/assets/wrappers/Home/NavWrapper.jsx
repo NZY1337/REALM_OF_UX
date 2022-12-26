@@ -9,11 +9,13 @@ const NavWrapper = styled.div`
 
   .navbar-toggler {
     border: none;
-    color: black;
+    color: var(--text-color-orange);
     padding: unset;
     font-size: unset;
-    
-    letter-spacing: 1px;
+    font-family: var(--font-secondary);
+    text-transform: uppercase;
+    // letter-spacing: 1px;
+    font-weight: bold;
 
     &:focus {
       box-shadow: none;
@@ -41,7 +43,7 @@ const NavWrapper = styled.div`
 
   .navbar {
     .login {
-      color: black;
+      color: var(--text-color-orange);
       display: flex;
       align-items: center;
 

@@ -8,7 +8,7 @@ const removePathGetFilename = (filesToDelete) => {
   });
 };
 
-const removeFile = (filestoDelete) => {
+const removeFile = (filestoDelete, next) => {
   try {
     const projectFileNames = removePathGetFilename(filestoDelete);
     const folderPath = "public/uploads/Projects";
@@ -32,6 +32,7 @@ const removeFile = (filestoDelete) => {
       }
     });
   } catch (error) {
+    next(error);
     console.error(error);
   }
 };
