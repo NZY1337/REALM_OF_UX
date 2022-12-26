@@ -1,36 +1,39 @@
 import fs from "fs";
+import path from "path";
 
-// const removeFile = (postTitle) => {
-//   const deletePath = `public/uploads/${postTitle}`;
-
-//   try {
-//     if (fs.existsSync(deletePath)) {
-//       fs.rm(deletePath, { recursive: true }, (error) => {
-//         if (error) console.log(error);
-//       });
-//     }
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-const removeFile = (folderPath) => {
-  fs.readdir(folderPath, (error, files) => {
-    if (error) {
-      console.log(error);
-      return;
-    }
-
-    for (const file of files) {
-      fs.unlink(`${folderPath}/${file}`, (error) => {
-        if (error) console.log(error);
-      });
-    }
-
-    fs.rmdir(folderPath, (error) => {
-      if (error) console.log(error);
-    });
+const removePathGetFilename = (filesToDelete) => {
+  return filesToDelete.map((file) => {
+    const splitPath = file.split("/");
+    return splitPath[splitPath.length - 1];
   });
+};
+
+const removeFile = (filestoDelete) => {
+  try {
+    const projectFileNames = removePathGetFilename(filestoDelete);
+    const folderPath = "public/uploads/Projects";
+    fs.readdir(folderPath, (err, files) => {
+      console.log(files);
+      if (err) {
+        throw new Error(`An error occurred while reading the folder: ${err}`);
+      }
+
+      for (const file of files) {
+        if (projectFileNames.includes(file)) {
+          const filePath = path.join(folderPath, file);
+          fs.unlink(filePath, (unlinkErr) => {
+            if (unlinkErr) {
+              throw new Error(
+                `An error occurred while deleting the file: ${unlinkErr}`
+              );
+            }
+          });
+        }
+      }
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export { removeFile };

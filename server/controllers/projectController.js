@@ -85,9 +85,15 @@ class ProjectController {
         _id: projectId,
       });
 
+      const filestoDelete = [
+        ...project.desktop,
+        ...project.tablet,
+        ...project.mobile,
+      ];
+
       const comments = await Comment.deleteMany({ projectId });
 
-      removeFile(`public/uploads/${project.name}`);
+      removeFile(filestoDelete);
 
       res.status(200).json({ project, comments });
     } catch (error) {
