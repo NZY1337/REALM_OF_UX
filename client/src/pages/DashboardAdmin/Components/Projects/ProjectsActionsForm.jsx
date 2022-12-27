@@ -26,9 +26,7 @@ const ProjectActionsForm = ({
   return (
     <>
       <Form>
-        <h6 className="mb-4" style={{ color: "orange" }}>
-          Edit or Delete Project
-        </h6>
+        <h6 className="mb-4">Edit or Delete Project</h6>
 
         <Row>
           <Col lg="6">
@@ -36,7 +34,7 @@ const ProjectActionsForm = ({
               label="Search Project"
               type="text"
               name="name"
-              placeholder="Enter the project's name"
+              placeholder="Enter the project name"
               value={searchKeyword}
               onHandleChange={handleSearchKeyword}
             />

@@ -12,6 +12,7 @@ import { PageSectionTitle } from "../../../../components";
 import DashContainer from "../../MiniComponents/DashContainer";
 import ProjectDashForm from "./ProjectsDashForm";
 import ProjectActionsForm from "./ProjectsActionsForm";
+import ImagePreviewActions from "../../../../components/ImagePreviewActions";
 
 const ProjectsDash = () => {
   const {
@@ -64,6 +65,10 @@ const ProjectsDash = () => {
                   fetchProject={fetchProject}
                   handleToggleEdit={handleToggleEdit}
                 />
+              </div>
+
+              <div className="dash-container-projects-wrapper mt-4">
+                <ImagePreviewActions />
               </div>
             </Col>
           </Row>

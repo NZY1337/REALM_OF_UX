@@ -28,9 +28,7 @@ const ProjectDashForm = ({
 
   return (
     <Form onSubmit={handleSubmitProject}>
-      <h6 className="mb-4" style={{ color: "orange" }}>
-        Add Project
-      </h6>
+      <h6 className="mb-4">Add Project</h6>
       <Row>
         <Col lg="12 mb-3">
           <TextEditor readOnly={false} />
@@ -38,7 +36,7 @@ const ProjectDashForm = ({
 
         <Col lg="6">
           <ProjectsDashFormGroup
-            label="Project's Name"
+            label="Project Name"
             placeholder="Enter the project name"
             type="text"
             name="name"
@@ -50,7 +48,7 @@ const ProjectDashForm = ({
 
         <Col lg="6">
           <ProjectsDashFormGroup
-            label="Project's Category"
+            label="Project Category"
             placeholder="Enter the project category"
             type="text"
             name="category"

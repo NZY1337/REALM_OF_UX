@@ -59,10 +59,6 @@ const DashboardWrapper = styled.div`
           padding: 10px;
         }
       }
-
-      img {
-        border-radius: 28px;
-      }
     }
   }
 `;
