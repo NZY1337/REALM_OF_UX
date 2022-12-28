@@ -9,7 +9,6 @@ class UploadProductImage {
   async uploadImage(req, res, next) {
     try {
       const productImage = req.files.image;
-      //   const postTitle = req.body.location;
       const dir = `public/uploads/Projects`;
 
       if (!fs.existsSync(dir)) {
@@ -29,8 +28,9 @@ class UploadProductImage {
 
   // from fileSystem & mongoose
   async deleteImage(req, res, next) {
+    console.log(req.body.isEdited);
     try {
-      //   remove image from path
+        // remove image from path
       fs.unlink(`public/uploads/Projects/${req.params.imageId}`, (error) => {
         if (error) {
           console.error(error);
@@ -38,6 +38,7 @@ class UploadProductImage {
       });
 
       let project = await Project.findById(req.params.projectId);
+      
       const images = [...project.desktop, ...project.tablet, ...project.mobile];
 
       const deletedImage = images.find(
@@ -47,7 +48,10 @@ class UploadProductImage {
       if (!deletedImage)
         return res.status(404).send({ message: "image not found" });
 
-      const allImages = {
+      const newProject = {
+        content: project.content,
+        name: project.name,
+        category: project.category,
         desktop: project.desktop.filter(
           (img) => removePathGetSingleFileName(img) !== req.params.imageId
         ),
@@ -59,13 +63,9 @@ class UploadProductImage {
         ),
       };
 
-      console.log(allImages);
-
-      const newSavedProject = { ...project, ...allImages };
-
       const newP = await Project.findByIdAndUpdate(
         { _id: req.params.projectId },
-        newSavedProject,
+        newProject,
         { new: true }
       );
 

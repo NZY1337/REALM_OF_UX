@@ -1,6 +1,8 @@
 import fs from "fs";
 import path from "path";
 
+
+// refactor these two functions into one fn
 const removePathGetFilename = (filesToDelete) => {
   return filesToDelete.map((file) => {
     const splitPath = file.split("/");
