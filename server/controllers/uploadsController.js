@@ -1,7 +1,7 @@
 import path from "path";
 import fs from "fs";
 import Project from "../models/Project.js";
-import { removePathGetSingleFileName } from "../utils/index.js";
+import { removePathGetFilename, removeSingleImage } from "../utils/index.js";
 const __dirname = path.resolve();
 
 //LEARNING FILE UPLOAD in NODE JS :D
@@ -27,22 +27,17 @@ class UploadProductImage {
   }
 
   // from fileSystem & mongoose
-  async deleteImage(req, res, next) {
-    console.log(req.body.isEdited);
+  async deleteImageFromFsAndMongo(req, res, next) {
     try {
-        // remove image from path
-      fs.unlink(`public/uploads/Projects/${req.params.imageId}`, (error) => {
-        if (error) {
-          console.error(error);
-        }
-      });
+      // remove image from path
+      await removeSingleImage(req.params.imageId)
 
       let project = await Project.findById(req.params.projectId);
       
       const images = [...project.desktop, ...project.tablet, ...project.mobile];
 
       const deletedImage = images.find(
-        (image) => removePathGetSingleFileName(image) === req.params.imageId
+        (image) => removePathGetFilename(image) === req.params.imageId
       );
 
       if (!deletedImage)
@@ -53,27 +48,33 @@ class UploadProductImage {
         name: project.name,
         category: project.category,
         desktop: project.desktop.filter(
-          (img) => removePathGetSingleFileName(img) !== req.params.imageId
+          (img) => removePathGetFilename(img) !== req.params.imageId
         ),
         tablet: project.tablet.filter(
-          (img) => removePathGetSingleFileName(img) !== req.params.imageId
+          (img) => removePathGetFilename(img) !== req.params.imageId
         ),
         mobile: project.mobile.filter(
-          (img) => removePathGetSingleFileName(img) !== req.params.imageId
+          (img) => removePathGetFilename(img) !== req.params.imageId
         ),
       };
 
-      const newP = await Project.findByIdAndUpdate(
+      const editedProject = await Project.findByIdAndUpdate(
         { _id: req.params.projectId },
         newProject,
         { new: true }
       );
 
-      return res.status(200).json({ newP });
+      return res.status(200).json({ editedProject });
     } catch (err) {
       next(err);
     }
   }
+
+  async deleteImageFromFS (req, res, next) {
+    const { filename } = req.params;
+    console.log(filename)
+    await removeSingleImage(res, removePathGetFilename(filename))
+  } 
 }
 
 export { UploadProductImage };

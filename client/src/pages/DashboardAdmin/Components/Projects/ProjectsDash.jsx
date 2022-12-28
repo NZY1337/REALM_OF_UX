@@ -30,6 +30,7 @@ const ProjectsDash = () => {
     fetchProject,
     toggleEdit,
     handleToggleEdit,
+    handleDeleteImages
   } = useProjectContext();
 
   const projectImages = [
@@ -75,7 +76,7 @@ const ProjectsDash = () => {
 
               {projectImages.length && projectImages.length > 0 ? (
                 <div className="dash-container-projects-wrapper mt-4">
-                  <ImagePreviewActions projectImages={projectImages} />
+                  <ImagePreviewActions projectImages={projectImages} handleDeleteImages={handleDeleteImages}/>
                 </div>
               ) : null}
             </Col>

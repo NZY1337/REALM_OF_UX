@@ -3,16 +3,17 @@ import path from "path";
 
 
 // refactor these two functions into one fn
-const removePathGetFilename = (filesToDelete) => {
-  return filesToDelete.map((file) => {
-    const splitPath = file.split("/");
-    return splitPath[splitPath.length - 1];
-  });
-};
+const removePathGetFilename = (data) => {
+    const getFilename = (file) => {
+        const splitPath = file.split("/");
+        return splitPath[splitPath.length - 1];
+    }
 
-const removePathGetSingleFileName = (file) => {
-  const splitPath = file.split("/");
-  return splitPath[splitPath.length - 1];
+    if (Array.isArray(data)) {
+        return data.map(getFilename);
+    } else {
+        return getFilename(data);
+    }
 };
 
 const removeFile = (filestoDelete, next) => {
@@ -44,4 +45,29 @@ const removeFile = (filestoDelete, next) => {
   }
 };
 
-export { removeFile, removePathGetSingleFileName };
+const removeSingleImage = async (res, filename) => {
+    try {
+        const filePath = `public/uploads/Projects/${filename}`;
+
+        // Check if the file exists
+        await fs.promises.stat(filePath);
+
+        // If the file exists, attempt to delete it
+        await fs.promises.unlink(filePath);
+    
+        // If the file was successfully deleted, send a response with a status code of 200 (OK)
+        return res.status(200).send({ message: 'File deleted successfully' });
+      } catch (error) {
+        if (error.code === 'ENOENT') {
+
+          // If the file was not found, send a response with a status code of 404 (Not Found)
+          res.status(404).send({ message: 'File not found' });
+        } else {
+            
+          // If there was an error deleting the file, send a response with a status code of 500 (Internal Server Error)
+          res.status(500).send({ message: 'Error deleting file' });
+        }
+    }
+}
+
+export { removeFile, removePathGetFilename, removeSingleImage };

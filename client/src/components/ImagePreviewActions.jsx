@@ -2,7 +2,7 @@ import React from "react";
 import ImagePreviewActionsWrapper from "../assets/wrappers/ImagePreviewActionsWrapper";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 
-const ImagePreviewActions = ({ projectImages }) => {
+const ImagePreviewActions = ({ projectImages, handleDeleteImages }) => {
   return (
     <ImagePreviewActionsWrapper>
       <h6 className="mb-4">Image Preview</h6>
@@ -10,7 +10,7 @@ const ImagePreviewActions = ({ projectImages }) => {
       <div className="d-flex flex-wrap image-preview" onClick={null}>
         {projectImages.map((image) => {
           return (
-            <div className="image-preview-actions">
+            <div className="image-preview-actions" key={image} onClick={() => handleDeleteImages(image)}>
               <AiOutlineCloseCircle />
               <img
                 src={image}

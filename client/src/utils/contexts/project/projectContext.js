@@ -22,7 +22,7 @@ import {
   deleteProject,
 } from "../../services/projects";
 
-import { uploadImageToPublicFolder } from "../../services/image_upload";
+import { uploadImageToPublicFolder, deleteSingleImageNoID } from "../../services/image_upload";
 
 const ProjectContext = React.createContext();
 
@@ -95,7 +95,6 @@ const ProjectProvider = ({ children }) => {
 
   // fetch all projects
   const fetchProjects = async () => {
-    // const { allProjects, error } = await fetchAllProjects();
     const { projects: allProjects, msg: error } = await fetchAllProjects();
 
     dispatch({
@@ -163,6 +162,11 @@ const ProjectProvider = ({ children }) => {
     }
   };
 
+
+  const handleDeleteImages = async (filename) => {
+    const data = await deleteSingleImageNoID("figma2.jpg");
+    console.log(data)
+  }
   const clearValues = () => {
     dispatch({
       type: CLEAR_VALUES,
@@ -184,6 +188,7 @@ const ProjectProvider = ({ children }) => {
         clearValues,
         handleCreateProjectContent,
         handleToggleEdit,
+        handleDeleteImages
       }}
     >
       {children}
