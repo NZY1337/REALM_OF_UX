@@ -8,6 +8,11 @@ const removePathGetFilename = (filesToDelete) => {
   });
 };
 
+const removePathGetSingleFileName = (file) => {
+  const splitPath = file.split("/");
+  return splitPath[splitPath.length - 1];
+};
+
 const removeFile = (filestoDelete, next) => {
   try {
     const projectFileNames = removePathGetFilename(filestoDelete);
@@ -37,4 +42,4 @@ const removeFile = (filestoDelete, next) => {
   }
 };
 
-export { removeFile };
+export { removeFile, removePathGetSingleFileName };

@@ -32,6 +32,12 @@ const ProjectsDash = () => {
     handleToggleEdit,
   } = useProjectContext();
 
+  const projectImages = [
+    ...project.desktop,
+    ...project.tablet,
+    ...project.mobile,
+  ];
+
   return (
     <DashboardAdminWrapper>
       <SideBar />
@@ -67,9 +73,11 @@ const ProjectsDash = () => {
                 />
               </div>
 
-              <div className="dash-container-projects-wrapper mt-4">
-                <ImagePreviewActions />
-              </div>
+              {projectImages.length && projectImages.length > 0 ? (
+                <div className="dash-container-projects-wrapper mt-4">
+                  <ImagePreviewActions projectImages={projectImages} />
+                </div>
+              ) : null}
             </Col>
           </Row>
         </DashContainer>

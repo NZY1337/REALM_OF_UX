@@ -9,10 +9,7 @@ const ImagePreviewActionsWrapper = styled.div`
       display: flex;
       position: relative;
       height: 150px;
-      //   flex-grow: 1;
-      flex-shrink: 0;
-
-      max-width: 175px;
+      flex-grow: 1;
       min-width: 150px;
       box-shadow: var(--shadow-2);
       height: 150px;
