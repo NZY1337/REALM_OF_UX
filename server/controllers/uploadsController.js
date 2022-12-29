@@ -39,7 +39,7 @@ class UploadProductImage {
         const deletedImage = images.find(
             (image) => image === req.params.filename    
         );
-    
+            
         if (!deletedImage) {
             // If the image was not found, send a response with a status code of 404 (Not Found) and return
             return res.status(404).send({ message: "image not found" });
