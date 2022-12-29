@@ -8,7 +8,7 @@ const ImagePreviewActions = ({ projectImages, handleDeleteImages }) => {
     <ImagePreviewActionsWrapper>
       <h6 className="mb-4">Image Preview</h6>
 
-      <div className="d-flex flex-wrap image-preview" onClick={null}>
+      <div className="d-flex flex-wrap image-preview">
         {projectImages.map((image) => {
           return (
             <div className="image-preview-actions" key={image}>

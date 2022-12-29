@@ -30,7 +30,7 @@ const ProjectsDash = () => {
     fetchProject,
     toggleEdit,
     handleToggleEdit,
-    handleDeleteImages
+    handleDeleteImages,
   } = useProjectContext();
 
   const projectImages = [
@@ -74,11 +74,16 @@ const ProjectsDash = () => {
                 />
               </div>
 
-              {projectImages.length && projectImages.length > 0 ? (
-                <div className="dash-container-projects-wrapper mt-4">
-                  <ImagePreviewActions projectImages={projectImages} handleDeleteImages={handleDeleteImages}/>
-                </div>
-              ) : null}
+              <div className="dash-container-projects-wrapper mt-4">
+                {projectImages.length && projectImages.length > 0 ? (
+                  <ImagePreviewActions
+                    projectImages={projectImages}
+                    handleDeleteImages={handleDeleteImages}
+                  />
+                ) : (
+                  <p className="mb-0 text-danger">no images for this project</p>
+                )}
+              </div>
             </Col>
           </Row>
         </DashContainer>

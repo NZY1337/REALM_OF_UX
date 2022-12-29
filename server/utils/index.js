@@ -15,28 +15,18 @@ const removePathGetFilename = (data) => {
   }
 };
 
-const removeFile = (filestoDelete, next) => {
+const removeFile = async (filestoDelete, next) => {
   try {
     const folderPath = "public/uploads/Projects";
-    fs.readdir(folderPath, (err, files) => {
-      console.log(files);
-      if (err) {
-        throw new Error(`An error occurred while reading the folder: ${err}`);
-      }
+    const files = await fs.promises.readdir(folderPath);
+    console.log(files);
 
-      for (const file of files) {
-        if (filestoDelete.includes(file)) {
-          const filePath = path.join(folderPath, file);
-          fs.unlink(filePath, (unlinkErr) => {
-            if (unlinkErr) {
-              throw new Error(
-                `An error occurred while deleting the file: ${unlinkErr}`
-              );
-            }
-          });
-        }
+    for (const file of files) {
+      if (filestoDelete.includes(file)) {
+        const filePath = path.join(folderPath, file);
+        await fs.promises.unlink(filePath);
       }
-    });
+    }
   } catch (error) {
     next(error);
     console.error(error);
@@ -55,7 +45,8 @@ const removeSingleImage = async (res, filename, isEdited = true) => {
     await fs.promises.unlink(filePath);
 
     // If the file was successfully deleted, send a response with a status code of 200 (OK)
-    if (isEdited ) return res.status(200).send({ message: "File deleted successfully" });
+    if (isEdited)
+      return res.status(200).send({ message: "File deleted successfully" });
   } catch (error) {
     if (error.code === "ENOENT") {
       // If the file was not found, send a response with a status code of 404 (Not Found)

@@ -93,7 +93,7 @@ class ProjectController {
 
       const comments = await Comment.deleteMany({ projectId });
 
-      removeFile(filestoDelete);
+      await removeFile(filestoDelete);
 
       res.status(200).json({ project, comments });
     } catch (error) {
