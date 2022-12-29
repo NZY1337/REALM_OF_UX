@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { imagePath } from "../../../utils/helpers/constants";
 
 const RenderProjectSS = ({ project }) => {
   return (
     <img
-      async="on"
-      src={project}
+      src={imagePath(project)}
       alt="project visualization"
       className="img-fluid w-100"
       style={{ objectFit: "cover" }}

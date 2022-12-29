@@ -14,7 +14,6 @@ const DeleteEditAction = ({
   fetchProject,
   handleToggleEdit,
 }) => {
-  console.log(index);
   return (
     <DeleteEditWrapper>
       <DropdownButton

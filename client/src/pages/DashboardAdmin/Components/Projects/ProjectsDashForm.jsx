@@ -16,7 +16,6 @@ const ProjectDashForm = ({
   toggleEdit,
 }) => {
   const { name, category, desktop, tablet, mobile } = project;
-  console.log(toggleEdit);
 
   const disableSubmitBtn =
     name === "" ||

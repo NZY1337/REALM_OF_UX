@@ -12,3 +12,4 @@ export const MATCHED_PROJECT = "MATCHED_PROJECT";
 export const TRIGGER_MODAL = "TRIGGER_MODAL";
 export const CLEAR_VALUES = "CLEAR_VALUES";
 export const TOGGLE_EDIT = "TOGGLE_EDIT";
+export const REMOVE_IMAGE = "REMOVE_IMAGE";

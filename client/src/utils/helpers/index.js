@@ -1,7 +1,10 @@
 import { TYPES } from "./constants";
 import { toast } from "react-toastify";
-import { GET_IMAGE_UPLOAD_ROUTE } from "../services/apis";
-import axios from "axios";
+
+export const removePathGetFilename = (data) => {
+  const splitPath = data.split("/");
+  return splitPath[splitPath.length - 1];
+};
 
 export const trimUserName = (name) => {
   //   const firstName = name.split(" ")[0];

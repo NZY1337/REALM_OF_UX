@@ -9,6 +9,7 @@ import {
   TRIGGER_MODAL,
   CLEAR_VALUES,
   TOGGLE_EDIT,
+  REMOVE_IMAGE,
 } from "./actions";
 
 import { initialState } from "./utils";
@@ -28,6 +29,24 @@ const reducer = (state, action) => {
     case TOGGLE_EDIT: {
       return { ...state, toggleEdit: action.payload.toggleEdit };
     }
+
+    case REMOVE_IMAGE:
+      return {
+        ...state,
+        project: {
+          ...state.project,
+
+          desktop: state.project.desktop.filter(
+            (img) => img !== action.payload.filename
+          ),
+          tablet: state.project.tablet.filter(
+            (img) => img !== action.payload.filename
+          ),
+          mobile: state.project.mobile.filter(
+            (img) => img !== action.payload.filename
+          ),
+        },
+      };
 
     case MATCHED_PROJECT:
       return {

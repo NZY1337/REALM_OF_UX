@@ -1,7 +1,7 @@
 import path from "path";
 import fs from "fs";
 import Project from "../models/Project.js";
-import { removePathGetFilename, removeSingleImage } from "../utils/index.js";
+import { removeSingleImage, removePathGetFilename } from "../utils/index.js";
 const __dirname = path.resolve();
 
 //LEARNING FILE UPLOAD in NODE JS :D
@@ -18,9 +18,10 @@ class UploadProductImage {
       const imagePath = path.join(__dirname, `${dir}/${productImage.name}`);
       await productImage.mv(imagePath);
 
-      return res
-        .status(200)
-        .json({ image: { src: `/uploads/Projects/${productImage.name}` } });
+      //   return res
+      //     .status(200)
+      //     .json({ image: { src: `/uploads/Projects/${productImage.name}` } });
+      return res.status(200).json({ image: { src: `${productImage.name}` } });
     } catch (err) {
       next(err);
     }
@@ -30,31 +31,29 @@ class UploadProductImage {
   async deleteImageFromFsAndMongo(req, res, next) {
     try {
       // remove image from path
-      await removeSingleImage(req.params.imageId)
+      // await removeSingleImage(res, removePathGetFilename(req.params.filename));
+      // console.log(req.params.filename);
 
       let project = await Project.findById(req.params.projectId);
-      
       const images = [...project.desktop, ...project.tablet, ...project.mobile];
 
       const deletedImage = images.find(
-        (image) => removePathGetFilename(image) === req.params.imageId
+        (image) => image === req.params.filename
       );
 
       if (!deletedImage)
         return res.status(404).send({ message: "image not found" });
 
       const newProject = {
-        content: project.content,
-        name: project.name,
-        category: project.category,
+        ...project,
         desktop: project.desktop.filter(
-          (img) => removePathGetFilename(img) !== req.params.imageId
+          (img) => removePathGetFilename(img) !== req.params.filename
         ),
         tablet: project.tablet.filter(
-          (img) => removePathGetFilename(img) !== req.params.imageId
+          (img) => removePathGetFilename(img) !== req.params.filename
         ),
         mobile: project.mobile.filter(
-          (img) => removePathGetFilename(img) !== req.params.imageId
+          (img) => removePathGetFilename(img) !== req.params.filename
         ),
       };
 
@@ -70,11 +69,11 @@ class UploadProductImage {
     }
   }
 
-  async deleteImageFromFS (req, res, next) {
+  async deleteImageFromFS(req, res) {
     const { filename } = req.params;
-    console.log(filename)
-    await removeSingleImage(res, removePathGetFilename(filename))
-  } 
+    console.log(filename);
+    await removeSingleImage(res, filename);
+  }
 }
 
 export { UploadProductImage };

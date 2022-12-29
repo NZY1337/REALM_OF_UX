@@ -10,6 +10,7 @@ import {
   TRIGGER_MODAL,
   CLEAR_VALUES,
   TOGGLE_EDIT,
+  REMOVE_IMAGE,
 } from "./actions";
 import { notify } from "../../helpers";
 import { useNavigate } from "react-router-dom";
@@ -21,8 +22,13 @@ import {
   addOrEditProject,
   deleteProject,
 } from "../../services/projects";
+import { removePathGetFilename } from "../../helpers";
 
-import { uploadImageToPublicFolder, deleteSingleImageNoID } from "../../services/image_upload";
+import {
+  uploadImageToPublicFolder,
+  deleteSingleImageNoID,
+  delteSingleImageID,
+} from "../../services/image_upload";
 
 const ProjectContext = React.createContext();
 
@@ -162,11 +168,36 @@ const ProjectProvider = ({ children }) => {
     }
   };
 
+  const handleDeleteImageEditingOff = async (filename) => {
+    const data = await deleteSingleImageNoID(filename);
+
+    if (data.message) {
+      notify("success", data.message);
+      dispatch({
+        type: REMOVE_IMAGE,
+        payload: { filename },
+      });
+    }
+    if (data.error) notify("warning", data.error);
+  };
+
+  const handleDeleteImageEditingOn = async (filename) => {
+    const data = await delteSingleImageID(
+      state.project._id,
+      removePathGetFilename(filename)
+    );
+
+    console.log(data);
+  };
 
   const handleDeleteImages = async (filename) => {
-    const data = await deleteSingleImageNoID("figma2.jpg");
-    console.log(data)
-  }
+    if (state.toggleEdit) {
+      handleDeleteImageEditingOn(filename);
+    } else {
+      handleDeleteImageEditingOff(filename);
+    }
+  };
+
   const clearValues = () => {
     dispatch({
       type: CLEAR_VALUES,
@@ -188,7 +219,7 @@ const ProjectProvider = ({ children }) => {
         clearValues,
         handleCreateProjectContent,
         handleToggleEdit,
-        handleDeleteImages
+        handleDeleteImages,
       }}
     >
       {children}
