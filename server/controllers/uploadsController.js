@@ -1,7 +1,7 @@
 import path from "path";
 import fs from "fs";
 import Project from "../models/Project.js";
-import { removeSingleImage, } from "../utils/index.js";
+import { removeSingleImage } from "../utils/index.js";
 const __dirname = path.resolve();
 
 //LEARNING FILE UPLOAD in NODE JS :D
@@ -27,37 +27,39 @@ class UploadProductImage {
   // from fileSystem & mongoose
   async deleteImageFromFsAndMongo(req, res, next) {
     try {
-         // remove image from path
-         await removeSingleImage(res, req.params.filename, false);
+      // remove image from path
+      await removeSingleImage(res, req.params.filename, false);
 
-        // Find the project in the database
-        let project = await Project.findById(req.params.projectId);
-        // Combine the desktop, tablet, and mobile arrays into a single array
-        const images = [...project.desktop, ...project.tablet, ...project.mobile];
-    
-        // Check if the deleted image is in array
-        const deletedImage = images.find(
-            (image) => image === req.params.filename    
-        );
-            
-        if (!deletedImage) {
-            // If the image was not found, send a response with a status code of 404 (Not Found) and return
-            return res.status(404).send({ message: "image not found" });
-        }
+      // Find the project in the database
+      let project = await Project.findById(req.params.projectId);
+      // Combine the desktop, tablet, and mobile arrays into a single array
+      const images = [...project.desktop, ...project.tablet, ...project.mobile];
 
-        let clonedProject = { ...project.toObject() };
-        
-        // Create a new project object with the deleted image removed from the desktop, tablet, and mobile arrays
-        const newProject = {
-            ...clonedProject,
-            desktop: clonedProject.desktop.filter(
-            (img) => img !== req.params.filename
+      //   Check if the deleted image is in array
+      const deletedImage = images.find(
+        (image) => image === req.params.filename
+      );
+
+      if (!deletedImage) {
+        // If the image was not found, send a response with a status code of 404 (Not Found) and return
+        return res
+          .status(404)
+          .send({ error: "file deleted from filesystem, not from database." });
+      }
+
+      let clonedProject = { ...project.toObject() };
+
+      // Create a new project object with the deleted image removed from the desktop, tablet, and mobile arrays
+      const newProject = {
+        ...clonedProject,
+        desktop: clonedProject.desktop.filter(
+          (img) => img !== req.params.filename
         ),
-            tablet: clonedProject.tablet.filter(
-            (img) => img !== req.params.filename
+        tablet: clonedProject.tablet.filter(
+          (img) => img !== req.params.filename
         ),
         mobile: clonedProject.mobile.filter(
-            (img) => img !== req.params.filename
+          (img) => img !== req.params.filename
         ),
       };
 
@@ -67,7 +69,7 @@ class UploadProductImage {
         newProject,
         { new: true }
       );
-  
+
       // Send a response with a status code of 200 (OK) and the updated project object
       return res.status(200).json({ editedProject });
     } catch (err) {

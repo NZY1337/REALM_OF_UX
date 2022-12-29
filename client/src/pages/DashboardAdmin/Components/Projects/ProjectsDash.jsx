@@ -74,16 +74,14 @@ const ProjectsDash = () => {
                 />
               </div>
 
-              <div className="dash-container-projects-wrapper mt-4">
-                {projectImages.length && projectImages.length > 0 ? (
+              {projectImages.length && projectImages.length > 0 ? (
+                <div className="dash-container-projects-wrapper mt-4">
                   <ImagePreviewActions
                     projectImages={projectImages}
                     handleDeleteImages={handleDeleteImages}
                   />
-                ) : (
-                  <p className="mb-0 text-danger">no images for this project</p>
-                )}
-              </div>
+                </div>
+              ) : null}
             </Col>
           </Row>
         </DashContainer>

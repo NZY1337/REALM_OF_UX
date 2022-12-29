@@ -181,7 +181,13 @@ const ProjectProvider = ({ children }) => {
   const handleDeleteImages = useCallback(
     async (filename) => {
       const handleDeleteImageEditingOn = async (filename) => {
-        await delteSingleImageID(state.project._id, filename);
+        const { error, editedProject } = await delteSingleImageID(
+          state.project._id,
+          filename
+        );
+
+        if (editedProject) notify("success", "File deleted successfully");
+        if (error) notify("warning", error);
 
         dispatch({
           type: REMOVE_IMAGE,
