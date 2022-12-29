@@ -26,15 +26,11 @@ const RenderPreviewDevicesProject = ({ project }) => {
   };
 
   const renderDesktopView = () => {
-    return projectsDesktopSS.map((project, index) => (
-      <RenderProjectSS key={project + index} project={project} />
-    ));
+    return projectsDesktopSS.map((project) => <RenderProjectSS key={project} project={project} />);
   };
 
   const renderProjectSS = () => {
-    return projectScreenShots.map((project, index) => (
-      <RenderProjectSS key={project + index} project={project} />
-    ));
+    return projectScreenShots.map((project) => <RenderProjectSS key={project} project={project} />);
   };
 
   return (
@@ -77,7 +73,7 @@ const RenderPreviewDevicesProject = ({ project }) => {
 };
 
 RenderPreviewDevicesProject.propTypes = {
-  project: PropTypes.string.isRequired,
+  project: PropTypes.object.isRequired,
 };
 
 export default RenderPreviewDevicesProject;

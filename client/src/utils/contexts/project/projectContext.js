@@ -1,4 +1,4 @@
-import React, { useReducer, useContext } from "react";
+import React, { useReducer, useContext, useMemo, useCallback } from "react";
 import {
   GET_PROJECTS,
   GET_PROJECT,
@@ -22,7 +22,6 @@ import {
   addOrEditProject,
   deleteProject,
 } from "../../services/projects";
-import { removePathGetFilename } from "../../helpers";
 
 import {
   uploadImageToPublicFolder,
@@ -36,81 +35,88 @@ const ProjectProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const navigate = useNavigate();
 
-  const handleToggleEdit = (toggle) => {
-    dispatch({
-      type: TOGGLE_EDIT,
-      payload: { toggleEdit: toggle },
-    });
-  };
 
-  const handleTriggerModal = (showModal) => {
+  // edit or create
+  const handleToggleEdit = useCallback((toggle) =>{
     dispatch({
-      type: TRIGGER_MODAL,
-      payload: { showModal },
-    });
-  };
+        type: TOGGLE_EDIT,
+        payload: { toggleEdit: toggle },
+      });
+  }, [])
 
-  const handleMatchedProject = async () => {
+  // toggle modal
+  const handleTriggerModal = useCallback((showModal) => {
+    dispatch({
+        type: TRIGGER_MODAL,
+        payload: { showModal },
+      });
+  },[])
+ 
+  // filter matched projects
+  const handleMatchedProject = useCallback( async () => {
     const { projects: allProjects, msg: error } = await fetchAllProjects();
     dispatch({
       type: MATCHED_PROJECT,
       payload: { projects: allProjects, error },
     });
-  };
+  }, [])
 
-  const handleSearchKeyword = async (e) => {
+
+  // search keyword by input value
+  const handleSearchKeyword = useCallback(async (e) => {
     dispatch({
-      type: SEARCH_KEYWORD,
-      payload: { searchKeyword: e.target.value },
-    });
-  };
+        type: SEARCH_KEYWORD,
+        payload: { searchKeyword: e.target.value },
+      });
+  }, [])
 
-  const handleDeleteProject = async (projectId) => {
+
+  // delete project
+  const handleDeleteProject = useCallback(async (projectId) => {
     const { project: deletedProject, msg: error } = await deleteProject(
-      projectId
-    );
+        projectId
+      );
+  
+      if (!!deletedProject) {
+        dispatch({
+          type: DELETE_PROJECT,
+          payload: { deletedProject },
+        });
+  
+        dispatch({
+          type: CLEAR_VALUES,
+        });
+        notify("success", `Project with ID: ${projectId} successfully deleted`);
+      } else {
+        notify("warning", error);
+      }
+  
+      handleTriggerModal(false);
+  }, [handleTriggerModal])
 
-    if (!!deletedProject) {
-      dispatch({
-        type: DELETE_PROJECT,
-        payload: { deletedProject },
-      });
-
-      dispatch({
-        type: CLEAR_VALUES,
-      });
-      notify("success", `Project with ID: ${projectId} successfully deleted`);
-    } else {
-      notify("warning", error);
-    }
-
-    handleTriggerModal(false);
-  };
-
-  // fetch single project
-  const fetchProject = async (projectId) => {
+  const fetchProject = useCallback(async (projectId) => {
     const { project: singleProject, msg: error } = await fetchSingleProject(
-      projectId
-    );
-
-    dispatch({
-      type: GET_PROJECT,
-      payload: { project: singleProject, error },
-    });
-  };
+        projectId
+      );
+  
+      dispatch({
+        type: GET_PROJECT,
+        payload: { project: singleProject, error },
+      });
+  }, [])
 
   // fetch all projects
-  const fetchProjects = async () => {
+  const fetchProjects = useCallback(async () => {
     const { projects: allProjects, msg: error } = await fetchAllProjects();
 
     dispatch({
       type: GET_PROJECTS,
       payload: { projects: allProjects, error },
     });
-  };
+  },[])
 
   // submit single project
-  const handleSubmitProject = async (e) => {
+  const handleSubmitProject = useCallback(async (e) => {
     e.preventDefault();
 
     const { project, msg: error } = await addOrEditProject(
@@ -133,98 +139,114 @@ const ProjectProvider = ({ children }) => {
     }
 
     handleToggleEdit(false);
-  };
+  },[handleToggleEdit, navigate, state.project, state.toggleEdit])
 
-  const handleCreateProjectContent = (content) => {
+  const handleCreateProjectContent = useCallback(content => {
     dispatch({
-      type: ADD_PROJECT_CONTENT,
-      payload: { content },
-    });
-  };
+        type: ADD_PROJECT_CONTENT,
+        payload: { content },
+      });
+  },[])
 
   // get project data
-  const handleCreateProject = async (e) => {
+  const handleCreateProject = useCallback(async (e) => {
     if (e.target.files) {
-      for (let file of e.target.files) {
-        const { src: projectSS, msg: error } = await uploadImageToPublicFolder(
-          file,
-          state.project.name
-        );
-
-        if (error) {
-          notify("warning", error);
+        for (let file of e.target.files) {
+          const { src: projectSS, msg: error } = await uploadImageToPublicFolder(
+            file,
+            state.project.name
+          );
+  
+          if (error) {
+            notify("warning", error);
+          }
+  
+          dispatch({
+            type: ADD_PROJECT.IMAGE,
+            payload: { targetImage: e.target, projectSS },
+          });
         }
-
+      } else {
         dispatch({
-          type: ADD_PROJECT.IMAGE,
-          payload: { targetImage: e.target, projectSS },
+          type: ADD_PROJECT.TEXT,
+          payload: { targetText: e.target },
         });
       }
-    } else {
-      dispatch({
-        type: ADD_PROJECT.TEXT,
-        payload: { targetText: e.target },
-      });
-    }
-  };
+  },[state.project.name])
 
-  const handleDeleteImageEditingOff = async (filename) => {
-    const data = await deleteSingleImageNoID(filename);
+  
 
-    if (data.message) {
-      notify("success", data.message);
-      dispatch({
-        type: REMOVE_IMAGE,
-        payload: { filename },
-      });
-    }
-    if (data.error) notify("warning", data.error);
-  };
 
-  const handleDeleteImageEditingOn = async (filename) => {
-    const data = await delteSingleImageID(
-      state.project._id,
-      removePathGetFilename(filename)
-    );
+  const handleDeleteImages = useCallback(async (filename) => {
+    const handleDeleteImageEditingOn = async (filename) => {
+        await delteSingleImageID(state.project._id, filename);
+    };
 
-    console.log(data);
-  };
+    const handleDeleteImageEditingOff = async (filename) => {
+        const data = await deleteSingleImageNoID(filename);
+    
+        if (data.message) {
+          notify("success", data.message);
+          dispatch({
+            type: REMOVE_IMAGE,
+            payload: { filename },
+          });
+        }
+        if (data.error) notify("warning", data.error);
+      };
 
-  const handleDeleteImages = async (filename) => {
     if (state.toggleEdit) {
       handleDeleteImageEditingOn(filename);
     } else {
       handleDeleteImageEditingOff(filename);
     }
-  };
+  },[state.project._id, state.toggleEdit])
 
-  const clearValues = () => {
+  const clearValues = useCallback(async () => {
     dispatch({
-      type: CLEAR_VALUES,
-    });
-  };
+        type: CLEAR_VALUES,
+      });
+  },[])
 
   return (
     <ProjectContext.Provider
-      value={{
-        ...state,
-        handleCreateProject,
-        handleSubmitProject,
-        fetchProject,
-        fetchProjects,
-        handleSearchKeyword,
-        handleMatchedProject,
-        handleTriggerModal,
-        handleDeleteProject,
-        clearValues,
-        handleCreateProjectContent,
-        handleToggleEdit,
-        handleDeleteImages,
-      }}
+      value={useMemo(
+        () => ({
+          ...state,
+          handleCreateProject,
+          handleSubmitProject,
+          fetchProject,
+          fetchProjects,
+          handleSearchKeyword,
+          handleMatchedProject,
+          handleTriggerModal,
+          handleDeleteProject,
+          clearValues,
+          handleCreateProjectContent,
+          handleToggleEdit,
+          handleDeleteImages,
+        }),
+        [
+          state,
+          handleCreateProject,
+          handleSubmitProject,
+          fetchProject,
+          fetchProjects,
+          handleSearchKeyword,
+          handleMatchedProject,
+          handleTriggerModal,
+          handleDeleteProject,
+          clearValues,
+          handleCreateProjectContent,
+          handleToggleEdit,
+          handleDeleteImages,
+        ]
+      )}
     >
       {children}
     </ProjectContext.Provider>
   );
+  
 };
 
 const useProjectContext = () => useContext(ProjectContext);

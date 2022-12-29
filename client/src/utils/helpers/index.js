@@ -1,5 +1,6 @@
 import { TYPES } from "./constants";
 import { toast } from "react-toastify";
+import { imagePath } from "./constants";
 
 export const removePathGetFilename = (data) => {
   const splitPath = data.split("/");
@@ -77,7 +78,7 @@ export const convertToBase64 = (file) => {
 
 export const postStyle = (path) => {
   return {
-    backgroundImage: `linear-gradient(rgba(26, 11, 11, 0), rgb(23 20 25 / 72%)), url("${path}")`,
+    backgroundImage: `linear-gradient(rgba(26, 11, 11, 0), rgb(23 20 25 / 72%)), url("${imagePath(path)}")`,
   };
 };
 

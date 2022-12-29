@@ -43,7 +43,7 @@ const Projects = () => {
           {projects &&
             projects.map((project, idx) => {
               return (
-                <Col key={idx} lg={idx === 1 || idx === 4 ? "4" : "4"}>
+                <Col key={project.name} lg={idx === 1 || idx === 4 ? "4" : "3"}>
                   <Project project={project} />
                 </Col>
               );
