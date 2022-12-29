@@ -4,8 +4,7 @@ import { Col } from "react-bootstrap";
 import { Arrow90degUp } from "react-bootstrap-icons";
 import { ButtonTertiary } from "../../../components/Buttons";
 import RenderProjectSS from "./RenderProjectSS";
-import { ModalPresentationArticle } from "../../../components";
-import { SocialShare } from "../../../components";
+import { ModalPresentationArticle, SocialShare } from "../../../components";
 
 const RenderPreviewDevicesProject = ({ project }) => {
   const [show, setShow] = useState(false);

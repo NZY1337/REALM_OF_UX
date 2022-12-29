@@ -43,7 +43,7 @@ const removeFile = (filestoDelete, next) => {
   }
 };
 
-const removeSingleImage = async (res, filename) => {
+const removeSingleImage = async (res, filename, isEdited = true) => {
   try {
     const filePath = `public/uploads/Projects/${filename}`;
     console.log(filename);
@@ -55,7 +55,7 @@ const removeSingleImage = async (res, filename) => {
     await fs.promises.unlink(filePath);
 
     // If the file was successfully deleted, send a response with a status code of 200 (OK)
-    return res.status(200).send({ message: "File deleted successfully" });
+    if (isEdited ) return res.status(200).send({ message: "File deleted successfully" });
   } catch (error) {
     if (error.code === "ENOENT") {
       // If the file was not found, send a response with a status code of 404 (Not Found)
