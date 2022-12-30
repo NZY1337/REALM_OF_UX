@@ -1,74 +1,78 @@
 import path from "path";
 import fs from "fs";
 import Project from "../models/Project.js";
-import { removeSingleFile, createNewProjectImgesArr } from "../utils/index.js";
-const __dirname = path.resolve();
+import { createNewProjectImgesArr } from "../utils/index.js";
 
-// // Check if the deleted image is in array
-// const deletedImage = images.find((image) => image === req.params.filename);
-
-// if (!deletedImage) {
-//   // If the image was not found, send a response with a status code of 404 (Not Found) and return
-//   return res
-//     .status(404)
-//     .send({ error: "file deleted from filesystem, not from database." });
-// }
-
-//LEARNING FILE UPLOAD in NODE JS :D
-class UploadProductImage {
-  async uploadImage(req, res, next) {
+class UploadFile {
+  uploadImage = async (req, res, next) => {
     try {
       const productImage = req.files.image;
       const dir = `public/uploads/Projects`;
 
-      if (!fs.existsSync(dir)) {
-        fs.mkdirSync(dir, { recursive: true });
+      const dirExists = await fs.promises.stat(dir).catch(() => false);
+      if (!dirExists) {
+        await fs.promises.mkdir(dir, { recursive: true });
       }
 
-      const imagePath = path.join(__dirname, `${dir}/${productImage.name}`);
+      const imagePath = path.resolve(`${dir}/${productImage.name}`);
       await productImage.mv(imagePath);
 
       return res.status(200).json({ image: { src: `${productImage.name}` } });
     } catch (err) {
       next(err);
     }
-  }
+  };
+
+  removeFile = async (res, filename) => {
+    try {
+      const filePath = `public/uploads/Projects/${filename}`;
+
+      // Check if the file exists
+      await fs.promises.stat(filePath);
+
+      // If the file exists, attempt to delete it
+      await fs.promises.unlink(filePath);
+
+      if (res)
+        return res.status(200).send({ message: "File deleted successfully" });
+    } catch (error) {
+      if (error.code === "ENOENT") {
+        res.status(404).send({ error: "File not found" });
+      } else {
+        res.status(500).send({ error: "Error deleting file" });
+      }
+    }
+  };
 
   // from fileSystem & mongoose
-  async deleteImageFromFsAndMongo(req, res, next) {
+  removeFileFromFSandMongo = async (req, res, next) => {
+    const { filename } = req.params;
+
     if (!req.body.projectId) {
-      await removeSingleFile(res, req.params.filename);
+      await this.removeFile(res, filename);
     } else {
       try {
         // remove image from path
-        await removeSingleFile(null, req.params.filename);
+        await this.removeFile(null, filename);
 
-        // Find the project in the database
         let project = await Project.findById(req.body.projectId);
 
         let clonedProject = { ...project.toObject() };
 
-        // Create a new project object with the deleted image removed from the desktop, tablet, and mobile arrays
-        const newProject = createNewProjectImgesArr(
-          clonedProject,
-          req.params.filename
-        );
+        const newProject = createNewProjectImgesArr(clonedProject, filename);
 
-        // Update the project in the database with the new project object
         const editedProject = await Project.findByIdAndUpdate(
           { _id: req.body.projectId },
           newProject,
           { new: true }
         );
 
-        // Send a response with a status code of 200 (OK) and the updated project object
         return res.status(200).json({ editedProject });
       } catch (err) {
-        // If there was an error, call the next middleware function with the error
         next(err);
       }
     }
-  }
+  };
 }
 
-export { UploadProductImage };
+export default UploadFile;

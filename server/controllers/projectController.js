@@ -1,9 +1,13 @@
 import Project from "../models/Project.js";
 import Comment from "../models/Comment.js";
-import { removeSingleFile } from "../utils/index.js";
+import UploadFile from "./uploadsController.js";
 
-class ProjectController {
-  async addProject(req, res, next) {
+class ProjectController extends UploadFile {
+  constructor() {
+    super();
+  }
+
+  addProject = async (req, res, next) => {
     const { name, category, desktop, tablet, mobile, content } = req.body;
 
     try {
@@ -26,9 +30,9 @@ class ProjectController {
       console.log(err);
       next(err);
     }
-  }
+  };
 
-  async editProject(req, res, next) {
+  editProject = async (req, res, next) => {
     try {
       const { name, category, desktop, tablet, mobile, content } = req.body;
       const { projectId } = req.params;
@@ -56,9 +60,9 @@ class ProjectController {
       console.log(err);
       next(err);
     }
-  }
+  };
 
-  async getProjects(req, res, next) {
+  getProjects = async (req, res, next) => {
     try {
       const projects = await Project.find({});
 
@@ -66,18 +70,18 @@ class ProjectController {
     } catch (error) {
       next(error);
     }
-  }
+  };
 
-  async getProject(req, res, next) {
+  getProject = async (req, res, next) => {
     try {
       const project = await Project.findOne({ _id: req.params.projectId });
       res.status(201).send({ project });
     } catch (error) {
       next({ message: "Project cannot be found", statusCode: 404 });
     }
-  }
+  };
 
-  async deleteProject(req, res, next) {
+  deleteProject = async (req, res, next) => {
     try {
       const { projectId } = req.params;
       const project = await Project.findByIdAndRemove({
@@ -90,9 +94,10 @@ class ProjectController {
         ...project.mobile,
       ];
 
+      console.log(this.removeFile, super.removeFile);
       for (const filename of filestoDelete) {
         if (filestoDelete.includes(filename)) {
-          await removeSingleFile(null, filename);
+          await this.removeFile(null, filename);
         }
       }
 
@@ -102,7 +107,7 @@ class ProjectController {
     } catch (error) {
       next(error);
     }
-  }
+  };
 }
 
 export { ProjectController };
