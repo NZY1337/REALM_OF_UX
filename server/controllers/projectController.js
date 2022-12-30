@@ -32,6 +32,7 @@ class ProjectController {
     try {
       const { name, category, desktop, tablet, mobile, content } = req.body;
       const { projectId } = req.params;
+      console.log({ projectId });
 
       if (!name || !category || !desktop || !desktop || !mobile || !content) {
         next({ message: "Please provide all values", statusCode: 400 });
@@ -39,7 +40,7 @@ class ProjectController {
       }
 
       const project = await Project.findByIdAndUpdate(
-        { _id: projectId },
+        projectId,
         {
           name,
           category,
@@ -71,7 +72,6 @@ class ProjectController {
   async getProject(req, res, next) {
     try {
       const project = await Project.findOne({ _id: req.params.projectId });
-
       res.status(201).send({ project });
     } catch (error) {
       next({ message: "Project cannot be found", statusCode: 404 });

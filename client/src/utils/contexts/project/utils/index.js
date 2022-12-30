@@ -6,11 +6,11 @@ export const initialState = {
     desktop: [],
     tablet: [],
     mobile: [],
+    _id: "",
   },
   error: "",
   projects: [],
   filteredProjects: [],
   searchKeyword: "",
   showModal: false,
-  toggleEdit: false,
 };

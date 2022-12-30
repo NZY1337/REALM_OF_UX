@@ -8,7 +8,6 @@ import {
   MATCHED_PROJECT,
   TRIGGER_MODAL,
   CLEAR_VALUES,
-  TOGGLE_EDIT,
   REMOVE_IMAGE,
 } from "./actions";
 
@@ -25,10 +24,6 @@ const reducer = (state, action) => {
 
     case TRIGGER_MODAL:
       return { ...state, showModal: action.payload.showModal };
-
-    case TOGGLE_EDIT: {
-      return { ...state, toggleEdit: action.payload.toggleEdit };
-    }
 
     case REMOVE_IMAGE:
       return {

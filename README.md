@@ -7,3 +7,4 @@
 5. Refactor RenderComments Component...
 6. transform all titles from tags to <Compoent />
 7. add backend images path to constants.js in frontend.
+8. problem on line 123 when updating the project -> projectContext

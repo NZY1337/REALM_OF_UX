@@ -4,6 +4,16 @@ import Project from "../models/Project.js";
 import { removeSingleImage } from "../utils/index.js";
 const __dirname = path.resolve();
 
+// // Check if the deleted image is in array
+// const deletedImage = images.find((image) => image === req.params.filename);
+
+// if (!deletedImage) {
+//   // If the image was not found, send a response with a status code of 404 (Not Found) and return
+//   return res
+//     .status(404)
+//     .send({ error: "file deleted from filesystem, not from database." });
+// }
+
 //LEARNING FILE UPLOAD in NODE JS :D
 class UploadProductImage {
   async uploadImage(req, res, next) {
@@ -30,23 +40,12 @@ class UploadProductImage {
       // remove image from path
       await removeSingleImage(res, req.params.filename, false);
 
+      console.log(req.body.projectId);
       // Find the project in the database
-      let project = await Project.findById(req.params.projectId);
+      let project = await Project.findById(req.body.projectId);
 
       // Combine the desktop, tablet, and mobile arrays into a single array
       const images = [...project.desktop, ...project.tablet, ...project.mobile];
-
-      //   Check if the deleted image is in array
-      const deletedImage = images.find(
-        (image) => image === req.params.filename
-      );
-
-      if (!deletedImage) {
-        // If the image was not found, send a response with a status code of 404 (Not Found) and return
-        return res
-          .status(404)
-          .send({ error: "file deleted from filesystem, not from database." });
-      }
 
       let clonedProject = { ...project.toObject() };
 
@@ -66,7 +65,7 @@ class UploadProductImage {
 
       // Update the project in the database with the new project object
       const editedProject = await Project.findByIdAndUpdate(
-        { _id: req.params.projectId },
+        { _id: req.body.projectId },
         newProject,
         { new: true }
       );

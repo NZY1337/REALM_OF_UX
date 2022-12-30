@@ -13,7 +13,6 @@ const ProjectDashForm = ({
   project,
   handleCreateProject,
   handleSubmitProject,
-  toggleEdit,
 }) => {
   const { name, category, desktop, tablet, mobile } = project;
 
@@ -97,7 +96,7 @@ const ProjectDashForm = ({
       </Row>
 
       <Button variant="dark" type="submit" disabled={disableSubmitBtn}>
-        {toggleEdit ? "Edit" : "Submit"}
+        {project._id ? "Edit" : "Submit"}
       </Button>
     </Form>
   );

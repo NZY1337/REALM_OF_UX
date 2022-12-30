@@ -1,8 +1,4 @@
-import {
-  GET_IMAGE_UPLOAD_ROUTE,
-  DELETE_IMAGE_ROUTE,
-  DELETE_IMAGE_ROUTE_NOID,
-} from "./apis";
+import { GET_IMAGE_UPLOAD_ROUTE, DELETE_IMAGE_ROUTE } from "./apis";
 import { makeRequest } from "./utils";
 
 export const uploadImageToPublicFolder = async (file, postTitle) => {
@@ -20,12 +16,7 @@ export const uploadImageToPublicFolder = async (file, postTitle) => {
   return image;
 };
 
-export const delteSingleImageID = async (projectId, imageId) => {
-  const data = await makeRequest("put", DELETE_IMAGE_ROUTE(projectId, imageId));
-  return data;
-};
-
-export const deleteSingleImageNoID = async (filename) => {
-  const data = await makeRequest("delete", DELETE_IMAGE_ROUTE_NOID(filename));
+export const deleteSingleFile = async (imageId, body) => {
+  const data = await makeRequest("put", DELETE_IMAGE_ROUTE(imageId), body);
   return data;
 };

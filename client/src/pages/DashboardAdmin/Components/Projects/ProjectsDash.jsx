@@ -28,8 +28,6 @@ const ProjectsDash = () => {
     handleDeleteProject,
     handleCreateProjectContent,
     fetchProject,
-    toggleEdit,
-    handleToggleEdit,
     handleDeleteImages,
   } = useProjectContext();
 
@@ -54,7 +52,6 @@ const ProjectsDash = () => {
                   handleCreateProject={handleCreateProject}
                   handleSubmitProject={handleSubmitProject}
                   handleCreateProjectContent={handleCreateProjectContent}
-                  toggleEdit={toggleEdit}
                 />
               </div>
             </Col>
@@ -70,7 +67,6 @@ const ProjectsDash = () => {
                   handleMatchedProject={handleMatchedProject}
                   handleDeleteProject={handleDeleteProject}
                   fetchProject={fetchProject}
-                  handleToggleEdit={handleToggleEdit}
                 />
               </div>
 

@@ -25,8 +25,7 @@ import {
 
 import {
   uploadImageToPublicFolder,
-  deleteSingleImageNoID,
-  delteSingleImageID,
+  deleteSingleFile,
 } from "../../services/image_upload";
 
 const ProjectContext = React.createContext();
@@ -34,14 +33,6 @@ const ProjectContext = React.createContext();
 const ProjectProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const navigate = useNavigate();
-
-  // edit or create
-  const handleToggleEdit = useCallback((toggle) => {
-    dispatch({
-      type: TOGGLE_EDIT,
-      payload: { toggleEdit: toggle },
-    });
-  }, []);
 
   // toggle modal
   const handleTriggerModal = useCallback((showModal) => {
@@ -122,7 +113,6 @@ const ProjectProvider = ({ children }) => {
 
       const { project, msg: error } = await addOrEditProject(
         state.project._id,
-        state.toggleEdit,
         state.project
       );
 
@@ -138,10 +128,8 @@ const ProjectProvider = ({ children }) => {
       if (error) {
         notify("warning", error);
       }
-
-      handleToggleEdit(false);
     },
-    [handleToggleEdit, navigate, state.project, state.toggleEdit]
+    [navigate, state.project]
   );
 
   const handleCreateProjectContent = useCallback((content) => {
@@ -180,41 +168,19 @@ const ProjectProvider = ({ children }) => {
 
   const handleDeleteImages = useCallback(
     async (filename) => {
-      const handleDeleteImageEditingOn = async (filename) => {
-        const { error, editedProject } = await delteSingleImageID(
-          state.project._id,
-          filename
-        );
+      const { error, editedProject } = await deleteSingleFile(filename, {
+        projectId: state.project._id,
+      });
 
-        if (editedProject) notify("success", "File deleted successfully");
-        if (error) notify("warning", error);
+      if (editedProject) notify("success", "File deleted successfully");
+      if (error) notify("warning", error);
 
-        dispatch({
-          type: REMOVE_IMAGE,
-          payload: { filename },
-        });
-      };
-
-      const handleDeleteImageEditingOff = async (filename) => {
-        const data = await deleteSingleImageNoID(filename);
-
-        if (data.message) {
-          notify("success", data.message);
-          dispatch({
-            type: REMOVE_IMAGE,
-            payload: { filename },
-          });
-        }
-        if (data.error) notify("warning", data.error);
-      };
-
-      if (state.toggleEdit) {
-        handleDeleteImageEditingOn(filename);
-      } else {
-        handleDeleteImageEditingOff(filename);
-      }
+      dispatch({
+        type: REMOVE_IMAGE,
+        payload: { filename },
+      });
     },
-    [state.project._id, state.toggleEdit]
+    [state.project._id]
   );
 
   const clearValues = useCallback(async () => {
@@ -238,7 +204,6 @@ const ProjectProvider = ({ children }) => {
           handleDeleteProject,
           clearValues,
           handleCreateProjectContent,
-          handleToggleEdit,
           handleDeleteImages,
         }),
         [
@@ -253,7 +218,6 @@ const ProjectProvider = ({ children }) => {
           handleDeleteProject,
           clearValues,
           handleCreateProjectContent,
-          handleToggleEdit,
           handleDeleteImages,
         ]
       )}

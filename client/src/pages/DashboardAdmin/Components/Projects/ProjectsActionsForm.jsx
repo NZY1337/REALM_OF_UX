@@ -17,7 +17,6 @@ const ProjectActionsForm = ({
   showModal,
   handleDeleteProject,
   fetchProject,
-  handleToggleEdit,
 }) => {
   useEffect(() => {
     handleMatchedProject();
@@ -49,7 +48,6 @@ const ProjectActionsForm = ({
         showModal={showModal}
         handleDeleteProject={handleDeleteProject}
         fetchProject={fetchProject}
-        handleToggleEdit={handleToggleEdit}
       />
     </>
   );

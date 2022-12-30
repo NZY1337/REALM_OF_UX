@@ -12,7 +12,6 @@ const DeleteEditAction = ({
   projectId,
   onHandleProjectCb,
   fetchProject,
-  handleToggleEdit,
 }) => {
   return (
     <DeleteEditWrapper>
@@ -39,7 +38,6 @@ const DeleteEditAction = ({
           as="span"
           onClick={() => {
             fetchProject(projectId);
-            handleToggleEdit(true);
           }}
         >
           <Pen className="text-tertiary" />
