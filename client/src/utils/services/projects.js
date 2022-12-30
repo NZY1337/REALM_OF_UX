@@ -9,7 +9,6 @@ import {
 
 export const fetchSingleProject = async (projectId) => {
   const data = await makeRequest("get", GET_PROJECT_ROUTE(projectId));
-  console.log(data);
   return data;
 };
 

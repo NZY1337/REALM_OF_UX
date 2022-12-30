@@ -94,7 +94,6 @@ class ProjectController extends UploadFile {
         ...project.mobile,
       ];
 
-      console.log(this.removeFile, super.removeFile);
       for (const filename of filestoDelete) {
         if (filestoDelete.includes(filename)) {
           await this.removeFile(null, filename);

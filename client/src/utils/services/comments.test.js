@@ -6,8 +6,6 @@ import {
   DELETE_COMMENT_ROUTE,
 } from "./apis";
 
-console.log(makeRequest);
-
 jest.mock("./apis", () => ({
   ADD_COMMENT_ROUTE: "add-comment",
   GET_COMMENTS_ROUTE: (projectId) => `get-comments/${projectId}`,

@@ -20,17 +20,20 @@ const ProjectActionsForm = ({
 }) => {
   useEffect(() => {
     handleMatchedProject();
-  }, [searchKeyword]);
+  }, [handleMatchedProject, searchKeyword]);
 
   return (
     <>
       <Form>
-        <h6 className="mb-4">Edit or Delete Project</h6>
+        <div className="d-flex align-items-start">
+          <h6 className="mb-4 me-2">Edit or Delete Projects</h6>
+          <span className="badge bg-primary text-white">3</span>
+        </div>
 
         <Row>
           <Col lg="6">
             <ProjectsDashFormGroup
-              label="Search Project"
+              label="Search Project by title"
               type="text"
               name="name"
               placeholder="Enter the project name"

@@ -10,3 +10,5 @@
 8. problem on line 123 when updating the project -> projectContext
 9. fix project cannot be found
 10. count projects
+11. AWS Cloud to save image
+12. Button pt discard / new Project

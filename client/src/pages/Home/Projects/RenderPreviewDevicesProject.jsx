@@ -25,11 +25,15 @@ const RenderPreviewDevicesProject = ({ project }) => {
   };
 
   const renderDesktopView = () => {
-    return projectsDesktopSS.map((project) => <RenderProjectSS key={project} project={project} />);
+    return projectsDesktopSS.map((project) => (
+      <RenderProjectSS key={project} project={project} />
+    ));
   };
 
   const renderProjectSS = () => {
-    return projectScreenShots.map((project) => <RenderProjectSS key={project} project={project} />);
+    return projectScreenShots.map((project) => (
+      <RenderProjectSS key={project} project={project} />
+    ));
   };
 
   return (
@@ -61,7 +65,7 @@ const RenderPreviewDevicesProject = ({ project }) => {
         {renderProjectSS()}
       </ModalPresentationArticle>
 
-      <Col lg="8" className="my-4 project-description">
+      <Col lg="8" className="my-5 project-description">
         <p
           className="mb-0"
           dangerouslySetInnerHTML={{ __html: project.content }}

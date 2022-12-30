@@ -10,7 +10,6 @@ const ImagePreviewActionsWrapper = styled.div`
       position: relative;
       height: 150px;
       flex-grow: 1;
-      min-width: 150px;
       box-shadow: var(--shadow-2);
       height: 150px;
       margin: 5px;
@@ -24,6 +23,8 @@ const ImagePreviewActionsWrapper = styled.div`
         cursor: pointer;
         opacity: 0;
         transition: opacity 0.2s;
+        background-color: white;
+        border-radius: 50%;
       }
 
       &:hover svg {
