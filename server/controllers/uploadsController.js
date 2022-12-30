@@ -32,6 +32,7 @@ class UploadProductImage {
 
       // Find the project in the database
       let project = await Project.findById(req.params.projectId);
+
       // Combine the desktop, tablet, and mobile arrays into a single array
       const images = [...project.desktop, ...project.tablet, ...project.mobile];
 
