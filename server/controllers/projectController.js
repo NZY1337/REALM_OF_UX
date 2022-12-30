@@ -32,7 +32,6 @@ class ProjectController {
     try {
       const { name, category, desktop, tablet, mobile, content } = req.body;
       const { projectId } = req.params;
-      console.log({ projectId });
 
       if (!name || !category || !desktop || !desktop || !mobile || !content) {
         next({ message: "Please provide all values", statusCode: 400 });

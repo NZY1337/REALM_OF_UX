@@ -9,7 +9,6 @@ import {
   MATCHED_PROJECT,
   TRIGGER_MODAL,
   CLEAR_VALUES,
-  TOGGLE_EDIT,
   REMOVE_IMAGE,
 } from "./actions";
 import { notify } from "../../helpers";
@@ -168,11 +167,15 @@ const ProjectProvider = ({ children }) => {
 
   const handleDeleteImages = useCallback(
     async (filename) => {
-      const { error, editedProject } = await deleteSingleFile(filename, {
-        projectId: state.project._id,
-      });
+      const { error, editedProject, message } = await deleteSingleFile(
+        filename,
+        {
+          projectId: state.project._id,
+        }
+      );
 
-      if (editedProject) notify("success", "File deleted successfully");
+      if (editedProject || message)
+        notify("success", message || "File deleted successfully");
       if (error) notify("warning", error);
 
       dispatch({

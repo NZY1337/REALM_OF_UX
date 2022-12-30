@@ -36,52 +36,47 @@ class UploadProductImage {
 
   // from fileSystem & mongoose
   async deleteImageFromFsAndMongo(req, res, next) {
-    try {
-      // remove image from path
-      await removeSingleImage(res, req.params.filename, false);
+    if (!req.body.projectId) {
+      await removeSingleImage(res, req.params.filename, true);
+    } else {
+      try {
+        // remove image from path
+        await removeSingleImage(res, req.params.filename, false);
+        console.log(req.body.projectId);
 
-      console.log(req.body.projectId);
-      // Find the project in the database
-      let project = await Project.findById(req.body.projectId);
+        // Find the project in the database
+        let project = await Project.findById(req.body.projectId);
 
-      // Combine the desktop, tablet, and mobile arrays into a single array
-      const images = [...project.desktop, ...project.tablet, ...project.mobile];
+        let clonedProject = { ...project.toObject() };
 
-      let clonedProject = { ...project.toObject() };
+        // Create a new project object with the deleted image removed from the desktop, tablet, and mobile arrays
+        const newProject = {
+          ...clonedProject,
+          desktop: clonedProject.desktop.filter(
+            (img) => img !== req.params.filename
+          ),
+          tablet: clonedProject.tablet.filter(
+            (img) => img !== req.params.filename
+          ),
+          mobile: clonedProject.mobile.filter(
+            (img) => img !== req.params.filename
+          ),
+        };
 
-      // Create a new project object with the deleted image removed from the desktop, tablet, and mobile arrays
-      const newProject = {
-        ...clonedProject,
-        desktop: clonedProject.desktop.filter(
-          (img) => img !== req.params.filename
-        ),
-        tablet: clonedProject.tablet.filter(
-          (img) => img !== req.params.filename
-        ),
-        mobile: clonedProject.mobile.filter(
-          (img) => img !== req.params.filename
-        ),
-      };
+        // Update the project in the database with the new project object
+        const editedProject = await Project.findByIdAndUpdate(
+          { _id: req.body.projectId },
+          newProject,
+          { new: true }
+        );
 
-      // Update the project in the database with the new project object
-      const editedProject = await Project.findByIdAndUpdate(
-        { _id: req.body.projectId },
-        newProject,
-        { new: true }
-      );
-
-      // Send a response with a status code of 200 (OK) and the updated project object
-      return res.status(200).json({ editedProject });
-    } catch (err) {
-      // If there was an error, call the next middleware function with the error
-      next(err);
+        // Send a response with a status code of 200 (OK) and the updated project object
+        return res.status(200).json({ editedProject });
+      } catch (err) {
+        // If there was an error, call the next middleware function with the error
+        next(err);
+      }
     }
-  }
-
-  async deleteImageFromFS(req, res) {
-    const { filename } = req.params;
-    console.log(filename);
-    await removeSingleImage(res, filename);
   }
 }
 
