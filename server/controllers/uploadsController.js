@@ -1,7 +1,7 @@
 import path from "path";
 import fs from "fs";
 import Project from "../models/Project.js";
-import { removeSingleImage } from "../utils/index.js";
+import { removeSingleFile, createNewProjectImgesArr } from "../utils/index.js";
 const __dirname = path.resolve();
 
 // // Check if the deleted image is in array
@@ -37,12 +37,11 @@ class UploadProductImage {
   // from fileSystem & mongoose
   async deleteImageFromFsAndMongo(req, res, next) {
     if (!req.body.projectId) {
-      await removeSingleImage(res, req.params.filename, true);
+      await removeSingleFile(res, req.params.filename);
     } else {
       try {
         // remove image from path
-        await removeSingleImage(res, req.params.filename, false);
-        console.log(req.body.projectId);
+        await removeSingleFile(null, req.params.filename);
 
         // Find the project in the database
         let project = await Project.findById(req.body.projectId);
@@ -50,18 +49,10 @@ class UploadProductImage {
         let clonedProject = { ...project.toObject() };
 
         // Create a new project object with the deleted image removed from the desktop, tablet, and mobile arrays
-        const newProject = {
-          ...clonedProject,
-          desktop: clonedProject.desktop.filter(
-            (img) => img !== req.params.filename
-          ),
-          tablet: clonedProject.tablet.filter(
-            (img) => img !== req.params.filename
-          ),
-          mobile: clonedProject.mobile.filter(
-            (img) => img !== req.params.filename
-          ),
-        };
+        const newProject = createNewProjectImgesArr(
+          clonedProject,
+          req.params.filename
+        );
 
         // Update the project in the database with the new project object
         const editedProject = await Project.findByIdAndUpdate(

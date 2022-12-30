@@ -1,6 +1,6 @@
 import Project from "../models/Project.js";
 import Comment from "../models/Comment.js";
-import { removeFile } from "../utils/index.js";
+import { removeSingleFile } from "../utils/index.js";
 
 class ProjectController {
   async addProject(req, res, next) {
@@ -90,9 +90,13 @@ class ProjectController {
         ...project.mobile,
       ];
 
-      const comments = await Comment.deleteMany({ projectId });
+      for (const filename of filestoDelete) {
+        if (filestoDelete.includes(filename)) {
+          await removeSingleFile(null, filename);
+        }
+      }
 
-      await removeFile(filestoDelete);
+      const comments = await Comment.deleteMany({ projectId });
 
       res.status(200).json({ project, comments });
     } catch (error) {
