@@ -32,7 +32,7 @@ const ProjectActionsForm = ({
         </div>
 
         <Row>
-          <Col lg="6">
+          <Col lg="12" xxl="6">
             <FormGroup
               label="Search Project by title"
               type="text"

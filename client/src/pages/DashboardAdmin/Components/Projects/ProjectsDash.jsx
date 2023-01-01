@@ -46,7 +46,7 @@ const ProjectsDash = () => {
 
         <DashContainer>
           <Row className="dash-container-projects mt-4">
-            <Col lg="6" md="12">
+            <Col lg="12" xxl="4" md="12">
               <div className="dash-container-projects-wrapper">
                 <ProjectDashForm
                   project={project}
@@ -58,7 +58,7 @@ const ProjectsDash = () => {
               </div>
             </Col>
 
-            <Col lg="6" md="12" className="mt-lg-0 mt-xl-0 mt-4">
+            <Col lg="6" xxl="4" md="12" className="my-4 my-xxl-0">
               <div className="dash-container-projects-wrapper">
                 <ProjectActionsForm
                   filteredProjects={filteredProjects}
@@ -72,15 +72,17 @@ const ProjectsDash = () => {
                   projects={projects}
                 />
               </div>
-              {projectImages.length && projectImages.length > 0 ? (
-                <div className="dash-container-projects-wrapper my-4">
+            </Col>
+            {projectImages.length && projectImages.length > 0 ? (
+            <Col  lg="6" xxl="4" md="12">
+                <div className="dash-container-projects-wrapper my-4 my-xxl-0">
                   <ImagePreviewActions
                     projectImages={projectImages}
                     handleDeleteImages={handleDeleteImages}
                   />
                 </div>
-              ) : null}
-            </Col>
+              </Col>
+               ) : null}
           </Row>
         </DashContainer>
       </DashboardWrapper>
