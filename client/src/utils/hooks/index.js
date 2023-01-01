@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import { imagePath } from "../helpers/constants";
 
-
-const PREFIX = 'codepen-clone-'
+const PREFIX = "codepen-clone-";
 
 // Hook
 export const useOnClickOutside = (ref, handler) => {
@@ -37,24 +37,38 @@ export const useConvertBase64ToBlob = (project) => {
   return blogPath;
 };
 
-
 export const useLocalStorage = (key, initialValue) => {
-  const prefixedKey = PREFIX + key
+  const prefixedKey = PREFIX + key;
 
   const [value, setValue] = useState(() => {
-    const jsonValue = localStorage.getItem(prefixedKey)
-    if (jsonValue != null) return JSON.parse(jsonValue)
+    const jsonValue = localStorage.getItem(prefixedKey);
+    if (jsonValue != null) return JSON.parse(jsonValue);
 
-    if (typeof initialValue === 'function') {
-      return initialValue()
+    if (typeof initialValue === "function") {
+      return initialValue();
     } else {
-      return initialValue
+      return initialValue;
     }
-  })
+  });
 
   useEffect(() => {
-    localStorage.setItem(prefixedKey, JSON.stringify(value))
-  }, [prefixedKey, value])
+    localStorage.setItem(prefixedKey, JSON.stringify(value));
+  }, [prefixedKey, value]);
 
-  return [value, setValue]
-}
+  return [value, setValue];
+};
+
+export const usePreloadImages = (images) => {
+  const [loaded, setLoaded] = useState(false);
+  useEffect(() => {
+    // Preload projectImages
+    images.map((image) => {
+      const img = new Image();
+      img.src = imagePath(image);
+      img.onload = () => setLoaded(true);
+      return img;
+    });
+  }, [images]);
+
+  return loaded;
+};

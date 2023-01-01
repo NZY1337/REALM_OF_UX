@@ -2,6 +2,20 @@ import styled from "styled-components";
 
 const ImagePreviewActionsWrapper = styled.div`
   .image-preview {
+    // &-skeleton {
+    //   span:not(.react-loading-skeleton) {
+    //     display: flex;
+    //     flex-wrap: wrap;
+    //     flex-grow: 1;
+    //   }
+
+    //   span.react-loading-skeleton {
+    //     height: 150px;
+    //     width: 150px !important;
+    //     margin: 5px;
+    //   }
+    // }
+
     &-actions {
       border-radius: 5px;
       position: relative;
@@ -11,7 +25,6 @@ const ImagePreviewActionsWrapper = styled.div`
       height: 150px;
       flex-grow: 1;
       box-shadow: var(--shadow-2);
-      height: 150px;
       margin: 5px;
 
       svg {
@@ -42,19 +55,19 @@ const ImagePreviewActionsWrapper = styled.div`
         transform: rotateZ(0deg);
       }
 
-      &:after {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0px;
-        left: 0;
-        transform: rotateZ(2deg);
-        border-radius: 5px;
-        content: "";
-        background-color: orange;
-        z-index: 0;
-        transition: transform 0.2s;
-      }
+      //   &:after {
+      //     position: absolute;
+      //     width: 100%;
+      //     height: 100%;
+      //     top: 0px;
+      //     left: 0;
+      //     transform: rotateZ(2deg);
+      //     border-radius: 5px;
+      //     content: "";
+      //     background-color: orange;
+      //     z-index: 0;
+      //     transition: transform 0.2s;
+      //   }
     }
   }
 `;

@@ -56,6 +56,12 @@ const ProjectProvider = ({ children }) => {
       type: SEARCH_KEYWORD,
       payload: { searchKeyword: e.target.value },
     });
+
+    if (e.target.value === "") {
+      dispatch({
+        type: CLEAR_VALUES,
+      });
+    }
   }, []);
 
   // delete project
