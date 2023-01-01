@@ -22,6 +22,8 @@ const h4Variants = {
     opacity: 1,
     // scale: 1.01,
     color: "#184843",
+    fontSize:"25px",
+    fontWeight:"300",
     transition: { duration: 0.5 },
     x: [0, 10, 0],
   },
@@ -74,14 +76,14 @@ const SliderItem = ({ subtitle, title, description }) => {
               {title}
             </motion.h1>
 
-            <motion.h4
+            <motion.p
               variants={h4Variants}
               animate={controls}
               ref={ref}
               className="mb-5"
             >
               Enhance the productivity with OpenAI's Superpowers
-            </motion.h4>
+            </motion.p>
 
             <motion.p
               ref={ref}

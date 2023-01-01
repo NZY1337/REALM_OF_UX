@@ -2,30 +2,16 @@ import styled from "styled-components";
 
 const ImagePreviewActionsWrapper = styled.div`
   .image-preview {
-    // &-skeleton {
-    //   span:not(.react-loading-skeleton) {
-    //     display: flex;
-    //     flex-wrap: wrap;
-    //     flex-grow: 1;
-    //   }
+    display:grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
 
-    //   span.react-loading-skeleton {
-    //     height: 150px;
-    //     width: 150px !important;
-    //     margin: 5px;
-    //   }
-    // }
 
     &-actions {
       border-radius: 5px;
       position: relative;
-      flex-grow: 1;
-      display: flex;
-      position: relative;
       height: 150px;
-      flex-grow: 1;
       box-shadow: var(--shadow-2);
-      margin: 5px;
 
       svg {
         position: absolute;
