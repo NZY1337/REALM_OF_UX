@@ -4,30 +4,30 @@ import { DoorOpenFill } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import { trimUserName } from "../utils/helpers";
 
-export const UserLoggedIn = ({ name, colorUser }) => {
-  const userName = trimUserName(name);
-  return (
-    <Link to="/login" className="login" style={{ color: colorUser }}>
-      {userName}
-    </Link>
-  );
-};
+const IsLoggedIn = ({user, colorUser}) => {
+    const userStatus = () => {
+        if (user && user.name) {
+            return (
+                <Link to="/login" className="login" style={{ color: colorUser }}>
+                    {trimUserName(user.name)}
+                </Link>
+            )
+        } else {
+            return (
+                <Link to="/login" className="login" style={{ color: colorUser }}>
+                        Sign in <DoorOpenFill />
+                </Link>
+            )
+        }
+    }
 
-
-export const UserLoggedOut = ({ colorUser }) => {
-  return (
-    <Link to="/login" className="login" style={{ color: colorUser }}>
-      Sign in <DoorOpenFill />
-    </Link>
-  );
-};
-
-UserLoggedIn.propTypes = {
-  name: PropTypes.string.isRequired,
-  colorUser: PropTypes.string
+    return userStatus()
 }
 
-UserLoggedOut.propTypes = {
+export default IsLoggedIn
+
+IsLoggedIn.propTypes = {
+  name: PropTypes.string.isRequired,
   colorUser: PropTypes.string
 }
 

@@ -1,6 +1,5 @@
-import { TYPES } from "./constants";
+import { TYPES,imagePath } from "./constants";
 import { toast } from "react-toastify";
-import { imagePath } from "./constants";
 
 export const removePathGetFilename = (data) => {
   const splitPath = data.split("/");
@@ -8,10 +7,9 @@ export const removePathGetFilename = (data) => {
 };
 
 export const trimUserName = (name) => {
-  //   const firstName = name.split(" ")[0];
-  //   const secondName = name.split(" ")[1].split("")[0];
-  //   return `Hello, ${firstName} ${secondName}.`;
-  return name;
+    const [first, last] = [name.split(" ")[0], name.split(" ")[1].split("")[0]]
+    console.log(first, last)
+    return `Hi ${first} ${last}.`;
 };
 
 export const getBannerSizes = () => {

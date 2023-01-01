@@ -43,7 +43,6 @@ const LoginRegisterWrapper = styled.div`
 
     h1 {
       color: var(--text-color-white);
-      font-weight: bold;
       text-align: center;
       margin-bottom: 5rem;
     }

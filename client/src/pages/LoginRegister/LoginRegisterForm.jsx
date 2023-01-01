@@ -55,7 +55,7 @@ const LoginRegisterForm = ({
   return (
     <Form
       onSubmit={onSubmit}
-      className="col-12 col-lg-5 col-xl-3"
+      className="col-12 col-lg-7 col-xl-4"
       autoComplete="off"
     >
       {inputs &&
