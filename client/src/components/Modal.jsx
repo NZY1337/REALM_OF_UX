@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useModalContext } from "../utils/contexts/modal/modalContext";
-import warning from "../assets/images/warning.svg";
 
 const ModalAlert = ({ children }) => {
   const { modal, handleTriggerModal } = useModalContext();
@@ -11,7 +10,7 @@ const ModalAlert = ({ children }) => {
   return (
     <Modal show={modal} onHide={() => handleTriggerModal(false)}>
       <Modal.Body>
-        <img src={warning} style={{ width: "100px", marginTop: "-50px" }} />
+       
         <p className="mb-0 mt-2">
           Hold tight, are you sure you want to delete this ?
         </p>

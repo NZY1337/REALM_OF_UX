@@ -3,6 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,900;1,100&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&family=Sedgwick+Ave&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Qwigley&family=Roboto:ital,wght@0,100;0,300;0,400;0,900;1,100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap");
 :root {
   //text
   --text-color-orange: #bc5318;
@@ -22,8 +23,8 @@
   --border-color-primary: var(--text-color-orange);
 
   //fonts
-  --primary-font: "Roboto", sans-serif;
-  --secondary-font: "Sedgwick Ave", cursive;
+  --primary-font: "DM Serif Display", serif;
+  --secondary-font: "Roboto", sans-serif;
   --tertiary-font: "Qwigley", cursive;
 
   //paddings

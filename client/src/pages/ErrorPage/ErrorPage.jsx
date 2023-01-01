@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import ErrorPageWrapper from "../../assets/wrappers/ErrorPage/ErrorPageWrapper";
 import { Container, Row, Col } from "react-bootstrap";
 import wrongPath from "../../assets/images/wrongPath.svg";
@@ -14,10 +14,7 @@ const ErrorPage = ({ msg }) => {
         <Row>
           <Col lg={12}>
             <img src={wrongPath} />
-            <h1
-              className="mt-4 mb-0"
-              style={{ fontSize: "10rem", fontWeight: "bold" }}
-            >
+            <h1 className="mt-4 mb-0" style={{ fontSize: "10rem" }}>
               404
             </h1>
             <h5>
@@ -35,7 +32,7 @@ const ErrorPage = ({ msg }) => {
 };
 
 ErrorPage.propTypes = {
-  msg: PropTypes.string.isRequired
-}
+  msg: PropTypes.string.isRequired,
+};
 
 export default ErrorPage;

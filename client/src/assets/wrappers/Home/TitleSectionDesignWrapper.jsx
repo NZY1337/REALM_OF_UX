@@ -10,6 +10,8 @@ const TitleSectionDesignWrapper = styled.p`
     text-decoration: underline;
     font-size: 16px;
   }
+
+  color: black;
 `;
 
 export default TitleSectionDesignWrapper;

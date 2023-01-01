@@ -43,7 +43,6 @@ export const ButtonSecondary = styled.button`
   background: var(--text-color-blue);
   box-shadow: var(--shadow-4);
   transition: all 0.2s;
-  font-weight: bold;
   svg {
     margin-left: 5px;
   }
@@ -57,19 +56,16 @@ export const ButtonSecondary = styled.button`
 
 export const ButtonTertiary = styled.button`
   cursor: pointer;
-  border-radius: var(--btn-border-radius);
-  //   padding: 0.25rem 1.25rem;
+  border: none;
   padding-left: 0;
   text-transform: capitalize;
   display: inline-block;
   color: var(--text-color-orange);
   background: none;
-  //   background: radial-gradient(100% 100% at 100% 0%, #5adaff 0%, #5468ff 100%);
-  box-shadow: var(--shadow-4);
   transition: all 0.2s;
-  font-weight: bold;
-  font-size: 14px;
-  x svg {
+  font-size: ${(props) => props.fs || 15}px;
+  background: ${(props) => props.bg || "transparent"};
+  svg {
     margin-left: 5px;
   }
 `;

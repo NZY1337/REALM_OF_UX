@@ -1,5 +1,5 @@
 import express from "express";
-import fileUpload from 'express-fileupload'
+import fileUpload from "express-fileupload";
 
 // create dynamic folder in Node-js
 // https://stackoverflow.com/questions/21194934/how-to-create-a-directory-if-it-doesnt-exist-using-node-js
@@ -18,15 +18,15 @@ import connectDB from "./db/connect.js";
 import authRouter from "./routes/authRoutes.js";
 import projectRouter from "./routes/projectRoutes.js";
 import commentRouter from "./routes/commentRoutes.js";
-import productRouter from './routes/productRoutes.js';
+import productRouter from "./routes/productRoutes.js";
 
 // middlewares
 import notFoundMiddleware from "./middleware/not-found.js";
 import errorHandlerMiddleware from "./middleware/error-handler.js";
-app.use(express.static('./public'));
+app.use(express.static("./public"));
 app.use(express.json());
 app.use(express.urlencoded({ limit: "25mb", extended: true }));
-app.use(fileUpload())
+app.use(fileUpload());
 
 // routes
 app.get("/", (req, res) => {

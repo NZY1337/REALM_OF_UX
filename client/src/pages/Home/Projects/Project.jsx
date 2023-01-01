@@ -2,12 +2,10 @@ import React from "react";
 import PropTypes from 'prop-types';
 import { Card } from "react-bootstrap";
 import BlogDescription from "../../../components/CardProject";
-import { useConvertBase64ToBlob } from "../../../utils/hooks";
 import { postStyle } from "../../../utils/helpers";
 
 const Project = ({ project }) => {
-  const blogPath = useConvertBase64ToBlob(project);
-  const style = postStyle(blogPath);
+  const style = postStyle(project.desktop[0]);
 
   return (
     <Card className="justify-content-end" style={{ ...style }}>

@@ -2,12 +2,8 @@ import styled from "styled-components";
 
 const SideBarWrapper = styled.div`
   .sidebar {
-    padding: 2rem;
-    background: linear-gradient(
-        0deg,
-        rgb(0 0 0 / 30%),
-        rgba(255, 155, 250, 0.3)
-      ),
+    // padding: 2rem;
+    background: linear-gradient(0deg, rgb(0 0 0 / 70%), rgba(155, 50, 250, 0.3)),
       url(${(props) => props.cover});
 
     background-position: center center;
@@ -15,18 +11,24 @@ const SideBarWrapper = styled.div`
     width: 100%;
 
     @media (min-width: 768px) {
-      width: 260px;
+      width: 200px;
     }
 
     .navbar {
       &-nav {
         a.active {
-          color: orange;
+          color: #fff;
+          background: #e7e7e7;
+          color: black;
+          font-weight: 100;
+          padding: 10px;
+          border-left: 4px solid var(--text-color-orange);
         }
 
         a {
           color: #fff;
           margin-bottom: 0.5rem;
+          padding-left: 10px;
 
           &:hover {
             svg,

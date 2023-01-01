@@ -37,11 +37,6 @@ const LoginRegisterWrapper = styled.div`
       margin-bottom: 5rem;
     }
 
-    .design-font {
-      color: var(--text-color-gray);
-      margin-bottom: 1rem;
-    }
-
     .logo {
       color: var(--text-color-white);
       font-size: 3rem;
@@ -123,7 +118,7 @@ const LoginRegisterWrapper = styled.div`
         border-radius: 0;
         padding-left: 0;
         color: var(--text-color-gray);
-        padding:10px;
+        padding: 10px;
 
         &::placeholder {
           color: var(--text-color-gray);

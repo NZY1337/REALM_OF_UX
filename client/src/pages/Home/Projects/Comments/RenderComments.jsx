@@ -15,6 +15,7 @@ const RenderComments = ({ comments, handleDeleteComment, user }) => {
   return (
     <>
       <h2>Comments</h2>
+      
       {comments.map((comm, key) => (
         <div className="comments-section" key={comm._id}>
           <div className="comments-section__user">
@@ -52,6 +53,7 @@ const RenderComments = ({ comments, handleDeleteComment, user }) => {
           </div>
         </div>
       ))}
+
       <ModalAlert>
         <Button
           variant="danger"

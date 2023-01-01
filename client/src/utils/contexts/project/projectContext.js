@@ -1,21 +1,31 @@
-import React, { useReducer, useContext } from "react";
+import React, { useReducer, useContext, useMemo, useCallback } from "react";
 import {
   GET_PROJECTS,
   GET_PROJECT,
   ADD_PROJECT,
+  ADD_PROJECT_CONTENT,
   DELETE_PROJECT,
   SEARCH_KEYWORD,
   MATCHED_PROJECT,
   TRIGGER_MODAL,
-  CLEAR_VALUES
+  CLEAR_VALUES,
+  REMOVE_IMAGE,
 } from "./actions";
-import { uploadImageToPublicFolder, notify } from "../../helpers";
-import { fetchSingleProject, addProject, fetchAllProjects, deleteProject, } from "../../services/services";
+import { notify } from "../../helpers";
 import { useNavigate } from "react-router-dom";
 import { initialState } from "./utils";
 import reducer from "./reducer";
+import {
+  fetchSingleProject,
+  fetchAllProjects,
+  addOrEditProject,
+  deleteProject,
+} from "../../services/projects";
 
-
+import {
+  uploadImageToPublicFolder,
+  deleteSingleFile,
+} from "../../services/image_upload";
 
 const ProjectContext = React.createContext();
 
@@ -23,122 +33,203 @@ const ProjectProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const navigate = useNavigate();
 
-  const handleTriggerModal =  (showModal) => {
+  // toggle modal
+  const handleTriggerModal = useCallback((showModal) => {
     dispatch({
       type: TRIGGER_MODAL,
       payload: { showModal },
     });
-  };
+  }, []);
 
-  const handleMatchedProject = async () => {
-    const { allProjects, error } = await fetchAllProjects();
-
+  // filter matched projects
+  const handleMatchedProject = useCallback(async () => {
+    const { projects: allProjects, msg: error } = await fetchAllProjects();
     dispatch({
       type: MATCHED_PROJECT,
       payload: { projects: allProjects, error },
     });
-  };
+  }, []);
 
-  const handleSearchKeyword = async (e) => {
+  // search keyword by input value
+  const handleSearchKeyword = useCallback(async (e) => {
     dispatch({
       type: SEARCH_KEYWORD,
       payload: { searchKeyword: e.target.value },
     });
-  };
 
-  const handleDeleteProject = async (projectId) => {
-    const { deletedProject, error } = await deleteProject(projectId);
-
-    if (!!deletedProject) {
-      dispatch({
-        type: DELETE_PROJECT,
-        payload: { deletedProject },
-      });
-
+    if (e.target.value === "") {
       dispatch({
         type: CLEAR_VALUES,
       });
-      notify("success", `Project with ID: ${projectId} successfully deleted`);
-    } else {
-      notify("warning", error);
     }
+  }, []);
 
-    handleTriggerModal(false);
-  };
+  // delete project
+  const handleDeleteProject = useCallback(
+    async (projectId) => {
+      const { project: deletedProject, msg: error } = await deleteProject(
+        projectId
+      );
 
-  // fetch single project
-  const fetchProject = async (projectId) => {
-    const { singleProject, error } = await fetchSingleProject(projectId);
-    console.log(error)
+      if (!!deletedProject) {
+        dispatch({
+          type: DELETE_PROJECT,
+          payload: { deletedProject },
+        });
+
+        dispatch({
+          type: CLEAR_VALUES,
+        });
+        notify("success", `Project with ID: ${projectId} successfully deleted`);
+      } else {
+        notify("warning", error);
+      }
+
+      handleTriggerModal(false);
+    },
+    [handleTriggerModal]
+  );
+
+  const fetchProject = useCallback(async (projectId) => {
+    const { project: singleProject, msg: error } = await fetchSingleProject(
+      projectId
+    );
+
     dispatch({
       type: GET_PROJECT,
       payload: { project: singleProject, error },
     });
-  };
+  }, []);
 
   // fetch all projects
-  const fetchProjects = async () => {
-    const { allProjects, error } = await fetchAllProjects();
+  const fetchProjects = useCallback(async () => {
+    const { projects: allProjects, msg: error } = await fetchAllProjects();
+
     dispatch({
       type: GET_PROJECTS,
       payload: { projects: allProjects, error },
     });
-  };
+  }, []);
 
   // submit single project
-  const handleSubmitProject = async (e) => {
-    e.preventDefault();
-    const { newProject, error } = await addProject(state.project);
-    if (newProject && newProject._id) {
-      notify(
-        "success",
-        "Project Created Successfully. You are now redirected to the project's page..."
+  const handleSubmitProject = useCallback(
+    async (e) => {
+      e.preventDefault();
+
+      const { project, msg: error } = await addOrEditProject(
+        state.project._id,
+        state.project
       );
-      setTimeout(() => {
-        navigate(`/projects/${newProject._id}`);
-      }, 4200);
-    }
-    if (error) {
-      notify("warning", error);
-    }
-  };
+
+      if (project && project._id) {
+        notify(
+          "success",
+          "Project Created Successfully. You are now redirected to the project's page..."
+        );
+        setTimeout(() => {
+          navigate(`/projects/${project._id}`);
+        }, 4200);
+      }
+      if (error) {
+        notify("warning", error);
+      }
+    },
+    [navigate, state.project]
+  );
+
+  const handleCreateProjectContent = useCallback((content) => {
+    dispatch({
+      type: ADD_PROJECT_CONTENT,
+      payload: { content },
+    });
+  }, []);
 
   // get project data
-  const handleCreateProject = async (e) => {
-    if (e.target.files && e.target.files[0]) {
-      const { projectSS, error } = await uploadImageToPublicFolder(e.target.files[0], state.project.name);
-      dispatch({
-        type: ADD_PROJECT.IMAGE,
-        payload: { targetImage: e.target, projectSS },
-      });
-    } else {
-      dispatch({
-        type: ADD_PROJECT.TEXT,
-        payload: { targetText: e.target },
-      });
-    }
-  };
+  const handleCreateProject = useCallback(
+    async (e) => {
+      if (e.target.files) {
+        for (let file of e.target.files) {
+          const { src: projectSS, msg: error } =
+            await uploadImageToPublicFolder(file, state.project.name);
 
-  const clearValues = () => {
+          if (error) {
+            notify("warning", error);
+          }
+
+          dispatch({
+            type: ADD_PROJECT.IMAGE,
+            payload: { targetImage: e.target, projectSS },
+          });
+        }
+      } else {
+        dispatch({
+          type: ADD_PROJECT.TEXT,
+          payload: { targetText: e.target },
+        });
+      }
+    },
+    [state.project.name]
+  );
+
+  const handleDeleteImages = useCallback(
+    async (filename) => {
+      const { error, editedProject, message } = await deleteSingleFile(
+        filename,
+        {
+          projectId: state.project._id,
+        }
+      );
+
+      if (editedProject || message)
+        notify("success", message || "File deleted successfully");
+      if (error) notify("warning", error);
+
+      dispatch({
+        type: REMOVE_IMAGE,
+        payload: { filename },
+      });
+    },
+    [state.project._id]
+  );
+
+  const clearValues = useCallback(async () => {
     dispatch({
       type: CLEAR_VALUES,
     });
-  }
+  }, []);
 
   return (
     <ProjectContext.Provider
-      value={{
-        ...state,
-        handleCreateProject,
-        handleSubmitProject,
-        fetchProject,
-        fetchProjects,
-        handleSearchKeyword,
-        handleMatchedProject,
-        handleTriggerModal,
-        handleDeleteProject,
-        clearValues
-      }}
+      value={useMemo(
+        () => ({
+          ...state,
+          handleCreateProject,
+          handleSubmitProject,
+          fetchProject,
+          fetchProjects,
+          handleSearchKeyword,
+          handleMatchedProject,
+          handleTriggerModal,
+          handleDeleteProject,
+          clearValues,
+          handleCreateProjectContent,
+          handleDeleteImages,
+        }),
+        [
+          state,
+          handleCreateProject,
+          handleSubmitProject,
+          fetchProject,
+          fetchProjects,
+          handleSearchKeyword,
+          handleMatchedProject,
+          handleTriggerModal,
+          handleDeleteProject,
+          clearValues,
+          handleCreateProjectContent,
+          handleDeleteImages,
+        ]
+      )}
     >
       {children}
     </ProjectContext.Provider>

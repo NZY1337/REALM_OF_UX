@@ -37,24 +37,19 @@
   }
 
   // menu
-
-  .design-font {
-    color: var(--text-color-orange);
-    font-weight: 500;
-  }
   .navbar-nav {
     a {
       font-size: 2rem;
-      font-family: "Roboto", sans-serif;
-      font-weight: 600;
       text-transform: uppercase;
       color: var(--text-color-gray);
       transition: all 0.3s;
       border-bottom: 1px solid var(--text-color-gray);
       display: flex;
       color: black;
+      font-family: var(--primary-font);
       span {
         flex-grow: 1;
+        font-family: var(--primary-font);
       }
 
       &:hover {
@@ -70,6 +65,7 @@
     }
 
     h4.quote {
+      margin-bottom: 1rem;
       font-weight: 400;
       text-decoration: underline;
     }
@@ -144,5 +140,3 @@
     }
   }
 }
-
-

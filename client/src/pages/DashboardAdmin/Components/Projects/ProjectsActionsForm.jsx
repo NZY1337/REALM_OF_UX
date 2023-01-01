@@ -6,7 +6,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import FilteredProjects from "./FilteredProjects";
-import ProjectsDashFormGroup from "../../../../utils/helpers/react/FormGroup";
+import FormGroup from "../../../../utils/helpers/react/FormGroup";
 
 const ProjectActionsForm = ({
   filteredProjects,
@@ -16,23 +16,31 @@ const ProjectActionsForm = ({
   handleTriggerModal,
   showModal,
   handleDeleteProject,
+  fetchProject,
+  projects,
 }) => {
   useEffect(() => {
     handleMatchedProject();
-  }, [searchKeyword]);
+  }, [handleMatchedProject, searchKeyword]);
 
   return (
     <>
       <Form>
-        <h6 className="mb-4" style={{ color: "orange" }}>
-          Edit | Delete Project
-        </h6>
+        <div className="d-flex align-items-start">
+          <h6 className="mb-4 me-2">Edit or Delete Projects</h6>
+          <span className="badge bg-primary text-white">{projects.length}</span>
+        </div>
 
         <Row>
-          <Col lg="6">
-            <ProjectsDashFormGroup label="Search Project by title" type="text" name="name" placeholder="Enter the project's name"
-                value={searchKeyword}
-                onHandleChange={handleSearchKeyword}/>
+          <Col lg="12" xxl="6">
+            <FormGroup
+              label="Search Project by title"
+              type="text"
+              name="name"
+              placeholder="Enter the project name"
+              value={searchKeyword}
+              onHandleChange={handleSearchKeyword}
+            />
           </Col>
         </Row>
       </Form>
@@ -43,6 +51,7 @@ const ProjectActionsForm = ({
         handleTriggerModal={handleTriggerModal}
         showModal={showModal}
         handleDeleteProject={handleDeleteProject}
+        fetchProject={fetchProject}
       />
     </>
   );
@@ -55,7 +64,6 @@ ProjectActionsForm.propTypes = {
   handleMatchedProject: PropTypes.func.isRequired,
   handleTriggerModal: PropTypes.func.isRequired,
   showModal: PropTypes.bool.isRequired,
-  handleDeleteProject: PropTypes.func.isRequired,
 };
 
 export default ProjectActionsForm;

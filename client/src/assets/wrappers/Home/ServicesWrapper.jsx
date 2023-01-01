@@ -12,10 +12,6 @@ const ServicesWrapper = styled.section`
   .services {
     p {
       color: var(--text-color-white);
-
-      b {
-        font-weight: 800;
-      }
     }
 
     &-wrapper {

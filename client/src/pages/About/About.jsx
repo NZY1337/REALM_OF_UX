@@ -17,8 +17,6 @@ const About = () => {
     aboutMe: { pageTitleSection, descriptionSection, skills },
   } = useTranslateContext();
 
-  console.log(skills);
-
   return (
     <AboutWrapper>
       <Container className="pt-5 pb-0 py-lg-5 container">
@@ -26,7 +24,7 @@ const About = () => {
           <Col lg="12">
             <PageSectionTitle
               subtitle={pageTitleSection.subtitle}
-              titleBold={pageTitleSection.title}
+              title={pageTitleSection.title}
             />
           </Col>
         </Row>
@@ -44,9 +42,7 @@ const About = () => {
 
           <Col lg="6 mt-3 mt-lg-0">
             <div className="about-me-description-info p-4 p-lg-5">
-              <h3 className="mb-3" style={{ fontWeight: "bold" }}>
-                {descriptionSection.title}
-              </h3>
+              <h3 className="mb-3">{descriptionSection.title}</h3>
               <h5 className="mb-5">{descriptionSection.subtitle}</h5>
               <p>{descriptionSection.description}</p>
             </div>

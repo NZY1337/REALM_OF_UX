@@ -78,7 +78,7 @@ const BannerCreator = () => {
           <Col className="my-5"></Col>
           <PageSectionTitle
             subtitle="explore the posibilities!"
-            titleBold="Realm Of Ux's"
+            titleBold="Realmify's"
             titleNormal=" ultimate guide for creating stunning social media banners!"
           />
         </Row>
@@ -93,7 +93,7 @@ const BannerCreator = () => {
         <Row className="mb-5">
           <Col lg="12" style={{ textAlign: "center" }}>
             <h1>Welcome to Our Banner Creator</h1>
-            <h5 className="design-font">
+            <h5>
               <u>rotate - drag - resize - add your own style</u>
             </h5>
           </Col>

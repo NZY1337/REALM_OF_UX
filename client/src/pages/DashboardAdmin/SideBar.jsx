@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { sideLinks } from "../../utils/helpers/constants";
 
 // images
-import cover from "../../assets/images/img19.jpeg";
+import cover from "../../assets/images/img17.jpeg";
 import logo from "../../assets/images/logo1.png";
 
 // components
@@ -22,13 +22,13 @@ const SideBar = () => {
   return (
     <SideBarWrapper cover={cover}>
       <div className="sidebar">
-        <Link className="logo mb-3 d-block" to="/">
-          <img src={logo} />
+        <Link className="logo text-center d-block" to="/">
+          <img alt="logo" src={logo} />
         </Link>
         <Navbar expand="md">
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
-            <Nav className="me-auto my-2 my-lg-0" navbarScroll>
+            <Nav className="my-2 my-lg-0 w-100" navbarScroll>
               <SideLinks
                 sideLinks={sideLinks}
                 handleAddActive={handleAddActive}

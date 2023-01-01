@@ -1,13 +1,10 @@
-import { unlink } from 'node:fs';
-import fs from 'fs';
+const createNewProjectImgesArr = (clonedProject, filename) => {
+  return {
+    ...clonedProject,
+    desktop: clonedProject.desktop.filter((img) => img !== filename),
+    tablet: clonedProject.tablet.filter((img) => img !== filename),
+    mobile: clonedProject.mobile.filter((img) => img !== filename),
+  };
+};
 
-const removeFile = (postTitle) => {
-    // unlink(`public/uploads/${postTitle}`, (err) => {
-    //     if (err) throw err;
-    //     console.log(`${imgPath} path/file.txt was deleted`);
-    // });
-
-    fs.rmSync(`public/uploads/${postTitle}`, { recursive: true, force: true });
-}
-
-export { removeFile }
+export { createNewProjectImgesArr };

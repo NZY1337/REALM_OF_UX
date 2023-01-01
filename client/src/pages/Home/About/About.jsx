@@ -1,12 +1,7 @@
 import React, { useState } from "react";
 import AboutUsWrapper from "../../../assets/wrappers/Home/AboutUsWrapper";
 import { Link } from "react-router-dom";
-import {
-  TitleSection,
-  CircleDesign,
-  TitleSectionDesign,
-  ButtonPrimary,
-} from "../../../components";
+import { TitleSection, CircleDesign, ButtonPrimary } from "../../../components";
 import { Container, Col, Row, Button } from "react-bootstrap";
 import img from "../../../assets/images/img19.jpeg";
 import img2 from "../../../assets/images/img17.jpeg";
@@ -53,11 +48,8 @@ const About = () => {
           </Col>
 
           <Col lg="6" className="about-us-facts">
-            <h1
-              className="mb-3"
-              style={{ fontWeight: "bold", maxWidth: "70%" }}
-            >
-             {secondTitleSection}
+            <h1 className="mb-3" style={{ maxWidth: "70%" }}>
+              {secondTitleSection}
             </h1>
             <p className="mb-5 mt-0">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis
@@ -71,12 +63,6 @@ const About = () => {
 
         <Row className="justify-content-center">
           <Col lg="12" className="text-center mt-5">
-            <TitleSectionDesign
-              textAlign="center"
-              centerMargin="center"
-              description={description}
-            />
-
             <ButtonPrimary href="https://google.com" target="_blank">
               <Link to="/about">
                 Read More <ArrowRight />
@@ -90,7 +76,14 @@ const About = () => {
 };
 
 const AboutUsLeftColumn = ({ description }) => {
-  return <img style={{ width: "100%" }} src={img2} className="img-fluid" />;
+  return (
+    <img
+      alt="smth better"
+      style={{ width: "100%" }}
+      src={img2}
+      className="img-fluid"
+    />
+  );
 };
 
 const AboutUsRightColumn = ({ aboutUsData }) => {

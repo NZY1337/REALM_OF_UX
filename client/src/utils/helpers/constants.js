@@ -99,3 +99,5 @@ export const DRAGGED_ITEM_DEFAULTSTYLE = {
   maxWidth: "300px",
   maxHeight: "100px",
 };
+
+export const imagePath = (filename) => `/uploads/Projects/${filename}`;

@@ -14,7 +14,6 @@ const ServicesCardWrapper = styled.a`
 
   h4 {
     color: var(--text-color-white);
-    font-weight: bold;
   }
 
   span {

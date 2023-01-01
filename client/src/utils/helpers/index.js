@@ -1,8 +1,11 @@
 import { TYPES } from "./constants";
 import { toast } from "react-toastify";
-import { getImagePath } from "../services/services";
-import { GET_IMAGE_UPLOAD_ROUTE } from "../services/apis";
-import axios from "axios";
+import { imagePath } from "./constants";
+
+export const removePathGetFilename = (data) => {
+  const splitPath = data.split("/");
+  return splitPath[splitPath.length - 1];
+};
 
 export const trimUserName = (name) => {
   //   const firstName = name.split(" ")[0];
@@ -50,7 +53,6 @@ export const addStyleBasedType = () => {
   return {
     heading: {
       fontSize: 40,
-      fontWeight: "bold",
       color: "#fff",
     },
 
@@ -60,7 +62,6 @@ export const addStyleBasedType = () => {
     },
 
     paragraph: {
-      fontWeight: "100",
       color: "#fff",
     },
   };
@@ -77,7 +78,7 @@ export const convertToBase64 = (file) => {
 
 export const postStyle = (path) => {
   return {
-    backgroundImage: `linear-gradient(rgba(26, 11, 11, 0), rgb(23 20 25 / 72%)), url(${path})`,
+    backgroundImage: `linear-gradient(rgba(26, 11, 11, 0), rgb(23 20 25 / 72%)), url("${imagePath(path)}")`,
   };
 };
 
@@ -87,26 +88,4 @@ export const notify = (style, message) => {
     theme: "dark",
     autoClose: 2000,
   });
-};
-
-export const uploadImageToPublicFolder = async (file, postTitle) => {
-  const formData = new FormData();
-  formData.append("image", file);
-  formData.append("location", postTitle);
-  let error, projectSS;
-
-  try {
-    const {
-      data: {
-        image: { src },
-      },
-    } = await axios.post(GET_IMAGE_UPLOAD_ROUTE, formData, {
-      headers: { "Content-Type": "multipart/form-data" },
-    });
-    projectSS = src;
-  } catch (err) {
-    projectSS = null;
-    error = err;
-  }
-  return { projectSS, error };
 };

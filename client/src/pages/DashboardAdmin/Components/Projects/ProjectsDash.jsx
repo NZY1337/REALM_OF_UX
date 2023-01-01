@@ -8,10 +8,10 @@ import Col from "react-bootstrap/Col";
 import SideBar from "../../SideBar";
 import DashTitle from "../../MiniComponents/DashTitle";
 import DashboardWrapper from "../../../../assets/wrappers/Dashboard/DashboardWrapper";
-import { PageSectionTitle } from "../../../../components";
 import DashContainer from "../../MiniComponents/DashContainer";
 import ProjectDashForm from "./ProjectsDashForm";
 import ProjectActionsForm from "./ProjectsActionsForm";
+import ImagePreviewActions from "../../../../components/ImagePreviewActions";
 
 const ProjectsDash = () => {
   const {
@@ -25,7 +25,18 @@ const ProjectsDash = () => {
     handleTriggerModal,
     showModal,
     handleDeleteProject,
+    handleCreateProjectContent,
+    fetchProject,
+    handleDeleteImages,
+    clearValues,
+    projects,
   } = useProjectContext();
+
+  const projectImages = [
+    ...project.desktop,
+    ...project.tablet,
+    ...project.mobile,
+  ];
 
   return (
     <DashboardAdminWrapper>
@@ -34,26 +45,20 @@ const ProjectsDash = () => {
         <DashTitle title="Projects" />
 
         <DashContainer>
-          <Row>
-            <PageSectionTitle
-              subtitle="weclome to our realm of templates"
-              titleBold="Upload "
-              titleNormal="your project here!"
-            />
-          </Row>
-
           <Row className="dash-container-projects mt-4">
-            <Col lg="12" xl="6" md="12">
+            <Col lg="12" xxl="4" xl="12" md="12">
               <div className="dash-container-projects-wrapper">
                 <ProjectDashForm
                   project={project}
                   handleCreateProject={handleCreateProject}
                   handleSubmitProject={handleSubmitProject}
+                  handleCreateProjectContent={handleCreateProjectContent}
+                  clearValues={clearValues}
                 />
               </div>
             </Col>
 
-            <Col lg="12" xl="6" md="12" className="mt-lg-4 mt-xl-0">
+            <Col lg="6" xxl="4" md="12" className="my-4 my-xxl-0">
               <div className="dash-container-projects-wrapper">
                 <ProjectActionsForm
                   filteredProjects={filteredProjects}
@@ -63,9 +68,21 @@ const ProjectsDash = () => {
                   showModal={showModal}
                   handleMatchedProject={handleMatchedProject}
                   handleDeleteProject={handleDeleteProject}
+                  fetchProject={fetchProject}
+                  projects={projects}
                 />
               </div>
             </Col>
+            {projectImages.length && projectImages.length > 0 ? (
+            <Col  lg="6" xxl="4" md="12">
+                <div className="dash-container-projects-wrapper my-4 my-xxl-0">
+                  <ImagePreviewActions
+                    projectImages={projectImages}
+                    handleDeleteImages={handleDeleteImages}
+                  />
+                </div>
+              </Col>
+               ) : null}
           </Row>
         </DashContainer>
       </DashboardWrapper>

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { Rnd } from "react-rnd";
 import {
   DRAGGED_ITEM_NEWSTYLE,
@@ -28,7 +28,6 @@ const Draggable = ({ item, saveChanges, removeItem, cloneItem }) => {
 
   const handleOnResize = (e, direction, ref, { height, width }, position) => {
     setDelta(height);
-    console.log(height, width);
   };
 
   const handleChange = (evt) => {
@@ -124,7 +123,7 @@ Draggable.propTypes = {
   item: PropTypes.object.isRequired,
   saveChanges: PropTypes.func.isRequired,
   removeItem: PropTypes.func.isRequired,
-  cloneItem: PropTypes.func.isRequired
-}
+  cloneItem: PropTypes.func.isRequired,
+};
 
 export default Draggable;

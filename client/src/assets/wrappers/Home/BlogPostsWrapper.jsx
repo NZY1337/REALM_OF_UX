@@ -15,10 +15,9 @@ const BlogPostsWrapper = styled.section`
   .blog-posts {
     .title-wrapper {
       p,
-      h1,
-      h1.design-font {
-        color: var(--text-color-black);
-      }
+      h1{
+            color: var(--text-color-black);
+        }
     }
 
     color: var(--text-color-gray);

@@ -1,12 +1,19 @@
 import mongoose from "mongoose";
 
 const ProjectSchema = new mongoose.Schema({
+  content: {
+    type: String,
+    required: [true, "Please provide content"],
+    minlength: 10,
+  },
+
   name: {
     type: String,
     required: [true, "Please provide name"],
     minlength: 3,
     trim: true,
   },
+
   category: {
     type: String,
     required: [true, "Please provide category"],
@@ -14,15 +21,15 @@ const ProjectSchema = new mongoose.Schema({
     trim: true,
   },
   desktop: {
-    type: String,
+    type: Array,
     required: [true, "Please provide the desktop ss"],
   },
   tablet: {
-    type: String,
+    type: Array,
     required: [true, "Please provide the tablet ss"],
   },
   mobile: {
-    type: String,
+    type: Array,
     required: [true, "Please provide the mobile ss"],
   },
 });

@@ -16,8 +16,7 @@ const TitleWrapper = styled.div`
       color: var(--text-color-gray);
     }
 
-    h1:not(.design-font) {
-      font-weight: 800;
+    h1 {
       margin-bottom: 0;
       position: relative;
 
@@ -31,19 +30,6 @@ const TitleWrapper = styled.div`
         left: 0;
         display: inline-block;
       }
-    }
-
-    h1.design-font {
-      position: absolute;
-      opacity: 0.2;
-      color: var(--text-color-gray);
-      font-size: 150px;
-      font-weight: 800;
-      //   font-family: var(--tertiary-font);
-      left: 50%;
-      top: 50%;
-      -webkit-transform: translate(-50%, -50%);
-      transform: translate(-50%, -50%);
     }
   }
 `;

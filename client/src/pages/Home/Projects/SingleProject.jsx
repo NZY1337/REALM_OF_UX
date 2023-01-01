@@ -1,8 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Container, Col, Row } from "react-bootstrap";
-import { PageSectionTitle, PageSectionBanner } from "../../../components";
-import bannerCover from "../../../assets/images/img14.jpeg";
-import warning404 from "../../../assets/images/404.avif";
 import { useParams } from "react-router-dom";
 import ProjectComments from "./Comments/Comments";
 import RenderPreviewDevicesProject from "./RenderPreviewDevicesProject";
@@ -12,71 +9,42 @@ import { useProjectContext } from "../../../utils/contexts/project/projectContex
 const SingleProject = () => {
   const { projectId } = useParams();
   const { project, error, fetchProject, clearValues } = useProjectContext();
-  console.log(project, error);
 
   useEffect(() => {
     fetchProject(projectId);
     window.scrollTo(0, 0);
+
     return () => {
       clearValues();
     };
-  }, []);
+  }, [clearValues, fetchProject, projectId]);
 
   const renderCategory = () => {
     return (
-      <>
-        {project && (
-          <>
-            <p className="d-inline">category:</p>
-            <i
-              style={{
-                color: "orange",
-                fontFamily: "auto",
-                fontWeight: "bold",
-              }}
-            >
-              {""} {project && project.category}
-            </i>
-          </>
-        )}
-      </>
+      <Col lg="12 my-5">
+        <h1 className="mb-0">{project.name}</h1>
+        <p className="d-inline">
+          category:{" "}
+          <i style={{ color: "orange", fontFamily: "auto" }}>
+            {project.category}
+          </i>
+        </p>
+      </Col>
     );
   };
 
   return (
     <>
-      <Container className="mt-5">
-        <Row className="my-5">
-          <PageSectionTitle
-            subtitle={!project ? error : "welcome"}
-            titleBold={
-              !project
-                ? "Couldn't fetch the project or project inexistent"
-                : "Your ultimate"
-            }
-            titleNormal={project && " guide to create social media banners"}
-          />
-        </Row>
-      </Container>
-
-      <PageSectionBanner
-        title={project && "A Drive Through Experience"}
-        cover={!project ? warning404 : bannerCover}
-      />
-
       {project && (
         <SingleProjectWrapper>
           <Container className="my-5">
-            <Row>
-              <Col lg="12">
-                <h1 className="mb-0">{project && project.name}</h1>
-                <p className="mt-0">{renderCategory()}</p>
-              </Col>
-
+            <Row className="justify-content-center">
+              {renderCategory()}
               <RenderPreviewDevicesProject project={project} />
-              <Col lg="10">
-                <ProjectComments projectId={projectId} />
-              </Col>
+
+              <hr className="my-5" />
+
+              <ProjectComments projectId={projectId} />
             </Row>
           </Container>
         </SingleProjectWrapper>

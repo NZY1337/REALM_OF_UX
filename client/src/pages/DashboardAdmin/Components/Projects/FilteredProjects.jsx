@@ -7,17 +7,19 @@ import { Link } from "react-router-dom";
 import { DeleteEditAction, ModalAlert } from "../../../../components";
 import Spinner from "react-bootstrap/Spinner";
 import Button from "react-bootstrap/Button";
+import { imagePath } from "../../../../utils/helpers/constants";
 
 const FilteredProjects = ({
   filteredProjects,
   searchKeyword,
   handleDeleteProject,
+  fetchProject,
 }) => {
   const { handleTriggerModal, modal } = useModalContext();
   const [projectIdCB, setProjectIdCB] = useState(null);
 
-  const onHandleProjectCb = (pId) => {
-    setProjectIdCB(pId);
+  const onHandleProjectCb = (id) => {
+    setProjectIdCB(id);
   };
 
   const renderFilteredProjects = () => {
@@ -25,10 +27,19 @@ const FilteredProjects = ({
       return (
         <div
           key={`${project}_${index}`}
-          className="d-flex justify-content-between"
+          className="d-flex justify-content-between align-items-center mb-3 filtered-projects"
         >
-          <Link className="text-secondary mb-0" to={`/projects/${project._id}`}>
-            {project.name}
+          <Link
+            className="text-dark mb-0 d-flex align-items-center filtered-projects-result"
+            to={`/projects/${project._id}`}
+          >
+            <img
+              className="img-fluid rounded-circle"
+              style={{ width: "60px", height: "60px", objectFit: "cover" }}
+              src={imagePath(project.desktop[0])}
+              alt="project-preview"
+            />
+            <p className="mb-0 ms-2">{project.name}</p>
           </Link>
 
           <DeleteEditAction
@@ -36,6 +47,7 @@ const FilteredProjects = ({
             handleTriggerModal={handleTriggerModal}
             projectId={project._id}
             onHandleProjectCb={onHandleProjectCb}
+            fetchProject={fetchProject}
           />
         </div>
       );
@@ -49,9 +61,18 @@ const FilteredProjects = ({
           ? renderFilteredProjects()
           : null}
 
-        {filteredProjects.length === 0 && searchKeyword ? (
+        {/* {filteredProjects.length === 0 && searchKeyword ? (
           <Spinner animation="grow" variant="info" />
-        ) : null}
+        ) : null} */}
+
+        {/* {!filteredProjects.length === 0 && !searchKeyword ? (
+          <Spinner animation="grow" variant="info" />
+        ) : (
+          "nothing found"
+        )} */}
+        {!filteredProjects.length && searchKeyword && (
+          <span className="mb-0">no match</span>
+        )}
       </div>
 
       <ModalAlert showModal={modal} handleTriggerModal={handleTriggerModal}>

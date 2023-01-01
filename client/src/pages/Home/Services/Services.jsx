@@ -1,7 +1,7 @@
 import React from "react";
 import ServicesWrapper from "../../../assets/wrappers/Home/ServicesWrapper";
 import { Container, Col, Row, Image } from "react-bootstrap";
-import { TitleSectionDesign, TitleSection } from "../../../components";
+import { TitleSection } from "../../../components";
 
 import { useTranslateContext } from "../../../utils/contexts/translate/translateContext";
 
@@ -28,7 +28,6 @@ const Services = () => {
       <Container className="services">
         <Row className="justify-content-center">
           <Col lg="12">
-            <TitleSectionDesign description={description} />
             <TitleSection
               title={title}
               subtitle={subtitle}

@@ -9,7 +9,7 @@ const carouselProps = (item) => {
     height: "100vh",
     width: "100%",
     backgroundColor: "black",
-    backgroundImage: ` url(${item.image})`,
+    backgroundImage: ` url("https://images.pexels.com/photos/226460/pexels-photo-226460.jpeg")`,
     backgroundPosition: "center center",
     backgroundSize: "cover",
     boxShadow: "inset 0 0 0 2000px rgba(0,0,0, 0.2)",

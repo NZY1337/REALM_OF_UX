@@ -5,7 +5,7 @@ export const aboutMeDict = {
       subtitle: "some insights about what I do",
     },
     descriptionSection: {
-      title: "Hy. I'm Andrei Mocanu!",
+      title: "Welcome to Realmify",
       subtitle: "I'm a fullstack software engineer working at Cognizant.",
       description:
         "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem similique iure culpa maiores amet illum nihil soluta nostrum in, dignissimos aspernatur inventore neque! Voluptatem repudiandae in rerum natus, consequuntur ipsam.",
@@ -21,7 +21,7 @@ export const aboutMeDict = {
       subtitle: "cateva detalii despre ceea ce fac",
     },
     descriptionSection: {
-      title: "Salut. EU sunt Andrei Mocanu!",
+      title: "Salut. Eu sunt Andrei.",
       subtitle:
         "Momentan sunt fullstack software engineer si lucrez la Cognizant.",
       description:
