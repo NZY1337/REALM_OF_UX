@@ -8,7 +8,6 @@ import Col from "react-bootstrap/Col";
 import SideBar from "../../SideBar";
 import DashTitle from "../../MiniComponents/DashTitle";
 import DashboardWrapper from "../../../../assets/wrappers/Dashboard/DashboardWrapper";
-import { PageSectionTitle } from "../../../../components";
 import DashContainer from "../../MiniComponents/DashContainer";
 import ProjectDashForm from "./ProjectsDashForm";
 import ProjectActionsForm from "./ProjectsActionsForm";
@@ -29,6 +28,8 @@ const ProjectsDash = () => {
     handleCreateProjectContent,
     fetchProject,
     handleDeleteImages,
+    clearValues,
+    projects,
   } = useProjectContext();
 
   const projectImages = [
@@ -45,18 +46,19 @@ const ProjectsDash = () => {
 
         <DashContainer>
           <Row className="dash-container-projects mt-4">
-            <Col lg="4" md="12">
+            <Col lg="6" md="12">
               <div className="dash-container-projects-wrapper">
                 <ProjectDashForm
                   project={project}
                   handleCreateProject={handleCreateProject}
                   handleSubmitProject={handleSubmitProject}
                   handleCreateProjectContent={handleCreateProjectContent}
+                  clearValues={clearValues}
                 />
               </div>
             </Col>
 
-            <Col lg="4" md="12" className="mt-lg-4 mt-xl-0">
+            <Col lg="6" md="12" className="mt-lg-0 mt-xl-0 mt-4">
               <div className="dash-container-projects-wrapper">
                 <ProjectActionsForm
                   filteredProjects={filteredProjects}
@@ -67,19 +69,18 @@ const ProjectsDash = () => {
                   handleMatchedProject={handleMatchedProject}
                   handleDeleteProject={handleDeleteProject}
                   fetchProject={fetchProject}
+                  projects={projects}
                 />
               </div>
-            </Col>
-            {projectImages.length && projectImages.length > 0 ? (
-              <Col lg="4" md="12" className="mt-lg-4 mt-xl-0">
-                <div className="dash-container-projects-wrapper">
+              {projectImages.length && projectImages.length > 0 ? (
+                <div className="dash-container-projects-wrapper my-4">
                   <ImagePreviewActions
                     projectImages={projectImages}
                     handleDeleteImages={handleDeleteImages}
                   />
                 </div>
-              </Col>
-            ) : null}
+              ) : null}
+            </Col>
           </Row>
         </DashContainer>
       </DashboardWrapper>

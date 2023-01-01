@@ -12,7 +12,7 @@ const FormGroup = ({
   size,
   accept,
   multiple,
-  disableFileUpload
+  disableFileUpload,
 }) => {
   return (
     <>

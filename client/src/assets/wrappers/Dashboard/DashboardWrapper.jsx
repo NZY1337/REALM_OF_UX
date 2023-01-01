@@ -17,7 +17,7 @@ const DashboardWrapper = styled.div`
 
   //TITLE SECTION
   .main-dash-title {
-    padding: 1.5rem;
+    padding: 0 1.5rem;
     height: 72px;
     border-bottom: 1px solid lightgray;
     background-color: #e7e7e7;

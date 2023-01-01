@@ -1,8 +1,5 @@
 import React, { useEffect } from "react";
 import { Container, Col, Row } from "react-bootstrap";
-import { PageSectionTitle, PageSectionBanner } from "../../../components";
-import bannerCover from "../../../assets/images/img14.jpeg";
-import warning404 from "../../../assets/images/404.avif";
 import { useParams } from "react-router-dom";
 import ProjectComments from "./Comments/Comments";
 import RenderPreviewDevicesProject from "./RenderPreviewDevicesProject";
@@ -20,7 +17,7 @@ const SingleProject = () => {
     return () => {
       clearValues();
     };
-  }, [projectId]);
+  }, [clearValues, fetchProject, projectId]);
 
   const renderCategory = () => {
     return (

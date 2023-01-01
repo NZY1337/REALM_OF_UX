@@ -3,6 +3,18 @@ import fs from "fs";
 import Project from "../models/Project.js";
 import { createNewProjectImgesArr } from "../utils/index.js";
 
+const checkDeletedImages = () => {
+  // Check if the deleted image is in array
+  const deletedImage = images.find((image) => image === filename);
+
+  if (!deletedImage) {
+    // If the image was not found, send a response with a status code of 404 (Not Found) and return
+    return res
+      .status(404)
+      .send({ error: "file deleted from filesystem, not from database." });
+  }
+};
+
 class UploadFile {
   uploadImage = async (req, res, next) => {
     try {

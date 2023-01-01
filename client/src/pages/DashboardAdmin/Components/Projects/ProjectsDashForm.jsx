@@ -6,13 +6,14 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import ProjectsDashFormGroup from "../../../../utils/helpers/react/FormGroup";
+import FormGroup from "../../../../utils/helpers/react/FormGroup";
 import TextEditor from "../../../../components/TextEditor/TextEditor";
 
 const ProjectDashForm = ({
   project,
   handleCreateProject,
   handleSubmitProject,
+  clearValues,
 }) => {
   const { name, category, desktop, tablet, mobile } = project;
 
@@ -33,7 +34,7 @@ const ProjectDashForm = ({
         </Col>
 
         <Col lg="6">
-          <ProjectsDashFormGroup
+          <FormGroup
             label="Project Name"
             placeholder="Enter the project name"
             type="text"
@@ -45,7 +46,7 @@ const ProjectDashForm = ({
         </Col>
 
         <Col lg="6">
-          <ProjectsDashFormGroup
+          <FormGroup
             label="Project Category"
             placeholder="Enter the project category"
             type="text"
@@ -57,7 +58,7 @@ const ProjectDashForm = ({
         </Col>
 
         <Col lg="6">
-          <ProjectsDashFormGroup
+          <FormGroup
             label="Desktop Version"
             type="file"
             name="desktop"
@@ -70,7 +71,7 @@ const ProjectDashForm = ({
         </Col>
 
         <Col lg="6">
-          <ProjectsDashFormGroup
+          <FormGroup
             label="Tablet Version"
             type="file"
             name="tablet"
@@ -82,7 +83,7 @@ const ProjectDashForm = ({
           />
         </Col>
         <Col lg="6">
-          <ProjectsDashFormGroup
+          <FormGroup
             label="Mobile Version"
             type="file"
             name="mobile"
@@ -95,8 +96,22 @@ const ProjectDashForm = ({
         </Col>
       </Row>
 
-      <Button variant="dark" type="submit" disabled={disableSubmitBtn}>
+      <Button
+        variant="dark"
+        type="submit"
+        size="sm"
+        disabled={disableSubmitBtn}
+      >
         {project._id ? "Edit" : "Submit"}
+      </Button>
+
+      <Button
+        className="mx-2"
+        variant="outline-danger"
+        size="sm"
+        onClick={clearValues}
+      >
+        Reset
       </Button>
     </Form>
   );

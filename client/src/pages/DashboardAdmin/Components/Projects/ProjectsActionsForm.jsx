@@ -6,7 +6,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import FilteredProjects from "./FilteredProjects";
-import ProjectsDashFormGroup from "../../../../utils/helpers/react/FormGroup";
+import FormGroup from "../../../../utils/helpers/react/FormGroup";
 
 const ProjectActionsForm = ({
   filteredProjects,
@@ -17,6 +17,7 @@ const ProjectActionsForm = ({
   showModal,
   handleDeleteProject,
   fetchProject,
+  projects,
 }) => {
   useEffect(() => {
     handleMatchedProject();
@@ -27,12 +28,12 @@ const ProjectActionsForm = ({
       <Form>
         <div className="d-flex align-items-start">
           <h6 className="mb-4 me-2">Edit or Delete Projects</h6>
-          <span className="badge bg-primary text-white">3</span>
+          <span className="badge bg-primary text-white">{projects.length}</span>
         </div>
 
         <Row>
           <Col lg="6">
-            <ProjectsDashFormGroup
+            <FormGroup
               label="Search Project by title"
               type="text"
               name="name"

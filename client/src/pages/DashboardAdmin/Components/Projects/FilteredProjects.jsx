@@ -61,9 +61,18 @@ const FilteredProjects = ({
           ? renderFilteredProjects()
           : null}
 
-        {filteredProjects.length === 0 && searchKeyword ? (
+        {/* {filteredProjects.length === 0 && searchKeyword ? (
           <Spinner animation="grow" variant="info" />
-        ) : null}
+        ) : null} */}
+
+        {/* {!filteredProjects.length === 0 && !searchKeyword ? (
+          <Spinner animation="grow" variant="info" />
+        ) : (
+          "nothing found"
+        )} */}
+        {!filteredProjects.length && searchKeyword && (
+          <span className="mb-0">no match</span>
+        )}
       </div>
 
       <ModalAlert showModal={modal} handleTriggerModal={handleTriggerModal}>
