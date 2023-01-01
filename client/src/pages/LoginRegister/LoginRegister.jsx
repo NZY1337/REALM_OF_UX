@@ -76,24 +76,26 @@ const LoginRegister = () => {
   return (
     <LoginRegisterWrapper>
       <Container fluid>
-        <Row>
+        <Row className="justify-content-end">
           <Col lg={12} id="login-register-form">
-            <div>
-              <h1>{values.isMember ? isLoggedInTitle : isRegistredTitle}</h1>
-            </div>
-            {showAlert && <Alert />}
-            <LoginRegisterForm
-              inputs={values.isMember ? login : register}
-              toggleMember={toggleMember}
-              handleChange={handleChange}
-              onSubmit={onSubmit}
-              isLoading={isLoading}
-              isLoggedIn={isLoggedIn}
-              isRegistred={isRegistred}
-              isMember={values.isMember}
-              isLoggedInTitle={isLoggedInTitle}
-              isRegistredTitle={isRegistredTitle}
-            />
+                <div>
+                    <h1>{values.isMember ? isLoggedInTitle : isRegistredTitle}</h1>
+                </div>
+
+                {showAlert && <Alert />}
+
+                <LoginRegisterForm
+                    inputs={values.isMember ? login : register}
+                    toggleMember={toggleMember}
+                    handleChange={handleChange}
+                    onSubmit={onSubmit}
+                    isLoading={isLoading}
+                    isLoggedIn={isLoggedIn}
+                    isRegistred={isRegistred}
+                    isMember={values.isMember}
+                    isLoggedInTitle={isLoggedInTitle}
+                    isRegistredTitle={isRegistredTitle}
+                />
           </Col>
         </Row>
       </Container>

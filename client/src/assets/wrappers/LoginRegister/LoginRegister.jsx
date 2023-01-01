@@ -16,15 +16,26 @@ const LoginRegisterWrapper = styled.div`
     background-image: url(${cover});
     background-position: center bottom;
     background-size: cover;
-    background-color: rgba(0, 0, 0, 0.4);
+    // background-color: rgba(0, 0, 0, 0.4);
+
   }
 
   #login-register-form {
+    background: radial-gradient(187.6% 162.37% at 31.62% 76.54%, rgba(21, 21, 21, 0.88) 0%, rgba(40, 65, 102, 0.66) 71.94%, rgba(56, 101, 168, 0.38) 100%);
+
+    padding:3rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.4);
+
+    form {
+        background-color:#060303;
+        border-radius:5px;
+        padding:1rem;
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+
+    }
 
     display: flex;
     align-items: center;
@@ -99,7 +110,7 @@ const LoginRegisterWrapper = styled.div`
       input:-webkit-autofill:hover,
       input:-webkit-autofill:focus,
       input:-webkit-autofill:active {
-        -webkit-box-shadow: 0 0 0 30px #131b24 inset !important;
+        -webkit-box-shadow: 0 0 0 30px #060303 inset !important;
         -webkit-font-size: 1rem !important;
         -webkit-text-fill-color: var(--text-color-gray) !important;
       }
