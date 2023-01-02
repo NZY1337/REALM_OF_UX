@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { Form } from "react-bootstrap";
 import { ButtonPrimary } from "../../components/Buttons";
-import { ArrowRight, EyeSlash } from "react-bootstrap-icons";
+import { BsEyeSlash, BsArrowRight } from "react-icons/bs";
+import { MdPassword } from "react-icons/md";
 
 const LoginRegisterForm = ({
   inputs,
@@ -14,7 +15,7 @@ const LoginRegisterForm = ({
   isRegistred,
   isMember,
   isLoggedInTitle,
-  isRegistredTitle
+  isRegistredTitle,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
   const decideInputType = (input) => {
@@ -44,7 +45,7 @@ const LoginRegisterForm = ({
 
     if (input.name === "password" && !showPassword) {
       return (
-        <EyeSlash
+        <BsEyeSlash
           className={`${input.name === "password" && "password-icon"}`}
           onClick={() => setShowPassword(true)}
         />
@@ -74,12 +75,12 @@ const LoginRegisterForm = ({
           );
         })}
 
-      <Form.Group className="mb-3 form-group" controlId="formBasicPassword">
-        <ButtonPrimary disabled={isLoading} type="submit">
-          {isMember ? isLoggedInTitle : isRegistredTitle} <ArrowRight />
+      <Form.Group className="mb-2 form-group" controlId="formBasicPassword">
+        <ButtonPrimary type="submit">
+          {isMember ? isLoggedInTitle : isRegistredTitle} <BsArrowRight />
         </ButtonPrimary>
 
-        <small onClick={toggleMember}>
+        <small onClick={toggleMember} style={{ color: "turquoise" }}>
           {isMember ? isLoggedIn : isRegistred}
         </small>
       </Form.Group>
@@ -88,11 +89,11 @@ const LoginRegisterForm = ({
 };
 
 LoginRegisterForm.propTypes = {
-  inputs:PropTypes.array.isRequired,
-  toggleMember:PropTypes.bool.isRequired,
+  inputs: PropTypes.array.isRequired,
+  toggleMember: PropTypes.bool.isRequired,
   handleChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  isLoading: PropTypes.bool.isRequired
-}
+  isLoading: PropTypes.bool.isRequired,
+};
 
 export default LoginRegisterForm;

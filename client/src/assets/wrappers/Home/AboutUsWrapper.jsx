@@ -4,7 +4,6 @@ const AboutUsWrapper = styled.section`
   padding: 8rem 0;
   display: flex;
   align-items: center;
-  scroll-snap-align: center;
 
   background:#e2e7ea;
   .about-us-find-more img {

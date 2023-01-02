@@ -19,9 +19,6 @@
     opacity: 1;
   }
   width: 40% !important;
-  //   background: linear-gradient(235deg, #0b0b0b 17.5%, #1f2128ed 102.5%);
-  //   background-color: lightgray;
-  //   color: black;
   background-color: #eee;
 
   &-collapse {
@@ -29,6 +26,14 @@
     a.nav-link {
       color: var(--text-color-black);
     }
+  }
+
+  .nav-motto {
+    background: linear-gradient(90deg, #582b2b 19.09%, #bc5318 98.42%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 500;
   }
 
   .offcanvas-header,

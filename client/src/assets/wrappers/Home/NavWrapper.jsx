@@ -7,6 +7,8 @@ const NavWrapper = styled.div`
     margin: 0 1rem;
   }
 
+ 
+
   .navbar-toggler {
     border: none;
     color: var(--text-color-orange);
@@ -35,6 +37,9 @@ const NavWrapper = styled.div`
     position:absolute;
     top:0;
     left:0;
+    a, button {
+        color:black!important;
+    }
   }
 
   .not-home-nav {

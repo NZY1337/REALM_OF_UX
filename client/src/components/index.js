@@ -7,7 +7,6 @@ import Footer from "./Footer/Footer";
 import ServicesCard from "./ServicesCard";
 import ToggleLanguage from "./ToggleLanguage";
 import Logo from "./Logo";
-import Alert from "./Alert";
 import PageSectionBanner from "./PageSectionBanner";
 import PageSectionTitle from "./PageSectionTitle";
 import ModalAlert from "./Modal";
@@ -27,7 +26,6 @@ export {
   ServicesCard,
   ToggleLanguage,
   Logo,
-  Alert,
   PageSectionBanner,
   PageSectionTitle,
   ToastNotification,

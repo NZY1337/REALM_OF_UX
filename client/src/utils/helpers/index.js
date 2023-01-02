@@ -1,4 +1,4 @@
-import { TYPES,imagePath } from "./constants";
+import { TYPES, imagePath } from "./constants";
 import { toast } from "react-toastify";
 
 export const removePathGetFilename = (data) => {
@@ -7,9 +7,8 @@ export const removePathGetFilename = (data) => {
 };
 
 export const trimUserName = (name) => {
-    const [first, last] = [name.split(" ")[0], name.split(" ")[1].split("")[0]]
-    console.log(first, last)
-    return `Hi ${first} ${last}.`;
+  const first = name.split(" ")[0];
+  return `Hi ${first}`;
 };
 
 export const getBannerSizes = () => {
@@ -76,7 +75,9 @@ export const convertToBase64 = (file) => {
 
 export const postStyle = (path) => {
   return {
-    backgroundImage: `linear-gradient(rgba(26, 11, 11, 0), rgb(23 20 25 / 72%)), url("${imagePath(path)}")`,
+    backgroundImage: `linear-gradient(rgba(26, 11, 11, 0), rgb(23 20 25 / 72%)), url("${imagePath(
+      path
+    )}")`,
   };
 };
 

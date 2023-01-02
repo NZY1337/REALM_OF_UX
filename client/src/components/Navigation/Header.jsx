@@ -1,7 +1,9 @@
 import React from "react";
 
 export const HeaderMenu = () => {
-  return <p className="mb-0">design / development / marketing & more</p>;
+  return (
+    <p className="mb-0 nav-motto">design / development / marketing & more</p>
+  );
 };
 
 export const HeaderBannerCreator = () => {

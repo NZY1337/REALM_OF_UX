@@ -17,24 +17,28 @@ const LoginRegisterWrapper = styled.div`
     background-position: center bottom;
     background-size: cover;
     // background-color: rgba(0, 0, 0, 0.4);
-
   }
 
   #login-register-form {
-    background: radial-gradient(187.6% 162.37% at 31.62% 76.54%, rgba(21, 21, 21, 0.88) 0%, rgba(40, 65, 102, 0.66) 71.94%, rgba(56, 101, 168, 0.38) 100%);
+    background: radial-gradient(
+      187.6% 162.37% at 31.62% 76.54%,
+      rgba(21, 21, 21, 0.88) 0%,
+      rgba(40, 65, 102, 0.66) 71.94%,
+      rgba(56, 101, 168, 0.38) 100%
+    );
 
-    padding:3rem;
+    padding: 3rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
     form {
-        background-color:#060303;
-        border-radius:5px;
-        padding:1rem;
-        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-
+      background-color: #060303;
+      border-radius: 5px;
+      padding: 1rem;
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+        0 10px 10px rgba(0, 0, 0, 0.22);
     }
 
     display: flex;
@@ -105,6 +109,10 @@ const LoginRegisterWrapper = styled.div`
         color: white;
       }
 
+      input::placeholder {
+        color: lightgray !important;
+      }
+
       input:-webkit-autofill,
       input:-webkit-autofill:hover,
       input:-webkit-autofill:focus,
@@ -128,7 +136,7 @@ const LoginRegisterWrapper = styled.div`
         border-radius: 0;
         padding-left: 0;
         color: var(--text-color-gray);
-        padding: 10px;
+        padding: 10px 0;
 
         &::placeholder {
           color: var(--text-color-gray);

@@ -11,6 +11,7 @@ import {
 } from "./actions";
 import reducer from "./reducer";
 import axios from "axios";
+import { notify } from "../../helpers";
 
 const token = localStorage.getItem("token");
 const user = localStorage.getItem("user");
@@ -64,14 +65,16 @@ const UserProvider = ({ children }) => {
         type: REGISTER_USER_SUCCESS,
         payload: { token, user },
       });
+      notify("success", `User created successfully!`);
 
       // add user to localStorage
       addUserToLocalStorage({ user, token });
     } catch (error) {
-      dispatch({
-        type: REGISTER_USER_ERROR,
-        payload: { msg: error.response.data.msg },
-      });
+      //   dispatch({
+      //     type: REGISTER_USER_ERROR,
+      //     payload: { msg: error.response.data.msg },
+      //   });
+      notify("warning", error.response.data.msg);
     }
     clearAlert();
   };
@@ -89,14 +92,15 @@ const UserProvider = ({ children }) => {
         type: LOGIN_USER_SUCCESS,
         payload: { token, user },
       });
-
+      notify("success", `Welcome back, ${user.name}`);
       // add user to localStorage
       addUserToLocalStorage({ user, token });
     } catch (error) {
-      dispatch({
-        type: LOGIN_USER_ERROR,
-        payload: { msg: error.response.data.msg },
-      });
+      //   dispatch({
+      //     type: LOGIN_USER_ERROR,
+      //     payload: { msg: error.response.data.msg },
+      //   });
+      notify("warning", error.response.data.msg);
     }
     clearAlert();
   };

@@ -21,9 +21,10 @@ const h4Variants = {
   visible: {
     opacity: 1,
     // scale: 1.01,
-    color: "#184843",
-    fontSize:"25px",
-    fontWeight:"300",
+    color: "black",
+    fontSize: "25px",
+    fontWeight: "300",
+    fontStyle: "italic",
     transition: { duration: 0.5 },
     x: [0, 10, 0],
   },
@@ -33,7 +34,7 @@ const h4Variants = {
 const pVariants = {
   visible: {
     opacity: 1,
-    color: "lightgray",
+    color: "white",
     // scale: 1.01,
     transition: { duration: 0.5 },
     x: [0, 30, 0],

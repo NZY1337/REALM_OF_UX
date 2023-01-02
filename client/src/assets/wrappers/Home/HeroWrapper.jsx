@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 const HerroWrapper = styled.div`
   height: 100vh;
-  scroll-snap-align: center;
 
   .carousel {
     &-item {
