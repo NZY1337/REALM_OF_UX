@@ -1,22 +1,16 @@
 import styled from "styled-components";
 
 const NavWrapper = styled.div`
-  background-color:${(props) => props.color}}
-
   .toggle-language {
     margin: 0 1rem;
   }
 
- 
-
   .navbar-toggler {
     border: none;
-    color: var(--text-color-orange);
     padding: unset;
     font-size: unset;
     font-family: var(--font-secondary);
     text-transform: uppercase;
-    // letter-spacing: 1px;
     font-weight: bold;
 
     &:focus {
@@ -32,23 +26,27 @@ const NavWrapper = styled.div`
   }
 
   .home-nav {
-    z-index:2;
-    width:100%;
-    position:absolute;
-    top:0;
-    left:0;
-    a, button {
-        color:black!important;
+    z-index: 2;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    a,
+    button.navbar-toggler {
+      color: black;
     }
   }
 
   .not-home-nav {
-    background-color:black!important;
+    button {
+      color: var(--text-color-orange);
+    }
   }
 
   .navbar {
     .login {
       color: var(--text-color-orange);
+
       display: flex;
       align-items: center;
 

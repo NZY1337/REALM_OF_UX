@@ -17,8 +17,8 @@ function Navigation() {
   } = useTranslateContext();
   const { user } = useUserContext();
   const { pathname } = useLocation();
-  const styleBasedOnRoute = pathname === "/" && "home-nav";
-  const homeStyle = !styleBasedOnRoute ? { backgroundColor: "black" } : null;
+  const styleBasedOnRoute = pathname === "/" ? "home-nav" : "not-home-nav";
+  const bgColor = pathname !== "/" && "black";
 
   const hideHeaderFooter =
     pathname === "/dashboard" ||
@@ -29,33 +29,35 @@ function Navigation() {
   return (
     <>
       {!hideHeaderFooter && (
-        <NavWrapper as="header" style={homeStyle}>
+        <NavWrapper as="header" style={{ backgroundColor: `${bgColor}` }}>
           {[false].map((expand, index) => (
-            <Container key={index} className={`position-relative`}>
-              <Navbar
-                key={expand}
-                expand={expand}
-                className={`py-4 ${styleBasedOnRoute}`}
-                collapseOnSelect
-              >
-                <Logo />
-
-                <SmallMenu user={user} changeLanguage={changeLanguage} />
-
-                <Navbar.Offcanvas
-                  id={`offcanvasNavbar-expand-${expand}`}
-                  aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-                  placement="end"
+            <Container fluid key={index} className={`px-0`}>
+              <Container className={`position-relative `}>
+                <Navbar
+                  key={expand}
+                  expand={expand}
+                  className={`py-4 ${styleBasedOnRoute}`}
+                  collapseOnSelect
                 >
-                  <Offcanvas.Header closeButton>
-                    <HeaderMenu />
-                  </Offcanvas.Header>
+                  <Logo />
 
-                  <Offcanvas.Body>
-                    <BodyMenu navigation={navigation} />
-                  </Offcanvas.Body>
-                </Navbar.Offcanvas>
-              </Navbar>
+                  <SmallMenu user={user} changeLanguage={changeLanguage} />
+
+                  <Navbar.Offcanvas
+                    id={`offcanvasNavbar-expand-${expand}`}
+                    aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+                    placement="end"
+                  >
+                    <Offcanvas.Header closeButton>
+                      <HeaderMenu />
+                    </Offcanvas.Header>
+
+                    <Offcanvas.Body>
+                      <BodyMenu navigation={navigation} />
+                    </Offcanvas.Body>
+                  </Navbar.Offcanvas>
+                </Navbar>
+              </Container>
             </Container>
           ))}
         </NavWrapper>
