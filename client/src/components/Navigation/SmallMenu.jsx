@@ -13,19 +13,18 @@ const style = {
 const SmallMenu = ({ user, changeLanguage, colorUser }) => {
   return (
     <div style={{ ...style }}>
-        <IsLoggedIn user={user} colorUser={colorUser} />
-     
-        <ToggleLanguage changeLanguage={changeLanguage} />
-        <Navbar.Toggle>Menu</Navbar.Toggle>
+      <IsLoggedIn user={user} colorUser={colorUser} />
+
+      <ToggleLanguage changeLanguage={changeLanguage} />
+      <Navbar.Toggle>Menu</Navbar.Toggle>
     </div>
   );
 };
 
 SmallMenu.propTypes = {
-    user: PropTypes.object,
-    changeLanguage: PropTypes.func.isRequired,
-    colorUser: PropTypes.string,
+  user: PropTypes.object,
+  changeLanguage: PropTypes.func.isRequired,
+  colorUser: PropTypes.string,
 };
-  
 
 export default SmallMenu;

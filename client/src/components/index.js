@@ -14,6 +14,7 @@ import ToastNotification from "./ToastNotification";
 import DeleteEditAction from "./DeleteEditAction";
 import ModalPresentationArticle from "./ModalPresentationArticle";
 import SocialShare from "./SocialShare";
+import DropDown from "./DropDown";
 
 export {
   ButtonPrimary,
@@ -33,4 +34,5 @@ export {
   DeleteEditAction,
   ModalPresentationArticle,
   SocialShare,
+  DropDown,
 };
