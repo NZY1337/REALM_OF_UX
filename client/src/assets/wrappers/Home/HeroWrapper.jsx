@@ -1,10 +1,15 @@
 import styled from "styled-components";
 
 const HerroWrapper = styled.div`
-  height: 100vh;
+  height: calc(100vh - 80px - 44px);
 
   .carousel {
+    &-inner {
+      height: 100%;
+    }
+    height: 100%;
     &-item {
+      height: 100%;
       .hero-small-description {
         position: relative;
         p {

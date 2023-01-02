@@ -6,7 +6,7 @@ import SliderItem from "./SliderItem";
 
 const carouselProps = (item) => {
   return {
-    height: "100vh",
+    height: "100%",
     width: "100%",
     backgroundColor: "black",
     backgroundImage: ` url("https://images.pexels.com/photos/226460/pexels-photo-226460.jpeg")`,

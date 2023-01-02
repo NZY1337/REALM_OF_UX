@@ -18,7 +18,7 @@ function Navigation() {
   const { user } = useUserContext();
   const { pathname } = useLocation();
   const styleBasedOnRoute = pathname === "/" ? "home-nav" : "not-home-nav";
-  const bgColor = pathname !== "/" && "black";
+  const bgColor = pathname !== "/" ? "black" : "white";
 
   const hideHeaderFooter =
     pathname === "/dashboard" ||
@@ -28,6 +28,14 @@ function Navigation() {
 
   return (
     <>
+      <p
+        className="text-center mb-0 py-2 bg-dark"
+        style={{ color: "lightgray" }}
+      >
+        Save 5% on your purchase with our limited time offer! Free registration
+        coupon code:{" "}
+        <i style={{ fontWeight: "bold", color: "turquoise" }}>realm5</i>.
+      </p>
       {!hideHeaderFooter && (
         <NavWrapper as="header" style={{ backgroundColor: `${bgColor}` }}>
           {[false].map((expand, index) => (
@@ -36,7 +44,7 @@ function Navigation() {
                 <Navbar
                   key={expand}
                   expand={expand}
-                  className={`py-4 ${styleBasedOnRoute}`}
+                  className={`${styleBasedOnRoute}`}
                   collapseOnSelect
                 >
                   <Logo />

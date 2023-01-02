@@ -4,14 +4,20 @@ import { DoorOpenFill, DoorClosed } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import { trimUserName } from "../utils/helpers";
 import { DropDown } from "./index";
+import { useUserContext } from "../utils/contexts/user/userContext";
 
 const IsLoggedIn = ({ user, colorUser }) => {
+  const { logoutUser } = useUserContext();
   const userStatus = () => {
     if (user && user.name) {
       return (
         <>
           <DropDown title={trimUserName(user.name)} klassName="dropdown-nav">
-            <Link className="logout" style={{ color: colorUser }}>
+            <Link
+              className="logout"
+              onClick={logoutUser}
+              style={{ color: colorUser }}
+            >
               Sign out <DoorClosed />
             </Link>
           </DropDown>

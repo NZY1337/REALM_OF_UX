@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 const NavWrapper = styled.div`
+  //   border-bottom: 2px solid black;
+  box-shadow: var(--shadow-4);
   .toggle-language {
     margin: 0 1rem;
   }
@@ -26,11 +28,6 @@ const NavWrapper = styled.div`
   }
 
   .home-nav {
-    z-index: 2;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
     a,
     button.navbar-toggler {
       color: black;

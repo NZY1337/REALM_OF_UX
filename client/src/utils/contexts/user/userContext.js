@@ -4,10 +4,9 @@ import {
   CLEAR_ALERT,
   REGISTER_USER_BEGIN,
   REGISTER_USER_SUCCESS,
-  REGISTER_USER_ERROR,
   LOGIN_USER_BEGIN,
   LOGIN_USER_SUCCESS,
-  LOGIN_USER_ERROR,
+  LOGOUT_USER,
 } from "./actions";
 import reducer from "./reducer";
 import axios from "axios";
@@ -70,10 +69,6 @@ const UserProvider = ({ children }) => {
       // add user to localStorage
       addUserToLocalStorage({ user, token });
     } catch (error) {
-      //   dispatch({
-      //     type: REGISTER_USER_ERROR,
-      //     payload: { msg: error.response.data.msg },
-      //   });
       notify("warning", error.response.data.msg);
     }
     clearAlert();
@@ -96,18 +91,25 @@ const UserProvider = ({ children }) => {
       // add user to localStorage
       addUserToLocalStorage({ user, token });
     } catch (error) {
-      //   dispatch({
-      //     type: LOGIN_USER_ERROR,
-      //     payload: { msg: error.response.data.msg },
-      //   });
       notify("warning", error.response.data.msg);
     }
     clearAlert();
   };
 
+  const logoutUser = () => {
+    dispatch({ type: LOGOUT_USER });
+    removeUserFromLocalStorage();
+  };
+
   return (
     <UserContext.Provider
-      value={{ ...state, displayAlert, registerUser, loginUser }}
+      value={{
+        ...state,
+        displayAlert,
+        registerUser,
+        loginUser,
+        logoutUser,
+      }}
     >
       {children}
     </UserContext.Provider>
@@ -116,4 +118,4 @@ const UserProvider = ({ children }) => {
 
 const useUserContext = () => useContext(UserContext);
 
-export { UserProvider, useUserContext };
+export { UserProvider, useUserContext, initialState };
