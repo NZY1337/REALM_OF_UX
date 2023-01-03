@@ -12,14 +12,14 @@ export const fetchSingleProject = async (projectId) => {
   return data;
 };
 
-export const addOrEditProject = async (projectId, prjkt) => {
+export const addOrEditProject = async (projectId, prjkt, token) => {
   let url;
   if (projectId) {
     url = EDIT_PROJECT_ROUTE(projectId);
   } else {
     url = ADD_PROJECT_ROUTE;
   }
-  const data = await makeRequest(projectId ? "put" : "post", url, prjkt);
+  const data = await makeRequest(projectId ? "put" : "post", url, prjkt, token);
   return data;
 };
 

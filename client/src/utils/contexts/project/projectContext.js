@@ -29,9 +29,15 @@ import {
 
 const ProjectContext = React.createContext();
 
+const token = localStorage.getItem("token");
+
+console.log(token);
+
 const ProjectProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const navigate = useNavigate();
+
+  console.log(state);
 
   // toggle modal
   const handleTriggerModal = useCallback((showModal) => {
@@ -118,7 +124,8 @@ const ProjectProvider = ({ children }) => {
 
       const { project, msg: error } = await addOrEditProject(
         state.project._id,
-        state.project
+        state.project,
+        token
       );
 
       if (project && project._id) {
