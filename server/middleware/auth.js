@@ -5,7 +5,7 @@ const authenticateUser = async (req, res, next) => {
   console.log(authHeader)
 
   if (!authHeader || !authHeader.startsWith("Bearer")) {
-    return res.status(401).send({ error: "Authentication Invalid, please do login!" });
+    return res.status(401).send({ authError: "Authentication Invalid, please do login!" });
   }
 
   const token = authHeader.split(" ")[1];
@@ -16,7 +16,7 @@ const authenticateUser = async (req, res, next) => {
     next();
   } catch (err) {
     console.log({ err });
-    return res.status(401).send({ error: "Authentication Invalid, please do login!" });
+    return res.status(401).send({ authError: "Authentication Invalid, please do login!" });
   }
 };
 

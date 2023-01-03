@@ -22,8 +22,6 @@ import {
   addOrEditProject,
   deleteProject,
 } from "../../services/projects";
-
-
 import {
   uploadImageToPublicFolder,
   deleteSingleFile,
@@ -31,11 +29,9 @@ import {
 
 const ProjectContext = React.createContext();
 
-const token = localStorage.getItem('token')
-
 const ProjectProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const {token} = useUserContext()
+  const {token} = useUserContext();
   const navigate = useNavigate();
 
   // toggle modal
@@ -72,7 +68,7 @@ const ProjectProvider = ({ children }) => {
   // delete project
   const handleDeleteProject = useCallback(
     async (projectId) => {
-      const { project: deletedProject, msg: error, error: authErr } = await deleteProject(
+      const { project: deletedProject, msg: error, authError } = await deleteProject(
         projectId, token
       );
 
@@ -87,8 +83,8 @@ const ProjectProvider = ({ children }) => {
         });
         notify("success", `Project with ID: ${projectId} successfully deleted`);
       } else {
-        if (error || authErr) {
-            notify("warning", error || authErr);
+        if (error || authError) {
+            notify("warning", error || authError);
           }
     
       }
@@ -124,7 +120,7 @@ const ProjectProvider = ({ children }) => {
     async (e) => {
       e.preventDefault();
 
-      const { project, msg: error, error: authErr } = await addOrEditProject(
+      const { project, msg: error, authError } = await addOrEditProject(
         state.project._id,
         state.project,
         token
@@ -139,8 +135,8 @@ const ProjectProvider = ({ children }) => {
           navigate(`/projects/${project._id}`);
         }, 4200);
       }
-      if (error || authErr) {
-        notify("warning", error || authErr);
+      if (error || authError) {
+        notify("warning", error || authError);
       }
     },
     [navigate, state.project, token]

@@ -90,7 +90,7 @@ const LoginRegisterForm = ({
 
 LoginRegisterForm.propTypes = {
   inputs: PropTypes.array.isRequired,
-  toggleMember: PropTypes.bool.isRequired,
+  toggleMember: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,

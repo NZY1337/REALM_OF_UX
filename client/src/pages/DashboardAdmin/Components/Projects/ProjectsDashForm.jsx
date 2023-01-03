@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import PropTypes from "prop-types";
 
 // components
@@ -16,6 +16,10 @@ const ProjectDashForm = ({
   clearValues,
 }) => {
   const { name, category, desktop, tablet, mobile } = project;
+
+  useEffect(() => {
+    clearValues()
+  },[])
 
   const disableSubmitBtn =
     name === "" ||
