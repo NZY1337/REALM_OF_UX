@@ -1,4 +1,4 @@
-import React, { useReducer, useContext } from "react";
+import React, { useReducer, useContext, useMemo, useCallback } from "react";
 import {
   DISPLAY_ALERT,
   CLEAR_ALERT,
@@ -29,11 +29,11 @@ const UserContext = React.createContext();
 const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const displayAlert = () => {
+  const displayAlert = useCallback(() => {
     dispatch({ type: DISPLAY_ALERT });
 
     clearAlert();
-  };
+  },[])
 
   const clearAlert = () => {
     setTimeout(() => {
@@ -51,65 +51,74 @@ const UserProvider = ({ children }) => {
     localStorage.removeItem("user");
   };
 
-  const registerUser = async (currentUser) => {
+  const registerUser = useCallback( async (currentUser) => {
     dispatch({
-      type: REGISTER_USER_BEGIN,
-    });
-
-    try {
-      const response = await axios.post("/api/v1/auth/register", currentUser);
-      const { user, token } = response.data;
-
-      dispatch({
-        type: REGISTER_USER_SUCCESS,
-        payload: { token, user },
+        type: REGISTER_USER_BEGIN,
       });
-      notify("success", `User created successfully!`);
+  
+      try {
+        const response = await axios.post("/api/v1/auth/register", currentUser);
+        const { user, token } = response.data;
+  
+        dispatch({
+          type: REGISTER_USER_SUCCESS,
+          payload: { token, user },
+        });
+        notify("success", `User created successfully!`);
+  
+        // add user to localStorage
+        addUserToLocalStorage({ user, token });
+      } catch (error) {
+        notify("warning", error.response.data.msg);
+      }
+      clearAlert();
+  },[])
 
-      // add user to localStorage
-      addUserToLocalStorage({ user, token });
-    } catch (error) {
-      notify("warning", error.response.data.msg);
-    }
-    clearAlert();
-  };
-
-  const loginUser = async (currentUser) => {
+  const loginUser = useCallback(async (currentUser) => {
     dispatch({
-      type: LOGIN_USER_BEGIN,
-    });
-
-    try {
-      const { data } = await axios.post("/api/v1/auth/login", currentUser);
-      const { user, token } = data;
-
-      dispatch({
-        type: LOGIN_USER_SUCCESS,
-        payload: { token, user },
+        type: LOGIN_USER_BEGIN,
       });
-      notify("success", `Welcome back, ${user.name}`);
-      // add user to localStorage
-      addUserToLocalStorage({ user, token });
-    } catch (error) {
-      notify("warning", error.response.data.msg);
-    }
-    clearAlert();
-  };
+  
+      try {
+        const { data } = await axios.post("/api/v1/auth/login", currentUser);
+        const { user, token } = data;
+  
+        dispatch({
+          type: LOGIN_USER_SUCCESS,
+          payload: { token, user },
+        });
+        notify("success", `Welcome back, ${user.name}`);
+        // add user to localStorage
+        addUserToLocalStorage({ user, token });
+      } catch (error) {
+        notify("warning", error.response.data.msg);
+      }
+      clearAlert();
+  }, [])
 
-  const logoutUser = () => {
+  const logoutUser = useCallback(() => {
     dispatch({ type: LOGOUT_USER });
     removeUserFromLocalStorage();
-  };
+    notify("success", "You successfully logged out!")
+  }, [])
 
   return (
     <UserContext.Provider
-      value={{
-        ...state,
-        displayAlert,
+      value={useMemo(
+        () => ({
+          ...state,
+          displayAlert,
         registerUser,
         loginUser,
         logoutUser,
-      }}
+        }),
+        [
+          state,
+          displayAlert,
+        registerUser,
+        loginUser,
+        logoutUser,
+        ])}
     >
       {children}
     </UserContext.Provider>

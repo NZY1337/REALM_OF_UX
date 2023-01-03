@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 
 const authenticateUser = async (req, res, next) => {
   const authHeader = req.headers.authorization;
+  console.log(authHeader)
 
   if (!authHeader || !authHeader.startsWith("Bearer")) {
     return res.status(401).send({ error: "Authentication Invalid, please do login!" });

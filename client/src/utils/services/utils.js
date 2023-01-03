@@ -1,12 +1,13 @@
 import axios from "axios";
 
+
+// or (method, url, data = null, token = null)
 export const makeRequest = async (method, url, data, token) => {
   const options = {
     method,
     url,
-    data,
   };
-  
+
   if (token) {
     options.headers = {
       Authorization: `Bearer ${token}`,

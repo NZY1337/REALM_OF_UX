@@ -31,6 +31,7 @@ const reducer = (state, action) => {
       };
 
     case REGISTER_USER_BEGIN:
+    case LOGIN_USER_BEGIN:
       return {
         ...state,
         isLoading: true,
@@ -48,18 +49,13 @@ const reducer = (state, action) => {
       };
 
     case REGISTER_USER_ERROR:
+    case LOGIN_USER_ERROR:
       return {
         ...state,
         isLoading: false,
         showAlert: true,
         alertType: "danger",
         alertText: action.payload.msg,
-      };
-
-    case LOGIN_USER_BEGIN:
-      return {
-        ...state,
-        isLoading: true,
       };
 
     case LOGIN_USER_SUCCESS:
@@ -71,15 +67,6 @@ const reducer = (state, action) => {
         showAlert: true,
         alertType: "success",
         alertText: "Login Successful! Redirecting...",
-      };
-
-    case LOGIN_USER_ERROR:
-      return {
-        ...state,
-        isLoading: false,
-        showAlert: true,
-        alertType: "danger",
-        alertText: action.payload.msg,
       };
 
     case LOGOUT_USER:

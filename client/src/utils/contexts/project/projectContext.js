@@ -1,4 +1,4 @@
-import React, { useReducer, useContext, useMemo, useCallback } from "react";
+import React, { useReducer, useContext, useMemo, useCallback, useState, useEffect } from "react";
 import {
   GET_PROJECTS,
   GET_PROJECT,
@@ -15,12 +15,14 @@ import { notify } from "../../helpers";
 import { useNavigate } from "react-router-dom";
 import { initialState } from "./utils";
 import reducer from "./reducer";
+import { useUserContext } from "../user/userContext";
 import {
   fetchSingleProject,
   fetchAllProjects,
   addOrEditProject,
   deleteProject,
 } from "../../services/projects";
+
 
 import {
   uploadImageToPublicFolder,
@@ -29,15 +31,12 @@ import {
 
 const ProjectContext = React.createContext();
 
-const token = localStorage.getItem("token");
-
-console.log(token);
+const token = localStorage.getItem('token')
 
 const ProjectProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const {token} = useUserContext()
   const navigate = useNavigate();
-
-  console.log(state);
 
   // toggle modal
   const handleTriggerModal = useCallback((showModal) => {
@@ -73,7 +72,7 @@ const ProjectProvider = ({ children }) => {
   // delete project
   const handleDeleteProject = useCallback(
     async (projectId) => {
-      const { project: deletedProject, msg: error } = await deleteProject(
+      const { project: deletedProject, msg: error, error: authErr } = await deleteProject(
         projectId, token
       );
 
@@ -88,12 +87,15 @@ const ProjectProvider = ({ children }) => {
         });
         notify("success", `Project with ID: ${projectId} successfully deleted`);
       } else {
-        notify("warning", error);
+        if (error || authErr) {
+            notify("warning", error || authErr);
+          }
+    
       }
 
       handleTriggerModal(false);
     },
-    [handleTriggerModal]
+    [handleTriggerModal, token]
   );
 
   const fetchProject = useCallback(async (projectId) => {
@@ -141,7 +143,7 @@ const ProjectProvider = ({ children }) => {
         notify("warning", error || authErr);
       }
     },
-    [navigate, state.project]
+    [navigate, state.project, token]
   );
 
   const handleCreateProjectContent = useCallback((content) => {
