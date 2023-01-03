@@ -28,14 +28,16 @@ function Navigation() {
 
   return (
     <>
-      <p
-        className="text-center mb-0 py-2 bg-dark"
-        style={{ color: "lightgray" }}
-      >
-        Save 5% on your purchase with our limited time offer! Free registration
-        coupon code:{" "}
-        <i style={{ fontWeight: "bold", color: "turquoise" }}>realm5</i>.
-      </p>
+      {pathname === "/" && (
+        <p
+          className="text-center mb-0 py-2 bg-dark"
+          style={{ color: "lightgray" }}
+        >
+          Save 5% on your purchase with our limited time offer! Free
+          registration coupon code:{" "}
+          <i style={{ fontWeight: "bold", color: "turquoise" }}>realm5</i>.
+        </p>
+      )}
       {!hideHeaderFooter && (
         <NavWrapper as="header" style={{ backgroundColor: `${bgColor}` }}>
           {[false].map((expand, index) => (

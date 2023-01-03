@@ -10,7 +10,8 @@ const squareVariants = {
   visible: {
     opacity: 1,
     // scale: 1.01,
-    color: "black",
+    color: "turquoise",
+    fontSize: "65px",
     transition: { duration: 0.5 },
     x: [0, 10, 0],
   },
@@ -21,14 +22,13 @@ const h4Variants = {
   visible: {
     opacity: 1,
     // scale: 1.01,
-    color: "black",
+    color: "white",
     fontSize: "25px",
-    fontWeight: "300",
-    fontStyle: "italic",
+    letterSpacing: "10",
     transition: { duration: 0.5 },
     x: [0, 10, 0],
   },
-  hidden: { opacity: 0 },
+  hidden: { opacity: 0, letterSpacing: "-100" },
 };
 
 const pVariants = {

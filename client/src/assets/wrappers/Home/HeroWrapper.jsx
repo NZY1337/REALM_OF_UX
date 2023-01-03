@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const HerroWrapper = styled.div`
-  height: calc(100vh - 80px - 44px);
+  height: calc(100vh - 64px - 44px);
 
   .carousel {
     &-inner {
@@ -32,7 +32,7 @@ const HerroWrapper = styled.div`
         }
 
         span:nth-child(1) {
-          color: black;
+          color: wheat;
         }
 
         span:nth-child(2) {

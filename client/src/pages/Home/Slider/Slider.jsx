@@ -9,10 +9,13 @@ const carouselProps = (item) => {
     height: "100%",
     width: "100%",
     backgroundColor: "black",
-    backgroundImage: ` url("https://images.pexels.com/photos/226460/pexels-photo-226460.jpeg")`,
-    backgroundPosition: "center center",
+    // backgroundImage: ` url("https://images.pexels.com/photos/226460/pexels-photo-226460.jpeg")`,
+    backgroundImage: `url(
+        "https://images.pexels.com/photos/2081166/pexels-photo-2081166.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      )`,
+    backgroundPosition: "center bottom",
     backgroundSize: "cover",
-    boxShadow: "inset 0 0 0 2000px rgba(0,0,0, 0.2)",
+    boxShadow: "inset 0 0 0 2000px rgba(0,0,0, 0.5)",
   };
 };
 

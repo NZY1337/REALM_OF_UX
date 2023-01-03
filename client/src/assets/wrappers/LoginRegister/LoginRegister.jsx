@@ -13,7 +13,8 @@ const LoginRegisterWrapper = styled.div`
     height: inherit;
     position: relative;
     height: inherit;
-    background-image: url(${cover});
+    // background-image: url(${cover});
+    background-image: url("https://images.pexels.com/photos/672630/pexels-photo-672630.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
     background-position: center bottom;
     background-size: cover;
     // background-color: rgba(0, 0, 0, 0.4);
