@@ -8,7 +8,7 @@ const project = new ProjectController();
 router.route("/project").post(authenticateUser, project.addProject);
 router.route("/all-projects").get(project.getProjects);
 router.route("/get-project/:projectId").get(project.getProject);
-router.route("/delete-project/:projectId").delete(project.deleteProject);
-router.route("/edit-project/:projectId").put(project.editProject);
+router.route("/delete-project/:projectId").delete(authenticateUser, project.deleteProject);
+router.route("/edit-project/:projectId").put(authenticateUser, project.editProject);
 
 export default router;

@@ -8,7 +8,7 @@ import {
 } from "./apis";
 
 export const fetchSingleProject = async (projectId) => {
-  const data = await makeRequest("get", GET_PROJECT_ROUTE(projectId));
+  const data = await makeRequest("get", GET_PROJECT_ROUTE(projectId), null, null);
   return data;
 };
 
@@ -24,11 +24,11 @@ export const addOrEditProject = async (projectId, prjkt, token) => {
 };
 
 export const fetchAllProjects = async () => {
-  const data = await makeRequest("get", GET_PROJECTS_ROUTE);
+  const data = await makeRequest("get", GET_PROJECTS_ROUTE, null, null);
   return data;
 };
 
-export const deleteProject = async (projectId) => {
-  const data = await makeRequest("delete", DELETE_PROJECT_ROUTE(projectId));
+export const deleteProject = async (projectId, token) => {
+  const data = await makeRequest("delete", DELETE_PROJECT_ROUTE(projectId), null, token);
   return data;
 };

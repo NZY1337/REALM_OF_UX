@@ -54,7 +54,7 @@ const ProjectProvider = ({ children }) => {
       type: MATCHED_PROJECT,
       payload: { projects: allProjects, error },
     });
-  }, []);
+  }, [state.searchKeyword]);
 
   // search keyword by input value
   const handleSearchKeyword = useCallback(async (e) => {
@@ -74,7 +74,7 @@ const ProjectProvider = ({ children }) => {
   const handleDeleteProject = useCallback(
     async (projectId) => {
       const { project: deletedProject, msg: error } = await deleteProject(
-        projectId
+        projectId, token
       );
 
       if (!!deletedProject) {
@@ -122,7 +122,7 @@ const ProjectProvider = ({ children }) => {
     async (e) => {
       e.preventDefault();
 
-      const { project, msg: error } = await addOrEditProject(
+      const { project, msg: error, error: authErr } = await addOrEditProject(
         state.project._id,
         state.project,
         token
@@ -137,8 +137,8 @@ const ProjectProvider = ({ children }) => {
           navigate(`/projects/${project._id}`);
         }, 4200);
       }
-      if (error) {
-        notify("warning", error);
+      if (error || authErr) {
+        notify("warning", error || authErr);
       }
     },
     [navigate, state.project]
@@ -149,7 +149,7 @@ const ProjectProvider = ({ children }) => {
       type: ADD_PROJECT_CONTENT,
       payload: { content },
     });
-  }, []);
+  }, [state.project.content]);
 
   // get project data
   const handleCreateProject = useCallback(
@@ -175,7 +175,7 @@ const ProjectProvider = ({ children }) => {
         });
       }
     },
-    [state.project.name]
+    [state.project]
   );
 
   const handleDeleteImages = useCallback(

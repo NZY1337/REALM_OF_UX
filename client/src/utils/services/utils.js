@@ -6,11 +6,17 @@ export const makeRequest = async (method, url, data, token) => {
     url,
     data,
   };
+  
   if (token) {
     options.headers = {
       Authorization: `Bearer ${token}`,
     };
   }
+
+  if (data) {
+    options.data = data;
+  }
+
   try {
     const response = await axios(options);
     return response.data;

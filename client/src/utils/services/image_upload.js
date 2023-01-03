@@ -17,6 +17,6 @@ export const uploadImageToPublicFolder = async (file, postTitle) => {
 };
 
 export const deleteSingleFile = async (imageId, body) => {
-  const data = await makeRequest("put", DELETE_IMAGE_ROUTE(imageId), body);
+  const data = await makeRequest("put", DELETE_IMAGE_ROUTE(imageId), body, null);
   return data;
 };
