@@ -22,9 +22,18 @@ const SideBar = () => {
   return (
     <SideBarWrapper cover={cover}>
       <div className="sidebar">
-        <Link className="logo text-center d-block" to="/">
-          <img alt="logo" src={logo} />
-        </Link>
+        <div className="text-center logo-wrapper">
+          <div className="logo text-center">
+            <img
+              alt="logo"
+              src="https://images.pexels.com/photos/1840608/pexels-photo-1840608.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            />
+          </div>
+          <div className="my-3">
+            <h4 className="text-white mt-2">Anne Marie</h4>
+            <p className="font-weight-bold text-white">teacher</p>
+          </div>
+        </div>
         <Navbar expand="md">
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">

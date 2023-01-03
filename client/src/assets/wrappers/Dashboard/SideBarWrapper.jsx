@@ -2,19 +2,52 @@ import styled from "styled-components";
 
 const SideBarWrapper = styled.div`
   .sidebar {
-    // padding: 2rem;
+    @keyframes rotation {
+      from {
+        transform: rotateZ(0deg);
+      }
+      to {
+        transform: rotateZ(360deg);
+      }
+    }
+
+    padding: 2rem;
+    padding-right: 0;
     background: linear-gradient(0deg, rgb(0 0 0 / 70%), rgba(155, 50, 250, 0.3)),
       url(${(props) => props.cover});
-
     background-position: center center;
     background-size: cover;
     width: 100%;
 
+    // logo
+    .logo-wrapper {
+      margin-right: 2rem;
+    }
+    .logo {
+      margin-right: 3rem;
+      width: 125px;
+      height: 125px;
+      margin: auto;
+      position: relative;
+      img {
+        width: 100%;
+        height: inherit;
+        object-fit: cover;
+        box-shadow: var(--shadow-4);
+        border-radius: 50%;
+        z-index: 111;
+        position: relative;
+        border: 4px solid #e7e7e7;
+      }
+    }
+
     @media (min-width: 768px) {
-      width: 200px;
+      width: 250px;
     }
 
     .navbar {
+      margin-top: 2rem;
+
       &-nav {
         a.active {
           color: #fff;
@@ -23,12 +56,13 @@ const SideBarWrapper = styled.div`
           font-weight: 100;
           padding: 10px;
           border-left: 4px solid var(--text-color-orange);
+          border-top-left-radius: 15px;
         }
 
         a {
           color: #fff;
           margin-bottom: 0.5rem;
-          padding-left: 10px;
+          padding: 10px;
 
           &:hover {
             svg,
