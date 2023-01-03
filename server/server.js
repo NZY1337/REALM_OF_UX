@@ -23,20 +23,16 @@ import productRouter from "./routes/productRoutes.js";
 // middlewares
 import notFoundMiddleware from "./middleware/not-found.js";
 import errorHandlerMiddleware from "./middleware/error-handler.js";
+import authenticateUser from "./middleware/auth.js";
+
 app.use(express.static("./public"));
 app.use(express.json());
 app.use(express.urlencoded({ limit: "25mb", extended: true }));
 app.use(fileUpload());
 
-// routes
-app.get("/", (req, res) => {
-  //   throw new Error("error");
-  res.send("Welcome");
-});
-
 // use routes
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/project", projectRouter);
+app.use("/api/v1/project", authenticateUser ,projectRouter);
 app.use("/api/v1/comment", commentRouter);
 app.use("/api/v1/products", productRouter);
 

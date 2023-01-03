@@ -28,7 +28,7 @@ const ProjectActionsForm = ({
       <Form>
         <div className="d-flex align-items-start">
           <h6 className="mb-4 me-2">Edit or Delete Projects</h6>
-          <span className="badge bg-primary text-white">{projects.length}</span>
+          <span className="badge bg-primary text-white">{projects && projects.length}</span>
         </div>
 
         <Row>

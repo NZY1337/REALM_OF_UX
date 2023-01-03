@@ -12,3 +12,5 @@
 10. count projects
 11. AWS Cloud to save image
 12. Button pt discard / new Project
+13. Fix the null project error -> null.status
+14. create unique ID for every single image that'll be uploaded to the server
