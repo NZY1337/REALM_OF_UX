@@ -19,7 +19,7 @@ import Projects from "./pages/Projects";
 import SingleProject from "./pages/Home/Projects/SingleProject";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import ToastNotification from "./components/ToastNotification";
-import CommentDash from "./pages/DashboardAdmin/Components/CommentDash";
+import ProfileDash from "./pages/DashboardAdmin/Components/Profile/ProfileDash";
 import ProjectsDash from "./pages/DashboardAdmin/Components/Projects/ProjectsDash";
 import TestDash from "./pages/DashboardAdmin/Components/TestDash";
 import CodeEditor from "./pages/CodeEditor/CodeEditor";
@@ -32,31 +32,8 @@ const theme = {
 };
 
 //https://9elements.github.io/fancy-border-radius/
-const knownRoutes = [
-  "login",
-  "banner-creator",
-  "/",
-  "projects/:id",
-  "dashboard",
-  "dashboard/comments",
-  "dashboard/tests",
-  "code-editor",
-  "about",
-];
 
 function App() {
-  //   const { pathname } = useLocation();
-
-  //   const hideHeaderFooter =
-  //     pathname === "/dashboard" ||
-  //     pathname === "/dashboard/comments" ||
-  //     pathname === "/dashboard/tests" ||
-  //     pathname === "/login";
-
-  //   const isUnknownRoot = !knownRoutes.some((route) =>
-  //     matchPath(`${route}`, pathname)
-  //   );
-
   return (
     <ThemeProvider theme={theme}>
       <TranslateProvider>
@@ -69,7 +46,7 @@ function App() {
                   <Route path="/">
                     <Route path="/dashboard">
                       <Route path="" element={<ProjectsDash />} />
-                      <Route path="comments" element={<CommentDash />} />
+                      <Route path="profile" element={<ProfileDash />} />
                       <Route path="tests" element={<TestDash />} />
                     </Route>
 
@@ -83,10 +60,6 @@ function App() {
                   <Route path="/projects">
                     <Route path=":projectId" element={<SingleProject />} />
                   </Route>
-
-                  {/* {isUnknownRoot && (
-                                <Route path="*" element={<ErrorPage />} />
-                            )} */}
                 </Routes>
                 <Footer />
                 <ToastNotification />

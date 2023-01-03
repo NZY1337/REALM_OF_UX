@@ -54,9 +54,9 @@ export const sideLinks = [
     title: "Projects",
   },
   {
-    link: "/dashboard/comments",
+    link: "/dashboard/profile",
     icon: <AiOutlineProject />,
-    title: "Comments",
+    title: "Profile ",
   },
   {
     link: "/dashboard/tests",
