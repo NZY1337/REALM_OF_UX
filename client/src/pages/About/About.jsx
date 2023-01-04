@@ -32,7 +32,7 @@ const About = () => {
 
       <Container className="about-me">
         <Row className="d-flex align-items-center about-me-description">
-          <Col lg="6">
+          <Col lg="12">
             <img
               src={me}
               alt="the real person behind this website"
@@ -40,7 +40,7 @@ const About = () => {
             />
           </Col>
 
-          <Col lg="6 mt-3 mt-lg-0">
+          <Col lg="6" className="mt-3 mt-lg-0">
             <div className="about-me-description-info p-4 p-lg-5">
               <h3 className="mb-3">{descriptionSection.title}</h3>
               <h5 className="mb-5">{descriptionSection.subtitle}</h5>
