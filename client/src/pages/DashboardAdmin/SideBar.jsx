@@ -5,7 +5,7 @@ import SideBarWrapper from "../../assets/wrappers/Dashboard/SideBarWrapper";
 import NavSidebar from "./MiniComponents/NavSidebar";
 
 const cover =
-  "https://images.pexels.com/photos/3876407/pexels-photo-3876407.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2";
+  "https://images.pexels.com/photos/1793525/pexels-photo-1793525.jpeg";
 
 const SideBar = () => {
   return (

@@ -13,7 +13,7 @@ const SideBarWrapper = styled.div`
 
     padding: 2rem;
     padding-right: 0;
-    background: linear-gradient(0deg, rgb(0 0 0 / 70%), rgba(155, 50, 250, 0.3)),
+    background: linear-gradient(0deg,rgb(0 0 0 / 70%),rgb(49 48 50 / 30%)),
       url(${(props) => props.cover});
     background-position: center center;
     background-size: cover;

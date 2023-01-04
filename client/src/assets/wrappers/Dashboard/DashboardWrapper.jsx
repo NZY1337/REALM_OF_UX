@@ -5,6 +5,8 @@ const DashboardWrapper = styled.div`
   width: 100%;
   background-color: rgba(203, 203, 210, 0.15);
 
+   //Custom CSS
+  
   .filtered-projects {
     &-results {
       background-color: #14242a;
@@ -33,8 +35,9 @@ const DashboardWrapper = styled.div`
       overflow-x:hidden;
     }
 
-    // PROJECTS
     &-section {
+        
+
       // quill
       .quill {
         &-toolbar {
@@ -107,10 +110,10 @@ const DashboardWrapper = styled.div`
         padding: 1rem;
         background: #fff;
         border-radius: 5px;
-        box-shadow: var(--shadow-4);
+        box-shadow: var(--shadow-1);
         border: 1px solid #c3c3c3;
 
-        .btn {
+        .btn:not(.dropdown-toggle) {
           box-shadow: -2px 2px rgb(42 39 39 / 47%);
 
           &:active {
@@ -119,7 +122,11 @@ const DashboardWrapper = styled.div`
         }
 
         label {
-          text-transform: lowercase;
+            text-transform: lowercase;
+            text-transform: lowercase;
+            font-weight: 500;
+            color: var(--text-color-orange);
+            font-size: 14px;
         }
 
         h6 {
@@ -127,7 +134,7 @@ const DashboardWrapper = styled.div`
         }
 
         input.form-control {
-          box-shadow: var(--shadow-2);
+          border-radius:0;
           padding: 10px;
         }
       }

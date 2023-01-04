@@ -6,7 +6,7 @@ import Row from "react-bootstrap/Row";
 import { DashTitle } from "./DashTitle";
 import DashboardWrapper from "../../../assets/wrappers/Dashboard/DashboardWrapper";
 
-const DashContainer = ({ children, settings }) => {
+const DashContainer = ({ children, settings, klassName }) => {
     return (
         <DashboardAdminWrapper>
           <SideBar />
@@ -14,7 +14,7 @@ const DashContainer = ({ children, settings }) => {
           <DashboardWrapper>
             <DashTitle title="Profile" />
                 <div className="dash-container">
-                    <Row className="dash-container-section" style={{...settings}}>
+                    <Row className={`${klassName} dash-container-section`} style={{...settings}}>
                         {children}
                     </Row>
                  </div>

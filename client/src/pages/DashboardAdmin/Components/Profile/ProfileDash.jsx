@@ -12,7 +12,7 @@ const ProfileDash = () => {
     }
 
   return (
-    <DashContainer settings={{...profileSettings}}>
+    <DashContainer settings={{...profileSettings}} klassName="dash-profile-form">
         <ProfileActionsForm />
     </DashContainer>
   );
