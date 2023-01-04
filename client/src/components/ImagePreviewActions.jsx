@@ -11,7 +11,7 @@ const ImagePreviewActions = ({ projectImages, handleDeleteImages }) => {
 
   return (
     <Col  lg="6" xxl="4" md="12">
-    <div className="dash-container-projects-wrapper my-4 my-xxl-0">
+    <div className="dash-container-section-wrapper my-4 my-xxl-0">
     <ImagePreviewActionsWrapper>
       <h6 className="mb-4">Image Preview</h6>
 

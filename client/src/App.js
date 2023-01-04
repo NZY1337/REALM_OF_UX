@@ -17,7 +17,7 @@ import SingleProject from "./pages/Home/Projects/SingleProject";
 import ToastNotification from "./components/ToastNotification";
 import ProfileDash from "./pages/DashboardAdmin/Components/Profile/ProfileDash";
 import ProjectsDash from "./pages/DashboardAdmin/Components/Projects/ProjectsDash";
-import TestDash from "./pages/DashboardAdmin/Components/TestDash";
+import TestDash from "./pages/DashboardAdmin/Components/Test/TestDash";
 import CodeEditor from "./pages/CodeEditor/CodeEditor";
 import About from "./pages/About/About";
 import "./assets/scss/errorContext.scss";

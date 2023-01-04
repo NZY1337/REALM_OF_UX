@@ -1,14 +1,14 @@
 import React from "react";
 
 // images
-import cover from "../../../assets/images/img9.jpeg";
+import cover from "../../../../assets/images/img9.jpeg";
 
 // components
-import DashboardAdminWrapper from "../../../assets/wrappers/Dashboard/DashboardAdminWrapper";
+import DashboardAdminWrapper from "../../../../assets/wrappers/Dashboard/DashboardAdminWrapper";
 import Container from "react-bootstrap/Container";
-import SideBar from "../SideBar";
-import DashTitle from "../MiniComponents/DashTitle";
-import DashboardWrapper from "../../../assets/wrappers/Dashboard/DashboardWrapper";
+import SideBar from "../../SideBar";
+import { DashTitle } from "../../MiniComponents/DashTitle";
+import DashboardWrapper from "../../../../assets/wrappers/Dashboard/DashboardWrapper";
 
 const TestDash = () => {
   return (

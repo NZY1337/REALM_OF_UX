@@ -33,7 +33,7 @@ const DashboardWrapper = styled.div`
     }
 
     // PROJECTS
-    &-projects {
+    &-section {
       // quill
       .quill {
         &-toolbar {
@@ -93,6 +93,7 @@ const DashboardWrapper = styled.div`
               color: white;
             }
           }
+
           a:hover {
             color: white !important;
           }
@@ -100,6 +101,7 @@ const DashboardWrapper = styled.div`
       }
 
       //https://www.freecodecamp.org/news/css-box-shadow-property-with-examples/
+
       &-wrapper {
         padding: 1rem;
         background: #fff;
@@ -107,12 +109,12 @@ const DashboardWrapper = styled.div`
         box-shadow: var(--shadow-4);
         border: 1px solid #c3c3c3;
 
-        button.btn-dark {
+        button.dash-btn {
           box-shadow: -2px 2px rgb(42 39 39 / 47%);
-        }
 
-        button.btn-outline-danger {
-          box-shadow: -2px 2px rgb(193 0 0 / 47%);
+          &:focus {
+            box-shadow:none;
+          }
         }
 
         label {

@@ -7,6 +7,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import FilteredProjects from "./FilteredProjects";
 import FormGroup from "../../../../utils/helpers/react/FormGroup";
+import { DashTitleSection } from "../../MiniComponents/DashTitle";
 
 const ProjectActionsForm = ({
   filteredProjects,
@@ -25,24 +26,24 @@ const ProjectActionsForm = ({
 
   return (
     <Col lg="6" xxl="4" md="12" className="my-4 my-xxl-0">
-        <div className="dash-container-projects-wrapper">
-        <Form>
-            <div className="d-flex align-items-start">
-            <h6 className="mb-4 me-2">Edit or Delete Projects</h6>
-            <span className="badge bg-primary text-white">{projects && projects.length}</span>
-            </div>
+        <div className="dash-container-section-wrapper">
 
+        <DashTitleSection title="Edit or Delete Project"> 
+            <span className="badge bg-primary text-white">{projects && projects.length}</span>
+        </DashTitleSection>  
+
+        <Form>
             <Row>
-            <Col lg="12" xxl="6">
-                <FormGroup
-                label="Search Project by title"
-                type="text"
-                name="name"
-                placeholder="Enter the project name"
-                value={searchKeyword}
-                onHandleChange={handleSearchKeyword}
-                />
-            </Col>
+                <Col lg="12" xxl="6">
+                    <FormGroup
+                    label="Search Project by title"
+                    type="text"
+                    name="name"
+                    placeholder="Enter the project name"
+                    value={searchKeyword}
+                    onHandleChange={handleSearchKeyword}
+                    />
+                </Col>
             </Row>
         </Form>
 

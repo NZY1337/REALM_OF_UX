@@ -26,7 +26,7 @@ const FilteredProjects = ({
     return filteredProjects.map((project, index) => {
       return (
         <div
-          key={`${project}_${index}`}
+          key={`${project.name}`}
           className="d-flex justify-content-between align-items-center mb-3 filtered-projects"
         >
           <Link
@@ -56,7 +56,7 @@ const FilteredProjects = ({
 
   return (
     <>
-      <div className="dash-container-projects-filtered">
+      <div className="dash-container-section-filtered">
         {filteredProjects.length > 0 && searchKeyword
           ? renderFilteredProjects()
           : null}
