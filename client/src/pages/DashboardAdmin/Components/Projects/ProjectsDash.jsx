@@ -46,42 +46,31 @@ const ProjectsDash = () => {
 
         <DashContainer>
           <Row className="dash-container-projects">
-            <Col lg="12" xxl="4" xl="12" md="12">
-              <div className="dash-container-projects-wrapper">
-                <ProjectDashForm
-                  project={project}
-                  handleCreateProject={handleCreateProject}
-                  handleSubmitProject={handleSubmitProject}
-                  handleCreateProjectContent={handleCreateProjectContent}
-                  clearValues={clearValues}
-                />
-              </div>
-            </Col>
-
-            <Col lg="6" xxl="4" md="12" className="my-4 my-xxl-0">
-              <div className="dash-container-projects-wrapper">
-                <ProjectActionsForm
-                  filteredProjects={filteredProjects}
-                  searchKeyword={searchKeyword}
-                  handleSearchKeyword={handleSearchKeyword}
-                  handleTriggerModal={handleTriggerModal}
-                  showModal={showModal}
-                  handleMatchedProject={handleMatchedProject}
-                  handleDeleteProject={handleDeleteProject}
-                  fetchProject={fetchProject}
-                  projects={projects}
-                />
-              </div>
-            </Col>
+            <ProjectDashForm
+                project={project}
+                handleCreateProject={handleCreateProject}
+                handleSubmitProject={handleSubmitProject}
+                handleCreateProjectContent={handleCreateProjectContent}
+                clearValues={clearValues}
+            />
+        
+            <ProjectActionsForm
+                filteredProjects={filteredProjects}
+                searchKeyword={searchKeyword}
+                handleSearchKeyword={handleSearchKeyword}
+                handleTriggerModal={handleTriggerModal}
+                showModal={showModal}
+                handleMatchedProject={handleMatchedProject}
+                handleDeleteProject={handleDeleteProject}
+                fetchProject={fetchProject}
+                projects={projects}
+            />
+            
             {projectImages.length && projectImages.length > 0 ? (
-            <Col  lg="6" xxl="4" md="12">
-                <div className="dash-container-projects-wrapper my-4 my-xxl-0">
                   <ImagePreviewActions
                     projectImages={projectImages}
                     handleDeleteImages={handleDeleteImages}
                   />
-                </div>
-              </Col>
                ) : null}
           </Row>
         </DashContainer>

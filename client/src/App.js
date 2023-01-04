@@ -9,15 +9,11 @@ import { ProjectProvider } from "./utils/contexts/project/projectContext";
 import {
   Routes,
   Route,
-  matchPath,
-  useLocation,
-  Router,
 } from "react-router-dom";
 import { UserProvider } from "./utils/contexts/user/userContext";
 import { ModalProvider } from "./utils/contexts/modal/modalContext";
 import Projects from "./pages/Projects";
 import SingleProject from "./pages/Home/Projects/SingleProject";
-import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import ToastNotification from "./components/ToastNotification";
 import ProfileDash from "./pages/DashboardAdmin/Components/Profile/ProfileDash";
 import ProjectsDash from "./pages/DashboardAdmin/Components/Projects/ProjectsDash";

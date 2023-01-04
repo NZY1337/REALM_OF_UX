@@ -17,7 +17,7 @@ const Footer = () => {
 
   const hideHeaderFooter =
     pathname === "/dashboard" ||
-    pathname === "/dashboard/comments" ||
+    pathname === "/dashboard/profile" ||
     pathname === "/dashboard/tests" ||
     pathname === "/login";
 
