@@ -99,12 +99,21 @@ const DashboardWrapper = styled.div`
         }
       }
 
+      //https://www.freecodecamp.org/news/css-box-shadow-property-with-examples/
       &-wrapper {
         padding: 1rem;
         background: #fff;
         border-radius: 5px;
         box-shadow: var(--shadow-4);
         border: 1px solid #c3c3c3;
+
+        button.btn-dark {
+          box-shadow: -2px 2px rgb(42 39 39 / 47%);
+        }
+
+        button.btn-outline-danger {
+          box-shadow: -2px 2px rgb(193 0 0 / 47%);
+        }
 
         label {
           text-transform: lowercase;

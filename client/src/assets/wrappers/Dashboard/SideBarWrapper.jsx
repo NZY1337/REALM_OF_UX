@@ -10,7 +10,6 @@ const SideBarWrapper = styled.div`
         transform: rotateZ(360deg);
       }
     }
-
     padding: 2rem;
     padding-right: 0;
     background: linear-gradient(0deg, rgb(0 0 0 / 70%), rgba(155, 50, 250, 0.3)),
@@ -22,6 +21,10 @@ const SideBarWrapper = styled.div`
     // logo
     .logo-wrapper {
       margin-right: 2rem;
+
+      h4 {
+        color: turquoise;
+      }
     }
     .logo {
       margin-right: 3rem;
@@ -50,7 +53,7 @@ const SideBarWrapper = styled.div`
 
       &-nav {
         a.active {
-          color: #fff;
+          color: lightgray;
           background: #e7e7e7;
           color: black;
           font-weight: 100;
