@@ -19,30 +19,7 @@ const SideBarWrapper = styled.div`
     width: 100%;
 
     // logo
-    .logo-wrapper {
-      margin-right: 2rem;
-
-      h4 {
-        color: turquoise;
-      }
-    }
-    .logo {
-      margin-right: 3rem;
-      width: 125px;
-      height: 125px;
-      margin: auto;
-      position: relative;
-      img {
-        width: 100%;
-        height: inherit;
-        object-fit: cover;
-        box-shadow: var(--shadow-4);
-        border-radius: 50%;
-        z-index: 111;
-        position: relative;
-        border: 4px solid #e7e7e7;
-      }
-    }
+   
 
     @media (min-width: 768px) {
       width: 250px;
@@ -85,16 +62,8 @@ const SideBarWrapper = styled.div`
         flex-direction: column;
       }
     }
-
-    .logo span {
-      display: flex;
-      align-items: center;
-      font-size: 1.1rem;
-      color: turquoise;
-      //   font-weight: bold;
-    }
+   
     height: 100%;
-
     max-height: 100%;
   }
 `;

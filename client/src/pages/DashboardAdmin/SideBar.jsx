@@ -1,13 +1,8 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { sideLinks } from "../../utils/helpers/constants";
-import Badge from "react-bootstrap/Badge";
+import ProfileSidebar from "./MiniComponents/ProfileSidebar";
 
-// images
-// import cover from "../../assets/images/img17.jpeg";
-import logo from "../../assets/images/logo1.png";
-
-// components
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import SideLinks from "./MiniComponents/SideLinks";
@@ -26,23 +21,7 @@ const SideBar = () => {
   return (
     <SideBarWrapper cover={cover}>
       <div className="sidebar">
-        <div className="text-center logo-wrapper">
-          <div className="logo text-center">
-            <img
-              alt="logo"
-              src="https://images.pexels.com/photos/1840608/pexels-photo-1840608.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            />
-          </div>
-          <div className="my-3">
-            <h4 className="mt-2">Anne Marie</h4>
-            <p className="font-weight-bold text-white mt-2">
-              teacher
-              <Badge bg="danger" className="mx-2">
-                PRO
-              </Badge>
-            </p>
-          </div>
-        </div>
+        <ProfileSidebar />
         <Navbar expand="md">
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
