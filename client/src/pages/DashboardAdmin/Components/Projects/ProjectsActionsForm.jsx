@@ -28,33 +28,33 @@ const ProjectActionsForm = ({
     <Col lg="6" xxl="4" md="12" className="my-4 my-xxl-0">
         <div className="dash-container-section-wrapper">
 
-        <DashTitleSection title="Edit or Delete Project"> 
-            <span className="badge bg-primary text-white">{projects && projects.length}</span>
-        </DashTitleSection>  
+            <DashTitleSection title="Edit or Delete Project"> 
+                <span className="badge bg-primary text-white">{projects && projects.length}</span>
+            </DashTitleSection>  
 
-        <Form>
-            <Row>
-                <Col lg="12" xxl="6">
-                    <FormGroup
-                    label="Search Project by title"
-                    type="text"
-                    name="name"
-                    placeholder="Enter the project name"
-                    value={searchKeyword}
-                    onHandleChange={handleSearchKeyword}
-                    />
-                </Col>
-            </Row>
-        </Form>
+            <Form>
+                <Row>
+                    <Col lg="12" xxl="6">
+                        <FormGroup
+                        label="Search Project by title"
+                        type="text"
+                        name="name"
+                        placeholder="Enter the project name"
+                        value={searchKeyword}
+                        onHandleChange={handleSearchKeyword}
+                        />
+                    </Col>
+                </Row>
+            </Form>
 
-        <FilteredProjects
-            filteredProjects={filteredProjects}
-            searchKeyword={searchKeyword}
-            handleTriggerModal={handleTriggerModal}
-            showModal={showModal}
-            handleDeleteProject={handleDeleteProject}
-            fetchProject={fetchProject}
-        />
+            <FilteredProjects
+                filteredProjects={filteredProjects}
+                searchKeyword={searchKeyword}
+                handleTriggerModal={handleTriggerModal}
+                showModal={showModal}
+                handleDeleteProject={handleDeleteProject}
+                fetchProject={fetchProject}
+            />
         </div>
     </Col>
   );

@@ -1,17 +1,18 @@
 import React from "react";
 
 // components
-import SideBar from "../../SideBar";
-import DashboardAdminWrapper from "../../../../assets/wrappers/Dashboard/DashboardAdminWrapper";
-import Row from "react-bootstrap/Container";
-import DashTitle from "../../MiniComponents/DashTitle";
-import DashboardWrapper from "../../../../assets/wrappers/Dashboard/DashboardWrapper";
 import ProfileActionsForm from "./ProfileActionsForm";
 import DashContainer from "../../MiniComponents/DashContainer";
 
 const ProfileDash = () => {
+    const profileSettings = {
+        height:"100%",
+        justifyContent:"center",
+        alignItems:"center"
+    }
+
   return (
-    <DashContainer>
+    <DashContainer settings={{...profileSettings}}>
         <ProfileActionsForm />
     </DashContainer>
   );

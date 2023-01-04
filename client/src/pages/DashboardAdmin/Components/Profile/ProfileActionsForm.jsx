@@ -8,28 +8,44 @@ import DashBtn from "../../MiniComponents/DashBtn";
 
 const ProfileActionsForm = () => {
     return (
-        <div className="dash-container-section-wrapper">
-            <Col lg="12" xxl="4" xl="12" md="12">
+        <Col col="12" xxl="4" lg="6">
+            <div className="dash-container-section-wrapper">
                 <DashTitleSection title="Edit Profile"/> 
 
                 <Form>
-                    <Row>
-                        <Col lg="12" xxl="6">
+                    <Row className='flex-column'>
+                        <Col lg="12">
                             <FormGroup
-                                label="Search Project by title"
+                                label="User Name"
                                 type="text"
                                 name="name"
                                 placeholder="Enter the project name"
                             />
+                        </Col>
 
-                            <DashBtn variant="dark" type="submit" size="sm">Edit</DashBtn>
+                        <Col lg="12">
+                            <FormGroup
+                                label="User Email"
+                                type="email"
+                                name="email"
+                                placeholder="Enter the project name"
+                            />
+                        </Col>
+
+                        <Col lg="12">
+                            <FormGroup
+                                label="password"
+                                type="password"
+                                name="password"
+                                placeholder="Enter the project name"
+                            />
                         </Col>
                     </Row>
+                    <DashBtn klassName="ms-auto d-block" variant="dark" type="submit" size="sm">Edit</DashBtn>
                 </Form>
-            </Col>
-        </div>
+                </div>
+        </Col>
     )
-   
 }
 
 export default ProfileActionsForm;

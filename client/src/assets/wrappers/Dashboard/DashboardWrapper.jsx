@@ -29,7 +29,8 @@ const DashboardWrapper = styled.div`
     background-color: #e7e7e7;
 
     @media (min-width: 768px) {
-      height: calc(100% - 85px);
+      height: calc(100% - 72px);
+      overflow-x:hidden;
     }
 
     // PROJECTS
@@ -109,10 +110,10 @@ const DashboardWrapper = styled.div`
         box-shadow: var(--shadow-4);
         border: 1px solid #c3c3c3;
 
-        button.dash-btn {
+        .btn {
           box-shadow: -2px 2px rgb(42 39 39 / 47%);
 
-          &:focus {
+          &:active {
             box-shadow:none;
           }
         }
