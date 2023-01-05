@@ -41,6 +41,15 @@ const ProfileActionsForm = () => {
                   placeholder="Enter the project name"
                 />
               </Col>
+
+              <Col lg="12">
+                <FormGroup
+                  label="avatar"
+                  type="file"
+                  name="password"
+                  placeholder="Enter the project name"
+                />
+              </Col>
             </Row>
             <DashBtn
               klassName="ms-auto d-block"

@@ -6,6 +6,6 @@ const user = new UserController();
 
 router.route("/register").post(user.registerUser);
 router.route("/login").post(user.loginUser);
-router.route("/update-user").post(user.updateUser);
+router.route("/update-user").patch(user.updateUser);
 
 export default router;
