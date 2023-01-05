@@ -5,8 +5,13 @@ const DashboardWrapper = styled.div`
   width: 100%;
   background-color: rgba(203, 203, 210, 0.15);
 
-   //Custom CSS
-  
+  //Custom CSS
+  video#profile-video {
+    width: 100%;
+    box-shadow: rgb(189 167 167 / 75%) 0px 7px 29px 0px;
+    border-radius: 10px;
+  }
+
   .filtered-projects {
     &-results {
       background-color: #14242a;
@@ -32,12 +37,10 @@ const DashboardWrapper = styled.div`
 
     @media (min-width: 768px) {
       height: calc(100% - 72px);
-      overflow-x:hidden;
+      overflow-x: hidden;
     }
 
     &-section {
-        
-
       // quill
       .quill {
         &-toolbar {
@@ -117,16 +120,16 @@ const DashboardWrapper = styled.div`
           box-shadow: -2px 2px rgb(42 39 39 / 47%);
 
           &:active {
-            box-shadow:none;
+            box-shadow: none;
           }
         }
 
         label {
-            text-transform: lowercase;
-            text-transform: lowercase;
-            font-weight: 500;
-            color: var(--text-color-orange);
-            font-size: 14px;
+          text-transform: lowercase;
+          text-transform: lowercase;
+          font-weight: 500;
+          color: var(--text-color-orange);
+          font-size: 14px;
         }
 
         h6 {
@@ -134,7 +137,7 @@ const DashboardWrapper = styled.div`
         }
 
         input.form-control {
-          border-radius:0;
+          border-radius: 0;
           padding: 10px;
         }
       }
