@@ -13,7 +13,7 @@ const initialState = {
   name: "",
   email: "",
   password: "",
-  isMember: true, // only a switch used to toggle from login/register inputs
+  //   isMember: true, // only a switch used to toggle from login/register inputs
 };
 
 const LoginRegister = () => {
@@ -29,22 +29,21 @@ const LoginRegister = () => {
     },
   } = useTranslateContext();
 
-  const { user, isLoading, registerUser, loginUser } = useUserContext();
+  const {
+    user,
+    isLoading,
+    registerUser,
+    loginUser,
+    toggleMember,
+    userInfo: { isMember, name, email, password },
+    handleChange,
+  } = useUserContext();
 
   const [values, setValues] = useState(initialState);
 
-  const toggleMember = () => {
-    setValues({ ...values, isMember: !values.isMember });
-  };
-
-  const handleChange = (e) => {
-    e.preventDefault();
-    setValues({ ...values, [e.target.name]: e.target.value });
-  };
-
   const onSubmit = (e) => {
     e.preventDefault();
-    const { name, email, password, isMember } = values;
+    // const { name, email, password, isMember } = values;
 
     if (!email || !password || (!isMember && !name)) {
       notify("warning", "Please provide all values!");
@@ -74,18 +73,18 @@ const LoginRegister = () => {
         <Row className="justify-content-end">
           <Col lg={12} id="login-register-form">
             <div>
-              <h1>{values.isMember ? isLoggedInTitle : isRegistredTitle}</h1>
+              <h1>{isMember ? isLoggedInTitle : isRegistredTitle}</h1>
             </div>
 
             <LoginRegisterForm
-              inputs={values.isMember ? login : register}
+              inputs={isMember ? login : register}
               toggleMember={toggleMember}
               handleChange={handleChange}
               onSubmit={onSubmit}
               isLoading={isLoading}
               isLoggedIn={isLoggedIn}
               isRegistred={isRegistred}
-              isMember={values.isMember}
+              isMember={isMember}
               isLoggedInTitle={isLoggedInTitle}
               isRegistredTitle={isRegistredTitle}
             />

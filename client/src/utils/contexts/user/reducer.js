@@ -8,12 +8,33 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_ERROR,
   LOGOUT_USER,
+  TOGGLE_MEMBER,
+  HANDLE_CHANGE,
 } from "./actions";
 
 import { initialState } from "./userContext";
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case HANDLE_CHANGE:
+      const { targetText } = action.payload; // e.target
+      return {
+        ...state,
+        userInfo: {
+          ...state.userInfo,
+          [targetText.name]: targetText.value,
+        },
+      };
+
+    case TOGGLE_MEMBER:
+      return {
+        ...state,
+        userInfo: {
+          ...state.userInfo,
+          isMember: !state.userInfo.isMember,
+        },
+      };
+
     case DISPLAY_ALERT:
       return {
         ...state,
