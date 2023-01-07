@@ -29,7 +29,6 @@ class UserController {
 
   async loginUser(req, res, next) {
     const { email, password } = req.body;
-
     try {
       if (!email || !password) {
         next({ message: "Please provide all values", statusCode: 400 });
@@ -56,12 +55,43 @@ class UserController {
   }
 
   async updateUser(req, res, next) {
-    res.send("updated user");
+    const { name, email, password, newPassword, avatar } = req.body;
+
+    try {
+      if (!name || !email) {
+        next({ message: "Please provide all values", statusCode: 400 });
+        return;
+      }
+
+      const user = await User.findOne({ _id: req.user.userId }).select(
+        "+password"
+      );
+      const isPasswordCorrect = await user.comparePassword(password);
+
+      user.name = name;
+      user.email = email;
+      user.password = undefined;
+      if (avatar) {
+        user.avatar = avatar;
+      }
+
+      if (password && newPassword) {
+        if (!isPasswordCorrect) {
+          next({ message: "Invalid credentials", statusCode: 400 });
+          return;
+        }
+        user.password = newPassword;
+      }
+
+      await user.save();
+
+      const token = user.createJWT();
+
+      res.status(201).json({ user, token });
+    } catch (err) {
+      next(err);
+    }
   }
 }
-
-const updateUser = (req, res) => {
-  res.send("update user");
-};
 
 export { UserController };

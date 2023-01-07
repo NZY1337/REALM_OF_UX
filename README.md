@@ -1,4 +1,7 @@
 #Realm Of Ux - realmify.ai | timeboxed.ai
+#Share notes between collegues.
+
+# LEARN FASTER, SAVE TIME, TAKE NOTES
 
 1. fix the upload image when the project.name isn't present there
 2. user who's not logged in cannot add comment - hide the component

@@ -38,39 +38,6 @@ const UserContext = React.createContext();
 const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const handleChange = useCallback((e) => {
-    dispatch({
-      type: HANDLE_CHANGE,
-      payload: { targetText: e.target },
-    });
-  }, []);
-
-  const toggleMember = useCallback(() => {
-    dispatch({ type: TOGGLE_MEMBER });
-  }, []);
-
-  const displayAlert = useCallback(() => {
-    dispatch({ type: DISPLAY_ALERT });
-
-    clearAlert();
-  }, []);
-
-  const clearAlert = () => {
-    setTimeout(() => {
-      dispatch({ type: CLEAR_ALERT });
-    }, 3000);
-  };
-
-  const addUserToLocalStorage = ({ user, token }) => {
-    localStorage.setItem("user", JSON.stringify(user));
-    localStorage.setItem("token", token);
-  };
-
-  const removeUserFromLocalStorage = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-  };
-
   const registerUser = useCallback(async (currentUser) => {
     dispatch({
       type: REGISTER_USER_BEGIN,
@@ -116,6 +83,62 @@ const UserProvider = ({ children }) => {
     clearAlert();
   }, []);
 
+  const onSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      const {
+        userInfo: { name, email, password, isMember },
+      } = state;
+
+      if (!email || !password || (!isMember && !name)) {
+        notify("warning", "Please provide all values!");
+        return;
+      }
+
+      const currentUser = { name, email, password };
+
+      if (isMember) {
+        loginUser(currentUser);
+      } else {
+        registerUser(currentUser);
+      }
+    },
+    [loginUser, registerUser, state]
+  );
+
+  const handleChange = useCallback((e) => {
+    dispatch({
+      type: HANDLE_CHANGE,
+      payload: { targetText: e.target },
+    });
+  }, []);
+
+  const toggleMember = useCallback(() => {
+    dispatch({ type: TOGGLE_MEMBER });
+  }, []);
+
+  const displayAlert = useCallback(() => {
+    dispatch({ type: DISPLAY_ALERT });
+
+    clearAlert();
+  }, []);
+
+  const clearAlert = () => {
+    setTimeout(() => {
+      dispatch({ type: CLEAR_ALERT });
+    }, 3000);
+  };
+
+  const addUserToLocalStorage = ({ user, token }) => {
+    localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("token", token);
+  };
+
+  const removeUserFromLocalStorage = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+  };
+
   const logoutUser = useCallback(() => {
     dispatch({ type: LOGOUT_USER });
     removeUserFromLocalStorage();
@@ -133,6 +156,7 @@ const UserProvider = ({ children }) => {
           logoutUser,
           toggleMember,
           handleChange,
+          onSubmit,
         }),
         [
           state,
@@ -142,6 +166,7 @@ const UserProvider = ({ children }) => {
           logoutUser,
           toggleMember,
           handleChange,
+          onSubmit,
         ]
       )}
     >

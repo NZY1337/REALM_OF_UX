@@ -32,32 +32,11 @@ const LoginRegister = () => {
   const {
     user,
     isLoading,
-    registerUser,
-    loginUser,
     toggleMember,
-    userInfo: { isMember, name, email, password },
+    userInfo: { isMember },
     handleChange,
+    onSubmit,
   } = useUserContext();
-
-  const [values, setValues] = useState(initialState);
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    // const { name, email, password, isMember } = values;
-
-    if (!email || !password || (!isMember && !name)) {
-      notify("warning", "Please provide all values!");
-      return;
-    }
-
-    const currentUser = { name, email, password };
-
-    if (isMember) {
-      loginUser(currentUser);
-    } else {
-      registerUser(currentUser);
-    }
-  };
 
   useEffect(() => {
     if (user) {
