@@ -4,7 +4,7 @@ import abstractVideo from "../../../assets/videos/ai.mp4";
 
 const ProfileMessage = () => {
   return (
-    <Col col="12" xxl="4" lg="6" className="p-5">
+    <Col col="12" xxl="5" lg="6" className="p-5">
       <video id="profile-video" muted autoPlay preload="auto" loop>
         <source src={abstractVideo} type="video/mp4"></source>
       </video>

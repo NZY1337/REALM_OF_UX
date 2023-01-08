@@ -12,17 +12,28 @@ import {
   HANDLE_CHANGE,
 } from "./actions";
 
-import { initialState } from "./userContext";
+import { initialState } from "./utils";
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case HANDLE_CHANGE:
+    case HANDLE_CHANGE.TEXT:
       const { targetText } = action.payload; // e.target
       return {
         ...state,
         userInfo: {
           ...state.userInfo,
           [targetText.name]: targetText.value,
+        },
+      };
+
+    case HANDLE_CHANGE.IMAGE:
+      const { targetImage, avatar } = action.payload; // e.target
+      console.log(targetImage, avatar);
+      return {
+        ...state,
+        userInfo: {
+          ...state.userInfo,
+          [targetImage.name]: avatar,
         },
       };
 
@@ -64,6 +75,12 @@ const reducer = (state, action) => {
         isLoading: false,
         token: action.payload.token,
         user: action.payload.user,
+        userInfo: {
+          ...state.userInfo,
+          email: action.payload.user.email,
+          name: action.payload.user.name,
+          password: "", // clear password, pw is not sent from backend
+        },
         showAlert: true,
         alertType: "success",
         alertText: "User created! Redirecting...",
@@ -85,6 +102,12 @@ const reducer = (state, action) => {
         isLoading: false,
         token: action.payload.token,
         user: action.payload.user,
+        userInfo: {
+          ...state.userInfo,
+          email: action.payload.user.email,
+          name: action.payload.user.name,
+          password: "", // clear password, pw is not sent from backend
+        },
         showAlert: true,
         alertType: "success",
         alertText: "Login Successful! Redirecting...",

@@ -13,4 +13,7 @@ export const LOGOUT_USER = "LOGOUT_USER";
 
 export const TOGGLE_MEMBER = "TOGGLE_MEMBER";
 
-export const HANDLE_CHANGE = "HANDLE_CHANGE";
+export const HANDLE_CHANGE = {
+  IMAGE: "ADD_USER_IMAGE",
+  TEXT: "ADD_USER_TEXT",
+};

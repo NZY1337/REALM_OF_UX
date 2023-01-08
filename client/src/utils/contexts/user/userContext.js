@@ -1,4 +1,10 @@
-import React, { useReducer, useContext, useMemo, useCallback } from "react";
+import React, {
+  useReducer,
+  useContext,
+  useMemo,
+  useCallback,
+  useEffect,
+} from "react";
 import {
   DISPLAY_ALERT,
   CLEAR_ALERT,
@@ -13,30 +19,14 @@ import {
 import reducer from "./reducer";
 import axios from "axios";
 import { notify } from "../../helpers";
-
-const token = localStorage.getItem("token");
-const user = localStorage.getItem("user");
-
-const initialState = {
-  isLoading: false,
-  showAlert: false,
-  alerText: "",
-  alertType: "",
-  user: user ? JSON.parse(user) : null,
-  userInfo: {
-    name: "",
-    email: "",
-    password: "",
-    avatar: "",
-    isMember: true, // only a switch used to toggle from login/register inputs
-  },
-  token: token,
-};
+import { uploadImageToPublicFolder } from "../../services/image_upload";
+import { initialState } from "./utils";
 
 const UserContext = React.createContext();
 
 const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  console.log("STATE CHHANGED");
 
   const registerUser = useCallback(async (currentUser) => {
     dispatch({
@@ -62,6 +52,7 @@ const UserProvider = ({ children }) => {
   }, []);
 
   const loginUser = useCallback(async (currentUser) => {
+    console.log("LOGIN");
     dispatch({
       type: LOGIN_USER_BEGIN,
     });
@@ -106,12 +97,29 @@ const UserProvider = ({ children }) => {
     [loginUser, registerUser, state]
   );
 
-  const handleChange = useCallback((e) => {
-    dispatch({
-      type: HANDLE_CHANGE,
-      payload: { targetText: e.target },
-    });
-  }, []);
+  const handleChange = useCallback(
+    async (e) => {
+      if (e.target.files) {
+        console.log("file");
+        const { src: avatar, msg: error } = await uploadImageToPublicFolder(
+          e.target.files[0],
+          state.userInfo.name
+        );
+
+        dispatch({
+          type: HANDLE_CHANGE.IMAGE,
+          payload: { targetImage: e.target, avatar },
+        });
+      } else {
+        console.log("text");
+        dispatch({
+          type: HANDLE_CHANGE.TEXT,
+          payload: { targetText: e.target },
+        });
+      }
+    },
+    [state.userInfo.name]
+  );
 
   const toggleMember = useCallback(() => {
     dispatch({ type: TOGGLE_MEMBER });

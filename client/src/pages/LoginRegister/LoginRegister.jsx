@@ -1,20 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Container, Col, Row } from "react-bootstrap";
 import LoginRegisterWrapper from "../../assets/wrappers/LoginRegister/LoginRegister";
 import LoginRegisterForm from "./LoginRegisterForm";
 import { useTranslateContext } from "../../utils/contexts/translate/translateContext";
 import { useUserContext } from "../../utils/contexts/user/userContext";
 import { useNavigate } from "react-router-dom";
-import { notify } from "../../utils/helpers";
 
 //https://quart.ro/
-
-const initialState = {
-  name: "",
-  email: "",
-  password: "",
-  //   isMember: true, // only a switch used to toggle from login/register inputs
-};
 
 const LoginRegister = () => {
   const navigate = useNavigate();
