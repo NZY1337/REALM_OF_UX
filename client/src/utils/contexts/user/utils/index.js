@@ -4,9 +4,6 @@ const userInfo = user ? JSON.parse(user) : null;
 
 export const initialState = {
   isLoading: false,
-  showAlert: false,
-  alerText: "",
-  alertType: "",
   user: user ? JSON.parse(user) : null,
   userInfo: {
     name: (userInfo && userInfo.name) || "",

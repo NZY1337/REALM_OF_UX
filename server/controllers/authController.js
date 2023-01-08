@@ -55,7 +55,7 @@ class UserController {
   }
 
   async updateUser(req, res, next) {
-    const { name, email, password, newPassword, avatar } = req.body;
+    const { name, email, avatar } = req.body;
 
     try {
       if (!name || !email) {
@@ -63,31 +63,20 @@ class UserController {
         return;
       }
 
-      const user = await User.findOne({ _id: req.user.userId }).select(
-        "+password"
-      );
-      const isPasswordCorrect = await user.comparePassword(password);
+      const user = await User.findOne({ _id: req.user.userId });
 
       user.name = name;
       user.email = email;
-      user.password = undefined;
+
       if (avatar) {
         user.avatar = avatar;
-      }
-
-      if (password && newPassword) {
-        if (!isPasswordCorrect) {
-          next({ message: "Invalid credentials", statusCode: 400 });
-          return;
-        }
-        user.password = newPassword;
       }
 
       await user.save();
 
       const token = user.createJWT();
 
-      res.status(201).json({ user, token });
+      return res.status(201).json({ user, token });
     } catch (err) {
       next(err);
     }

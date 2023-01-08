@@ -18,3 +18,6 @@ export const DELETE_COMMENT_ROUTE = "/api/v1/comment/delete-comment";
 export const GET_IMAGE_UPLOAD_ROUTE = "/api/v1/products/uploads";
 export const DELETE_IMAGE_ROUTE = (imageId) =>
   `/api/v1/products/uploads/${imageId}`;
+
+// user
+export const UPDATE_USER_ROUTE = "/api/v1/auth/update-user";

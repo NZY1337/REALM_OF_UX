@@ -1,17 +1,11 @@
-import React, {
-  useReducer,
-  useContext,
-  useMemo,
-  useCallback,
-  useEffect,
-} from "react";
+import React, { useReducer, useContext, useMemo, useCallback } from "react";
 import {
-  DISPLAY_ALERT,
-  CLEAR_ALERT,
   REGISTER_USER_BEGIN,
   REGISTER_USER_SUCCESS,
   LOGIN_USER_BEGIN,
   LOGIN_USER_SUCCESS,
+  UPDATE_USER_BEGIN,
+  UPDATE_USER_SUCCESS,
   LOGOUT_USER,
   TOGGLE_MEMBER,
   HANDLE_CHANGE,
@@ -21,12 +15,48 @@ import axios from "axios";
 import { notify } from "../../helpers";
 import { uploadImageToPublicFolder } from "../../services/image_upload";
 import { initialState } from "./utils";
+import { updateUser } from "../../services/user";
 
 const UserContext = React.createContext();
 
 const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  console.log("STATE CHHANGED");
+
+  const handleUpdateUser = useCallback(
+    async (e) => {
+      e.preventDefault();
+      dispatch({ type: UPDATE_USER_BEGIN });
+
+      const {
+        userInfo: { name, email, avatar },
+        token: stateToken,
+      } = state;
+
+      const newUser = { name, email, avatar };
+
+      const {
+        user,
+        token,
+        msg: error,
+        authError,
+      } = await updateUser(newUser, stateToken);
+
+      if (user && token) {
+        dispatch({
+          type: UPDATE_USER_SUCCESS,
+          payload: { token, user },
+        });
+
+        addUserToLocalStorage({ user, token });
+        notify("success", "User updated successfuly");
+      }
+
+      if (error || authError) {
+        notify("error", error || authError);
+      }
+    },
+    [state]
+  );
 
   const registerUser = useCallback(async (currentUser) => {
     dispatch({
@@ -48,11 +78,9 @@ const UserProvider = ({ children }) => {
     } catch (error) {
       notify("warning", error.response.data.msg);
     }
-    clearAlert();
   }, []);
 
   const loginUser = useCallback(async (currentUser) => {
-    console.log("LOGIN");
     dispatch({
       type: LOGIN_USER_BEGIN,
     });
@@ -71,7 +99,6 @@ const UserProvider = ({ children }) => {
     } catch (error) {
       notify("warning", error.response.data.msg);
     }
-    clearAlert();
   }, []);
 
   const onSubmit = useCallback(
@@ -125,18 +152,6 @@ const UserProvider = ({ children }) => {
     dispatch({ type: TOGGLE_MEMBER });
   }, []);
 
-  const displayAlert = useCallback(() => {
-    dispatch({ type: DISPLAY_ALERT });
-
-    clearAlert();
-  }, []);
-
-  const clearAlert = () => {
-    setTimeout(() => {
-      dispatch({ type: CLEAR_ALERT });
-    }, 3000);
-  };
-
   const addUserToLocalStorage = ({ user, token }) => {
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("token", token);
@@ -158,23 +173,23 @@ const UserProvider = ({ children }) => {
       value={useMemo(
         () => ({
           ...state,
-          displayAlert,
           registerUser,
           loginUser,
           logoutUser,
           toggleMember,
           handleChange,
           onSubmit,
+          handleUpdateUser,
         }),
         [
           state,
-          displayAlert,
           registerUser,
           loginUser,
           logoutUser,
           toggleMember,
           handleChange,
           onSubmit,
+          handleUpdateUser,
         ]
       )}
     >

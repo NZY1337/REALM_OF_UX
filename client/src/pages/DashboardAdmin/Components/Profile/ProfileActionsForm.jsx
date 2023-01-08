@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -10,8 +10,12 @@ import { useUserContext } from "../../../../utils/contexts/user/userContext";
 const ProfileActionsForm = () => {
   const {
     handleChange,
-    userInfo: { name, email, avatar, password, newPassword },
+    isLoading,
+    handleUpdateUser,
+    userInfo: { name, email, password, newPassword },
   } = useUserContext();
+
+  const [changePass, setChangePass] = useState(false);
 
   return (
     <>
@@ -19,70 +23,91 @@ const ProfileActionsForm = () => {
         <div className="dash-container-section-wrapper">
           <DashTitleSection title="Profile" />
 
-          <Form>
+          <Form onSubmit={handleUpdateUser}>
             <Row className="flex-column">
-              <Col lg="12">
-                <FormGroup
-                  onHandleChange={handleChange}
-                  label="Name"
-                  type="text"
-                  name="name"
-                  placeholder="Enter the project name"
-                  value={name}
-                />
-              </Col>
+              {!changePass && (
+                <>
+                  <Col lg="12">
+                    <FormGroup
+                      onHandleChange={handleChange}
+                      label="Name"
+                      type="text"
+                      name="name"
+                      placeholder="Enter the project name"
+                      value={name}
+                    />
+                  </Col>
 
-              <Col lg="12">
-                <FormGroup
-                  onHandleChange={handleChange}
-                  label="Email"
-                  type="email"
-                  name="email"
-                  placeholder="Enter the project name"
-                  value={email}
-                />
-              </Col>
+                  <Col lg="12">
+                    <FormGroup
+                      onHandleChange={handleChange}
+                      label="Email"
+                      type="email"
+                      name="email"
+                      placeholder="Enter the project name"
+                      value={email}
+                    />
+                  </Col>
 
-              <Col lg="12">
-                <FormGroup
-                  onHandleChange={handleChange}
-                  label="avatar"
-                  type="file"
-                  name="avatar"
-                  placeholder="Enter the project name"
-                />
-              </Col>
+                  <Col lg="12">
+                    <FormGroup
+                      onHandleChange={handleChange}
+                      label="avatar"
+                      type="file"
+                      name="avatar"
+                      placeholder="Enter the project name"
+                    />
+                  </Col>
+                </>
+              )}
 
-              <Col lg="12">
-                <FormGroup
-                  onHandleChange={handleChange}
-                  label="password"
-                  type="password"
-                  name="password"
-                  placeholder="Enter the project name"
-                  value={password}
-                />
-              </Col>
+              {changePass && (
+                <>
+                  <Col lg="12">
+                    <FormGroup
+                      onHandleChange={handleChange}
+                      label="password"
+                      type="password"
+                      name="password"
+                      placeholder="Enter the project name"
+                      value={password}
+                    />
+                  </Col>
 
-              <Col lg="12">
-                <FormGroup
-                  onHandleChange={handleChange}
-                  label="repeat password"
-                  type="password"
-                  name="newPassword"
-                  placeholder="Enter the project name"
-                  value={newPassword}
-                />
-              </Col>
+                  <Col lg="12">
+                    <FormGroup
+                      onHandleChange={handleChange}
+                      label="repeat password"
+                      type="password"
+                      name="newPassword"
+                      placeholder="Enter the project name"
+                      value={newPassword}
+                    />
+                  </Col>
+                </>
+              )}
             </Row>
-            <DashBtn
-              klassName="ms-auto d-block"
-              variant="dark"
-              type="submit"
-              size="sm"
-            >
-              Edit
-            </DashBtn>
+            <div className="d-flex align-items-center ">
+              <small
+                className="mb-0 font-800"
+                onClick={() => setChangePass(!changePass)}
+                style={{
+                  fontWeight: "600",
+                  cursor: "pointer",
+                  fontSize: "13px",
+                }}
+              >
+                {!changePass ? "change password?" : `go back`}
+              </small>
+              <DashBtn
+                klassName="ms-auto"
+                variant="dark"
+                type="submit"
+                size="sm"
+              >
+                {isLoading ? "Saving..." : "Edit"}
+              </DashBtn>
+            </div>
           </Form>
         </div>
       </Col>

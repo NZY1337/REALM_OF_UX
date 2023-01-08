@@ -1,15 +1,13 @@
 import {
-  DISPLAY_ALERT,
-  CLEAR_ALERT,
   REGISTER_USER_BEGIN,
   REGISTER_USER_SUCCESS,
-  REGISTER_USER_ERROR,
   LOGIN_USER_BEGIN,
   LOGIN_USER_SUCCESS,
-  LOGIN_USER_ERROR,
   LOGOUT_USER,
   TOGGLE_MEMBER,
   HANDLE_CHANGE,
+  UPDATE_USER_BEGIN,
+  UPDATE_USER_SUCCESS,
 } from "./actions";
 
 import { initialState } from "./utils";
@@ -28,7 +26,6 @@ const reducer = (state, action) => {
 
     case HANDLE_CHANGE.IMAGE:
       const { targetImage, avatar } = action.payload; // e.target
-      console.log(targetImage, avatar);
       return {
         ...state,
         userInfo: {
@@ -46,24 +43,9 @@ const reducer = (state, action) => {
         },
       };
 
-    case DISPLAY_ALERT:
-      return {
-        ...state,
-        showAlert: true,
-        alertType: "danger",
-        alertText: "Please provide all values!",
-      };
-
-    case CLEAR_ALERT:
-      return {
-        ...state,
-        showAlert: false,
-        alertType: "",
-        alertText: "",
-      };
-
     case REGISTER_USER_BEGIN:
     case LOGIN_USER_BEGIN:
+    case UPDATE_USER_BEGIN:
       return {
         ...state,
         isLoading: true,
@@ -81,19 +63,21 @@ const reducer = (state, action) => {
           name: action.payload.user.name,
           password: "", // clear password, pw is not sent from backend
         },
-        showAlert: true,
-        alertType: "success",
-        alertText: "User created! Redirecting...",
       };
 
-    case REGISTER_USER_ERROR:
-    case LOGIN_USER_ERROR:
+    case UPDATE_USER_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        showAlert: true,
-        alertType: "danger",
-        alertText: action.payload.msg,
+        token: action.payload.token,
+        user: action.payload.user,
+        userInfo: {
+          ...state.userInfo,
+          email: action.payload.user.email,
+          name: action.payload.user.name,
+          avatar: action.payload.user.avatar,
+          password: "",
+        },
       };
 
     case LOGIN_USER_SUCCESS:
@@ -106,15 +90,25 @@ const reducer = (state, action) => {
           ...state.userInfo,
           email: action.payload.user.email,
           name: action.payload.user.name,
+          avatar: action.payload.user.avatar,
           password: "", // clear password, pw is not sent from backend
         },
-        showAlert: true,
-        alertType: "success",
-        alertText: "Login Successful! Redirecting...",
       };
 
     case LOGOUT_USER:
-      return { ...initialState, user: null, token: null };
+      return {
+        ...initialState,
+        userInfo: {
+          name: "",
+          email: "",
+          avatar: "",
+          password: "",
+          newPassword: "",
+          isMember: true,
+        },
+        user: null,
+        token: null,
+      };
 
     default:
       throw new Error(`no such action: ${action.type}`);

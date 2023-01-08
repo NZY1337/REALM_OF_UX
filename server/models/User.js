@@ -55,7 +55,7 @@ UserSchema.methods.createJWT = function () {
 };
 
 UserSchema.methods.comparePassword = async function (userPassword) {
-  if (!userPassword || !this.password) return false;
+  //   if (!userPassword || !this.password) return false;
   const isMatch = await compare(userPassword, this.password);
   return isMatch;
 };

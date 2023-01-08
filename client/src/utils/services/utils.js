@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 // or (method, url, data = null, token = null)
 export const makeRequest = async (method, url, data, token) => {
   const options = {

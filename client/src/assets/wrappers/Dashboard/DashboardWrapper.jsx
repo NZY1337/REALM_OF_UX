@@ -9,7 +9,7 @@ const DashboardWrapper = styled.div`
   video#profile-video {
     width: 100%;
     box-shadow: rgb(189 167 167 / 75%) 0px 7px 29px 0px;
-    border-radius: 10px;
+    border-radius: 5px;
   }
 
   .filtered-projects {
