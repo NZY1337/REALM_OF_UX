@@ -18,10 +18,6 @@ const DashboardWrapper = styled.div`
     }
   }
 
-  @media (min-width: 768px) {
-    width: calc(100% - 200px);
-  }
-
   //TITLE SECTION
   .main-dash-title {
     padding: 0 1.5rem;
@@ -59,9 +55,9 @@ const DashboardWrapper = styled.div`
             border: none;
             background: radial-gradient(
               187.6% 162.37% at 31.62% 76.54%,
-              rgba(21, 21, 21, 0.88) 0%,
+              rgb(107 5 34) 0%,
               rgba(40, 65, 102, 0.659655) 71.94%,
-              rgba(56, 101, 168, 0.38) 100%
+              rgb(74 133 59 / 40%) 100%
             );
             span.dropdown-item {
               color: white;

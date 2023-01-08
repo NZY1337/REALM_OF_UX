@@ -11,7 +11,10 @@ const squareVariants = {
     opacity: 1,
     // scale: 1.01,
     color: "turquoise",
-    fontSize: "65px",
+    // textShadow: "rgb(0 0 0) 5px 10px 7px, rgb(58 58 70) -3px 6px 7px",
+    textShadow: `rgb(0 0 0 / 0%) 5px 3px 0px, rgb(0 0 0) 3px 3px 1px, rgb(223 89 89) 7px 4px 0px`,
+    letterSpacing: "5px",
+    fontSize: "80px",
     transition: { duration: 0.5 },
     x: [0, 10, 0],
   },
@@ -22,7 +25,7 @@ const h4Variants = {
   visible: {
     opacity: 1,
     // scale: 1.01,
-    color: "white",
+    color: "lightgray",
     fontSize: "25px",
     letterSpacing: "10",
     transition: { duration: 0.5 },
@@ -77,14 +80,14 @@ const SliderItem = ({ subtitle, title, description }) => {
               {title}
             </motion.h1>
 
-            <motion.p
+            <motion.h4
               variants={h4Variants}
               animate={controls}
               ref={ref}
               className="mb-5"
             >
-              Enhance the productivity with OpenAI's Superpowers
-            </motion.p>
+              Transform your study habits and boost your academic productivity
+            </motion.h4>
 
             <motion.p
               ref={ref}
@@ -116,10 +119,19 @@ const SliderItem = ({ subtitle, title, description }) => {
         <div className="col-lg-4 col-12 d-flex align-self-end">
           <div className="hero-small-description">
             <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt
-              mollitia et voluptas nam ipsum commodi animi architecto, unde
-              accusantium nostrum suscipit incidunt in vel illum itaque ab quo?
-              Eveniet, incidunt.
+              Effortlessly organize and optimize your study sessions with our
+              powerful note-taking and summarization tools. Revolutionize the
+              way you learn with{" "}
+              <span
+                style={{
+                  color: "white",
+                  background: "black",
+                  fontWeight: "bold",
+                  padding: "5px",
+                }}
+              >
+                TIMEBOXED
+              </span>
             </p>
 
             <div className="d-flex ">

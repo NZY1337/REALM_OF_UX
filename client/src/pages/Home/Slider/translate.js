@@ -7,7 +7,7 @@ export const sliderDict = {
       title: "TIMEBOXED.ai",
       subtitle: "Online Educational",
       description:
-        "This simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled",
+        "Simplify and enhance your academic journey with us, the ultimate solution for organizing, summarizing, and maximizing the effectiveness of your study sessions. Discover a new level of efficiency and clarity in your learning process with our powerful note-taking and summarization tool.",
       image: carouselImg1,
     },
   ],

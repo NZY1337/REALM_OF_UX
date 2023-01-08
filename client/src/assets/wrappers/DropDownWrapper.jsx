@@ -7,13 +7,12 @@ const DropDownWrapper = styled.div`
     }
 
     padding: 5px 0;
-    border-top: 2px solid var(--text-color-orange) !important;
     box-shadow: var(--shadow-4);
     background: radial-gradient(
       187.6% 162.37% at 31.62% 76.54%,
-      rgb(0 0 0 / 88%) 0%,
+      rgb(58 124 73) 0%,
       rgba(40, 65, 102, 0.659655) 71.94%,
-      rgba(56, 101, 168, 0.38) 100%
+      rgb(74 133 59 / 40%) 100%
     );
     min-width: 120px;
     border: none;
@@ -32,12 +31,7 @@ const DropDownWrapper = styled.div`
   .dropdown-item {
     padding: 0 10px;
     &:hover {
-      background: radial-gradient(
-        187.6% 162.37% at 31.62% 76.54%,
-        rgb(49 43 43 / 88%) 0%,
-        rgb(42 70 111 / 66%) 71.94%,
-        rgb(97 114 140 / 38%) 100%
-      );
+      background: none;
     }
 
     &:active {
