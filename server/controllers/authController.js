@@ -81,6 +81,34 @@ class UserController {
       next(err);
     }
   }
+
+  async updateUserPassword(req, res, next) {
+    try {
+      const { password, newPassword } = req.body;
+
+      if (!password || !newPassword) {
+        next({ message: "Please provide all values", statusCode: 400 });
+      }
+
+      const user = await User.findOne({ _id: req.user.userId }).select(
+        "+password"
+      );
+
+      const isPasswordCorrect = await user.comparePassword(password);
+
+      if (!isPasswordCorrect) {
+        next({ message: "Invalid credentials", statusCode: 400 });
+      }
+
+      user.password = newPassword;
+
+      await user.save();
+
+      return res.status(200).json({ msg: "Password Updated!" });
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 export { UserController };

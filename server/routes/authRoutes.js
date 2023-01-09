@@ -8,5 +8,8 @@ const user = new UserController();
 router.route("/register").post(user.registerUser);
 router.route("/login").post(user.loginUser);
 router.route("/update-user").patch(authenticateUser, user.updateUser);
+router
+  .route("/update-password")
+  .patch(authenticateUser, user.updateUserPassword);
 
 export default router;
