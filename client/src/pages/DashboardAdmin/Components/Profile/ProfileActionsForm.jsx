@@ -77,7 +77,7 @@ const ProfileActionsForm = () => {
                   <Col lg="12">
                     <FormGroup
                       onHandleChange={handleChange}
-                      label="repeat password"
+                      label="new password"
                       type="password"
                       name="newPassword"
                       placeholder="Enter the project name"
@@ -97,7 +97,7 @@ const ProfileActionsForm = () => {
                   fontSize: "13px",
                 }}
               >
-                {!changePass ? "change password?" : `go back`}
+                {!changePass ? "forgotten your password?" : `go back`}
               </small>
               <DashBtn
                 klassName="ms-auto"
