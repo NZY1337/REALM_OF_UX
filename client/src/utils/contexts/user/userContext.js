@@ -16,7 +16,7 @@ import axios from "axios";
 import { notify } from "../../helpers";
 import { uploadImageToPublicFolder } from "../../services/image_upload";
 import { initialState } from "./utils";
-import { updateUser } from "../../services/user";
+import { updateUser, updateUserPassword } from "../../services/user";
 
 const UserContext = React.createContext();
 
@@ -25,8 +25,12 @@ const UserProvider = ({ children }) => {
 
   const handleUpdateUserPassword = useCallback(async (e) => {
     e.preventDefault()
-    console.log('handle update user password')
-  },[])
+    const {password, newPassword} = state.userInfo;
+    const userPasswords = { password, newPassword }
+    console.log(state.userInfo.password, state.userInfo.newPassword)
+    const data = await updateUserPassword(userPasswords, state.token)
+    console.log(data)
+  },[state])
 
   const handleUpdateUser = useCallback(
     async (e) => {

@@ -85,6 +85,7 @@ class UserController {
   async updateUserPassword(req, res, next) {
     try {
       const { password, newPassword } = req.body;
+      console.log({password, newPassword})
 
       if (!password || !newPassword) {
         next({ message: "Please provide all values", statusCode: 400 });
@@ -104,7 +105,7 @@ class UserController {
 
       await user.save();
 
-      return res.status(200).json({ msg: "Password Updated!" });
+      return res.status(200).json({ success: "Password Updated!" });
     } catch (err) {
       next(err);
     }

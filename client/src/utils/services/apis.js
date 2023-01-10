@@ -21,3 +21,4 @@ export const DELETE_IMAGE_ROUTE = (imageId) =>
 
 // user
 export const UPDATE_USER_ROUTE = "/api/v1/auth/update-user";
+export const UPDATE_USER_PASSWORD = "/api/v1/auth/update-password";

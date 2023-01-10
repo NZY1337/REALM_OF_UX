@@ -17,7 +17,6 @@ const ProfileActionsForm = () => {
   } = useUserContext();
 
   const [changePass, setChangePass] = useState(false);
-  const disableBtn = !name && !email && !avatar;
 
   return (
     <>
@@ -68,11 +67,11 @@ const ProfileActionsForm = () => {
                   <Col lg="12">
                     <FormGroup
                       onHandleChange={handleChange}
-                      label="password"
+                      label="current password"
                       type="password"
                       name="password"
                       placeholder="Enter the project name"
-                      value={password}
+                    //   value={password}
                     />
                   </Col>
 
@@ -83,7 +82,7 @@ const ProfileActionsForm = () => {
                       type="password"
                       name="newPassword"
                       placeholder="Enter the project name"
-                      value={newPassword}
+                    //   value={newPassword}
                     />
                   </Col>
                 </>

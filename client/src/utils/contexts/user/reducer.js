@@ -68,7 +68,7 @@ const reducer = (state, action) => {
           ...state.userInfo,
           email: action.payload.user.email,
           name: action.payload.user.name,
-          password: "", // clear password, pw is not sent from backend
+        //   password: "", // clear password, pw is not sent from backend
         },
       };
 
@@ -83,9 +83,9 @@ const reducer = (state, action) => {
           email: action.payload.user.email,
           name: action.payload.user.name,
           avatar: action.payload.user.avatar,
-          password: "",
+        //   password: "",
         },
-      };
+    };
 
     case LOGIN_USER_SUCCESS:
       return {
@@ -98,9 +98,9 @@ const reducer = (state, action) => {
           email: action.payload.user.email,
           name: action.payload.user.name,
           avatar: action.payload.user.avatar,
-          password: "", // clear password, pw is not sent from backend
+        //   password: "", // clear password, pw is not sent from backend
         },
-      };
+    };
 
     case LOGOUT_USER:
       return {
