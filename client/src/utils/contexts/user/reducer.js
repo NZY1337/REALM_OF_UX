@@ -8,6 +8,7 @@ import {
   HANDLE_CHANGE,
   UPDATE_USER_BEGIN,
   UPDATE_USER_SUCCESS,
+  RESET_LOADING
 } from "./actions";
 
 import { initialState } from "./utils";
@@ -50,6 +51,12 @@ const reducer = (state, action) => {
         ...state,
         isLoading: true,
       };
+
+    case RESET_LOADING:
+        return {
+            ...state,
+            isLoading: false
+        }
 
     case REGISTER_USER_SUCCESS:
       return {

@@ -12,10 +12,12 @@ const ProfileActionsForm = () => {
     handleChange,
     isLoading,
     handleUpdateUser,
-    userInfo: { name, email, password, newPassword },
+    handleUpdateUserPassword,
+    userInfo: { name, email, password, newPassword, avatar },
   } = useUserContext();
 
   const [changePass, setChangePass] = useState(false);
+  const disableBtn = !name && !email && !avatar;
 
   return (
     <>
@@ -23,7 +25,7 @@ const ProfileActionsForm = () => {
         <div className="dash-container-section-wrapper">
           <DashTitleSection title="Profile" />
 
-          <Form onSubmit={handleUpdateUser}>
+          <Form onSubmit={changePass ? handleUpdateUserPassword : handleUpdateUser}>
             <Row className="flex-column">
               {!changePass && (
                 <>
@@ -105,6 +107,7 @@ const ProfileActionsForm = () => {
                 type="submit"
                 size="sm"
               >
+                {/* {!changePass ? "Update profile" : "Update Password"} */}
                 {isLoading ? "Saving..." : "Edit"}
               </DashBtn>
             </div>

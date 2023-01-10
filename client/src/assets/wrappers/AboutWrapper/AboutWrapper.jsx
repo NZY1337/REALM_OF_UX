@@ -30,7 +30,6 @@ const AboutWrapper = styled.div`
         }
 
         &-description {
-
             &-info {
                 border-radius: 5px;
             }

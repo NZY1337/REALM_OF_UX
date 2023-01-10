@@ -29,7 +29,7 @@ class UploadFile {
       const imagePath = path.resolve(`${dir}/${productImage.name}`);
       await productImage.mv(imagePath);
 
-      return res.status(200).json({ image: { src: `${productImage.name}` } });
+      return res.status(200).json( { src: `${productImage.name}` } );
     } catch (err) {
       next(err);
     }

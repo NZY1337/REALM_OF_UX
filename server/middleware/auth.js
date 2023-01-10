@@ -14,9 +14,13 @@ const authenticateUser = async (req, res, next) => {
     console.log(token);
     const payload = jwt.verify(token, process.env.JWT_SECRET);
     req.user = { userId: payload.userId };
-    console.log(req.user);
     next();
   } catch (err) {
+    if (err.name === "JsonWebTokenError") {
+      return res.status(401).json({
+        error: "Invalid token"
+      });
+    }
     console.log({ err });
     res
       .status(401)

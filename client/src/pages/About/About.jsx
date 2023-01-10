@@ -33,11 +33,7 @@ const About = () => {
       <Container className="about-me">
         <Row className="d-flex align-items-center about-me-description">
           <Col lg="12">
-            <img
-              src={me}
-              alt="the real person behind this website"
-              className="img-fluid"
-            />
+            <img src={me} alt="the real person behind this website" className="img-fluid" />
           </Col>
 
           <Col lg="6" className="mt-3 mt-lg-0">

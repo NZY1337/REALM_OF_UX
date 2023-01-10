@@ -14,3 +14,5 @@ export const HANDLE_CHANGE = {
   IMAGE: "ADD_USER_IMAGE",
   TEXT: "ADD_USER_TEXT",
 };
+
+export const RESET_LOADING = "RESET_LOADING";

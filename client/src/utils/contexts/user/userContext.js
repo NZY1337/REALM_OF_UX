@@ -9,6 +9,7 @@ import {
   LOGOUT_USER,
   TOGGLE_MEMBER,
   HANDLE_CHANGE,
+  RESET_LOADING
 } from "./actions";
 import reducer from "./reducer";
 import axios from "axios";
@@ -22,9 +23,15 @@ const UserContext = React.createContext();
 const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  const handleUpdateUserPassword = useCallback(async (e) => {
+    e.preventDefault()
+    console.log('handle update user password')
+  },[])
+
   const handleUpdateUser = useCallback(
     async (e) => {
       e.preventDefault();
+      
       dispatch({ type: UPDATE_USER_BEGIN });
 
       const {
@@ -53,6 +60,9 @@ const UserProvider = ({ children }) => {
 
       if (error || authError) {
         notify("error", error || authError);
+        dispatch({
+            type: RESET_LOADING,
+          });
       }
     },
     [state]
@@ -127,18 +137,25 @@ const UserProvider = ({ children }) => {
   const handleChange = useCallback(
     async (e) => {
       if (e.target.files) {
-        console.log("file");
-        const { src: avatar, msg: error } = await uploadImageToPublicFolder(
-          e.target.files[0],
-          state.userInfo.name
+        const { src: avatar, error } =  await uploadImageToPublicFolder(
+            e.target.files[0],
+            state.userInfo.name,
+            state.token
         );
+            
+        if (avatar) {
+            notify("success", "Image uploaded successfully");
+        }
+
+        if (error) {
+            notify("warning", `${error}, please login`);
+        }
 
         dispatch({
           type: HANDLE_CHANGE.IMAGE,
           payload: { targetImage: e.target, avatar },
         });
       } else {
-        console.log("text");
         dispatch({
           type: HANDLE_CHANGE.TEXT,
           payload: { targetText: e.target },
@@ -180,6 +197,7 @@ const UserProvider = ({ children }) => {
           handleChange,
           onSubmit,
           handleUpdateUser,
+          handleUpdateUserPassword
         }),
         [
           state,
@@ -190,6 +208,7 @@ const UserProvider = ({ children }) => {
           handleChange,
           onSubmit,
           handleUpdateUser,
+          handleUpdateUserPassword
         ]
       )}
     >
