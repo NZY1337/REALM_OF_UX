@@ -134,7 +134,7 @@ const DashboardWrapper = styled.div`
 
         input.form-control {
           border-radius: 0;
-          padding: 10px;
+          line-height: 30px;
         }
       }
     }

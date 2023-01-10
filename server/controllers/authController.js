@@ -85,10 +85,10 @@ class UserController {
   async updateUserPassword(req, res, next) {
     try {
       const { password, newPassword } = req.body;
-      console.log({password, newPassword})
+      console.log({ password, newPassword });
 
       if (!password || !newPassword) {
-        next({ message: "Please provide all values", statusCode: 400 });
+        return res.status(400).json({ message: "Please provide all values" });
       }
 
       const user = await User.findOne({ _id: req.user.userId }).select(
@@ -98,7 +98,7 @@ class UserController {
       const isPasswordCorrect = await user.comparePassword(password);
 
       if (!isPasswordCorrect) {
-        next({ message: "Invalid credentials", statusCode: 400 });
+        return res.status(400).json({ message: "Invalid credentials" });
       }
 
       user.password = newPassword;

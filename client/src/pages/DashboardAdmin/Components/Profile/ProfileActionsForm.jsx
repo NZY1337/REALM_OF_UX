@@ -18,13 +18,21 @@ const ProfileActionsForm = () => {
 
   const [changePass, setChangePass] = useState(false);
 
+  const titleSubmit = isLoading
+    ? "Saving..."
+    : !changePass
+    ? "Update profile"
+    : "Update Password";
+
   return (
     <>
       <Col col="12" xxl="4" lg="6">
         <div className="dash-container-section-wrapper">
           <DashTitleSection title="Profile" />
 
-          <Form onSubmit={changePass ? handleUpdateUserPassword : handleUpdateUser}>
+          <Form
+            onSubmit={changePass ? handleUpdateUserPassword : handleUpdateUser}
+          >
             <Row className="flex-column">
               {!changePass && (
                 <>
@@ -71,7 +79,7 @@ const ProfileActionsForm = () => {
                       type="password"
                       name="password"
                       placeholder="Enter the project name"
-                    //   value={password}
+                      value={password}
                     />
                   </Col>
 
@@ -82,7 +90,7 @@ const ProfileActionsForm = () => {
                       type="password"
                       name="newPassword"
                       placeholder="Enter the project name"
-                    //   value={newPassword}
+                      value={newPassword}
                     />
                   </Col>
                 </>
@@ -106,8 +114,7 @@ const ProfileActionsForm = () => {
                 type="submit"
                 size="sm"
               >
-                {/* {!changePass ? "Update profile" : "Update Password"} */}
-                {isLoading ? "Saving..." : "Edit"}
+                {titleSubmit}
               </DashBtn>
             </div>
           </Form>

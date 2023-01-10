@@ -8,7 +8,9 @@ import {
   HANDLE_CHANGE,
   UPDATE_USER_BEGIN,
   UPDATE_USER_SUCCESS,
-  RESET_LOADING
+  RESET_LOADING,
+  UPDATE_USER_PASSWORD_BEGIN,
+  UPDATE_USER_PASSWORD_SUCCESS,
 } from "./actions";
 
 import { initialState } from "./utils";
@@ -47,16 +49,18 @@ const reducer = (state, action) => {
     case REGISTER_USER_BEGIN:
     case LOGIN_USER_BEGIN:
     case UPDATE_USER_BEGIN:
+    case UPDATE_USER_PASSWORD_BEGIN:
       return {
         ...state,
         isLoading: true,
       };
 
     case RESET_LOADING:
-        return {
-            ...state,
-            isLoading: false
-        }
+    case UPDATE_USER_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+      };
 
     case REGISTER_USER_SUCCESS:
       return {
@@ -68,7 +72,7 @@ const reducer = (state, action) => {
           ...state.userInfo,
           email: action.payload.user.email,
           name: action.payload.user.name,
-        //   password: "", // clear password, pw is not sent from backend
+          //   password: "", // clear password, pw is not sent from backend
         },
       };
 
@@ -83,9 +87,9 @@ const reducer = (state, action) => {
           email: action.payload.user.email,
           name: action.payload.user.name,
           avatar: action.payload.user.avatar,
-        //   password: "",
+          //   password: "",
         },
-    };
+      };
 
     case LOGIN_USER_SUCCESS:
       return {
@@ -98,9 +102,9 @@ const reducer = (state, action) => {
           email: action.payload.user.email,
           name: action.payload.user.name,
           avatar: action.payload.user.avatar,
-        //   password: "", // clear password, pw is not sent from backend
+          //   password: "", // clear password, pw is not sent from backend
         },
-    };
+      };
 
     case LOGOUT_USER:
       return {

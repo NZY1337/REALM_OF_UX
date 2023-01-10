@@ -9,7 +9,9 @@ import {
   LOGOUT_USER,
   TOGGLE_MEMBER,
   HANDLE_CHANGE,
-  RESET_LOADING
+  RESET_LOADING,
+  UPDATE_USER_PASSWORD_BEGIN,
+  UPDATE_USER_PASSWORD_SUCCESS,
 } from "./actions";
 import reducer from "./reducer";
 import axios from "axios";
@@ -23,19 +25,40 @@ const UserContext = React.createContext();
 const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const handleUpdateUserPassword = useCallback(async (e) => {
-    e.preventDefault()
-    const {password, newPassword} = state.userInfo;
-    const userPasswords = { password, newPassword }
-    console.log(state.userInfo.password, state.userInfo.newPassword)
-    const data = await updateUserPassword(userPasswords, state.token)
-    console.log(data)
-  },[state])
+  const handleUpdateUserPassword = useCallback(
+    async (e) => {
+      e.preventDefault();
+      dispatch({ type: UPDATE_USER_PASSWORD_BEGIN });
+      const { password, newPassword } = state.userInfo;
+      const userPasswords = { password, newPassword };
+      const {
+        authError,
+        message: error,
+        success,
+      } = await updateUserPassword(userPasswords, state.token);
+
+      if (success) {
+        notify("success", success);
+        dispatch({ type: UPDATE_USER_PASSWORD_SUCCESS });
+      }
+
+      if (error) {
+        notify("warning", error);
+        dispatch({ type: UPDATE_USER_PASSWORD_SUCCESS });
+      }
+
+      if (authError) {
+        notify("error", authError);
+        dispatch({ type: UPDATE_USER_PASSWORD_SUCCESS });
+      }
+    },
+    [state]
+  );
 
   const handleUpdateUser = useCallback(
     async (e) => {
       e.preventDefault();
-      
+
       dispatch({ type: UPDATE_USER_BEGIN });
 
       const {
@@ -59,14 +82,14 @@ const UserProvider = ({ children }) => {
         });
 
         addUserToLocalStorage({ user, token });
-        notify("success", "User updated successfuly");
+        notify("success", "User updated successfuly!");
       }
 
       if (error || authError) {
         notify("error", error || authError);
         dispatch({
-            type: RESET_LOADING,
-          });
+          type: RESET_LOADING,
+        });
       }
     },
     [state]
@@ -141,18 +164,18 @@ const UserProvider = ({ children }) => {
   const handleChange = useCallback(
     async (e) => {
       if (e.target.files) {
-        const { src: avatar, error } =  await uploadImageToPublicFolder(
-            e.target.files[0],
-            state.userInfo.name,
-            state.token
+        const { src: avatar, error } = await uploadImageToPublicFolder(
+          e.target.files[0],
+          state.userInfo.name,
+          state.token
         );
-            
+
         if (avatar) {
-            notify("success", "Image uploaded successfully");
+          notify("success", "Image uploaded successfully");
         }
 
         if (error) {
-            notify("warning", `${error}, please login`);
+          notify("warning", `${error}, please login`);
         }
 
         dispatch({
@@ -166,7 +189,7 @@ const UserProvider = ({ children }) => {
         });
       }
     },
-    [state.userInfo.name]
+    [state.token, state.userInfo.name]
   );
 
   const toggleMember = useCallback(() => {
@@ -201,7 +224,7 @@ const UserProvider = ({ children }) => {
           handleChange,
           onSubmit,
           handleUpdateUser,
-          handleUpdateUserPassword
+          handleUpdateUserPassword,
         }),
         [
           state,
@@ -212,7 +235,7 @@ const UserProvider = ({ children }) => {
           handleChange,
           onSubmit,
           handleUpdateUser,
-          handleUpdateUserPassword
+          handleUpdateUserPassword,
         ]
       )}
     >
